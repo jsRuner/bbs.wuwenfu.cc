@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+    <item id="Title"><![CDATA[Discuz! Plugin]]></item>
+    <item id="Version"><![CDATA[]]></item>
+    <item id="Time"><![CDATA[2016-04-02 15:35]]></item>
+    <item id="From"><![CDATA[ ()]]></item>
+    <item id="Data">
+        <item id="plugin">
+            <item id="available"><![CDATA[1]]></item>
+            <item id="adminid"><![CDATA[0]]></item>
+            <item id="name"><![CDATA[ÁÄÌì»úÆ÷ÈË]]></item>
+            <item id="identifier"><![CDATA[htt_robot]]></item>
+            <item id="description"><![CDATA[¿É°®µÄ»úÆ÷ÈË]]></item>
+            <item id="datatables"><![CDATA[]]></item>
+            <item id="directory"><![CDATA[htt_robot/]]></item>
+            <item id="copyright"><![CDATA[ÎâÎÄ¸¶]]></item>
+            <item id="version"><![CDATA[1.0]]></item>
+            <item id="__modules">
+			
+               <item id="0">
+                    <item id="name"><![CDATA[httrobot]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[11]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+				
+
+               
+				
+				
+				
+
+            </item>
+        </item>
+        <item id="version"><![CDATA[X3.2]]></item>
+
+        <item id="var">
+           
+			
+			 <item id="1">
+                <item id="displayorder"><![CDATA[1]]></item>
+                <item id="title"><![CDATA[»úÆ÷ÈËÃû³Æ]]></item>
+                <item id="description"><![CDATA[»úÆ÷ÈËµÄÃû×Ö,Ä¬ÈÏÎªÐ¡Ð¡¸¶¡£]]></item>
+                <item id="variable"><![CDATA[robot_name]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[Ð¡Ð¡¸¶]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+			
+			
+			
+			<item id="2">
+                <item id="displayorder"><![CDATA[2]]></item>
+                <item id="title"><![CDATA[ÓÃ»§×é]]></item>
+                <item id="description"><![CDATA[ÓÃ»§×éÉèÖÃ,Ö§³Ö¶àÑ¡¡£Ö»ÓÐ¸ÃÓÃ»§×é·ÃÎÊÂÛÌ³²Å¿ÉÒÔ¿´µ½»úÆ÷ÈË]]></item>
+                <item id="variable"><![CDATA[groups]]></item>
+                <item id="type"><![CDATA[groups]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+			
+
+
+         <item id="3">
+                <item id="displayorder"><![CDATA[3]]></item>
+                <item id="title"><![CDATA[»¶Ó­ÓïÉèÖÃ]]></item>
+                <item id="description"><![CDATA[»úÆ÷ÈËËµµÄµÚÒ»¾ä»°]]></item>
+                <item id="variable"><![CDATA[welcome_msg]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[»¶Ó­ÄúµÄµ½À´,ÎÒÊÇÐ¡Ð¡¸¶£¬¿ÉÒÔÅãÄãÁÄÌìÓ´¡£]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+			
+			
+         <item id="4">
+                <item id="displayorder"><![CDATA[4]]></item>
+                <item id="title"><![CDATA[Í¼Áékey]]></item>
+                <item id="description"><![CDATA[*ÇëÈ¥Í¼Áé¹ÙÍøÉêÇë,·ñÔòÎÞ·¨Õý³£¹¤×÷¡£Ä¬ÈÏÊÇ×÷ÕßµÄ¡£Çë¼°Ê±ÐÞ¸Ä¡£http://www.tuling123.com/]]></item>
+                <item id="variable"><![CDATA[tuling_key]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[c2d6661fd001217c4fec38d0e4b98c31]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+		
+	
+
+<item id="7">
+                <item id="displayorder"><![CDATA[7]]></item>
+                <item id="title"><![CDATA[¿ª¹ØÉèÖÃ]]></item>
+                <item id="description"><![CDATA[²»ÐèÒªÊ±¿ÉÒÔÉèÖÃÎªÒþ²Ø¡£Ä¬ÈÏ¿ªÆô]]></item>
+                <item id="variable"><![CDATA[is_show]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[1=ÏÔÊ¾»úÆ÷ÈË
+2=Òþ²Ø»úÆ÷ÈË]]></item>
+
+
+            </item>
+			
+			
+
+			
+			
+		
+			
+			
+			
+			
+			</item>
+		
+		
+		
+		<item id="language">
+			<item id="scriptlang">
+				<item id="error_setting_fid"><![CDATA[²å¼þÉèÖÃ´íÎó:°æ¿éÎ´ÉèÖÃ]]></item>
+				<item id="error_setting_uid"><![CDATA[²å¼þÉèÖÃ´íÎó:ÓÃ»§×éÎ´ÉèÖÃ]]></item>
+				<item id="error_setting_key"><![CDATA[²å¼þÉèÖÃ´íÎó:Í¼Áé½Ó¿ÚÃÜÔ¿Ã»ÓÐÉèÖÃ.http://www.tuling123.com/ ÇëÈ¥ÉêÇë]]></item>
+				
+			
+				
+				<item id="error_curl"><![CDATA[²å¼þ¹¤×÷ÐèÒªcurlÄ£¿é]]></item>
+					
+			</item>
+			
+			<item id="installlang">
+			
+			<item id="error_curl"><![CDATA[²å¼þ¹¤×÷ÐèÒªcurlÄ£¿éºÍfile_get_contentsº¯Êý,ÇëÏÈ¿ªÆôphpµÄallow_url_fopenÑ¡ÏîºÍcurlÀ©Õ¹]]></item>
+			
+			
+			
+			</item>
+			
+			<item id="templatelang">
+		<item id="zhichiVoice"><![CDATA[¿ª/¹â ÉùÒô]]></item>
+		<item id="zhichiMin"><![CDATA[×îÐ¡»¯]]></item>
+		<item id="zhichiMax"><![CDATA[×î´ó»¯]]></item>
+		<item id="zhichiClose"><![CDATA[¹Ø±Õ»á»°]]></item>
+		<item id="please_input"><![CDATA[ÇëÊäÈë...]]></item>
+		<item id="copyright"><![CDATA[±±°¶µÄÔÆ]]></item>
+		<item id="send_text"><![CDATA[·¢ËÍ]]></item>
+		
+		<item id="close_text"><![CDATA[ÎûÎû,ÕâÀïÖ»ÓÐ¹Ø±Õ¹¦ÄÜ£¬ÒªÀë¿ªÎÒÂð?ÎØÎØÎØ¡£¡£¡£]]></item>
+		<item id="error_empty"><![CDATA[ÄÚÈÝ²»¿ÉÒÔÎª¿ÕÓ´]]></item>
+		<item id="me"><![CDATA[ÎÒ]]></item>
+		<item id="robot_bug"><![CDATA[°¥Ñ½,ÄÔ´ü»µµôÁË£¬ÇëÁªÏµÎÒµÄÖ÷ÈË]]></item>
+		
+	</item>
+			
+			
+		
+			
+		</item>
+
+        <item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		 <item id="checkfile"><![CDATA[check.php]]></item>
+		
+
+
+    </item>
+
+
+</root>
