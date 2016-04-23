@@ -80,59 +80,92 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
     }
     //帖子左侧显示版块的积分.
     //增加缓存处理。读取缓存数据。过期后再读取数据库的。
-    public function viewthread_sidebottom()
+    //这里要输出的非登录用户的uid,而是发帖左侧人的版块等级与积分，是个多次输出过程
+    function viewthread_sidebottom_output()
     {	
-    	global $_G;
+    	// global $_G;
+    	global $_G,$postlist,$_GET;
+
+    	// $tid = $postlist['0']['tid'];
+    	$tid = $_GET['tid'];
+
+    	// file_put_contents('1.txt', json_encode($postlist));
+
+    	// return 11;
     	loadcache('plugin');
 		$var = $_G['cache']['plugin'];
 
 		// var_dump($var);
 		$cache_time =  $var['htt_baidu']['cache_time'];
 
-		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents.php';
+		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents_'.$tid.'.php';
 
 		//缓存过期了。
 		if(($_G['timestamp'] - @filemtime($cache_file)) > $cache_time*60) {
-    		# code...
-			$uid = $_G['uid'];
-			$fid = $_G['fid'];
+			foreach ($postlist as $key => $value) {
+				$info =array();
 
-			$guanzhuinfo = '';
-	    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
-			while($item = DB::fetch($query)) {
-				// var_dump($item);
-				$guanzhuinfo = $item;
-			}
-			if(empty($guanzhuinfo)){
-				$credit = 0;
-			}else{
+				// $uid = $_G['uid'];
+				$uid = $value['uid'];
+				// $uid = $post['authorid'];
+				$fid = $_G['fid'];
 
-				$credit = $guanzhuinfo['credit'];
-			}
 
-			//计算等级名称。查询所有等级。然后计算出等级。todo：需要缓存
-			$level_list = array();
-			$touxian = "新手入门"; #默认 新手入门。如果没设置的话
-	    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
-			while($item = DB::fetch($query)) {
-				//毕竟是否大于下限，小于上限。如果是-1。则只比较下限
-				if($item['ceil'] == -1){
-					if ($credit>=$item['floor']) {
-						$touxian = $item['leveltitle'];
-					}
 
+				$guanzhuinfo = '';
+		    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
+				while($item = DB::fetch($query)) {
+					// var_dump($item);
+					$guanzhuinfo = $item;
+				}
+				if(empty($guanzhuinfo)){
+					$credit = 0;
 				}else{
 
-					if ($credit>=$item['floor'] && $credit <$item['ceil']) {
-						$touxian = $item['leveltitle'];
+					$credit = $guanzhuinfo['credit'];
+				}
+
+				//计算等级名称。查询所有等级。然后计算出等级。todo：需要缓存
+				$level_list = array();
+				$touxian = " "; #默认 新手入门。如果没设置的话
+		    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
+				while($item = DB::fetch($query)) {
+					//毕竟是否大于下限，小于上限。如果是-1。则只比较下限
+					if($item['ceil'] == -1){
+						if ($credit>=$item['floor']) {
+							$touxian = $item['leveltitle'];
+						}
+
+					}else{
+
+						if ($credit>=$item['floor'] && $credit <$item['ceil']) {
+							$touxian = $item['leveltitle'];
+						}
 					}
 				}
+
+				// $info['credit'] = $credit;
+				// $info['touxian'] = urlencode($touxian);
+				// include_once template('htt_baidu:side');
+    			// $return =array($side_html);
+    			$side_html = '<dl class="pil cl">
+    <dt>本版积分</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$credit.'</a></dd>
+</dl>
+
+<dl class="pil cl">
+    <dt>本版等级</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$touxian.'</a></dd>
+</dl>';
+				// $echoq[] = urlencode($side_html);
+				// $echoq[$tid][] = $side_html;
+				$echoq[] =$side_html;
+
+				$cachestr[] = urlencode($side_html);
+
+				// file_put_contents('2.txt', $side_html);
 			}
-		//创建缓存。
-		$info['credit'] = $credit;
-		$info['touxian'] = urlencode($touxian);
 		//写入缓存的需要加''
-		$cacheArray .= "\$contents='".json_encode($info)."';\n";
+		// $cacheArray .= "\$contents='".json_encode($echoq)."';\n";
+		$cacheArray = "\$contents='".json_encode($cachestr)."';\n";
 		require_once libfile('function/cache');
 		writetocache('htt_baidu_contents', $cacheArray); 
     	
@@ -140,21 +173,16 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		   //你可以从缓存文件里读了.
     		//读取缓存的数据
     		include_once DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents.php';
-			$htt_baidu_cache= json_decode($contents,true);
-    		$touxian = $htt_baidu_cache['touxian'];
-    		$touxian = urldecode($touxian);
-    		$credit = $htt_baidu_cache['credit'];
+			
+			$contents= json_decode($contents,true);
+			// var_dump($contents);
+			foreach ($contents as $key => $value) {
 
+				$echoq[] = urldecode($value);
+			}
     	}
-
-    	include_once template('htt_baidu:side');
-    	$return =array($side_html);
-
-    	
-    	return $return;
+    	return $echoq;
     }
-
-
 }
 
 
