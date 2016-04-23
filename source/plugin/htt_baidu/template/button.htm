@@ -1,21 +1,26 @@
-<!--{block button_html}-->
-<div>
+<!--{block button_no_html}-->
+
 
     <link rel="stylesheet" type="text/css" href="source/plugin/htt_baidu/template/style.css" />
 
-    <script  type="text/javascript"  src="source/plugin/htt_baidu/template/jquery.js"></script>
+    <!-- <script  type="text/javascript"  src="source/plugin/htt_baidu/template/jquery.js"></script> -->
     <script  type="text/javascript"  src="source/plugin/htt_baidu/template/button.js?t={$t}"></script>
+    <span class="pipe">|</span>
 
-   
-
-    <!--jséœ€è¦çš„è¯­è¨€åŒ…-->
-    
-
-
+    <a href="http://bbs.wuwenfu.cc/plugin.php?id=htt_baidu:guanzhu&uid={$uid}&fid={$fid}&formhash={FORMHASH}" id="a_guanzhu" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);">¹Ø×¢<strong class="xi1" id="number_favorite" style="display:none;">(<span id="number_favorite_num">0</span>)</strong></a>
+    <!--jsÐèÒªµÄÓïÑÔ°ü-->
+<!--{/block}-->
 
 
+<!--{block button_yes_html}-->
 
 
+    <link rel="stylesheet" type="text/css" href="source/plugin/htt_baidu/template/style.css" />
 
-</div>
+    <!-- <script  type="text/javascript"  src="source/plugin/htt_baidu/template/jquery.js"></script> -->
+    <script  type="text/javascript"  src="source/plugin/htt_baidu/template/button.js?t={$t}"></script>
+    <span class="pipe">|</span>
+
+    <a href="http://bbs.wuwenfu.cc/plugin.php?id=htt_baidu:guanzhu&uid={$uid}&fid={$fid}&guanzhu=yes&formhash={FORMHASH}" id="a_guanzhu" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);">ÒÑ¹Ø×¢<strong class="xi1" id="number_favorite" style="display:none;">(<span id="number_favorite_num">0</span>)</strong></a>
+    <!--jsÐèÒªµÄÓïÑÔ°ü-->
 <!--{/block}-->

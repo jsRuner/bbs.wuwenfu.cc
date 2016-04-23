@@ -16,7 +16,7 @@
 			<item id="copyright"><![CDATA[北岸的云]]></item>
 			<item id="version"><![CDATA[1.0]]></item>
 			<item id="__modules">
-				<item id="0">
+				<item id="1">
                     <item id="name"><![CDATA[httbaidu]]></item>
                     <item id="param"><![CDATA[]]></item>
                     <item id="menu"><![CDATA[]]></item>
@@ -29,10 +29,65 @@
                     <item id="navsubname"><![CDATA[]]></item>
                     <item id="navsuburl"><![CDATA[]]></item>
                 </item>
+
+                <item id="2">
+					<item id="name"><![CDATA[baidu]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[等级设置]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
 				
 
 			</item>
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
+
+
+			<item id="var">
+			
+<item id="0">
+                <item id="displayorder"><![CDATA[0]]></item>
+                <item id="title"><![CDATA[积分增幅]]></item>
+                <item id="description"><![CDATA[每次发帖可以增加指定的积分]]></item>
+                <item id="variable"><![CDATA[credit]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+
+            </item>
+        </item>
+
+
+        <item id="language">
+			<item id="scriptlang">
+				<item id="floor"><![CDATA[等级下限]]></item>
+				<item id="ceil"><![CDATA[等级上限]]></item>
+				
+				<item id="level_title"><![CDATA[等级的名称]]></item>
+				<item id="show_addlevel"><![CDATA[添加等级设置]]></item>
+				<item id="show_dellevel"><![CDATA[删除等级设置]]></item>
+
+				<item id="show_addlevel_succeed"><![CDATA[添加等级设置成功]]></item>
+				<item id="show_addlevel_error"><![CDATA[添加等级设置错误]]></item>
+				
+				
+				</item>
+				
+				
+				
+				
+			</item>
+			
+
+
+
+
 	</item>
 </root>

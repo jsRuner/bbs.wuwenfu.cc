@@ -10,6 +10,22 @@ if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 class plugin_htt_robot{
+
+
+    const DEBUG = 0;
+    protected static $postReportAction = array('post_newthread_succeed', 'post_edit_succeed', 'post_reply_succeed',
+        'post_newthread_mod_succeed', 'post_newthread_mod_succeed', 'post_reply_mod_succeed',
+        'edit_reply_mod_succeed', 'edit_newthread_mod_succeed');
+    //TODO - Insert your code here
+    protected static $cloudAppService;
+    protected static $securityService;
+    protected static $securityStatus;
+
+    public function __construct() {
+        self::$cloudAppService = Cloud::loadClass('Service_App');
+        self::$securityStatus = self::$cloudAppService->getCloudAppStatus('security');
+        self::$securityService = Cloud::loadClass('Service_Security');
+    }
     
 
     function global_footer(){
