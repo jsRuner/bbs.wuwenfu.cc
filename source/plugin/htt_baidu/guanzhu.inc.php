@@ -28,9 +28,17 @@ if ($_GET['formhash']!= FORMHASH) {
 $uid = $_GET['uid'];
 $fid = $_GET['fid'];
 
-$guanzhu = $_GET['guanzhu']; #存在则是关注
+$guanzhu = $_GET['guanzhu']; #存在则是关注.todo:不根据它判断
 
-if($guanzhu!='yes'){
+#查询是否存在。
+$guanzhuinfo = '';
+$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
+while($item = DB::fetch($query)) {
+	// var_dump($item);
+	$guanzhuinfo = $item;
+}
+
+if(empty($guanzhuinfo)){
 
 	$insert_array = array(
 		'uid'=>$uid,
@@ -39,14 +47,16 @@ if($guanzhu!='yes'){
 		);
 	DB::insert('httbaidu',$insert_array);
 
+//需要研究一下这的参数传递.要支持执行js.修改状态.没有刷新页面。导致的异常
+showmessage(lang('plugin/htt_baidu','guanzhu_success'),'',array(),array('alert'=>'right','showmsg'=>true,'msgtype'=>2,'closetime'=>2,'handle'=>'false'));
+
+
 }else{
 	#删除操作
 	DB::query("delete from `pre_httbaidu` where `uid`=$uid and `fid`=$fid");
+	showmessage(lang('plugin/htt_baidu','quxiao_guanzhu_success'),'',array(),array('alert'=>'right','showmsg'=>true,'msgtype'=>2,'closetime'=>2,'handle'=>'false'));
 	
 }
-
-//需要研究一下这的参数传递.要支持执行js.修改状态
-showmessage('do_success', '', array(), array('showdialog'=>1, 'showmsg' => true, 'closetime' => true, 'locationtime' => 3));
 
 
 

@@ -123,6 +123,10 @@
 
         <item id="language">
 			<item id="scriptlang">
+				<item id="quxiao_guanzhu_success"><![CDATA[取消关注成功]]></item>
+				<item id="guanzhu_success"><![CDATA[关注成功]]></item>
+
+
 				<item id="floor"><![CDATA[等级下限]]></item>
 				<item id="ceil"><![CDATA[等级上限]]></item>
 				<item id="level_title"><![CDATA[等级的名称]]></item>

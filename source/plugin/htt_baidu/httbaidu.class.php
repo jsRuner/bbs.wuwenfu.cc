@@ -85,18 +85,13 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
     {	
     	// global $_G;
     	global $_G,$postlist,$_GET;
-
-    	// $tid = $postlist['0']['tid'];
     	$tid = $_GET['tid'];
 
-    	// file_put_contents('1.txt', json_encode($postlist));
-
-    	// return 11;
     	loadcache('plugin');
 		$var = $_G['cache']['plugin'];
-
-		// var_dump($var);
 		$cache_time =  $var['htt_baidu']['cache_time'];
+		$credit_title =  $var['htt_baidu']['credit_title'];
+		$level_title =  $var['htt_baidu']['level_title'];
 
 		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents_'.$tid.'.php';
 
@@ -104,14 +99,8 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		if(($_G['timestamp'] - @filemtime($cache_file)) > $cache_time*60) {
 			foreach ($postlist as $key => $value) {
 				$info =array();
-
-				// $uid = $_G['uid'];
 				$uid = $value['uid'];
-				// $uid = $post['authorid'];
 				$fid = $_G['fid'];
-
-
-
 				$guanzhuinfo = '';
 		    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
 				while($item = DB::fetch($query)) {
@@ -143,25 +132,18 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 						}
 					}
 				}
-
-				// $info['credit'] = $credit;
-				// $info['touxian'] = urlencode($touxian);
-				// include_once template('htt_baidu:side');
-    			// $return =array($side_html);
     			$side_html = '<dl class="pil cl">
-    <dt>本版积分</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$credit.'</a></dd>
+    <dt>'.$credit_title.'</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$credit.'</a></dd>
 </dl>
 
 <dl class="pil cl">
-    <dt>本版等级</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$touxian.'</a></dd>
+    <dt>'.$level_title.'</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">'.$touxian.'</a></dd>
 </dl>';
 				// $echoq[] = urlencode($side_html);
 				// $echoq[$tid][] = $side_html;
 				$echoq[] =$side_html;
 
 				$cachestr[] = urlencode($side_html);
-
-				// file_put_contents('2.txt', $side_html);
 			}
 		//写入缓存的需要加''
 		// $cacheArray .= "\$contents='".json_encode($echoq)."';\n";
