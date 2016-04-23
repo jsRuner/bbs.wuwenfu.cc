@@ -9,11 +9,13 @@
 if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
-define('PMODURL', 'action=plugins&operation&config&identifier=htt_baidu&pmod=baidu&ac=');
-//TODO - Insert your code here
 
-//鏄剧ず涓涓垪琛紝鏄剧ず涓涓坊鍔犳寜閽傛樉绀轰竴涓垹闄ゆ寜閽傛寜鐓т笅闄愯繘琛屾帓搴
-//type: list  add  addform
+$ac = !empty($_GET['ac']) ? $_GET['ac'] : '';
+
+require_once libfile('function/forumlist');
+loadcache('forums');
+
+define('PMODURL', 'action=plugins&operation&config&identifier=htt_baidu&pmod=baidu&ac=');
 
 $action = $_GET['ac'];
 
@@ -22,28 +24,24 @@ $action = $_GET['ac'];
 switch ($action) {
 	case 'add':
 		if(!submitcheck('submit')) {
-
-		// echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
-		// $forumselect = "<select name=\"fid\">\n<option value=\"\">&nbsp;&nbsp;> ".cplang('select')."</option><option value=\"\">&nbsp;</option>".str_replace('%', '%%', forumselect(FALSE, 0, 0, TRUE)).'</select>';
-
 		showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_baidu&pmod=baidu&ac=add', 'enctype');
 		showtableheader();
-		showsetting(lang('plugin/htt_baidu', 'floor'), 'floor', '0', 'text');
-		showsetting(lang('plugin/htt_baidu', 'ceil'), 'ceil', '0', 'text');
-		showsetting(lang('plugin/htt_baidu', 'level_title'), 'level_title', '等级1', 'text');
+		showsetting(lang('plugin/htt_baidu', 'floor'), 'floor', '', 'text');
+		showsetting(lang('plugin/htt_baidu', 'ceil'), 'ceil', '', 'text');
+		showsetting(lang('plugin/htt_baidu', 'level_title'), 'level_title', '', 'text');
 		showsubmit('submit');
 		showtablefooter();
 		showformfooter();
 
 	}else{
-		//检查参数是否为空
-		if(!$_GET['floor'] || !$_GET['ceil'] || !$_GET['level_title']) {
+		//检查参数是否为空.上限和下限必须要设置一个。默认为-1 标识无穷大.
+		if((!$_GET['floor'] && !$_GET['ceil']) || !$_GET['level_title']) {
 			cpmsg(lang('plugin/htt_baidu', 'show_addlevel_error'), '', 'error');
 		}
 		//插入数据库。
 		$insert_array = array(
 			'floor'=>$_GET['floor'],
-			'ceil'=>$_GET['ceil'],
+			'ceil'=>empty($_GET['ceil'])?-1:$_GET['ceil'],
 			'leveltitle'=>$_GET['level_title'],
 			'dateline'=>time(),
 			);
@@ -60,20 +58,21 @@ switch ($action) {
 			DB::query("delete FROM pre_httbaidu_level where `id`= $delete");
 		}
 		updatecache(array('plugin', 'setting'));
-		cpmsg(lang('plugin/htt_baidu', 'floor'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_baidu&pmod=baidu', 'succeed');
+		cpmsg(lang('plugin/htt_baidu', 'show_dellevel_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_baidu&pmod=baidu', 'succeed');
 		}
 
 
 	break;
 	default:
 		$level_list = array();
-    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `ceil` ");
+    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
 		while($item = DB::fetch($query)) {
 			// var_dump($item);
 			$level_list[] = $item;
 		}
 		
-		arsort($level_list);
+		// arsort($level_list);
+		showtips(lang('plugin/htt_baidu', 'baidu_tips'));
 		showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_baidu&pmod=baidu&ac=del', 'enctype');
 		showtableheader();
 		echo '<tr class="header"><th></th><th>'.lang('plugin/htt_baidu', 'floor').'</th><th>'.

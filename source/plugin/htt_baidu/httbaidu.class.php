@@ -78,27 +78,75 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		$fid = $_G['fid'];
 		$query = DB::query("update `pre_httbaidu` set `credit`=`credit`+10 WHERE  `fid`=$fid and `uid`=$uid");
     }
-    //帖子左侧显示版块的积分
+    //帖子左侧显示版块的积分.
+    //增加缓存处理。读取缓存数据。过期后再读取数据库的。
     public function viewthread_sidebottom()
     {	
     	global $_G;
+    	loadcache('plugin');
+		$var = $_G['cache']['plugin'];
 
-		$uid = $_G['uid'];
-		$fid = $_G['fid'];
+		// var_dump($var);
+		$cache_time =  $var['htt_baidu']['cache_time'];
 
-		$guanzhuinfo = '';
-    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
-		while($item = DB::fetch($query)) {
-			// var_dump($item);
-			$guanzhuinfo = $item;
-		}
-		if(empty($guanzhuinfo)){
-			$credit = 0;
-		}else{
+		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents.php';
 
-			$credit = $guanzhuinfo['credit'];
-		}
-		// $credit = 10;
+		//缓存过期了。
+		if(($_G['timestamp'] - @filemtime($cache_file)) > $cache_time*60) {
+    		# code...
+			$uid = $_G['uid'];
+			$fid = $_G['fid'];
+
+			$guanzhuinfo = '';
+	    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
+			while($item = DB::fetch($query)) {
+				// var_dump($item);
+				$guanzhuinfo = $item;
+			}
+			if(empty($guanzhuinfo)){
+				$credit = 0;
+			}else{
+
+				$credit = $guanzhuinfo['credit'];
+			}
+
+			//计算等级名称。查询所有等级。然后计算出等级。todo：需要缓存
+			$level_list = array();
+			$touxian = "新手入门"; #默认 新手入门。如果没设置的话
+	    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
+			while($item = DB::fetch($query)) {
+				//毕竟是否大于下限，小于上限。如果是-1。则只比较下限
+				if($item['ceil'] == -1){
+					if ($credit>=$item['floor']) {
+						$touxian = $item['leveltitle'];
+					}
+
+				}else{
+
+					if ($credit>=$item['floor'] && $credit <$item['ceil']) {
+						$touxian = $item['leveltitle'];
+					}
+				}
+			}
+		//创建缓存。
+		$info['credit'] = $credit;
+		$info['touxian'] = urlencode($touxian);
+		//写入缓存的需要加''
+		$cacheArray .= "\$contents='".json_encode($info)."';\n";
+		require_once libfile('function/cache');
+		writetocache('htt_baidu_contents', $cacheArray); 
+    	
+    	}else{
+		   //你可以从缓存文件里读了.
+    		//读取缓存的数据
+    		include_once DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents.php';
+			$htt_baidu_cache= json_decode($contents,true);
+    		$touxian = $htt_baidu_cache['touxian'];
+    		$touxian = urldecode($touxian);
+    		$credit = $htt_baidu_cache['credit'];
+
+    	}
+
     	include_once template('htt_baidu:side');
     	$return =array($side_html);
 

@@ -62,6 +62,62 @@
                 <item id="extra"><![CDATA[]]></item>
 
             </item>
+
+
+            <item id="1">
+                <item id="displayorder"><![CDATA[1]]></item>
+                <item id="title"><![CDATA[积分标题]]></item>
+                <item id="description"><![CDATA[默认为:版块积分]]></item>
+                <item id="variable"><![CDATA[credit_title]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[版块积分]]></item>
+                <item id="extra"><![CDATA[]]></item>
+
+            </item>
+
+
+<item id="2">
+                <item id="displayorder"><![CDATA[2]]></item>
+                <item id="title"><![CDATA[等级标题]]></item>
+                <item id="description"><![CDATA[默认为:版块头衔]]></item>
+                <item id="variable"><![CDATA[level_title]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[版块头衔]]></item>
+                <item id="extra"><![CDATA[]]></item>
+
+            </item>
+
+
+
+<item id="3">
+                <item id="displayorder"><![CDATA[3]]></item>
+                <item id="title"><![CDATA[缓存时间]]></item>
+                <item id="description"><![CDATA[默认不缓存。单位分钟]]></item>
+                <item id="variable"><![CDATA[cache_time]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[0]]></item>
+                <item id="extra"><![CDATA[]]></item>
+
+            </item>
+
+
+            <item id="4">
+                <item id="displayorder"><![CDATA[4]]></item>
+                <item id="title"><![CDATA[显示设置]]></item>
+                <item id="description"><![CDATA[设置显示样式]]></item>
+                <item id="variable"><![CDATA[show_style]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[3]]></item>
+                <item id="extra"><![CDATA[1=只显示积分
+                	2=只显示等级
+                	3=二者都显示]]></item>
+
+            </item>
+
+
+
+
+
         </item>
 
 
@@ -69,13 +125,25 @@
 			<item id="scriptlang">
 				<item id="floor"><![CDATA[等级下限]]></item>
 				<item id="ceil"><![CDATA[等级上限]]></item>
-				
 				<item id="level_title"><![CDATA[等级的名称]]></item>
+
+
 				<item id="show_addlevel"><![CDATA[添加等级设置]]></item>
 				<item id="show_dellevel"><![CDATA[删除等级设置]]></item>
 
 				<item id="show_addlevel_succeed"><![CDATA[添加等级设置成功]]></item>
 				<item id="show_addlevel_error"><![CDATA[添加等级设置错误]]></item>
+
+
+				<item id="show_dellevel_succeed"><![CDATA[删除等级设置成功]]></item>
+				<item id="show_dellevel_error"><![CDATA[删除等级设置错误]]></item>
+
+				<item id="baidu_tips"><![CDATA[
+					<li>添加等级设置以后，版块的关注者会显示对应的版块等级名称</li>
+					<li>关注版块以后，发帖可以获得积分。积分会根据设置的等级显示等级名称</li>
+					<li>下限默认为0,上限默认-1,-1标识无穷大。</li>
+					<li>如果无法插件工作,请联系<a href="http://weibo.com/540045865">作者微博</a></li>
+					]]></item>
 				
 				
 				</item>
