@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[]]></item>
+	<item id="Time"><![CDATA[2016-04-18 21:22]]></item>
+	<item id="From"><![CDATA[ ()]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[0]]></item>
+			<item id="adminid"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[Ð¡Ëµ²É¼¯]]></item>
+			<item id="identifier"><![CDATA[htt_novel]]></item>
+			<item id="description"><![CDATA[²É¼¯Ð¡Ëµ]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[htt_novel/]]></item>
+			<item id="copyright"><![CDATA[±±°¶µÄÔÆ]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				
+				
+				<item id="1">
+					<item id="name"><![CDATA[book]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[Ð¡ËµÁÐ±í]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3.2]]></item>
+		<item id="var">
+			
+<item id="0">
+                <item id="displayorder"><![CDATA[0]]></item>
+                <item id="title"><![CDATA[Ð¡ËµÔ´]]></item>
+                <item id="description"><![CDATA[Ä¬ÈÏÊÇÊéÐùÍø]]></item>
+                <item id="variable"><![CDATA[site_url]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[1=
+http://www.bookxuan.com/]]></item>
+
+
+            </item>
+			
+
+
+		</item>
+	</item>
+</root>

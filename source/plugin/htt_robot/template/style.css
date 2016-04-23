@@ -55,7 +55,9 @@
 }
 
 #robot_container_open .title .headBtn .zhichiVoice {
-    background-position: 0 -30px
+    background: rgb(19, 201, 203);
+    /*background-position: 0 -30px;*/
+    /*display:none;*/
 }
 
 #robot_container_open .title .headBtn .zhichiClose {
@@ -63,11 +65,15 @@
 }
 
 #robot_container_open .title .headBtn .zhichiMin {
-    background-position: -70px -30px
+    /*background-position: -70px -30px;*/
+    /*display: none;*/
+    background: rgb(19, 201, 203);
 }
 
 #robot_container_open .title .headBtn .zhichiMax {
-    background-position: -85px -30px
+    /*background-position: -85px -30px;*/
+    /*display: none;*/
+    background: rgb(19, 201, 203);
 }
 
 #robot_container_open .title{

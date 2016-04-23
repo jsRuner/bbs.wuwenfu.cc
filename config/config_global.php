@@ -97,6 +97,9 @@ $_config['remote']['cron'] = '0';
 // ---------------------------  CONFIG INPUT  --------------------------- //
 $_config['input']['compatible'] = 1;
 
+$_config['debug'] = 'debug'; // = '可自定义'，进入debug模式时页面地址中需要它。
+
+
 // $_config['plugindeveloper'] = 1;
 // -------------------  THE END  -------------------- //
 

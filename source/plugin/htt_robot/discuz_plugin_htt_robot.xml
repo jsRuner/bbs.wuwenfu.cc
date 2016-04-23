@@ -146,7 +146,7 @@
 		<item id="copyright"><![CDATA[北岸的云]]></item>
 		<item id="send_text"><![CDATA[发送]]></item>
 		
-		<item id="close_text"><![CDATA[嘻嘻,这里只有关闭功能，要离开我吗?呜呜呜。。。]]></item>
+		<item id="close_text"><![CDATA[要离开我吗?呜呜呜。。。]]></item>
 		<item id="error_empty"><![CDATA[内容不可以为空哟]]></item>
 		<item id="me"><![CDATA[我]]></item>
 		<item id="robot_bug"><![CDATA[哎呀,脑袋坏掉了，请联系我的主人]]></item>
@@ -158,8 +158,7 @@
 			
 		</item>
 
-        <item id="installfile"><![CDATA[install.php]]></item>
-		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+      
 		 <item id="checkfile"><![CDATA[check.php]]></item>
 		
 

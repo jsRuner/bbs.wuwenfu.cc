@@ -22,7 +22,3 @@ if(!function_exists('file_get_contents')) {
     cpmsg($installlang['error_curl'], '', 'error');
     exit();
 }
-
-
-
-

@@ -976,7 +976,10 @@ if(getstatus($_G['forum_thread']['status'], 10)) {
 	$_G['forum_thread']['relay'] = $preview['relay'];
 }
 
+
+
 if(empty($_GET['viewpid'])) {
+
 	$sufix = '';
 	if($_GET['from'] == 'portal') {
 		$_G['disabledwidthauto'] = 1;
@@ -993,9 +996,16 @@ if(empty($_GET['viewpid'])) {
 		$sufix = '_album';
 		$post = &$postlist[$_G['forum_firstpid']];
 		$post['message'] = cutstr(strip_tags(preg_replace('/(<ignore_js_op>.*<\/ignore_js_op>)/is', '', $post['message'])), 200);
+
+
+
 		require_once libfile('thread/album', 'include');
 	}
+
 	include template('diy:forum/viewthread'.$sufix.':'.$_G['fid']);
+
+
+
 } else {
 	$_G['setting']['admode'] = 0;
 	$post = $postlist[$_GET['viewpid']];
@@ -1013,6 +1023,7 @@ if(empty($_GET['viewpid'])) {
 		}
 	}
 	include template('common/header_ajax');
+
 	hookscriptoutput('viewthread');
 	$postcount = 0;
 	if($_GET['from']) {

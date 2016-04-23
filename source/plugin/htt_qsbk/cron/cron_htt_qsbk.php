@@ -80,34 +80,20 @@ function strFilter($str){
 }
 
 
-
 /**
- * 判断 文件/目录 是否可写（取代系统自带的 is_writeable 函数）
- *
- * @param string $file 文件/目录
- * @return boolean
+ * 创建文件夹。
+ * @param  [type]
+ * @param  boolean
+ * @return [type]
  */
-function new_is_writeable($file) {
-    if (is_dir($file)){
-        $dir = $file;
-        if ($fp = @fopen("$dir/test.txt", 'w')) {
-            @fclose($fp);
-            @unlink("$dir/test.txt");
-            $writeable = 1;
-        } else {
-            $writeable = 0;
+function make_dir($dir, $index = true) {
+        $res = true;
+        if(!is_dir($dir)) {
+            $res = @mkdir($dir, 0777);
+            $index && @touch($dir.'/index.html');
         }
-    } else {
-        if ($fp = @fopen($file, 'a+')) {
-            @fclose($fp);
-            $writeable = 1;
-        } else {
-            $writeable = 0;
-        }
+        return $res;
     }
-
-    return $writeable;
-}
 
 function curl_qsbk($url)
 {
@@ -386,6 +372,8 @@ foreach ($articles as $article) {
 
 
 
+
+
     //标记为新主题。
     C::t('forum_newthread')->insert(array(
         'tid' => $tid,
@@ -420,6 +408,48 @@ foreach ($articles as $article) {
         'status' => '0'//帖子状态
     ));
 
+    //获取文件名。
+    $filename =  substr(strrchr ( $data['img'] , '/' ),1);
+    $filesize = filesize("data/attachment/forum/".$data['img']);
+    $arr = getimagesize("data/attachment/forum/".$data['img']);
+    $width = $arr[0];
+
+
+    //需要操作附件。0-9.随机一个表保存。然后将信息存储到附件索引表中。
+    $table_index = rand(0,9);
+    //aid
+    $aid = C::t('forum_attachment')->insert(array(
+        'aid'=>null,
+        'tid'=>$tid,
+        'pid'=>$pid,
+        'uid'=>$uid,
+        'tableid'=>$table_index,
+        'downloads'=>'0'
+        ),true);
+    C::t("forum_attachment_n")->insert($table_index,array(
+        'aid'=>$aid,
+        'tid'=>$tid,
+        'pid'=>$pid,
+        'uid'=>$uid,
+        'dateline'=>$publishdate,
+        'filename'=>$filename,
+        'filesize'=>$filesize,
+        'attachment'=>$data['img'],
+        'remote'=>$remote,
+        'description'=>'qsbk',
+        'readperm'=>0,
+        'price'=>0,
+        'isimage'=>1,
+        'width'=>$width,
+        'thumb'=>0,
+        'picid'=>0,
+        ));
+    //替换为附件。
+    C::t()
+
+
+
+
     if($check == '2'){
         updatemoderate('tid', $tid);
         C::t('forum_forum')->update_forum_counter($fid, 0, 0, 1);
@@ -446,5 +476,7 @@ foreach ($articles as $article) {
     }
     //沙发数据
     C::t('forum_sofa')->insert(array('tid' => $tid,'fid' => $forum['fid']));
+
+    break;
 }
 ?>

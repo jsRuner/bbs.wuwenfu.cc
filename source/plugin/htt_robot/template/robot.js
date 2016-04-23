@@ -41,7 +41,8 @@ jq(window).load(function(){
     var msg_list = jq('.wechat') //聊天列表
 
 
-    var host = window.location.host; //域名
+    // var host = window.location.host; //域名
+    var host = jq('#discuzurl').val(); //域名
 
     var robot_name = jq('#robot_container_open > div.title > span').text();
 
@@ -132,7 +133,7 @@ jq(window).load(function(){
         //ajax请求后台。
         jq.ajax({
             type: 'POST',
-            url: 'http://'+host+'/plugin.php?id=htt_robot:robot',
+            url: host+'/plugin.php?id=htt_robot:robot',
             data: {msg:msg,formhash:formhashxx},
             success: function(data){
 
