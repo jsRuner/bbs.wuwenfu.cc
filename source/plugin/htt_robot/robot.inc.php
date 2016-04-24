@@ -14,6 +14,10 @@ if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
+
+// echo $_G['siteurl'];
+// exit();
+
 /*echo "<pre>";
 var_dump($_G['setting']['discuzurl']);
 echo "</pre>";

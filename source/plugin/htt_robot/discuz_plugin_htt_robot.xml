@@ -14,7 +14,7 @@
             <item id="datatables"><![CDATA[]]></item>
             <item id="directory"><![CDATA[htt_robot/]]></item>
             <item id="copyright"><![CDATA[吴文付]]></item>
-            <item id="version"><![CDATA[1.0]]></item>
+            <item id="version"><![CDATA[1.4]]></item>
             <item id="__modules">
 			
                <item id="0">
@@ -86,6 +86,16 @@
                 <item id="variable"><![CDATA[tuling_key]]></item>
                 <item id="type"><![CDATA[text]]></item>
                 <item id="value"><![CDATA[c2d6661fd001217c4fec38d0e4b98c31]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+
+             <item id="5">
+                <item id="displayorder"><![CDATA[5]]></item>
+                <item id="title"><![CDATA[站点域名]]></item>
+                <item id="description"><![CDATA[站点域名,例如 http://bbs.wuwenfu.cn 如果一直机器人一直回复脑袋坏掉了，请务必设置。]]></item>
+                <item id="variable"><![CDATA[site_url]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
 		

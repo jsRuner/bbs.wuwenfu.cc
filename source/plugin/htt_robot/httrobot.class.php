@@ -42,7 +42,12 @@ class plugin_htt_robot{
         $tuling_key= $var['htt_robot']['tuling_key']; //key
         $check = $var['htt_robot']['is_show'];  //1可见 2不可见。
         $other_people = $var['htt_robot']['other_people'];  //1可见 2不可见。
-//        $_G['welcome_msg'] = $welcome_msg;
+
+        $site_url = $var['htt_robot']['site_url']; #站点域名。
+        //没设置则读取系统的域名
+        if (empty($site_url)) {
+            $site_url = $_G['siteurl'];
+        }
 
         //判断当前访问的用户组和版块。游客的显示。
         $gids  = array_filter(unserialize($groupstr));

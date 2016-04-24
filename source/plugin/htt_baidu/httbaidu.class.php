@@ -41,7 +41,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 
 		$guanzhuinfo = '';
 
-		$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
+		$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
 		while($item = DB::fetch($query)) {
 			// var_dump($item);
 			$guanzhuinfo = $item;
@@ -57,7 +57,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		$yesguanzhu = lang("plugin/htt_baidu",'yes_guanzhu');
 
 		#统计版块的关注数量。
-		$query = DB::query("SELECT count(`id`) as `guanzhu_num` FROM  `pre_httbaidu` WHERE  `fid`=$fid");
+		$query = DB::query("SELECT count(`id`) as `guanzhu_num` FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid");
 		while($item = DB::fetch($query)) {
 			// var_dump($item);
 			$guanzhu_num = $item['guanzhu_num'];
@@ -75,7 +75,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
         #获取uid fid 增加一次积分。该积分值读取插件的设置
        	$uid = $_G['uid'];
 		$fid = $_G['fid'];
-		$query = DB::query("update `pre_httbaidu` set `credit`=`credit`+10 WHERE  `fid`=$fid and `uid`=$uid");
+		$query = DB::query("update ".DB::table("httbaidu")." set `credit`=`credit`+10 WHERE  `fid`=$fid and `uid`=$uid");
     }
     //帖子左侧显示版块的积分.
     //增加缓存处理。读取缓存数据。过期后再读取数据库的。
@@ -111,7 +111,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 				$uid = $value['uid'];
 				$fid = $_G['fid'];
 				$guanzhuinfo = '';
-		    	$query = DB::query("SELECT * FROM  `pre_httbaidu` WHERE  `fid`=$fid and `uid`=$uid");
+		    	$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid");
 				while($item = DB::fetch($query)) {
 					// var_dump($item);
 					$guanzhuinfo = $item;
@@ -128,7 +128,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 				//计算等级名称。查询所有等级。然后计算出等级。todo：需要缓存
 				$level_list = array();
 				$touxian = ""; #默认为空
-		    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
+		    	$query = DB::query("SELECT * FROM  ".DB::table("httbaidu_level")." WHERE  1 order by `floor` asc  ");
 		    	
 		    	$level_num = 0;
 

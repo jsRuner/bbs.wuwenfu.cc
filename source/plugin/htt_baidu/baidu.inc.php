@@ -1,6 +1,6 @@
 <?php
 /**
- *	[鐧惧害璐村惂] (C)2016-2099 Powered by 鍖楀哺鐨勪簯.
+ *	[百度贴吧] (C)2016-2099 Powered by 北岸的云.
  *	Version: 1.0
  *	Date: 2016-4-18 21:22
  *	http://bbs.wuwenfu.cc/plugin.php?id=htt_baidu:guanzhu
@@ -33,11 +33,11 @@ switch ($action) {
 		showformfooter();
 
 	}else{
-		//检查参数是否为空.上限和下限必须要设置一个。默认为-1 标识无穷大.
+		//????ˇ???.?О??О???????c???-1 ?????.
 		if((!$_GET['floor'] && !$_GET['ceil']) || !$_GET['level_title']) {
 			cpmsg(lang('plugin/htt_baidu', 'show_addlevel_error'), '', 'error');
 		}
-		//插入数据库。
+		//?????c
 		$insert_array = array(
 			'floor'=>$_GET['floor'],
 			'ceil'=>empty($_GET['ceil'])?-1:$_GET['ceil'],
@@ -54,7 +54,7 @@ switch ($action) {
 		foreach($_GET['delete'] as $delete) {
 			// echo $delete;
 			
-			DB::query("delete FROM pre_httbaidu_level where `id`= $delete");
+			DB::query("delete FROM ".DB::table("httbaidu_level")." where `id`= $delete");
 		}
 		updatecache(array('plugin', 'setting'));
 		cpmsg(lang('plugin/htt_baidu', 'show_dellevel_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_baidu&pmod=baidu', 'succeed');
@@ -64,7 +64,7 @@ switch ($action) {
 	break;
 	default:
 		$level_list = array();
-    	$query = DB::query("SELECT * FROM  `pre_httbaidu_level` WHERE  1 order by `floor` asc  ");
+    	$query = DB::query("SELECT * FROM  ".DB::table("httbaidu_level")." WHERE  1 order by `floor` asc  ");
 		while($item = DB::fetch($query)) {
 			// var_dump($item);
 			$level_list[] = $item;

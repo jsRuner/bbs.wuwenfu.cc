@@ -8,9 +8,9 @@
 		<item id="plugin">
 			<item id="available"><![CDATA[0]]></item>
 			<item id="adminid"><![CDATA[0]]></item>
-			<item id="name"><![CDATA[百度贴吧]]></item>
+			<item id="name"><![CDATA[仿百贴吧]]></item>
 			<item id="identifier"><![CDATA[htt_baidu]]></item>
-			<item id="description"><![CDATA[百度贴吧]]></item>
+			<item id="description"><![CDATA[仿百贴吧]]></item>
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_baidu/]]></item>
 			<item id="copyright"><![CDATA[北岸的云]]></item>
@@ -117,12 +117,11 @@
             <item id="5">
                 <item id="displayorder"><![CDATA[5]]></item>
                 <item id="title"><![CDATA[积分设置]]></item>
-                <item id="description"><![CDATA[取消关注默认会重置该会员的积分与等级。如果需要保留，请修改]]></item>
+                <item id="description"><![CDATA[取消关注默认会重置该会员的积分与等级]]></item>
                 <item id="variable"><![CDATA[del_credit]]></item>
                 <item id="type"><![CDATA[select]]></item>
                 <item id="value"><![CDATA[2]]></item>
-                <item id="extra"><![CDATA[1=保留积分与等级
-                	2=不保留积分与等级]]></item>
+                <item id="extra"><![CDATA[2=不保留积分与等级]]></item>
 
             </item>
 
@@ -191,6 +190,9 @@
 				
 				
 			</item>
+
+            <item id="installfile"><![CDATA[install.php]]></item>
+            <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
 			
 
 
