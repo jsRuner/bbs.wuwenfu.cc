@@ -59,15 +59,34 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 			// var_dump($item);
 			$guanzhuinfo = $item;
 		}
-		include_once template('htt_baidu:button');
 
-		if (empty($guanzhuinfo)){
-
-        	return $button_no_html;
+		if(empty($guanzhuinfo)){
+			$guanzhustr = lang("plugin/htt_baidu",'no_guanzhu');
 		}else{
-        	return $button_yes_html;
-			
+			$guanzhustr = lang("plugin/htt_baidu",'yes_guanzhu');
+
 		}
+
+		$yesguanzhu = lang("plugin/htt_baidu",'yes_guanzhu');
+
+		#统计版块的关注数量。
+		$query = DB::query("SELECT count(`id`) as `guanzhu_num` FROM  `pre_httbaidu` WHERE  `fid`=$fid");
+		while($item = DB::fetch($query)) {
+			// var_dump($item);
+			$guanzhu_num = $item['guanzhu_num'];
+		}
+
+		#需要获取是否关注和，当前版块的关注人数。
+		include_once template('htt_baidu:button');
+		return $button_yes_html;
+
+		// if (empty($guanzhuinfo)){
+
+  //       	return $button_no_html;
+		// }else{
+  //       	return $button_yes_html;
+			
+		// }
 	}
 
 	//发帖后触发 {"param":["post_reply_succeed","forum.php?mod=viewthread&tid=96&pid=99&page=1&extra=#pid99",{"fid":"2","tid":"96","pid":99,"from":null,"sechash":""},[],0]}
