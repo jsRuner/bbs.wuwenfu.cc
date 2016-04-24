@@ -24,9 +24,34 @@ if ($_GET['formhash']!= FORMHASH) {
     showmessage('undefined_action');
 }
 
+global $_G;
+#如果没有登录，则提示需要登录。
+
+
+$uid = intval($_G['uid']);
+
+// if (empty($uid) || $uid<=0) {
+// 	showmessage('321321321', 'member.php?mod=logging&action=login', array(), array('showmsg' => true, 'login' => 1);
+// 	// return;
+// 	exit();
+// }
+if ($uid<=0) {
+		// showmessage('321321321', 'member.php?mod=logging&action=login', array(), array('showmsg' => true, 'login' => 1));
+	// cpmsg('1111', '', 'error');
+	showmessage(lang('plugin/htt_baidu','quxiao_guanzhu_success'), dreferer(), array('id' => $id, 'favid' => $favid), array('closetime'=>2,'alert'=>'right','showmsg'=>true,'msgtype'=>2));
+	return;
+}
+
 #获取参数。uid fid 
-$uid = $_GET['uid'];
+// $uid = $_GET['uid'];
+
+
+
+
 $fid = $_GET['fid'];
+
+
+
 
 $favid = $fid;
 

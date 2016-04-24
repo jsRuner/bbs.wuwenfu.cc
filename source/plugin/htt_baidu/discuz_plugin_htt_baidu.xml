@@ -92,7 +92,7 @@
 <item id="3">
                 <item id="displayorder"><![CDATA[3]]></item>
                 <item id="title"><![CDATA[缓存时间]]></item>
-                <item id="description"><![CDATA[默认不缓存。单位分钟]]></item>
+                <item id="description"><![CDATA[默认不缓存。单位分钟.缓存保存的位置是data/sysdata/cache_htt_baidu_contents.php ]]></item>
                 <item id="variable"><![CDATA[cache_time]]></item>
                 <item id="type"><![CDATA[number]]></item>
                 <item id="value"><![CDATA[0]]></item>
@@ -114,6 +114,31 @@
 
             </item>
 
+            <item id="5">
+                <item id="displayorder"><![CDATA[5]]></item>
+                <item id="title"><![CDATA[积分设置]]></item>
+                <item id="description"><![CDATA[取消关注默认会重置该会员的积分与等级。如果需要保留，请修改]]></item>
+                <item id="variable"><![CDATA[del_credit]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[2]]></item>
+                <item id="extra"><![CDATA[1=保留积分与等级
+                	2=不保留积分与等级]]></item>
+
+            </item>
+
+            <item id="6">
+                <item id="displayorder"><![CDATA[6]]></item>
+                <item id="title"><![CDATA[关注量显示]]></item>
+                <item id="description"><![CDATA[是否显示版块的关注人数]]></item>
+                <item id="variable"><![CDATA[show_num]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[1=显示
+                	2=不显示]]></item>
+
+            </item>
+
+
 
 
 
@@ -123,6 +148,12 @@
 
         <item id="language">
 			<item id="scriptlang">
+
+				<item id="yes_guanzhu_login"><![CDATA[需要登录才可以关注版块]]></item>
+
+                <item id="no_setting_level"><![CDATA[没有等级]]></item>
+                <item id="error_setting_level"><![CDATA[区间错误]]></item>
+
 				<item id="no_guanzhu"><![CDATA[关注]]></item>
 				<item id="yes_guanzhu"><![CDATA[已关注]]></item>
 
@@ -147,8 +178,8 @@
 				<item id="show_dellevel_error"><![CDATA[删除等级设置错误]]></item>
 
 				<item id="baidu_tips"><![CDATA[
-					<li>添加等级设置以后，版块的关注者会显示对应的版块等级名称</li>
-					<li>关注版块以后，发帖可以获得积分。积分会根据设置的等级显示等级名称</li>
+					<li>等级的区间必须连贯完整。不可以跳跃或者缺少某个区间</li>
+					<li>1-100只包含1,不包含100</li>
 					<li>下限默认为0,上限默认-1,-1标识无穷大。</li>
 					<li>如果无法插件工作,请联系<a href="http://weibo.com/540045865">作者微博</a></li>
 					]]></item>

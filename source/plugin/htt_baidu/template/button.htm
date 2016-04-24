@@ -4,13 +4,8 @@
 
 
     <link rel="stylesheet" type="text/css" href="source/plugin/htt_baidu/template/style.css" />
-
-    <!-- <script  type="text/javascript"  src="source/plugin/htt_baidu/template/jquery.js"></script> -->
-    <script  type="text/javascript"  src="source/plugin/htt_baidu/template/button.js?t={$t}"></script>
     <span class="pipe">|</span>
-
-    <a href="http://bbs.wuwenfu.cc/plugin.php?id=htt_baidu:guanzhu&uid={$uid}&fid={$fid}&guanzhu=yes&formhash={FORMHASH}" id="a_guanzhu" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);"><span id="a_guanzhu_text" >{$guanzhustr}</span><strong class="xi1" id="number_guanzhu">(<span id="number_guanzhu_num">{$guanzhu_num}</span>)</strong></a>
-    <!--js需要的语言包-->
+    <a href="plugin.php?id=htt_baidu:guanzhu&uid={$uid}&fid={$fid}&guanzhu=yes&formhash={FORMHASH}" id="a_guanzhu" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);"><span id="a_guanzhu_text" >{$guanzhustr}</span><strong class="xi1" id="number_guanzhu" <!--{if $show_num == 2 }--> style="display: none;" <!--{/if}--> >(<span id="number_guanzhu_num">{$guanzhu_num}</span>)</strong></a>
 
 
 

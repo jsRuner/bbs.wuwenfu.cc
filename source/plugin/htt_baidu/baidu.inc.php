@@ -19,7 +19,6 @@ define('PMODURL', 'action=plugins&operation&config&identifier=htt_baidu&pmod=bai
 
 $action = $_GET['ac'];
 
- include_once template('htt_baidu:level_list');
 
 switch ($action) {
 	case 'add':
