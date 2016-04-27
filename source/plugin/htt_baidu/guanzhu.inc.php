@@ -47,22 +47,24 @@ $show_num =  $var['htt_baidu']['show_num']; //关注量 1显示 2不显示
 $uid = intval($_G['uid']);
 
 if ($uid<=0) {
-	showmessage(lang('plugin/htt_baidu','quxiao_guanzhu_success'), dreferer(), array('id' => $id, 'favid' => $favid), array('closetime'=>2,'alert'=>'right','showmsg'=>true,'msgtype'=>2));
+	showmessage(lang('plugin/htt_baidu','yes_guanzhu_login'), dreferer(), array('id' => $id, 'favid' => $favid), array('closetime'=>2,'alert'=>'right','showmsg'=>true,'msgtype'=>2));
 	return;
 }
 
-$fid = $_GET['fid'];
+// $fid = $_GET['fid'];
+//避免注入
+$fid = intval(getgpc('fid','G'));
 
 
 
 
 $favid = $fid;
 
-$guanzhu = $_GET['guanzhu']; #存在则是关注.todo:不根据它判断
+// $guanzhu = $_GET['guanzhu']; #存在则是关注.todo:不根据它判断
 
 #查询是否存在。
 $guanzhuinfo = '';
-$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
+$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid ");
 while($item = DB::fetch($query)) {
 	// var_dump($item);
 	$guanzhuinfo = $item;

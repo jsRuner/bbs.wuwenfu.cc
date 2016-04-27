@@ -55,7 +55,7 @@
 <item id="0">
                 <item id="displayorder"><![CDATA[0]]></item>
                 <item id="title"><![CDATA[积分增幅]]></item>
-                <item id="description"><![CDATA[每次发帖可以增加指定的积分]]></item>
+                <item id="description"><![CDATA[发帖、编辑、回帖均可以增加指定的积分]]></item>
                 <item id="variable"><![CDATA[credit]]></item>
                 <item id="type"><![CDATA[number]]></item>
                 <item id="value"><![CDATA[1]]></item>
