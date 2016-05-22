@@ -1,5 +1,11 @@
 <?php
 
+///*global $_G;
+//print_r( C::T('common_usergroup'));
+//$_G['group'] = C::T('common_usergroup')->fetch_all('10');
+//print_r($_G);
+//exit();
+
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
@@ -54,7 +60,7 @@ loaducenter();
 //2016年5月21日，这里直接访问。表示已经获取到用户的数据了。
 //先获取用户的id，如果已经存在。
 //http://bbs.wuwenfu.cc/plugin.php?id=htt_qqlogin:qqoauth_callback
-$openid = 'A28E0D85CABCA15C4DCD820D408D6BB9123456789';
+$openid = 'A28E0D85CABCA15C4DCD8255';
 
 //去表查询该id对应的用户。查到则模拟该用户登录。没有查到，则进入注册逻辑，自动注册。然后登录。
 // id openid uid 这3个字段是必须的。
@@ -109,9 +115,9 @@ if($item = DB::fetch($query)) {
 
 
 //先操作ucenter_members表。
-$username = 'wuwenfu014';
+$username = 'wuwenfu018';
 $password = '123456';
-$email = '1234567891234567891@qq.com';
+$email = '12345678912345678912345@qq.com';
 $questionid = '';
 $answer = '';
 //addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。
@@ -206,13 +212,6 @@ C::t('common_member_field_home')->insert(
 //    )
 //);
 
-//登录状态。
-setloginstatus(array(
-    'uid' => $uid,
-    'username' => $username,
-    'password' => $password,
-    'groupid' =>10,
-), 0);
 
 //趋势统计
 include_once libfile('function/stat');
@@ -237,7 +236,26 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
         notification_add($uid, 'system', $welcomemsgtxt, array('from_id' => 0, 'from_idtype' => 'welcomemsg'), 1);
     }
 }
+//登录逻辑。
+$_G['member'] = array(
+    'username'=>$username,
+    'uid'=>$uid,
+);
+//pre_common_usergroup
 
+//fetch_all_by_groupid
+
+$_G['group'] = C::t('common_usergroup')->fetch_all('10')[10];
+
+$result = userlogin($username, $password, $_GET['questionid'], $_GET['answer'], 'username', $_G['clientip']);
+
+//登录状态。
+setloginstatus($result['member'], 2592000);
+
+$referer = dreferer();
+$ucsynlogin = $setting['allowsynlogin'] ? uc_user_synlogin($_G['uid']) : '';
+$param = array('username' => $_G['member']['username'], 'usergroup' => $_G['group']['grouptitle'], 'uid' => $_G['member']['uid']);
+showmessage('login_succeed', $referer ? $referer : './', $param, array('showdialog' => 1, 'locationtime' => true, 'extrajs' => $ucsynlogin));
 
 
 
