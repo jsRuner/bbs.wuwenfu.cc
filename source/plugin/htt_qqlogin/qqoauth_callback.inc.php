@@ -1,5 +1,8 @@
 <?php
 
+//echo sprintf("%09d", 2);
+//
+//exit();
 ///*global $_G;
 //print_r( C::T('common_usergroup'));
 //$_G['group'] = C::T('common_usergroup')->fetch_all('10');
@@ -46,13 +49,13 @@ loaducenter();
 //require_once("config/config_ucenter.php");
 //require_once("uc_client/client.php");
 //require_once("../../API/qqConnectAPI.php");
-//require_once("source/plugin/htt_qqlogin/API/qqConnectAPI.php");
-//$qc = new QC();
-////echo $qc->qq_callback();
+require_once("source/plugin/htt_qqlogin/API/qqConnectAPI.php");
+$qc = new QC();
+$access_token = $qc->qq_callback();
 //echo '---';
-////echo $qc->get_openid();
+$openid = $qc->get_openid();
 //
-//$ret = $qc->get_user_info();
+$ret = $qc->get_user_info();
 //
 //echo "<pre>";
 //var_dump($ret);
@@ -60,7 +63,7 @@ loaducenter();
 //2016年5月21日，这里直接访问。表示已经获取到用户的数据了。
 //先获取用户的id，如果已经存在。
 //http://bbs.wuwenfu.cc/plugin.php?id=htt_qqlogin:qqoauth_callback
-$openid = 'A28E0D85CABCA15C4DCD8255';
+//$openid = 'A28E0D85CABCA15C4DCD8255';
 
 //去表查询该id对应的用户。查到则模拟该用户登录。没有查到，则进入注册逻辑，自动注册。然后登录。
 // id openid uid 这3个字段是必须的。
@@ -102,10 +105,50 @@ $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= 
 $qqinfo = array();
 if($item = DB::fetch($query)) {
 
-    echo 22;
+//    echo 22;
     $qqinfo = $item;
     //执行登录，这里是打印。
-    print_r($qqinfo);
+//    print_r($qqinfo);
+
+    $members = C::t('common_member')->fetch_all_username_by_uid($qqinfo['uid']);
+
+//    print_r($members);
+
+    $username = $members[$qqinfo['uid']];
+    $members = C::t('common_member')->fetch_by_username($username);
+
+//    print_r($members);
+//    $username = $members[$qqinfo['uid']]['username'];
+    $uid = $qqinfo['uid'];
+    $password = '123456';
+
+//    exit();
+
+
+
+//登录逻辑。
+    $_G['member'] = array(
+        'username'=>$username,
+        'uid'=>$uid,
+    );
+//pre_common_usergroup
+
+//fetch_all_by_groupid
+
+    $_G['group'] = C::t('common_usergroup')->fetch_all('10')[10];
+
+    $result = userlogin($username, $password, $_GET['questionid'], $_GET['answer'], 'username', $_G['clientip']);
+
+//登录状态。
+    setloginstatus($result['member'], 2592000);
+
+    $referer = dreferer();
+    $ucsynlogin = $setting['allowsynlogin'] ? uc_user_synlogin($_G['uid']) : '';
+    $param = array('username' => $_G['member']['username'], 'usergroup' => $_G['group']['grouptitle'], 'uid' => $_G['member']['uid']);
+    showmessage('login_succeed', $referer ? $referer : './', $param, array('showdialog' => 1, 'locationtime' => true, 'extrajs' => $ucsynlogin));
+
+
+
     exit();
 
 }
@@ -115,11 +158,14 @@ if($item = DB::fetch($query)) {
 
 
 //先操作ucenter_members表。
-$username = 'wuwenfu018';
+$username = 'qq'.time();
 $password = '123456';
-$email = '12345678912345678912345@qq.com';
+$email = time().'@qq.com';
 $questionid = '';
 $answer = '';
+
+
+
 //addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。
 $uid = uc_user_register(addslashes($username), $password, $email, $questionid, $answer, $_G['clientip']);
 //echo 'uid ='.$uid;
@@ -131,7 +177,7 @@ $_G['uid'] = $uid;
 $insert_array = array(
     'uid'=>$uid,
     'openid'=>$openid,
-    'access_token'=>'',
+    'access_token'=>$access_token,
     'dateline'=>TIMESTAMP,
 );
 DB::insert("httqqlogin",$insert_array);
@@ -236,6 +282,8 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
         notification_add($uid, 'system', $welcomemsgtxt, array('from_id' => 0, 'from_idtype' => 'welcomemsg'), 1);
     }
 }
+
+
 //登录逻辑。
 $_G['member'] = array(
     'username'=>$username,
