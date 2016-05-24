@@ -18,6 +18,12 @@ class plugin_htt_qqlogin {
 
     function global_login_extra(){
         global $_G;
+        loadcache('plugin');
+        $var = $_G['cache']['plugin'];
+        $is_open =  $var['htt_qqlogin']['is_open'];
+        if($is_open==2){
+            return '';
+        }
         include_once template('htt_qqlogin:qqlogin');
         return $qqlogin_html;
     }

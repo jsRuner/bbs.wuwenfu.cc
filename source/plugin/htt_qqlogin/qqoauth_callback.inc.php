@@ -54,6 +54,8 @@ $qc = new QC();
 $access_token = $qc->qq_callback();
 //echo '---';
 $openid = $qc->get_openid();
+
+$qc = new QC($access_token,$openid);
 //
 $ret = $qc->get_user_info();
 //

@@ -72,6 +72,7 @@ if(!submitcheck('settingsubmit')) {
 
 	showtableheader(lang('plugin/wechat', 'wechat_service_setting'));
 	showsetting(lang('plugin/wechat', 'wechat_url'), '', '', '<span style="white-space:nowrap">'.$apiurl.'</span>');
+
 	showsetting(lang('plugin/wechat', 'wechat_token'), 'setting[wechat_token]', $setting['wechat_token'], 'text');
 	showtablefooter();
 
