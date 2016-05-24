@@ -11,11 +11,6 @@ if(!defined('IN_DISCUZ')) {
 class plugin_htt_qqlogin {
 	//TODO - Insert your code here
 
-//    function global_header(){
-//        global $_G;
-//        return '21211';
-//    }
-
     function global_login_extra(){
         global $_G;
         loadcache('plugin');
