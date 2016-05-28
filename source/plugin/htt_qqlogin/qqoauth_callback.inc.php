@@ -2,6 +2,68 @@
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+
+
+function get_avatar($uid, $size = 'middle', $type = '') {
+    $size = in_array($size, array('big', 'middle', 'small')) ? $size : 'middle';
+    $uid = abs(intval($uid));
+    $uid = sprintf("%09d", $uid);
+    $dir1 = substr($uid, 0, 3);
+    $dir2 = substr($uid, 3, 2);
+    $dir3 = substr($uid, 5, 2);
+    $typeadd = $type == 'real' ? '_real' : '';
+    return 'uc_server/data/avatar/'.$dir1.'/'.$dir2.'/'.$dir3.'/'.substr($uid, -2).$typeadd."_avatar_$size.jpg";
+}
+
+function set_home($uid, $dir = '.') {
+    $uid = sprintf("%09d", $uid);
+    $dir1 = substr($uid, 0, 3);
+    $dir2 = substr($uid, 3, 2);
+    $dir3 = substr($uid, 5, 2);
+    !is_dir($dir.'/'.$dir1) && mkdir($dir.'/'.$dir1, 0777);
+    !is_dir($dir.'/'.$dir1.'/'.$dir2) && mkdir($dir.'/'.$dir1.'/'.$dir2, 0777);
+    !is_dir($dir.'/'.$dir1.'/'.$dir2.'/'.$dir3) && mkdir($dir.'/'.$dir1.'/'.$dir2.'/'.$dir3, 0777);
+}
+
+function downqqimg($url,$filename){
+    ob_start();
+    readfile($url);
+    $img = ob_get_contents();
+    ob_end_clean();
+    $size = strlen($img);
+    $fp2=@fopen($filename, "a");
+    fwrite($fp2,$img);
+    fclose($fp2);
+}
+
+function make_username($username){
+    $username = $username.'_'.rand(1,100);
+    $userinfo = C::t('common_member')->fetch_by_username($username);
+    if(!empty($userinfo)){
+        make_username($username);
+    }
+    if(strlen($username) > 15){
+        $username = cutstr($username,13,'');
+    }
+    return $username;
+}
+
+/*error_reporting(E_ALL);
+
+$uid = 49;
+$avatar = get_avatar($uid,'small');
+
+echo $avatar;
+
+downqqimg('http://q.qlogo.cn/qqapp/101319474/A28E0D85CABCA15C4DCD820D408D6BB5/40',$avatar);
+
+//file_put_contents($avatar,file_get_contents('http://q.qlogo.cn/qqapp/101319474/A28E0D85CABCA15C4DCD820D408D6BB5/40'));
+
+exit();*/
+
+
+
+
 global $_G;
 require libfile('function/member');
 require libfile('class/member');
@@ -32,33 +94,11 @@ if($is_open==2){
     die('qq is closed');
 }
 
-
-
-
 $qc = new QC();
-
-
 $qc->set_config($appid,$appkey,$callback);
-
-
-//echo $qc->appid;
-//print_r($qc);
-
-//exit();
-
-
-
 $access_token = $qc->qq_callback();
-
+//
 $openid = $qc->get_openid();
-
-$qc = new QC($access_token,$openid);
-
-
-$qc->set_config($appid,$appkey,$callback);
-
-$ret = $qc->get_user_info();
-
 
 $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= '$openid'");
 $qqinfo = array();
@@ -88,13 +128,41 @@ if($item = DB::fetch($query)) {
     exit();
 }
 //先操作ucenter_members表。
-$username = 'qq'.time();
+
+$qc = new QC($access_token,$openid);
+$qc->set_config($appid,$appkey,$callback);
+$ret = $qc->get_user_info();
+
+$nickname = $ret['nickname'];
+
+$nickname =   iconv("utf-8", "gbk",$nickname);
+
+//$username = $nickname.'_'.time();
+
+$username = make_username($nickname);
+
+
+
+//echo $username;
+
 $password = '123456';
 $email = time().'@qq.com';
 $questionid = '';
 $answer = '';
-$uid = uc_user_register(addslashes($username), $password, $email, $questionid, $answer, $_G['clientip']);
+$uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
+//$uid = uc_user_register(addslashes($username), $password, $email, $questionid, $answer, $_G['clientip']);
 $_G['uid'] = $uid;
+
+//保存头像到指定目录。
+set_home($uid,'uc_server/data/avatar');
+
+$avatar = get_avatar($uid,'small');
+
+
+//file_put_contents($avatar,file_get_contents($ret['figureurl_qq_1']));
+downqqimg($ret['figureurl_qq_1'],$avatar);
+
+
 $insert_array = array(
     'uid'=>$uid,
     'openid'=>$openid,
@@ -103,6 +171,10 @@ $insert_array = array(
 );
 DB::insert("httqqlogin",$insert_array);
 C::t('common_member')->insert($uid, $username, md5(random(10)), $email, $_G['clientip'], 10);
+
+C::t('common_member')->update($uid,array('avatarstatus'=>1));
+
+
 
 C::t('common_member_status')->update($_G['uid'], array('lastip' => $_G['clientip'], 'port' => $_G['remoteport'], 'lastvisit' =>TIMESTAMP, 'lastactivity' => TIMESTAMP));
 

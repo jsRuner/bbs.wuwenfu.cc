@@ -1,14 +1,14 @@
 <?php
 /**
- * PHP SDK for QQç™»å½• OpenAPI
+ * PHP SDK for QQµÇÂ¼ OpenAPI
  *
  * @version 2.0
  * @author connect@qq.com
- * @copyright Â© 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 
 /**
- * @brief æœ¬æ–‡ä»¶åŒ…å«äº†OAuthè®¤è¯è¿‡ç¨‹ä¸­ä¼šç”¨åˆ°çš„å…¬ç”¨æ–¹æ³• 
+ * @brief ±¾ÎÄ¼þ°üº¬ÁËOAuthÈÏÖ¤¹ý³ÌÖÐ»áÓÃµ½µÄ¹«ÓÃ·½·¨
  */
 
 require_once("config.php");
@@ -16,9 +16,9 @@ require_once("config.php");
 function do_post($url, $data)
 {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
-    curl_setopt($ch, CURLOPT_POST, TRUE); 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_URL, $url);
     $ret = curl_exec($ch);
 

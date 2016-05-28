@@ -2,13 +2,13 @@
 /* PHP SDK
  * @version 2.0.0
  * @author connect@qq.com
- * @copyright Â© 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 
 require_once(CLASS_PATH."ErrorCase.class.php");
 
 /*
- * @brief urlå°è£…ç±»ï¼Œå°†å¸¸ç”¨çš„urlè¯·æ±‚æ“ä½œå°è£…åœ¨ä¸€èµ·
+ * @brief url·â×°Àà£¬½«³£ÓÃµÄurlÇëÇó²Ù×÷·â×°ÔÚÒ»Æğ
  * */
 class URL{
     private $error;
@@ -19,10 +19,10 @@ class URL{
 
     /**
      * combineURL
-     * æ‹¼æ¥url
-     * @param string $baseURL   åŸºäºçš„url
-     * @param array  $keysArr   å‚æ•°åˆ—è¡¨æ•°ç»„
-     * @return string           è¿”å›æ‹¼æ¥çš„url
+     * Æ´½Óurl
+     * @param string $baseURL   »ùÓÚµÄurl
+     * @param array  $keysArr   ²ÎÊıÁĞ±íÊı×é
+     * @return string           ·µ»ØÆ´½ÓµÄurl
      */
     public function combineURL($baseURL,$keysArr){
         $combined = $baseURL."?";
@@ -34,15 +34,15 @@ class URL{
 
         $keyStr = implode("&",$valueArr);
         $combined .= ($keyStr);
-        
+
         return $combined;
     }
 
     /**
      * get_contents
-     * æœåŠ¡å™¨é€šè¿‡getè¯·æ±‚è·å¾—å†…å®¹
-     * @param string $url       è¯·æ±‚çš„url,æ‹¼æ¥åçš„
-     * @return string           è¯·æ±‚è¿”å›çš„å†…å®¹
+     * ·şÎñÆ÷Í¨¹ıgetÇëÇó»ñµÃÄÚÈİ
+     * @param string $url       ÇëÇóµÄurl,Æ´½ÓºóµÄ
+     * @return string           ÇëÇó·µ»ØµÄÄÚÈİ
      */
     public function get_contents($url){
         if (ini_get("allow_url_fopen") == "1") {
@@ -56,7 +56,7 @@ class URL{
             curl_close($ch);
         }
 
-        //-------è¯·æ±‚ä¸ºç©º
+        //-------ÇëÇóÎª¿Õ
         if(empty($response)){
             $this->error->showError("50001");
         }
@@ -66,10 +66,10 @@ class URL{
 
     /**
      * get
-     * getæ–¹å¼è¯·æ±‚èµ„æº
-     * @param string $url     åŸºäºçš„baseUrl
-     * @param array $keysArr  å‚æ•°åˆ—è¡¨æ•°ç»„      
-     * @return string         è¿”å›çš„èµ„æºå†…å®¹
+     * get·½Ê½ÇëÇó×ÊÔ´
+     * @param string $url     »ùÓÚµÄbaseUrl
+     * @param array $keysArr  ²ÎÊıÁĞ±íÊı×é
+     * @return string         ·µ»ØµÄ×ÊÔ´ÄÚÈİ
      */
     public function get($url, $keysArr){
         $combined = $this->combineURL($url, $keysArr);
@@ -78,19 +78,19 @@ class URL{
 
     /**
      * post
-     * postæ–¹å¼è¯·æ±‚èµ„æº
-     * @param string $url       åŸºäºçš„baseUrl
-     * @param array $keysArr    è¯·æ±‚çš„å‚æ•°åˆ—è¡¨
-     * @param int $flag         æ ‡å¿—ä½
-     * @return string           è¿”å›çš„èµ„æºå†…å®¹
+     * post·½Ê½ÇëÇó×ÊÔ´
+     * @param string $url       »ùÓÚµÄbaseUrl
+     * @param array $keysArr    ÇëÇóµÄ²ÎÊıÁĞ±í
+     * @param int $flag         ±êÖ¾Î»
+     * @return string           ·µ»ØµÄ×ÊÔ´ÄÚÈİ
      */
     public function post($url, $keysArr, $flag = 0){
 
         $ch = curl_init();
         if(! $flag) curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
-        curl_setopt($ch, CURLOPT_POST, TRUE); 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $keysArr); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $keysArr);
         curl_setopt($ch, CURLOPT_URL, $url);
         $ret = curl_exec($ch);
 

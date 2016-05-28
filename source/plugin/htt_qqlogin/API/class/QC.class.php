@@ -2,12 +2,12 @@
 /* PHP SDK
  * @version 2.0.0
  * @author connect@qq.com
- * @copyright Â© 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 require_once(CLASS_PATH."Oauth.class.php");
 
 /*
- * @brief QCç±»ï¼Œapiå¤–éƒ¨å¯¹è±¡ï¼Œè°ƒç”¨æ¥å£å…¨éƒ¨ä¾èµ–äºæ­¤å¯¹è±¡
+ * @brief QCÀà£¬apiÍâ²¿¶ÔÏó£¬µ÷ÓÃ½Ó¿ÚÈ«²¿ÒÀÀµÓÚ´Ë¶ÔÏó
  * */
 class QC extends Oauth{
     private $kesArr, $APIMap;
@@ -15,8 +15,8 @@ class QC extends Oauth{
     /**
      * _construct
      *
-     * æ„é€ æ–¹æ³•
-     * @access public 
+     * ¹¹Ôì·½·¨
+     * @access public
      * @since 5
      * @param string $access_token  access_token value
      * @param string $openid        openid value
@@ -25,7 +25,7 @@ class QC extends Oauth{
     public function __construct($access_token = "", $openid = ""){
         parent::__construct();
 
-        //å¦‚æœaccess_tokenå’Œopenidä¸ºç©ºï¼Œåˆ™ä»sessioné‡Œå»å–ï¼Œé€‚ç”¨äºdemoå±•ç¤ºæƒ…å½¢
+        //Èç¹ûaccess_tokenºÍopenidÎª¿Õ£¬Ôò´ÓsessionÀïÈ¥È¡£¬ÊÊÓÃÓÚdemoÕ¹Ê¾ÇéĞÎ
         if($access_token === "" || $openid === ""){
             $this->keysArr = array(
                 "oauth_consumer_key" => (int)$this->appid,
@@ -40,14 +40,14 @@ class QC extends Oauth{
             );
         }
 
-        //åˆå§‹åŒ–APIMap
+        //³õÊ¼»¯APIMap
         /*
-         * åŠ #è¡¨ç¤ºéå¿…é¡»ï¼Œæ— åˆ™ä¸ä¼ å…¥url(urlä¸­ä¸ä¼šå‡ºç°è¯¥å‚æ•°)ï¼Œ "key" => "val" è¡¨ç¤ºkeyå¦‚æœæ²¡æœ‰å®šä¹‰åˆ™ä½¿ç”¨é»˜è®¤å€¼val
-         * è§„åˆ™ array( baseUrl, argListArr, method)
+         * ¼Ó#±íÊ¾·Ç±ØĞë£¬ÎŞÔò²»´«Èëurl(urlÖĞ²»»á³öÏÖ¸Ã²ÎÊı)£¬ "key" => "val" ±íÊ¾keyÈç¹ûÃ»ÓĞ¶¨ÒåÔòÊ¹ÓÃÄ¬ÈÏÖµval
+         * ¹æÔò array( baseUrl, argListArr, method)
          */
         $this->APIMap = array(
-        
-            
+
+
             /*                       qzone                    */
             "add_blog" => array(
                 "https://graph.qq.com/blog/add_one_blog",
@@ -148,12 +148,12 @@ class QC extends Oauth{
         );
     }
 
-    //è°ƒç”¨ç›¸åº”api
+    //µ÷ÓÃÏàÓ¦api
     private function _applyAPI($arr, $argsList, $baseUrl, $method){
         $pre = "#";
         $keysArr = $this->keysArr;
 
-        $optionArgList = array();//ä¸€äº›å¤šé¡¹é€‰å¡«å‚æ•°å¿…é€‰ä¸€çš„æƒ…å½¢
+        $optionArgList = array();//Ò»Ğ©¶àÏîÑ¡Ìî²ÎÊı±ØÑ¡Ò»µÄÇéĞÎ
         foreach($argsList as $key => $val){
             $tmpKey = $key;
             $tmpVal = $val;
@@ -173,10 +173,10 @@ class QC extends Oauth{
                 }
             }
 
-            //-----å¦‚æœæ²¡æœ‰è®¾ç½®ç›¸åº”çš„å‚æ•°
+            //-----Èç¹ûÃ»ÓĞÉèÖÃÏàÓ¦µÄ²ÎÊı
             if(!isset($arr[$tmpKey]) || $arr[$tmpKey] === ""){
 
-                if($tmpVal == $pre){//åˆ™ä½¿ç”¨é»˜è®¤çš„å€¼
+                if($tmpVal == $pre){//ÔòÊ¹ÓÃÄ¬ÈÏµÄÖµ
                     continue;
                 }else if($tmpVal){
                     $arr[$tmpKey] = $tmpVal;
@@ -188,14 +188,14 @@ class QC extends Oauth{
                         $arr[$tmpKey] = "@$filename";
 
                     }else{
-                        $this->error->showError("apiè°ƒç”¨å‚æ•°é”™è¯¯","æœªä¼ å…¥å‚æ•°$tmpKey");
+                        $this->error->showError("apiµ÷ÓÃ²ÎÊı´íÎó","Î´´«Èë²ÎÊı$tmpKey");
                     }
                 }
             }
 
             $keysArr[$tmpKey] = $arr[$tmpKey];
         }
-        //æ£€æŸ¥é€‰å¡«å‚æ•°å¿…å¡«ä¸€çš„æƒ…å½¢
+        //¼ì²éÑ¡Ìî²ÎÊı±ØÌîÒ»µÄÇéĞÎ
         foreach($optionArgList as $val){
             $n = 0;
             foreach($val as $v){
@@ -206,7 +206,7 @@ class QC extends Oauth{
 
             if(! $n){
                 $str = implode(",",$val);
-                $this->error->showError("apiè°ƒç”¨å‚æ•°é”™è¯¯",$str."å¿…å¡«ä¸€ä¸ª");
+                $this->error->showError("apiµ÷ÓÃ²ÎÊı´íÎó",$str."±ØÌîÒ»¸ö");
             }
         }
 
@@ -223,19 +223,19 @@ class QC extends Oauth{
 
     /**
      * _call
-     * é­”æœ¯æ–¹æ³•ï¼Œåšapiè°ƒç”¨è½¬å‘
-     * @param string $name    è°ƒç”¨çš„æ–¹æ³•åç§°
-     * @param array $arg      å‚æ•°åˆ—è¡¨æ•°ç»„
+     * Ä§Êõ·½·¨£¬×öapiµ÷ÓÃ×ª·¢
+     * @param string $name    µ÷ÓÃµÄ·½·¨Ãû³Æ
+     * @param array $arg      ²ÎÊıÁĞ±íÊı×é
      * @since 5.0
-     * @return array          è¿”åŠ è°ƒç”¨ç»“æœæ•°ç»„
+     * @return array          ·µ¼Óµ÷ÓÃ½á¹ûÊı×é
      */
     public function __call($name,$arg){
-        //å¦‚æœAPIMapä¸å­˜åœ¨ç›¸åº”çš„api
+        //Èç¹ûAPIMap²»´æÔÚÏàÓ¦µÄapi
         if(empty($this->APIMap[$name])){
-            $this->error->showError("apiè°ƒç”¨åç§°é”™è¯¯","ä¸å­˜åœ¨çš„API: <span style='color:red;'>$name</span>");
+            $this->error->showError("apiµ÷ÓÃÃû³Æ´íÎó","²»´æÔÚµÄAPI: <span style='color:red;'>$name</span>");
         }
 
-        //ä»APIMapè·å–apiç›¸åº”å‚æ•°
+        //´ÓAPIMap»ñÈ¡apiÏàÓ¦²ÎÊı
         $baseUrl = $this->APIMap[$name][0];
         $argsList = $this->APIMap[$name][1];
         $method = isset($this->APIMap[$name][2]) ? $this->APIMap[$name][2] : "GET";
@@ -244,7 +244,7 @@ class QC extends Oauth{
             $arg[0] = null;
         }
 
-        //å¯¹äºget_tenpay_addrï¼Œç‰¹æ®Šå¤„ç†ï¼Œphp json_decodeå¯¹\xA312æ­¤ç±»å­—ç¬¦æ”¯æŒä¸å¥½
+        //¶ÔÓÚget_tenpay_addr£¬ÌØÊâ´¦Àí£¬php json_decode¶Ô\xA312´ËÀà×Ö·ûÖ§³Ö²»ºÃ
         if($name != "get_tenpay_addr"){
             $response = json_decode($this->_applyAPI($arg[0], $argsList, $baseUrl, $method));
             $responseArr = $this->objToArr($response);
@@ -253,7 +253,7 @@ class QC extends Oauth{
         }
 
 
-        //æ£€æŸ¥è¿”å›retåˆ¤æ–­apiæ˜¯å¦æˆåŠŸè°ƒç”¨
+        //¼ì²é·µ»ØretÅĞ¶ÏapiÊÇ·ñ³É¹¦µ÷ÓÃ
         if($responseArr['ret'] == 0){
             return $responseArr;
         }else{
@@ -262,7 +262,7 @@ class QC extends Oauth{
 
     }
 
-    //php å¯¹è±¡åˆ°æ•°ç»„è½¬æ¢
+    //php ¶ÔÏóµ½Êı×é×ª»»
     private function objToArr($obj){
         if(!is_object($obj) && !is_array($obj)) {
             return $obj;
@@ -274,19 +274,19 @@ class QC extends Oauth{
         return $arr;
     }
 
-   
+
     /**
      * get_access_token
-     * è·å¾—access_token
+     * »ñµÃaccess_token
      * @param void
      * @since 5.0
-     * @return string è¿”åŠ access_token
+     * @return string ·µ¼Óaccess_token
      */
     public function get_access_token(){
         return $this->recorder->read("access_token");
     }
 
-    //ç®€å•å®ç°jsonåˆ°phpæ•°ç»„è½¬æ¢åŠŸèƒ½
+    //¼òµ¥ÊµÏÖjsonµ½phpÊı×é×ª»»¹¦ÄÜ
     private function simple_json_parser($json){
         $json = str_replace("{","",str_replace("}","", $json));
         $jsonValue = explode(",", $json);

@@ -2,7 +2,7 @@
 /* PHP SDK
  * @version 2.0.0
  * @author connect@qq.com
- * @copyright Â© 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 
 require_once(CLASS_PATH."ErrorCase.class.php");
@@ -14,18 +14,18 @@ class Recorder{
     public function __construct(){
         $this->error = new ErrorCase();
 
-        //-------è¯»å–é…ç½®æ–‡ä»¶
-     /*   $incFileContents = file(ROOT."comm/inc.php");
-        $incFileContents = $incFileContents[1];
-        $this->inc = json_decode($incFileContents);
-     */
+        //-------¶ÁÈ¡ÅäÖÃÎÄ¼þ
+        /*   $incFileContents = file(ROOT."comm/inc.php");
+           $incFileContents = $incFileContents[1];
+           $this->inc = json_decode($incFileContents);
+        */
         $this->inc= array();
 
 
 
-      /*  if(empty($this->inc)){
-            $this->error->showError("20001");
-        }*/
+        /*  if(empty($this->inc)){
+              $this->error->showError("20001");
+          }*/
 
         if(empty($_SESSION['QC_userData'])){
             self::$data = array();

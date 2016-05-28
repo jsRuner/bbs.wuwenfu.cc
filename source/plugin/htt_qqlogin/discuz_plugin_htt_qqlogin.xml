@@ -80,22 +80,12 @@
 		<item id="templatelang">
 			<item id='qq_tip'>只需要一步，快速开始
 			</item>
-			
-			
-			
-			
-			
-			
 		</item>
-		
 		<item id="scriptlang">
 		<item id='httqqlogin_appid'>APP ID
 			</item>
-			
 			<item id='httqqlogin_appsecret'>APP KEY
 			</item>
-			
-			
 			<item id='httqqlogin_callbackurl'>回调地址
 			</item>
 			
@@ -107,6 +97,9 @@
 		
 		 <item id="installfile"><![CDATA[install.php]]></item>
             <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+			
+			
+			
 			
 	</item>
 </root>

@@ -2,7 +2,7 @@
 /* PHP SDK
  * @version 2.0.0
  * @author connect@qq.com
- * @copyright Â© 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 
 require_once(CLASS_PATH."Recorder.class.php");
@@ -30,7 +30,7 @@ class Oauth{
         $this->urlUtils = new URL();
         $this->error = new ErrorCase();
 
-        //ä»ŽsessionèŽ·å–å‚æ•°ã€‚
+        //´Ósession»ñÈ¡²ÎÊý¡£
         $htt_qq_info = $_SESSION['htt_qq_info'];
         if(!empty($htt_qq_info)){
             $this->appid = $htt_qq_info['appid'];
@@ -57,22 +57,22 @@ class Oauth{
 
     public function qq_login(){
 
-/*
-        $appid = $this->recorder->readInc("appid");
-        $callback = $this->recorder->readInc("callback");
-        $scope = $this->recorder->readInc("scope");
+        /*
+                $appid = $this->recorder->readInc("appid");
+                $callback = $this->recorder->readInc("callback");
+                $scope = $this->recorder->readInc("scope");
 
-*/
+        */
         $appid = $this->appid;
         $callback = $this->callback;
         $scope ='get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idolist,add_idol,del_idol,get_tenpay_addr';
 
 
-        //-------ç”Ÿæˆå”¯ä¸€éšæœºä¸²é˜²CSRFæ”»å‡»
+        //-------Éú³ÉÎ¨Ò»Ëæ»ú´®·ÀCSRF¹¥»÷
         $state = md5(uniqid(rand(), TRUE));
         $this->recorder->write('state',$state);
 
-        //-------æž„é€ è¯·æ±‚å‚æ•°åˆ—è¡¨
+        //-------¹¹ÔìÇëÇó²ÎÊýÁÐ±í
         $keysArr = array(
             "response_type" => "code",
             "client_id" => $appid,
@@ -89,12 +89,12 @@ class Oauth{
     public function qq_callback(){
         $state = $this->recorder->read("state");
 
-        //--------éªŒè¯stateé˜²æ­¢CSRFæ”»å‡»
+        //--------ÑéÖ¤state·ÀÖ¹CSRF¹¥»÷
         if($_GET['state'] != $state){
             $this->error->showError("30001");
         }
 
-        //-------è¯·æ±‚å‚æ•°åˆ—è¡¨
+        //-------ÇëÇó²ÎÊýÁÐ±í
         $keysArr = array(
             "grant_type" => "authorization_code",
             "client_id" => $this->appid,
@@ -103,7 +103,7 @@ class Oauth{
             "code" => $_GET['code']
         );
 
-        //------æž„é€ è¯·æ±‚access_tokençš„url
+        //------¹¹ÔìÇëÇóaccess_tokenµÄurl
         $token_url = $this->urlUtils->combineURL(self::GET_ACCESS_TOKEN_URL, $keysArr);
         $response = $this->urlUtils->get_contents($token_url);
 
@@ -129,7 +129,7 @@ class Oauth{
 
     public function get_openid(){
 
-        //-------è¯·æ±‚å‚æ•°åˆ—è¡¨
+        //-------ÇëÇó²ÎÊýÁÐ±í
         $keysArr = array(
             "access_token" => $this->recorder->read("access_token")
         );
@@ -137,7 +137,7 @@ class Oauth{
         $graph_url = $this->urlUtils->combineURL(self::GET_OPENID_URL, $keysArr);
         $response = $this->urlUtils->get_contents($graph_url);
 
-        //--------æ£€æµ‹é”™è¯¯æ˜¯å¦å‘ç”Ÿ
+        //--------¼ì²â´íÎóÊÇ·ñ·¢Éú
         if(strpos($response, "callback") !== false){
 
             $lpos = strpos($response, "(");
@@ -150,7 +150,7 @@ class Oauth{
             $this->error->showError($user->error, $user->error_description);
         }
 
-        //------è®°å½•openid
+        //------¼ÇÂ¼openid
         $this->recorder->write("openid", $user->openid);
         return $user->openid;
 

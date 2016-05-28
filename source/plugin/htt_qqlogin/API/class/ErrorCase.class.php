@@ -2,36 +2,36 @@
 /* PHP SDK
  * @version 2.0.0
  * @author connect@qq.com
- * @copyright 漏 2013, Tencent Corporation. All rights reserved.
+ * @copyright ? 2013, Tencent Corporation. All rights reserved.
  */
 
 require_once(CLASS_PATH."Recorder.class.php");
 
 /*
- * @brief ErrorCase绫伙紝灏侀棴寮傚父
+ * @brief ErrorCase类，封闭异常
  * */
 class ErrorCase{
     private $errorMsg;
 
     public function __construct(){
         $this->errorMsg = array(
-            "20001" => "<h2>閰嶇疆鏂囦欢鎹熷潖鎴栨棤娉曡鍙栵紝璇烽噸鏂版墽琛宨ntall</h2>",
+            "20001" => "<h2>配置文件损坏或无法读取，请重新执行intall</h2>",
             "30001" => "<h2>The state does not match. You may be a victim of CSRF.</h2>",
-            "50001" => "<h2>鍙兘鏄湇鍔″櫒鏃犳硶璇锋眰https鍗忚</h2>鍙兘鏈紑鍚痗url鏀寔,璇峰皾璇曞紑鍚痗url鏀寔锛岄噸鍚痺eb鏈嶅姟鍣紝濡傛灉闂浠嶆湭瑙ｅ喅锛岃鑱旂郴鎴戜滑"
-            );
+            "50001" => "<h2>可能是服务器无法请求https协议</h2>可能未开启curl支持,请尝试开启curl支持，重启web服务器，如果问题仍未解决，请联系我们"
+        );
     }
 
     /**
      * showError
-     * 鏄剧ず閿欒淇℃伅
-     * @param int $code    閿欒浠ｇ爜
-     * @param string $description 鎻忚堪淇℃伅锛堝彲閫夛級
+     * 显示错误信息
+     * @param int $code    错误代码
+     * @param string $description 描述信息（可选）
      */
     public function showError($code, $description = '$'){
         $recorder = new Recorder();
-       /* if(! $recorder->readInc("errorReport")){
-            die();//die quietly
-        }*/
+        /* if(! $recorder->readInc("errorReport")){
+             die();//die quietly
+         }*/
 
 
         echo "<meta charset=\"UTF-8\">";
@@ -40,7 +40,7 @@ class ErrorCase{
         }else{
             echo "<h3>error:</h3>$code";
             echo "<h3>msg  :</h3>$description";
-            exit(); 
+            exit();
         }
     }
     public function showTips($code, $description = '$'){
