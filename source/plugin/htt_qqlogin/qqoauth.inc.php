@@ -1,24 +1,32 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: ÎâÎÄ¸¶ hi_php@163.com
- * Blog: wuwenfu.cn
- * Date: 2016/5/21
- * Time: 10:43
- * description:
- *http://bbs.wuwenfu.cc/plugin.php?id=htt_qqlogin:qqoauth
- *
- */
-//echo 11;
-//echo "<pre>";
-//var_dump($_G);
-//echo "</pre>";
-//exit();
-error_reporting(E_ALL);
+
+if(!defined('IN_DISCUZ')) {
+    exit('Access Denied');
+}
+global $_G;
+
+loadcache('plugin');
+$var = $_G['cache']['plugin'];
+$is_open =  $var['htt_qqlogin']['is_open'];
+
+$appid =  $var['htt_qqlogin']['appid'];
+$appkey =  $var['htt_qqlogin']['key'];
+$callback =  $_G['siteurl'].'plugin.php?id=htt_qqlogin:qqoauth_callback';
+
+
+
+if($is_open==2){
+   die('qq is closed');
+}
+
 require_once("source/plugin/htt_qqlogin/API/qqConnectAPI.php");
+
+
 $qc = new QC();
 
-//var_dump($qc);
+$qc->set_config($appid,$appkey,$callback);
+
+
 
 
 

@@ -29,9 +29,9 @@ class ErrorCase{
      */
     public function showError($code, $description = '$'){
         $recorder = new Recorder();
-        if(! $recorder->readInc("errorReport")){
+       /* if(! $recorder->readInc("errorReport")){
             die();//die quietly
-        }
+        }*/
 
 
         echo "<meta charset=\"UTF-8\">";

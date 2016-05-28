@@ -19,18 +19,54 @@ class Oauth{
     protected $recorder;
     public $urlUtils;
     protected $error;
-    
+
+    public $appid;
+    public $appkey;
+    public $callback;
+
 
     function __construct(){
         $this->recorder = new Recorder();
         $this->urlUtils = new URL();
         $this->error = new ErrorCase();
+
+        //从session获取参数。
+        $htt_qq_info = $_SESSION['htt_qq_info'];
+        if(!empty($htt_qq_info)){
+            $this->appid = $htt_qq_info['appid'];
+            $this->appkey =  $htt_qq_info['appkey'];
+            $this->callback =  $htt_qq_info['callback'];
+        }
+
+
     }
 
+    public function set_config($appid,$appkey,$callback){
+        $this->appid = $appid;
+        $this->appkey = $appkey;
+        $this->callback = $callback;
+        $_SESSION['htt_qq_info'] = array(
+            'appid'=>$appid,
+            'appkey'=>$appkey,
+            'callback'=>$callback,
+        );
+
+
+    }
+
+
     public function qq_login(){
+
+/*
         $appid = $this->recorder->readInc("appid");
         $callback = $this->recorder->readInc("callback");
         $scope = $this->recorder->readInc("scope");
+
+*/
+        $appid = $this->appid;
+        $callback = $this->callback;
+        $scope ='get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idolist,add_idol,del_idol,get_tenpay_addr';
+
 
         //-------生成唯一随机串防CSRF攻击
         $state = md5(uniqid(rand(), TRUE));
@@ -61,9 +97,9 @@ class Oauth{
         //-------请求参数列表
         $keysArr = array(
             "grant_type" => "authorization_code",
-            "client_id" => $this->recorder->readInc("appid"),
-            "redirect_uri" => urlencode($this->recorder->readInc("callback")),
-            "client_secret" => $this->recorder->readInc("appkey"),
+            "client_id" => $this->appid,
+            "redirect_uri" => urlencode($this->callback),
+            "client_secret" => $this->appkey,
             "code" => $_GET['code']
         );
 

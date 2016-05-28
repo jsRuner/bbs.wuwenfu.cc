@@ -15,12 +15,17 @@ class Recorder{
         $this->error = new ErrorCase();
 
         //-------读取配置文件
-        $incFileContents = file(ROOT."comm/inc.php");
+     /*   $incFileContents = file(ROOT."comm/inc.php");
         $incFileContents = $incFileContents[1];
         $this->inc = json_decode($incFileContents);
-        if(empty($this->inc)){
+     */
+        $this->inc= array();
+
+
+
+      /*  if(empty($this->inc)){
             $this->error->showError("20001");
-        }
+        }*/
 
         if(empty($_SESSION['QC_userData'])){
             self::$data = array();

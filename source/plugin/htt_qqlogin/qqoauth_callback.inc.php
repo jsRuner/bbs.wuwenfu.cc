@@ -18,11 +18,47 @@ if(!function_exists('sendmail')) {
     include libfile('function/mail');
 }
 loaducenter();
+
+
+loadcache('plugin');
+$var = $_G['cache']['plugin'];
+$is_open =  $var['htt_qqlogin']['is_open'];
+
+$appid =  $var['htt_qqlogin']['appid'];
+$appkey =  $var['htt_qqlogin']['key'];
+$callback =  $_G['siteurl'].'plugin.php?id=htt_qqlogin:qqoauth_callback';
+
+if($is_open==2){
+    die('qq is closed');
+}
+
+
+
+
 $qc = new QC();
+
+
+$qc->set_config($appid,$appkey,$callback);
+
+
+//echo $qc->appid;
+//print_r($qc);
+
+//exit();
+
+
+
 $access_token = $qc->qq_callback();
+
 $openid = $qc->get_openid();
+
 $qc = new QC($access_token,$openid);
+
+
+$qc->set_config($appid,$appkey,$callback);
+
 $ret = $qc->get_user_info();
+
 
 $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= '$openid'");
 $qqinfo = array();
