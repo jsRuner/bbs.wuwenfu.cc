@@ -1,7 +1,0 @@
-<dl class="pil cl">
-    <dt>本版积分</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">30</a></dd>
-</dl>
-
-<dl class="pil cl">
-    <dt>本版等级</dt><dd><a href="home.php?mod=space&amp;uid=1&amp;do=profile" target="_blank" class="xi2">lol菜鸟</a></dd>
-</dl>

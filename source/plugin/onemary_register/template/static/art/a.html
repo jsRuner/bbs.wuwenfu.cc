@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>artDialog</title>
+<meta name="keywords" content="artDialog,javascript,dialog,jQuery" />
+<meta name="description" content="artDialog是一个精巧的web对话框组件，压缩后只有十多KB，并且不依赖其他框架。" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="artDialog.js?skin=opera"></script>
+
+
+
+</head>
+<body>
+<script>
+(function (config) {
+    config['lock'] = true;
+    config['fixed'] = true;
+    config['okVal'] = 'Ok';
+    config['cancelVal'] = 'Cancel';
+    // [more..]
+})(art.dialog.defaults);
+
+art.dialog({
+	title: 0,
+    content: '请不要挑战我',
+	ok:true,
+	okVal: '确定',
+	/*
+    ok: function () {
+    	this.title('3秒后自动关闭').time(3);
+        return false;
+    },
+	
+    cancelVal: '确定',
+    cancel: true //为true等价于function(){}
+	*/
+});
+</script>
+</body>
+</html>

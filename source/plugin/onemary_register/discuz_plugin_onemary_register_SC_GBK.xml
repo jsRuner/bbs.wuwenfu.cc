@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3,X3.1]]></item>
+	<item id="Time"><![CDATA[2014-05-21 15:16]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://127.0.0.1/onemary_action/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[[ÍòÃÀ]¶àÍ¨µÀ×¢²á]]></item>
+			<item id="identifier"><![CDATA[onemary_register]]></item>
+			<item id="description"><![CDATA[×î¶àÖ§³Ö5¸ö¶ÀÁ¢µÄ×¢²áÍ¨µÀ£¬Ã¿¸ö×¢²áÍ¨µÀ¾ù¿É¶ÀÁ¢ÑéÖ¤¹æÔò¡¢¶ÀÁ¢×Ö¶Î¡¢¶ÀÁ¢½çÃæ¡¢¶ÀÁ¢ÉèÖÃÐÂ×¢²á»áÔ±ÓÃ»§×é¡£ÊÊºÏÓÃ»§ÐÐÒµÍøÕ¾ÀïÃæµÄ»áÔ±·Ö¼¶´¦Àí]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[onemary_register/]]></item>
+			<item id="copyright"><![CDATA[54Õ¾³¤Íøwww.54zz.net]]></item>
+			<item id="version"><![CDATA[1.120140532]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[admincp]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[Í¨µÀÉèÖÃ]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[register]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3,X3.1]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="rulemessage"><![CDATA[ÍøÕ¾·þÎñÌõ¿î]]></item>
+				<item id="gallery_name"><![CDATA[Í¨µÀÃû³Æ]]></item>
+				<item id="agree"><![CDATA[Í¬Òâ]]></item>
+				<item id="disagree"><![CDATA[²»Í¬Òâ]]></item>
+				<item id="fieldid"><![CDATA[×Ö¶Î]]></item>
+				<item id="open"><![CDATA[ÆôÓÃ]]></item>
+				<item id="compel"><![CDATA[±ØÌî]]></item>
+				<item id="edit"><![CDATA[±à¼­]]></item>
+				<item id="upfilebut"><![CDATA[µã»÷ÉÏ´«]]></item>
+				<item id="fieldidsetting"><![CDATA[×Ö¶ÎÉèÖÃ]]></item>
+				<item id="fieldidsetting1"><![CDATA[Í¨µÀÒ»]]></item>
+				<item id="fieldidsetting2"><![CDATA[Í¨µÀ¶þ]]></item>
+				<item id="fieldidsetting3"><![CDATA[Í¨µÀÈý]]></item>
+				<item id="fieldidsetting4"><![CDATA[Í¨µÀËÄ]]></item>
+				<item id="fieldidsetting5"><![CDATA[Í¨µÀÎå]]></item>
+				<item id="fieldidsetting6"><![CDATA[Í¨µÀÁù]]></item>
+				<item id="fieldidsetting7"><![CDATA[Í¨µÀÆß]]></item>
+				<item id="fieldidsetting8"><![CDATA[Í¨µÀ°Ë]]></item>
+				<item id="isopen"><![CDATA[ÊÇ·ñÆôÓÃ]]></item>
+				<item id="ok"><![CDATA[²Ù×÷³É¹¦]]></item>
+				<item id="noopen"><![CDATA[¸Ã×¢²áÍ¨µÀÎ´ÆôÓÃ£¬ÇëÑ¡ÔñÆäËû×¢²á·½Ê½]]></item>
+				<item id="new_groupid"><![CDATA[ÐÂ×¢²áÓÃ»§×é]]></item>
+				<item id="prompt"><![CDATA[ÌîÐ´ÌáÊ¾]]></item>
+				<item id="fieldidedit"><![CDATA[Ìø×ªµ½×Ö¶Î±à¼­(Ó¦ÓÃÔÚÈ«¾Ö)]]></item>
+				<item id="regular"><![CDATA[ÑéÖ¤±í´ïÊ½]]></item>
+				<item id="setting"><![CDATA[ÉèÖÃ]]></item>
+				<item id="title"><![CDATA[±êÌâ]]></item>
+				<item id="ishtml"><![CDATA[Ö§³ÖHTML]]></item>
+				<item id="bannerimg"><![CDATA[¶¥²¿¹ã¸æÍ¼Æ¬]]></item>
+				<item id="bannerurl"><![CDATA[¶¥²¿¹ã¸æÍ¼Æ¬Á´½Ó]]></item>
+				<item id="bannertitle"><![CDATA[¶¥²¿¹ã¸æÍ¼Æ¬±êÌâ]]></item>
+				<item id="bgimg"><![CDATA[±³¾°Í¼Æ¬]]></item>
+				<item id="regverify"><![CDATA[ÐÂÓÃ»§×¢²áÑéÖ¤]]></item>
+				<item id="regverify0"><![CDATA[ÎÞ]]></item>
+				<item id="regverify1"><![CDATA[EmailÑéÖ¤]]></item>
+				<item id="regverify2"><![CDATA[ÈË¹¤ÉóºË]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="getpassword"><![CDATA[ÕÒ»ØÃÜÂë]]></item>
+				<item id="register_become"><![CDATA[×¢²á³ÉÎª]]></item>
+				<item id="reg2"><![CDATA[×¢²á³ÉÎªÆÕÍ¨»áÔ±]]></item>
+				<item id="login_guest"><![CDATA[Ã»ÓÐÕÊºÅ£¿<a href="member.php?mod={$_G[setting][regname]}">{$_G[setting][reglinkname]}</a>]]></item>
+				<item id="new_password"><![CDATA[ÐÂÃÜÂë]]></item>
+				<item id="new_password_confirm"><![CDATA[È·ÈÏÃÜÂë]]></item>
+				<item id="password_weak"><![CDATA[ÃÜÂëÌ«Èõ£¬ÃÜÂëÖÐ±ØÐë°üº¬]]></item>
+				<item id="strongpw_1"><![CDATA[Êý×Ö]]></item>
+				<item id="strongpw_2"><![CDATA[Ð¡Ð´×ÖÄ¸]]></item>
+				<item id="strongpw_3"><![CDATA[´óÐ´×ÖÄ¸]]></item>
+				<item id="strongpw_4"><![CDATA[ÌØÊâ·ûºÅ]]></item>
+				<item id="submit"><![CDATA[Ìá½»]]></item>
+				<item id="close"><![CDATA[¹Ø±Õ]]></item>
+				<item id="faq"><![CDATA[°ïÖú]]></item>
+				<item id="login"><![CDATA[µÇÂ¼]]></item>
+				<item id="login_clearcookies"><![CDATA[Çå³ýºÛ¼£]]></item>
+				<item id="login_guestmessage"><![CDATA[ÄúÐèÒªÏÈµÇÂ¼²ÅÄÜ¼ÌÐø±¾²Ù×÷]]></item>
+				<item id="login_seccheck2"><![CDATA[ÇëÊäÈëÑéÖ¤Âëºó¼ÌÐøµÇÂ¼]]></item>
+				<item id="login_member"><![CDATA[ÓÃ»§µÇÂ¼]]></item>
+				<item id="login_method"><![CDATA[¿ì½ÝµÇÂ¼]]></item>
+				<item id="login_permanent"><![CDATA[×Ô¶¯µÇÂ¼]]></item>
+				<item id="profile_renew"><![CDATA[Çë²¹³äÏÂÃæµÄµÇÂ¼ÐÅÏ¢]]></item>
+				<item id="register_from"><![CDATA[ÍÆ¼öÈË]]></item>
+				<item id="account"><![CDATA[ÕÊºÅ]]></item>
+				<item id="password"><![CDATA[ÃÜÂë]]></item>
+				<item id="activation"><![CDATA[¼¤»î]]></item>
+				<item id="agree"><![CDATA[Í¬Òâ]]></item>
+				<item id="disagree"><![CDATA[²»Í¬Òâ]]></item>
+				<item id="index_activation"><![CDATA[ÄúµÄÕÊºÅÐèÒª¼¤»î]]></item>
+				<item id="invite_code"><![CDATA[ÑûÇëÂë]]></item>
+				<item id="login_inactive"><![CDATA[·ÅÆú¼¤»î£¬ÏÖÔÚ<a href="member.php?mod={$_G[setting][regname]}">{$_G[setting][reglinkname]}</a>]]></item>
+				<item id="login_now"><![CDATA[ÒÑÓÐÕÊºÅ£¿ÏÖÔÚµÇÂ¼]]></item>
+				<item id="password_confirm"><![CDATA[È·ÈÏÃÜÂë]]></item>
+				<item id="register_buyinvitecode"><![CDATA[»¹Ã»ÓÐÑûÇëÂë£¿µã»÷´Ë´¦»ñÈ¡]]></item>
+				<item id="register_email_tips"><![CDATA[ÇëÊäÈëÕýÈ·µÄÓÊÏäµØÖ·]]></item>
+				<item id="register_message"><![CDATA[×¢²áÔ­Òò]]></item>
+				<item id="register_message1"><![CDATA[ÄúÌîÐ´µÄ×¢²áÔ­Òò»á±»µ±×÷ÉêÇë×¢²áµÄÖØÒª²Î¿¼ÒÀ¾Ý£¬ÇëÈÏÕæÌîÐ´¡£]]></item>
+				<item id="register_password_length_tips1"><![CDATA[×îÐ¡³¤¶ÈÎª]]></item>
+				<item id="register_password_length_tips2"><![CDATA[¸ö×Ö·û]]></item>
+				<item id="register_password_tips"><![CDATA[ÇëÌîÐ´ÃÜÂë]]></item>
+				<item id="register_repassword_tips"><![CDATA[ÇëÔÙ´ÎÊäÈëÃÜÂë]]></item>
+				<item id="register_username_tips"><![CDATA[ÓÃ»§ÃûÓÉ 3 µ½ 15 ¸ö×Ö·û×é³É]]></item>
+				<item id="register_validate_email_tips"><![CDATA[×¢²áÐèÒªÑéÖ¤ÓÊÏä£¬ÇëÎñ±ØÌîÐ´ÕýÈ·µÄÓÊÏä£¬Ìá½»ºóÇë¼°Ê±²éÊÕÓÊ¼þ¡£<br />Äú¿ÉÄÜÐèÒªµÈ´ý¼¸·ÖÖÓ²ÅÄÜÊÕµ½ÓÊ¼þ£¬Èç¹ûÊÕ¼þÏäÃ»ÓÐ£¬Çë¼ì²éÒ»ÏÂÀ¬»øÓÊ¼þÏä¡£]]></item>
+				<item id="rulemessage"><![CDATA[ÍøÕ¾·þÎñÌõ¿î]]></item>
+				<item id="pleasewrite"><![CDATA[ÇëÌîÐ´]]></item>
+				<item id="username"><![CDATA[»áÔ±Ãû]]></item>
+				<item id="emailtip"><![CDATA[ÌîÈë<span class="mC">ÓÐÐ§µÄÓÊÏäµØÖ·</span>,ÒÔÑéÖ¤Íê³É×¢²á,<br>´ËÓÊÏä½«ÓÃÓÚÃÜÂëÕÒ»ØµÈÖØÒª²Ù×÷<br>Èç:server@siteweb.com]]></item>
+				<item id="passwordtip"><![CDATA[ÃÜÂëÓÉ<span class="mC">6-24</span>Î»Ó¢ÎÄ×ÖÄ¸,Êý×Ö,ÌØÊâ·ûºÅ×é³É<br>Èç:myPaSsword#987]]></item>
+				<item id="email"><![CDATA[ÓÊÏä]]></item>
+				<item id="pass"><![CDATA[Èõ]]></item>
+				<item id="pasm"><![CDATA[ÖÐ]]></item>
+				<item id="pasb"><![CDATA[Ç¿]]></item>
+				<item id="regverifytip"><![CDATA[ÑéÖ¤ÂëÊäÈë´íÎó£¬ÇëÖØÐÂÊäÈë]]></item>
+				<item id="regverifytit"><![CDATA[ÇëÊäÈëÑéÖ¤Âë]]></item>
+				<item id="writeok"><![CDATA[ÌîÐ´ÕýÈ·]]></item>
+				<item id="writeno"><![CDATA[°¥Ñ½,ÕâÀï³ö´íÀ²!]]></item>
+				<item id="notcorrect"><![CDATA[¸ñÊ½²»ÕýÈ·]]></item>
+				<item id="promptwindows"><![CDATA[ÌáÊ¾]]></item>
+				<item id="isok"><![CDATA[È·ÈÏ]]></item>
+				<item id="lenghtno"><![CDATA[¸ñÊ½²»ÕýÈ·]]></item>
+				<item id="readagreed"><![CDATA[ÇëÏÈÔÄ¶Á²¢Í¬Òâ]]></item>
+				<item id="reg1"><![CDATA[×¢²á³ÉÎª×¨Òµ»áÔ±]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>
