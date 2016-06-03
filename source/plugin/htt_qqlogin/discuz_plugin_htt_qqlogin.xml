@@ -1,105 +1,107 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="Version"><![CDATA[]]></item>
-	<item id="Time"><![CDATA[2016-05-20 23:46]]></item>
-	<item id="From"><![CDATA[ ()]]></item>
+	<item id="Version"><![CDATA[X3.2]]></item>
+	<item id="Time"><![CDATA[2016-05-31 19:01]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://bbs.wuwenfu.net/)]]></item>
 	<item id="Data">
 		<item id="plugin">
 			<item id="available"><![CDATA[0]]></item>
-			<item id="adminid"><![CDATA[0]]></item>
-			<item id="name"><![CDATA[QQµÇÂ¼]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[±±°¶QQµÇÂ¼]]></item>
 			<item id="identifier"><![CDATA[htt_qqlogin]]></item>
-			<item id="description"><![CDATA[QQµÇÂ¼]]></item>
+			<item id="description"><![CDATA[Í¨¹ýQQ¿ìËÙµÇÂ¼ÂÛÌ³]]></item>
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
-			<item id="copyright"><![CDATA[±±°¶µÄÔÆ]]></item>
-			<item id="version"><![CDATA[1.0]]></item>
+			<item id="copyright"><![CDATA[ÎâÎÄ¸¶]]></item>
+			<item id="version"><![CDATA[1.3]]></item>
 			<item id="__modules">
-				<item id="1">
+				<item id="0">
 					<item id="name"><![CDATA[httqqlogin]]></item>
-					
+					<item id="param"><![CDATA[]]></item>
 					<item id="menu"><![CDATA[]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[11]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
 					<item id="navtitle"><![CDATA[]]></item>
 					<item id="navicon"><![CDATA[]]></item>
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
-				
-				
-				
-				
+				<item id="1">
+					<item id="name"><![CDATA[mobilehttqqlogin]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
 			</item>
-			
-			
-			
-				
-			
-			
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
 		<item id="var">
-		 <item id="1">
-                <item id="displayorder"><![CDATA[1]]></item>
-                <item id="title"><![CDATA[µÇÂ¼¿ª¹Ø]]></item>
-                <item id="description"><![CDATA[ÉèÖÃÊÇ·ñ¿ªÆô]]></item>
-                <item id="variable"><![CDATA[is_open]]></item>
-                <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[3]]></item>
-                <item id="extra"><![CDATA[1=¿ªÆô
-                	2=¹Ø±Õ]]></item>
-
-            </item>
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[¿ª¹Ø]]></item>
+				<item id="description"><![CDATA[Ä¬ÈÏ¹Ø±Õ]]></item>
+				<item id="variable"><![CDATA[is_open]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[1=¿ªÆô
+2=¹Ø±Õ]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[APPID]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com/intro/login ÉêÇëappid]]></item>
+				<item id="variable"><![CDATA[appid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
 			<item id="2">
-                <item id="displayorder"><![CDATA[2]]></item>
-                <item id="title"><![CDATA[APPID]]></item>
-                <item id="description"><![CDATA[]]></item>
-                <item id="variable"><![CDATA[appid]]></item>
-                <item id="type"><![CDATA[text]]></item>
-                <item id="value"><![CDATA[]]></item>
-                <item id="extra"><![CDATA[]]></item>
-
-            </item>
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[KEY]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com/intro/login ÉêÇëkey]]></item>
+				<item id="variable"><![CDATA[key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
 			
 			<item id="3">
-                <item id="displayorder"><![CDATA[3]]></item>
-                <item id="title"><![CDATA[KEY]]></item>
-                <item id="description"><![CDATA[]]></item>
-                <item id="variable"><![CDATA[key]]></item>
-                <item id="type"><![CDATA[text]]></item>
-                <item id="value"><![CDATA[]]></item>
-                <item id="extra"><![CDATA[]]></item>
-
-            </item>
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[ÓÃ»§Ãûºó×º]]></item>
+				<item id="description"><![CDATA[Ä¬ÈÏºó×ºÊÇ×ÖÄ¸»òÕßÊý×Ö»ìºÏ¡£ÀýÈç±±°¶µÄÔÆ_rq123]]></item>
+				<item id="variable"><![CDATA[suffix]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[1=´¿×ÖÄ¸
+2=´¿Êý×Ö
+3=²»ÏÞÖÆ]]></item>
+			</item>
 			
 		</item>
+		
 		 <item id="language">
 		<item id="templatelang">
-			<item id='qq_tip'>Ö»ÐèÒªÒ»²½£¬¿ìËÙ¿ªÊ¼
+			<item id='qq_tip1'>Ö»ÐèÒªÒ»²½£¬¿ìËÙ¿ªÊ¼
+			</item>
+			<item id='qq_tip2'>ÆäËûµÇÂ¼
+			</item>
+			<item id='qq_tip3'>QQµÇÂ¼
 			</item>
 		</item>
-		<item id="scriptlang">
-		<item id='httqqlogin_appid'>APP ID
-			</item>
-			<item id='httqqlogin_appsecret'>APP KEY
-			</item>
-			<item id='httqqlogin_callbackurl'>»Øµ÷µØÖ·
-			</item>
-			
-			<item id='error_config'>ÅäÖÃ´íÎó
-			</item>
 		
 		</item>
-		</item>
 		
-		 <item id="installfile"><![CDATA[install.php]]></item>
+		<item id="installfile"><![CDATA[install.php]]></item>
             <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
-			
-			
-			
-			
 	</item>
 </root>

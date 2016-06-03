@@ -913,7 +913,9 @@ if(empty($postlist)) {
 } elseif(!defined('IN_MOBILE_API')) {
 	foreach($postlist as $pid => $post) {
 		$postlist[$pid]['message'] = preg_replace("/\[attach\]\d+\[\/attach\]/i", '', $postlist[$pid]['message']);
+
 	}
+
 }
 
 if(defined('IN_ARCHIVER')) {
@@ -976,10 +978,7 @@ if(getstatus($_G['forum_thread']['status'], 10)) {
 	$_G['forum_thread']['relay'] = $preview['relay'];
 }
 
-
-
 if(empty($_GET['viewpid'])) {
-
 	$sufix = '';
 	if($_GET['from'] == 'portal') {
 		$_G['disabledwidthauto'] = 1;
@@ -996,16 +995,10 @@ if(empty($_GET['viewpid'])) {
 		$sufix = '_album';
 		$post = &$postlist[$_G['forum_firstpid']];
 		$post['message'] = cutstr(strip_tags(preg_replace('/(<ignore_js_op>.*<\/ignore_js_op>)/is', '', $post['message'])), 200);
-
-
-
 		require_once libfile('thread/album', 'include');
 	}
 
 	include template('diy:forum/viewthread'.$sufix.':'.$_G['fid']);
-
-
-
 } else {
 	$_G['setting']['admode'] = 0;
 	$post = $postlist[$_GET['viewpid']];
@@ -1023,12 +1016,12 @@ if(empty($_GET['viewpid'])) {
 		}
 	}
 	include template('common/header_ajax');
-
 	hookscriptoutput('viewthread');
 	$postcount = 0;
 	if($_GET['from']) {
 		include template($_GET['from'] == 'preview' ? 'forum/viewthread_preview_node' : 'forum/viewthread_from_node');
 	} else {
+
 		include template('forum/viewthread_node');
 	}
 	include template('common/footer_ajax');
@@ -1179,7 +1172,9 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 	$post['attachments'] = array();
 	$post['imagelist'] = $post['attachlist'] = '';
 
-	if($post['attachment']) {
+
+//	if($post['attachment']) {
+	if(True) {
 		if((!empty($_G['setting']['guestviewthumb']['flag']) && !$_G['uid']) || $_G['group']['allowgetattach'] || $_G['group']['allowgetimage']) {
 			$_G['forum_attachpids'][] = $post['pid'];
 			$post['attachment'] = 0;
@@ -1189,6 +1184,10 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 		} else {
 			$post['message'] = preg_replace("/\[attach\](\d+)\[\/attach\]/i", '', $post['message']);
 		}
+
+//        echo 11;
+//        exit();
+
 	}
 
 	if($_G['setting']['ratelogrecord'] && $post['ratetimes']) {
@@ -1241,7 +1240,9 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 		}
 		if(!$imgcontent) {
 			$post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], $forum_allowbbcode, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
-			if($post['first']) {
+
+
+            if($post['first']) {
 				$_G['relatedlinks'] = '';
 				$relatedtype = !$_G['forum_thread']['isgroup'] ? 'forum' : 'group';
 				if(!$_G['setting']['relatedlinkstatus']) {
@@ -1253,6 +1254,10 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 					$post['message'] = preg_replace("/\[begin(=\s*([^\[\<\r\n]*?)\s*,(\d*),(\d*),(\d*),(\d*))?\]\s*([^\[\<\r\n]+?)\s*\[\/begin\]/ies", $_G['cache']['usergroups'][$post['groupid']]['allowbegincode'] ? "parsebegin('\\2', '\\7', '\\3', '\\4', '\\5', '\\6');" : '', $post['message']);
 				}
 			}
+
+
+
+
 		}
 	}
 	if(defined('IN_ARCHIVER') || defined('IN_MOBILE') || !$post['first']) {
@@ -1272,7 +1277,9 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 	$_G['forum_firstpid'] = intval($_G['forum_firstpid']);
 	$post['numbercard'] = viewthread_numbercard($post);
 	$post['mobiletype'] = getstatus($post['status'], 4) ? base_convert(getstatus($post['status'], 10).getstatus($post['status'], 9).getstatus($post['status'], 8), 2, 10) : 0;
-	return $post;
+//	var_dump($post);
+//    exit();
+    return $post;
 }
 
 function viewthread_loadcache() {

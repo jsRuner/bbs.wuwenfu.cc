@@ -9,13 +9,13 @@ $_config['db']['1']['dbuser'] = 'root';
 $_config['db']['1']['dbpw'] = 'root';
 $_config['db']['1']['dbcharset'] = 'gbk';
 $_config['db']['1']['pconnect'] = '0';
-$_config['db']['1']['dbname'] = 'bbs.wuwenfu.cc';
+$_config['db']['1']['dbname'] = 'bbs.wuwenfu.net';
 $_config['db']['1']['tablepre'] = 'pre_';
 $_config['db']['slave'] = '';
 $_config['db']['common']['slave_except_table'] = '';
 
 // --------------------------  CONFIG MEMORY  --------------------------- //
-$_config['memory']['prefix'] = 'L47D4Z_';
+$_config['memory']['prefix'] = '0KaFEx_';
 $_config['memory']['redis']['server'] = '';
 $_config['memory']['redis']['port'] = 6379;
 $_config['memory']['redis']['pconnect'] = 1;
@@ -50,12 +50,12 @@ $_config['output']['ajaxvalidate'] = '0';
 $_config['output']['iecompatible'] = '0';
 
 // --------------------------  CONFIG COOKIE  --------------------------- //
-$_config['cookie']['cookiepre'] = 'uKGS_';
+$_config['cookie']['cookiepre'] = 'JNNg_';
 $_config['cookie']['cookiedomain'] = '';
 $_config['cookie']['cookiepath'] = '/';
 
 // -------------------------  CONFIG SECURITY  -------------------------- //
-$_config['security']['authkey'] = '16a761E2P6Hp9JMH';
+$_config['security']['authkey'] = '7115f7hOwSDzufBK';
 $_config['security']['urlxssdefend'] = 1;
 $_config['security']['attackevasive'] = '0';
 $_config['security']['querysafe']['status'] = 1;
@@ -97,10 +97,10 @@ $_config['remote']['cron'] = '0';
 // ---------------------------  CONFIG INPUT  --------------------------- //
 $_config['input']['compatible'] = 1;
 
-$_config['debug'] = 'debug'; // = '可自定义'，进入debug模式时页面地址中需要它。
+// ----------------------  CONFIG PLUGINDEVELOPER  ---------------------- //
+$_config['plugindeveloper'] = 1;
 
 
-// $_config['plugindeveloper'] = 1;
 // -------------------  THE END  -------------------- //
 
 ?>

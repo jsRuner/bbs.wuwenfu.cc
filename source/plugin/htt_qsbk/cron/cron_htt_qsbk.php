@@ -13,13 +13,22 @@
  *    minute:30
  */
 
-
-
-
+//error_reporting(E_ALL);
 
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+
+
+function set_home($dir = '.') {
+    $dir1 = date('Ym');
+    $dir2 = date('d');
+
+    !is_dir($dir.'/'.$dir1) && mkdir($dir.'/'.$dir1, 0777);
+    !is_dir($dir.'/'.$dir1.'/'.$dir2) && mkdir($dir.'/'.$dir1.'/'.$dir2, 0777);
+    return $dir.'/'.$dir1.'/'.$dir2.'/';
+}
+
 
 /*
  * 过滤特殊字符
@@ -79,22 +88,6 @@ function strFilter($str){
     return trim($str);
 }
 
-
-/**
- * 创建文件夹。
- * @param  [type]
- * @param  boolean
- * @return [type]
- */
-function make_dir($dir, $index = true) {
-        $res = true;
-        if(!is_dir($dir)) {
-            $res = @mkdir($dir, 0777);
-            $index && @touch($dir.'/index.html');
-        }
-        return $res;
-    }
-
 function curl_qsbk($url)
 {
 
@@ -115,7 +108,6 @@ function curl_qsbk($url)
     }
     return $html;
 }
-
 loadcache('plugin');
 
 $var = $_G['cache']['plugin'];
@@ -126,8 +118,6 @@ $groupstr = $var['htt_qsbk']['groups']; //用户组
 $threads = $var['htt_qsbk']['threads'];
 $charset_num = $var['htt_qsbk']['charset'];  // 1utf-8 2gbk
 $caiji_model = $var['htt_qsbk']['caiji_model']; //1纯文 2表示纯图 3图文
-//$imgpath = $var['htt_qsbk']['imgpath']; //目录 2016年4月8日 修改为固定目录
-$imgpath = 'htt_qsbk/'; //目录 2016年4月8日 修改为固定目录.
 $check = $var['htt_qsbk']['check'];  //1不审核 2审核。
 $title_length = $var['htt_qsbk']['title_length']; //标题长度
 
@@ -139,7 +129,6 @@ $fids =array_filter(unserialize($fidstr));
 if ( is_null($fids) || empty($fids)) {
     //则显示错误信息。
     return;
-//    cpmsg(lang('plugin/htt_qsbk', 'error_setting_fid'), '', 'error');
 }
 
 $uids = array_filter(explode(',',$uidstr));
@@ -158,28 +147,12 @@ if(empty($uidstr)){
 
 if(empty($uids)){
     return;
-//    cpmsg(lang('plugin/htt_qsbk', 'error_setting_uid'), '', 'error');
 }
-/*
-//检查目录存在或者可写。非纯文模式且设置了路径才检查。
-if($caiji_model != 1 && !empty($imgpath) && !new_is_writeable($_G['setting']['attachurl'].'forum/'.$imgpath)){
-    //尝试自动创建目录。如果失败，给出提示。
-    //路径应当是 htt_qsbk/
-    $res=mkdir(iconv("UTF-8", "GBK", $_G['setting']['attachurl'].'forum/'.$imgpath),0777,true);
-    if (!$res){
-        return;
-//        cpmsg(lang('plugin/htt_qsbk', 'error_setting_imgpath'), '', 'error');
-    }
-}
-*/
-
-
 
 //检查是否超出范围。
 if ($threads<0 || $threads>20) {
     //则显示错误信息。
     return ;
-//    cpmsg(lang('plugin/htt_qsbk', 'error_setting_threads'), '', 'error');
 }
 
 //数据源。
@@ -215,16 +188,19 @@ switch($caiji_model){
 
 #从数组中随机取一个
 $rand_keys = array_rand($urls, 1);
-$url = $urls[$rand_keys];
+$url = "http://www.qiushibaike.com/imgrank/";
+//$url = $urls[$rand_keys];
+
+//echo $url;
 
 //检查函数是否可用。
 if(function_exists('curl_init') && function_exists('curl_exec')) {
-
     $html = curl_qsbk($url);
 }else{
     return;
-//    cpmsg(lang('plugin/htt_qsbk', 'error_curl'), '', 'error');
 }
+
+$imgpath  = set_home('data/attachment/forum'); //返回的是全路径。
 
 
 //解析数据
@@ -245,29 +221,34 @@ foreach ($articles as $article) {
     $data['content'] = pq($article)->find(".content")->text();
     $data['img'] = pq($article)->find(".thumb a img")->attr('src');
 
+
     //纯文则不会有图片。无须判断
     //纯图则需要判断。路径问题。
-    //图片存在,则必须采集。路径存在则进入下载。否则引入外链
-    $remote = 1; //默认远程附件
+    //图片存在,则必须采集。
+    $remote = 0;
 
     //图片存在。
     if(!empty($data['img'])){
         //图片目录存在则下载。
-        if(!empty($imgpath)){
-            $local_img = time().uniqid().'.png';
-            $context = stream_context_create(array(
-                'http' => array(
-                    'timeout' => 30 //超时时间，单位为秒
-                )
-            ));
-            @file_put_contents(DISCUZ_ROOT.'./data/attachment/forum/'.$imgpath.$local_img, file_get_contents($data['img'],0,$context));
-            //只保存forum开始的路径。hs_qsbk/12312321.png
-            $data['img'] =$imgpath.$local_img;
-            #这里的路径要从 data/attament/forum/开始。
+        $dir1 = date('Ym');
+        $dir2 = date('d');
 
-            $remote = 0; //主题图片表中 1表示远程图片。0表示本地图片。
-        }
+        !is_dir('data/attachment/forum/'.$dir1) && mkdir($dir.'/'.$dir1, 0777);
+        !is_dir('data/attachment/forum/'.$dir1.'/'.$dir2) && mkdir($dir.'/'.$dir1.'/'.$dir2, 0777);
 
+
+        $img_name = time().uniqid().'.png';
+        $context = stream_context_create(array(
+            'http' => array(
+                'timeout' => 30 //超时时间，单位为秒
+            )
+        ));
+//        echo $data['img'];
+//        echo 'data/attachment/forum'.$dir1.'/'.$dir2.'/'.$img_name;
+
+        @file_put_contents('data/attachment/forum/'.$dir1.'/'.$dir2.'/'.$img_name, file_get_contents($data['img'],0,$context));
+        $data['img'] =$dir1.'/'.$dir2.'/'.$img_name;
+        $remote = 0; //主题图片表中 1表示远程图片。0表示本地图片。
         $attachment = 2; //附件,0无附件 1普通附件 2有图片附件
 
     }else{
@@ -321,19 +302,11 @@ foreach ($articles as $article) {
 
     $publishdate = time();
 
-    //内容中添加引入图片。这里要注意目录。如果目录是空。则是引用的外链。
-    if(!empty($data['img'])){
 
-        if(!empty($imgpath)){
-            $message = $data['content']."[img]data/attachment/forum/".$data['img']."[/img]";
-
-        }else{
-            $message = $data['content']."[img]".$data['img']."[/img]";
-        }
-
-    }else{
-        $message = $data['content'];
-    }
+    $message = $data['content'];
+//    echo $data['img'];
+//    echo 222;
+//    exit();
 
 
     $newthread = array(
@@ -362,7 +335,12 @@ foreach ($articles as $article) {
     //插入主题
     $tid = C::t('forum_thread')->insert($newthread, true);
 
-    //remote 0表示本地。
+
+
+
+
+
+    //remote 0表示本地。主题图片表。
     C::t('forum_threadimage')->insert(array(
         'tid'=>$tid,
         'attachment'=>$data['img'],
@@ -402,50 +380,80 @@ foreach ($articles as $article) {
         'bbcodeoff' =>'0', //是否允许BBCODE
         'smileyoff' => '-1', //是否关闭表情
         'parseurloff' => '0', //是否允许粘贴URL
-        'attachment' => '0',//附件
+        'attachment' =>$attachment,//附件
         'tags' => '0',//新增字段，用于存放tag
         'replycredit' => '0',//回帖获得积分记录
         'status' => '0'//帖子状态
     ));
 
-    //获取文件名。
-    $filename =  substr(strrchr ( $data['img'] , '/' ),1);
-    $filesize = filesize("data/attachment/forum/".$data['img']);
-    $arr = getimagesize("data/attachment/forum/".$data['img']);
-    $width = $arr[0];
+    if($data['img'] != ''){
 
 
-    //需要操作附件。0-9.随机一个表保存。然后将信息存储到附件索引表中。
-    $table_index = rand(0,9);
-    //aid
-    $aid = C::t('forum_attachment')->insert(array(
-        'aid'=>null,
-        'tid'=>$tid,
-        'pid'=>$pid,
-        'uid'=>$uid,
-        'tableid'=>$table_index,
-        'downloads'=>'0'
+        //获取文件名。
+        $filename =  substr(strrchr ( $data['img'] , '/' ),1);
+        $filesize = filesize('data/attachment/forum/'.$data['img']);
+        $arr = getimagesize('data/attachment/forum/'.$data['img']);
+        $width = $arr[0];
+
+       /* //附件处理
+        $aid = getattachnewaid($uid);
+        //先插入到未使用发附件表。
+        $insert = array(
+            'aid' => $aid,
+            'dateline' => $_G['timestamp'],
+            'filename' => $filename,
+            'filesize' => $filesize,
+            'attachment' => $data['img'],
+            'isimage' =>1,
+            'uid' => $uid,
+            'thumb' => 0,
+            'remote' => $remote,
+            'width' => $width,
+        );
+        C::t('forum_attachment_unused')->insert($insert);*/
+
+
+
+        //需要操作附件。0-9.随机一个表保存。然后将信息存储到附件索引表中。
+        //2016年6月3日这里要注意，不是随机分表。
+//        $table_index = dintval($tid{strlen($tid)-1});
+//        $table_index = rand(0,9);
+        //aid
+        $aid = C::t('forum_attachment')->insert(array(
+            'aid'=>null,
+            'tid'=>$tid,
+            'pid'=>$pid,
+            'uid'=>$uid,
+            'tableid'=>0,
+            'downloads'=>'0'
         ),true);
-    C::t("forum_attachment_n")->insert($table_index,array(
-        'aid'=>$aid,
-        'tid'=>$tid,
-        'pid'=>$pid,
-        'uid'=>$uid,
-        'dateline'=>$publishdate,
-        'filename'=>$filename,
-        'filesize'=>$filesize,
-        'attachment'=>$data['img'],
-        'remote'=>$remote,
-        'description'=>'qsbk',
-        'readperm'=>0,
-        'price'=>0,
-        'isimage'=>1,
-        'width'=>$width,
-        'thumb'=>0,
-        'picid'=>0,
+        //分表的逻辑是模型自动完成的。
+        C::t("forum_attachment_n")->insert('tid:'.$tid,array(
+            'aid'=>$aid,
+            'tid'=>$tid,
+            'pid'=>$pid,
+            'uid'=>$uid,
+            'dateline'=>$publishdate,
+            'filename'=>$filename,
+            'filesize'=>$filesize,
+            'attachment'=>$data['img'], //"201606/01/152319brne4s0xeirr48ii.png"
+            'remote'=>$remote,
+            'description'=>'qsbk',
+            'readperm'=>0,
+            'price'=>0,
+            'isimage'=>1,
+            'width'=>$width,
+            'thumb'=>0,
+            'picid'=>0,
         ));
-    //替换为附件。
-    C::t()
+        //这里需要反过来更新一次。
+//        echo $message;
+
+        //需要更新post。添加附件内容。
+        C::t('forum_post')->update(0,$pid,array('message'=>$message."[attach]".$aid."[/attach]"));
+
+    }
+
 
 
 
@@ -477,6 +485,8 @@ foreach ($articles as $article) {
     //沙发数据
     C::t('forum_sofa')->insert(array('tid' => $tid,'fid' => $forum['fid']));
 
-    break;
+//    break;
 }
+
+//exit();
 ?>

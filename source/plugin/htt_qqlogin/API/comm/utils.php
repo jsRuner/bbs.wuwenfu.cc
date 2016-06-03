@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * PHP SDK for QQµÇÂ¼ OpenAPI
  *

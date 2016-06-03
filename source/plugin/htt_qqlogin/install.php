@@ -12,6 +12,12 @@ runquery("CREATE TABLE IF NOT EXISTS `cdb_httqqlogin` (
   `uid` int(11) NOT NULL,
   `openid` varchar(125) NOT NULL,
   `access_token` varchar(125) NOT NULL,
+
+  `password` varchar(125) NOT NULL,
+  `nickname` varchar(125) NOT NULL,
+  `username` varchar(125) NOT NULL,
+  `photo` varchar(125) NOT NULL,
+
   `dateline` int(11) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `openid` (`openid`)

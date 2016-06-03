@@ -23,13 +23,16 @@ class table_forum_attachment_n extends discuz_table
 
 	private function _get_table($tableid) {
 		if(!is_numeric($tableid)) {
+
 			list($idtype, $id) = explode(':', $tableid);
 			if($idtype == 'aid') {
 				$aid = dintval($id);
 				$tableid = DB::result_first("SELECT tableid FROM ".DB::table('forum_attachment')." WHERE aid='$aid'");
 			} elseif($idtype == 'tid') {
 				$tid = (string)$id;
+                //附件分表的规则是 主题id 长度 -1
 				$tableid = dintval($tid{strlen($tid)-1});
+
 			} elseif($idtype == 'pid') {
 				$pid = dintval($id);
 				$tableid = DB::result_first("SELECT tableid FROM ".DB::table('forum_attachment')." WHERE pid='$pid' LIMIT 1");
@@ -112,7 +115,9 @@ class table_forum_attachment_n extends discuz_table
 			$remote = $remote === false ? '' : ' AND '.DB::field('remote', $remote);
 			$limit = $limit < 1 ? '' : DB::limit(0, $limit);
 			$query = DB::query("SELECT * FROM %t WHERE %i %i %i %i %i %i", array($this->_get_table($tableid), DB::field($idtype, $ids), $isimage, $isprice, $remote, $orderby, $limit));
-			while($value = DB::fetch($query)) {
+
+
+            while($value = DB::fetch($query)) {
 				$attachments[$value['aid']] = $value;
 			}
 			return $attachments;

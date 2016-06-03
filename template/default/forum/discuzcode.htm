@@ -80,6 +80,8 @@ function attachlist($attach) {
 -->
 <!--{/eval}-->
 <!--{block return}-->
+
+
 <ignore_js_op>
 	<dl class="tattl">
 		<dt>
@@ -137,7 +139,7 @@ function imagelist($attach, $firstpost = 0) {
 <!--{/eval}-->
 <!--{block return}-->
 	<!--{if $attach['attachimg'] && $_G['setting']['showimages'] && (($_G['group']['allowgetimage'] || $_G['uid'] == $attach['uid']) || (($guestviewthumb)))}-->
-	<ignore_js_op>
+<ignore_js_op>
 		<!--{if !IS_ROBOT}-->
 			<dl class="tattl attm">
 				<dt></dt>
@@ -235,6 +237,7 @@ function attachinpost($attach, $post) {
 -->
 <!--{/eval}-->
 <!--{block return}-->
+
 <ignore_js_op>
 	<!--{if $attach['attachimg'] && $_G['setting']['showimages'] && (((!$attach['price'] || $attach['payed']) && ($_G['group']['allowgetimage'] || $_G['uid'] == $attach['uid'])) || (($guestviewthumb)))}-->
 		<!--{if !IS_ROBOT}-->

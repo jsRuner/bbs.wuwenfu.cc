@@ -3,6 +3,62 @@ if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
+function strFilter($str){
+    $str = str_replace('`', '', $str);
+    $str = str_replace('·', '', $str);
+    $str = str_replace('~', '', $str);
+    $str = str_replace('!', '', $str);
+    $str = str_replace('！', '', $str);
+    $str = str_replace('@', '', $str);
+    $str = str_replace('#', '', $str);
+    $str = str_replace('$', '', $str);
+    $str = str_replace('￥', '', $str);
+    $str = str_replace('%', '', $str);
+    $str = str_replace('^', '', $str);
+    $str = str_replace('……', '', $str);
+    $str = str_replace('&', '', $str);
+    $str = str_replace('*', '', $str);
+    $str = str_replace('(', '', $str);
+    $str = str_replace(')', '', $str);
+    $str = str_replace('（', '', $str);
+    $str = str_replace('）', '', $str);
+    $str = str_replace('-', '', $str);
+    $str = str_replace('_', '', $str);
+    $str = str_replace('——', '', $str);
+    $str = str_replace('+', '', $str);
+    $str = str_replace('=', '', $str);
+    $str = str_replace('|', '', $str);
+    $str = str_replace('\\', '', $str);
+    $str = str_replace('[', '', $str);
+    $str = str_replace(']', '', $str);
+    $str = str_replace('【', '', $str);
+    $str = str_replace('】', '', $str);
+    $str = str_replace('{', '', $str);
+    $str = str_replace('}', '', $str);
+    $str = str_replace(';', '', $str);
+    $str = str_replace('；', '', $str);
+    $str = str_replace(':', '', $str);
+    $str = str_replace('：', '', $str);
+    $str = str_replace('\'', '', $str);
+    $str = str_replace('"', '', $str);
+    $str = str_replace('“', '', $str);
+    $str = str_replace('”', '', $str);
+    $str = str_replace(',', '', $str);
+    $str = str_replace('，', '', $str);
+    $str = str_replace('<', '', $str);
+    $str = str_replace('>', '', $str);
+    $str = str_replace('《', '', $str);
+    $str = str_replace('》', '', $str);
+    $str = str_replace('.', '', $str);
+    $str = str_replace('。', '', $str);
+    $str = str_replace('/', '', $str);
+    $str = str_replace('、', '', $str);
+    $str = str_replace('?', '', $str);
+    $str = str_replace('？', '', $str);
+    $str = preg_replace("/\s/","",$str);
+    $str = cutstr($str,8,'');
+    return trim($str);
+}
 
 function get_avatar($uid, $size = 'middle', $type = '') {
     $size = in_array($size, array('big', 'middle', 'small')) ? $size : 'middle';
@@ -14,6 +70,7 @@ function get_avatar($uid, $size = 'middle', $type = '') {
     $typeadd = $type == 'real' ? '_real' : '';
     return 'uc_server/data/avatar/'.$dir1.'/'.$dir2.'/'.$dir3.'/'.substr($uid, -2).$typeadd."_avatar_$size.jpg";
 }
+
 
 function set_home($uid, $dir = '.') {
     $uid = sprintf("%09d", $uid);
@@ -27,41 +84,34 @@ function set_home($uid, $dir = '.') {
 
 function downqqimg($url,$filename){
     ob_start();
-    readfile($url);
-    $img = ob_get_contents();
-    ob_end_clean();
+    $img = dfsockopen($url);
     $size = strlen($img);
     $fp2=@fopen($filename, "a");
     fwrite($fp2,$img);
     fclose($fp2);
 }
 
-function make_username($username){
-    $username = $username.'_'.rand(1,100);
-    $userinfo = C::t('common_member')->fetch_by_username($username);
-    if(!empty($userinfo)){
-        make_username($username);
+function htt_random_str($length=5){
+    $hash = '';
+    $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $max = strlen($chars) - 1;
+    PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
+    for($i = 0; $i < $length; $i++) {
+        $hash .= $chars[mt_rand(0, $max)];
     }
-    if(strlen($username) > 15){
-        $username = cutstr($username,13,'');
-    }
-    return $username;
+    return $hash;
 }
 
-/*error_reporting(E_ALL);
-
-$uid = 49;
-$avatar = get_avatar($uid,'small');
-
-echo $avatar;
-
-downqqimg('http://q.qlogo.cn/qqapp/101319474/A28E0D85CABCA15C4DCD820D408D6BB5/40',$avatar);
-
-//file_put_contents($avatar,file_get_contents('http://q.qlogo.cn/qqapp/101319474/A28E0D85CABCA15C4DCD820D408D6BB5/40'));
-
-exit();*/
-
-
+function htt_random_int($length=5){
+    $hash = '';
+    $chars = '0123456789';
+    $max = strlen($chars) - 1;
+    PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
+    for($i = 0; $i < $length; $i++) {
+        $hash .= $chars[mt_rand(0, $max)];
+    }
+    return $hash;
+}
 
 
 global $_G;
@@ -80,15 +130,17 @@ if(!function_exists('sendmail')) {
     include libfile('function/mail');
 }
 loaducenter();
-
-
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
 $is_open =  $var['htt_qqlogin']['is_open'];
 
 $appid =  $var['htt_qqlogin']['appid'];
 $appkey =  $var['htt_qqlogin']['key'];
-$callback =  $_G['siteurl'].'plugin.php?id=htt_qqlogin:qqoauth_callback';
+$suffix =  $var['htt_qqlogin']['suffix']; //后缀类型。1是字母2是数字3是不限制。
+
+$callback = trim( $_G['siteurl'],'/').'/plugin.php?id=htt_qqlogin:qqoauth_callback';
+
+
 
 if($is_open==2){
     die('qq is closed');
@@ -96,11 +148,24 @@ if($is_open==2){
 
 $qc = new QC();
 $qc->set_config($appid,$appkey,$callback);
+
+
 $access_token = $qc->qq_callback();
-//
+
+
+
+
+
+
 $openid = $qc->get_openid();
 
+//避免sql注入
+$openid = daddslashes($openid);
+
+
+
 $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= '$openid'");
+
 $qqinfo = array();
 if($item = DB::fetch($query)) {
     $qqinfo = $item;
@@ -108,15 +173,15 @@ if($item = DB::fetch($query)) {
     $username = $members[$qqinfo['uid']];
     $members = C::t('common_member')->fetch_by_username($username);
     $uid = $qqinfo['uid'];
-    $password = '123456';
+    $password = $qqinfo['password'];
 //登录逻辑。
     $_G['member'] = array(
         'username'=>$username,
         'uid'=>$uid,
     );
-    $_G['group'] = C::t('common_usergroup')->fetch_all('10')[10];
-
     $result = userlogin($username, $password, $_GET['questionid'], $_GET['answer'], 'username', $_G['clientip']);
+    $_G['group'] = C::t('common_usergroup')->fetch($result['member']['groupid']);
+
 
 //登录状态。
     setloginstatus($result['member'], 2592000);
@@ -135,21 +200,41 @@ $ret = $qc->get_user_info();
 
 $nickname = $ret['nickname'];
 
+//去空格。与特殊字符.至多保存4个字。
 $nickname =   iconv("utf-8", "gbk",$nickname);
+$nickname = strFilter($nickname);
 
-//$username = $nickname.'_'.time();
+switch(intval($suffix)){
+    case 1:
+        $username = $nickname.'_'.htt_random_str(5);
+        break;
+    case 2:
+        $username = $nickname.'_'.htt_random_int(5);
+        break;
+    default:
+        $username = $nickname.'_'.random(5);
+        break;
+}
 
-$username = make_username($nickname);
+if(strlen($username)>15){
+    $username = 'qq_'.time();
+}
 
-
-
-//echo $username;
-
-$password = '123456';
+$password = uniqid();
 $email = time().'@qq.com';
 $questionid = '';
 $answer = '';
+
+
 $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
+
+/*if($uid == -1 || $uid == -3){
+    $username = 'qq_'.time();
+}*/
+
+//$uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
+
+
 //$uid = uc_user_register(addslashes($username), $password, $email, $questionid, $answer, $_G['clientip']);
 $_G['uid'] = $uid;
 
@@ -158,15 +243,36 @@ set_home($uid,'uc_server/data/avatar');
 
 $avatar = get_avatar($uid,'small');
 
+if(!file_exists($avatar)){
+    downqqimg($ret['figureurl_qq_1'],$avatar);
+}
 
-//file_put_contents($avatar,file_get_contents($ret['figureurl_qq_1']));
-downqqimg($ret['figureurl_qq_1'],$avatar);
-
+if($uid <= 0) {
+    if($uid == -1) {
+        showmessage('profile_username_illegal');
+    } elseif($uid == -2) {
+        showmessage('profile_username_protect');
+    } elseif($uid == -3) {
+        showmessage('profile_username_duplicate');
+    } elseif($uid == -4) {
+        showmessage('profile_email_illegal');
+    } elseif($uid == -5) {
+        showmessage('profile_email_domain_illegal');
+    } elseif($uid == -6) {
+        showmessage('profile_email_duplicate');
+    } else {
+        showmessage('undefined_action');
+    }
+}
 
 $insert_array = array(
     'uid'=>$uid,
     'openid'=>$openid,
     'access_token'=>$access_token,
+    'nickname'=>$nickname,
+    'username'=>$username,
+    'password'=>$password,
+    'photo'=>$ret['figureurl_qq_1'],
     'dateline'=>TIMESTAMP,
 );
 DB::insert("httqqlogin",$insert_array);
@@ -221,10 +327,9 @@ $_G['member'] = array(
 );
 
 
-$_G['group'] = C::t('common_usergroup')->fetch_all('10')[10];
 
 $result = userlogin($username, $password, $_GET['questionid'], $_GET['answer'], 'username', $_G['clientip']);
-
+$_G['group'] = C::t('common_usergroup')->fetch($result['member']['groupid']);
 //登录状态。
 setloginstatus($result['member'], 2592000);
 

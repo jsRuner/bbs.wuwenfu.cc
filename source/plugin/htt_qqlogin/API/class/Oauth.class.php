@@ -57,15 +57,10 @@ class Oauth{
 
     public function qq_login(){
 
-        /*
-                $appid = $this->recorder->readInc("appid");
-                $callback = $this->recorder->readInc("callback");
-                $scope = $this->recorder->readInc("scope");
-
-        */
         $appid = $this->appid;
         $callback = $this->callback;
-        $scope ='get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idolist,add_idol,del_idol,get_tenpay_addr';
+//        $scope ='get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idolist,add_idol,del_idol,get_tenpay_addr';
+        $scope ='get_user_info';
 
 
         //-------生成唯一随机串防CSRF攻击
@@ -76,7 +71,7 @@ class Oauth{
         $keysArr = array(
             "response_type" => "code",
             "client_id" => $appid,
-            "redirect_uri" => $callback,
+            "redirect_uri" => urlencode($callback),
             "state" => $state,
             "scope" => $scope
         );
@@ -87,6 +82,7 @@ class Oauth{
     }
 
     public function qq_callback(){
+
         $state = $this->recorder->read("state");
 
         //--------验证state防止CSRF攻击
