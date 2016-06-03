@@ -54,7 +54,7 @@
 			<item id="1">
                 <item id="displayorder"><![CDATA[1]]></item>
                 <item id="title"><![CDATA[用户id]]></item>
-                <item id="description"><![CDATA[用户的编号(uid),必填,格式为1或1,2形式的字符串。用户必须真实有效]]></item>
+                <item id="description"><![CDATA[用户的编号(uid),必填,格式为1或1,2形式的字符串。该设置与下面的用户组冲突。用户id设置优先级高]]></item>
                 <item id="variable"><![CDATA[uids]]></item>
                 <item id="type"><![CDATA[text]]></item>
                 <item id="value"><![CDATA[1]]></item>
@@ -94,7 +94,7 @@
                 <item id="description"><![CDATA[出现乱码时，切换即可]]></item>
                 <item id="variable"><![CDATA[charset]]></item>
                 <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[1]]></item>
+                <item id="value"><![CDATA[2]]></item>
                 <item id="extra"><![CDATA[1=utf-8
 2=gbk]]></item>
 
@@ -108,7 +108,7 @@
                 <item id="description"><![CDATA[纯文只采集文字糗事。纯图则只采集图片。其他的则随机]]></item>
                 <item id="variable"><![CDATA[caiji_model]]></item>
                 <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[1]]></item>
+                <item id="value"><![CDATA[2]]></item>
                 <item id="extra"><![CDATA[1=纯文
 				2=纯图
 				3=随机]]></item>
@@ -142,7 +142,7 @@
 			<item id="9">
                 <item id="displayorder"><![CDATA[9]]></item>
                 <item id="title"><![CDATA[默认标题]]></item>
-                <item id="description"><![CDATA[设置默认标题。只有糗事百科的内容为空时生效]]></item>
+                <item id="description"><![CDATA[设置默认标题。汇总模式时生效]]></item>
                 <item id="variable"><![CDATA[title_default]]></item>
                 <item id="type"><![CDATA[text]]></item>
                 <item id="value"><![CDATA[糗事笑话]]></item>
@@ -153,10 +153,10 @@
 			<item id="10">
                 <item id="displayorder"><![CDATA[10]]></item>
                 <item id="title"><![CDATA[发帖模式]]></item>
-                <item id="description"><![CDATA[默认单独发帖。可以汇总为一个帖子。]]></item>
+                <item id="description"><![CDATA[默认汇总发帖。]]></item>
                 <item id="variable"><![CDATA[post_model]]></item>
                 <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[1]]></item>
+                <item id="value"><![CDATA[2]]></item>
                 <item id="extra"><![CDATA[1=单独发帖
 				2=汇总发帖]]></item>
             </item>
