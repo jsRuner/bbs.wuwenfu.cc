@@ -18,17 +18,13 @@
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
-
-
 function set_home($dir = '.') {
     $dir1 = date('Ym');
     $dir2 = date('d');
-
     !is_dir($dir.'/'.$dir1) && mkdir($dir.'/'.$dir1, 0777);
     !is_dir($dir.'/'.$dir1.'/'.$dir2) && mkdir($dir.'/'.$dir1.'/'.$dir2, 0777);
     return $dir.'/'.$dir1.'/'.$dir2.'/';
 }
-
 
 /*
  * 过滤特殊字符
@@ -90,7 +86,6 @@ function strFilter($str){
 
 function curl_qsbk($url)
 {
-
     $curl = curl_init(); //开启curl
     $header[] = "User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0";
     $header[] = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
@@ -109,9 +104,7 @@ function curl_qsbk($url)
     return $html;
 }
 loadcache('plugin');
-
 $var = $_G['cache']['plugin'];
-
 $fidstr = $var['htt_qsbk']['fids'];
 $uidstr = $var['htt_qsbk']['uids'];
 $groupstr = $var['htt_qsbk']['groups']; //用户组
@@ -120,6 +113,8 @@ $charset_num = $var['htt_qsbk']['charset'];  // 1utf-8 2gbk
 $caiji_model = $var['htt_qsbk']['caiji_model']; //1纯文 2表示纯图 3图文
 $check = $var['htt_qsbk']['check'];  //1不审核 2审核。
 $title_length = $var['htt_qsbk']['title_length']; //标题长度
+$title_default = $var['htt_qsbk']['title_default']; //默认标题
+$post_model = $var['htt_qsbk']['post_model']; //发帖模式
 
 //如果采集数量为0.则不执行后面的操作。不采集。
 if($threads == 0){
@@ -127,12 +122,9 @@ if($threads == 0){
 }
 $fids =array_filter(unserialize($fidstr));
 if ( is_null($fids) || empty($fids)) {
-    //则显示错误信息。
     return;
 }
-
 $uids = array_filter(explode(',',$uidstr));
-
 $groups = array_filter(unserialize($groupstr));
 $members_bygroup = C::t('common_member')->fetch_all_by_groupid($groups);//该组的会员资料
 
@@ -148,10 +140,8 @@ if(empty($uidstr)){
 if(empty($uids)){
     return;
 }
-
 //检查是否超出范围。
 if ($threads<0 || $threads>20) {
-    //则显示错误信息。
     return ;
 }
 
@@ -179,29 +169,22 @@ switch($caiji_model){
         );
         break;
     default:
-        $urls = array(
-            '24h' => "http://www.qiushibaike.com/hot/",
-            '8h' => "http://www.qiushibaike.com/",
-        );
+        $urls = $urls;
         break;
 }
 
 #从数组中随机取一个
 $rand_keys = array_rand($urls, 1);
-$url = "http://www.qiushibaike.com/imgrank/";
-//$url = $urls[$rand_keys];
+
+//$url = "http://www.qiushibaike.com/imgrank/";
+$url = $urls[$rand_keys];
 
 //echo $url;
+//exit();
 
-//检查函数是否可用。
-if(function_exists('curl_init') && function_exists('curl_exec')) {
-    $html = curl_qsbk($url);
-}else{
-    return;
-}
+$html = curl_qsbk($url);
 
 $imgpath  = set_home('data/attachment/forum'); //返回的是全路径。
-
 
 //解析数据
 include_once DISCUZ_ROOT . './source/plugin/htt_qsbk/include/phpQuery/phpQuery.php';
@@ -209,24 +192,28 @@ phpquery::newDocumentHTML($html, 'utf-8');
 #获取段子列表。最外面那个。
 $articles = pq(".article");
 $count = 1; //计数
+
+
+$tid = 0; //设置默认值
+
+$lasttid = 0 ; //上一次的tid.
+
+$fist = 0;
+
+
 foreach ($articles as $article) {
 
     //如果超过数量。则退出循环。
     if($count > $threads){
         break;
     }
-    $count = $count+1;
+
 
     $data = array();
     $data['content'] = pq($article)->find(".content")->text();
     $data['img'] = pq($article)->find(".thumb a img")->attr('src');
 
-
-    //纯文则不会有图片。无须判断
-    //纯图则需要判断。路径问题。
-    //图片存在,则必须采集。
     $remote = 0;
-
     //图片存在。
     if(!empty($data['img'])){
         //图片目录存在则下载。
@@ -237,7 +224,7 @@ foreach ($articles as $article) {
         !is_dir('data/attachment/forum/'.$dir1.'/'.$dir2) && mkdir($dir.'/'.$dir1.'/'.$dir2, 0777);
 
 
-        $img_name = time().uniqid().'.png';
+        $img_name = TIMESTAMP.uniqid().'.png';
         $context = stream_context_create(array(
             'http' => array(
                 'timeout' => 30 //超时时间，单位为秒
@@ -283,89 +270,94 @@ foreach ($articles as $article) {
     if ($charset_num != 1) {
         $data['content'] = iconv("UTF-8", "gbk", $data['content']);
     }
-
-
     //控制标题的长度。存在内容。同时内容长度超过最大长度。则截取。
-    //之前这里的判断存在问题。低版本的无法执行。
-        //2016年4月8日 这里的判断存在问题。导致脚本白屏。原因是夸号位置错误。
     if(!empty($data['content']) && strlen($data['content']) > $title_length){
 
         $subject = cutstr($data['content'], $title_length, '');
     }else {
         $subject = $data['content'];
     }
-
     //标题去掉一次特殊字符串.否则引发首页四格图片无法正常显示
     $subject = strFilter($subject);
+    //避免标题为空情况.则设置
+    if(strlen($subject) <=0){
+        $subject= $title_default;
+    }
 
 
 
-    $publishdate = time();
+
+    $publishdate = TIMESTAMP;
 
 
     $message = $data['content'];
-//    echo $data['img'];
-//    echo 222;
-//    exit();
+
+    //如果是汇总模式。则标题需要单独处理。
+    if($post_model == 1){
+        $title_total = $subject;
+    }else{
+
+        $title_total = date('Y-m-d').$title_default;
+    }
 
 
-    $newthread = array(
-        'fid' => $fid,
-        'posttableid' => 0,
-        'readperm' => 0,
-        'price' => 0,
-        'typeid' => 0,
-        'sortid' => 0,
-        'author' => $author,
-        'authorid' => $uid,
-        'subject' => $subject,
-        'dateline' => $publishdate,
-        'lastpost' => $publishdate,
-        'lastposter' => $author,
-        'displayorder' => $displayorder,
-        'digest' => 0,
-        'special' => 0,
-        'attachment' => $attachment,
-        'moderated' => 0,
-        'status' => 32,
-        'isgroup' => 0,
-        'replycredit' => 0,
-        'closed' => 0
-    );
-    //插入主题
-    $tid = C::t('forum_thread')->insert($newthread, true);
+    //只有tid没有设置。或者 tid是单独发帖模式。则插入主题。
+    if($tid <=0 || $post_model == 1 ){
 
+        $newthread = array(
+            'fid' => $fid,
+            'posttableid' => 0,
+            'readperm' => 0,
+            'price' => 0,
+            'typeid' => 0,
+            'sortid' => 0,
+            'author' => $author,
+            'authorid' => $uid,
+            'subject' => $title_total,
+            'dateline' => $publishdate,
+            'lastpost' => $publishdate,
+            'lastposter' => $author,
+            'displayorder' => $displayorder,
+            'digest' => 0,
+            'special' => 0,
+            'attachment' => $attachment,
+            'moderated' => 0,
+            'status' => 32,
+            'isgroup' => 0,
+            'replycredit' => 0,
+            'closed' => 0
+        );
+        //插入主题
+        $tid = C::t('forum_thread')->insert($newthread, true);
 
+        //remote 0表示本地。主题图片表。
+        C::t('forum_threadimage')->insert(array(
+            'tid'=>$tid,
+            'attachment'=>$data['img'],
+            'remote'=>$remote,
+        ),true);
 
+        //标记为新主题。
+        C::t('forum_newthread')->insert(array(
+            'tid' => $tid,
+            'fid' => $fid,
+            'dateline' => $publishdate,
+        ));
 
+    }
 
-
-    //remote 0表示本地。主题图片表。
-    C::t('forum_threadimage')->insert(array(
-        'tid'=>$tid,
-        'attachment'=>$data['img'],
-        'remote'=>$remote,
-    ),true);
-
-
-
-
-
-
-    //标记为新主题。
-    C::t('forum_newthread')->insert(array(
-        'tid' => $tid,
-        'fid' => $fid,
-        'dateline' => $publishdate,
-    ));
 
     useractionlog($uid, 'tid');
+    //如果是汇总模式 又是第一条  则first =1。
+    if( $post_model == 2 && $count == 1 ){
+        $first = 1; //0是非首贴，1是首贴。
+    }
 
     //插入post表。这里会执行2个表操作
     $pid = insertpost(array(
         'fid' => $fid,
         'tid' => $tid,
-        'first' => '1',
+        'first' => $first, #是否是首贴。
         'author' => $author,
         'authorid' => $uid,
         'subject' => $subject,
@@ -395,30 +387,6 @@ foreach ($articles as $article) {
         $arr = getimagesize('data/attachment/forum/'.$data['img']);
         $width = $arr[0];
 
-       /* //附件处理
-        $aid = getattachnewaid($uid);
-        //先插入到未使用发附件表。
-        $insert = array(
-            'aid' => $aid,
-            'dateline' => $_G['timestamp'],
-            'filename' => $filename,
-            'filesize' => $filesize,
-            'attachment' => $data['img'],
-            'isimage' =>1,
-            'uid' => $uid,
-            'thumb' => 0,
-            'remote' => $remote,
-            'width' => $width,
-        );
-        C::t('forum_attachment_unused')->insert($insert);*/
-
-
-
-        //需要操作附件。0-9.随机一个表保存。然后将信息存储到附件索引表中。
-        //2016年6月3日这里要注意，不是随机分表。
-//        $table_index = dintval($tid{strlen($tid)-1});
-//        $table_index = rand(0,9);
-        //aid
         $aid = C::t('forum_attachment')->insert(array(
             'aid'=>null,
             'tid'=>$tid,
@@ -446,30 +414,34 @@ foreach ($articles as $article) {
             'thumb'=>0,
             'picid'=>0,
         ));
-        //这里需要反过来更新一次。
-//        echo $message;
-
         //需要更新post。添加附件内容。
         C::t('forum_post')->update(0,$pid,array('message'=>$message."[attach]".$aid."[/attach]"));
 
     }
+    if($check == '2' ){
 
-
-
-
-
-    if($check == '2'){
         updatemoderate('tid', $tid);
         C::t('forum_forum')->update_forum_counter($fid, 0, 0, 1);
 
+
         //插入审核表。
-        C::t('common_moderate')->insert('tid',array(
-            'id'=>$tid,
-            'status' => '0',
-            'dateline' => $publishdate,
-        ));
-        //通知审核。
-        manage_addnotify('verifythread');
+        if($tid != $lasttid){
+
+            C::t('common_moderate')->insert('tid',array(
+                'id'=>$tid,
+                'status' => '0',
+                'dateline' => $publishdate,
+            ));
+
+            //通知审核。
+            manage_addnotify('verifythread');
+        }
+
+
+
+
+
+
         return ;
     }else{
         $subject = str_replace("\t", ' ', $subject);
@@ -483,10 +455,16 @@ foreach ($articles as $article) {
         }
     }
     //沙发数据
-    C::t('forum_sofa')->insert(array('tid' => $tid,'fid' => $forum['fid']));
+    //tid 发送变化再插入。
+    if($tid != $lasttid){
 
-//    break;
+        C::t('forum_sofa')->insert(array('tid' => $tid,'fid' => $forum['fid']));
+    }
+
+
+    $count = $count+1;
+
+    $lasttid = $tid; //记录之前的tid。
+
 }
-
-//exit();
 ?>

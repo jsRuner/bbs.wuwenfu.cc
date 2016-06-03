@@ -10,11 +10,11 @@
             <item id="adminid"><![CDATA[0]]></item>
             <item id="name"><![CDATA[糗事采集]]></item>
             <item id="identifier"><![CDATA[htt_qsbk]]></item>
-            <item id="description"><![CDATA[采集笑话]]></item>
+            <item id="description"><![CDATA[采集糗事笑话]]></item>
             <item id="datatables"><![CDATA[]]></item>
             <item id="directory"><![CDATA[htt_qsbk/]]></item>
             <item id="copyright"><![CDATA[吴文付]]></item>
-            <item id="version"><![CDATA[1.4]]></item>
+            <item id="version"><![CDATA[2.0]]></item>
             <item id="__modules">
 			
                 <item id="0">
@@ -47,7 +47,7 @@
                 <item id="description"><![CDATA[版块设置,支持多选。禁止为空]]></item>
                 <item id="variable"><![CDATA[fids]]></item>
                 <item id="type"><![CDATA[forums]]></item>
-                <item id="value"><![CDATA[0]]></item>
+                <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
 			
@@ -64,7 +64,7 @@
 			<item id="2">
                 <item id="displayorder"><![CDATA[2]]></item>
                 <item id="title"><![CDATA[用户组]]></item>
-                <item id="description"><![CDATA[随机选择该用户组用户发布糗事。必须确保存在用户。如果已经设置用户则该设置无效]]></item>
+                <item id="description"><![CDATA[随机选择该用户组用户发布糗事。必须确保存在用户。如果已经设置用户id则该用户组设置无效]]></item>
                 <item id="variable"><![CDATA[groups]]></item>
                 <item id="type"><![CDATA[groups]]></item>
                 <item id="value"><![CDATA[1]]></item>
@@ -111,7 +111,7 @@
                 <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[1=纯文
 				2=纯图
-				3=图文]]></item>
+				3=随机]]></item>
 </item>
 
 
@@ -137,6 +137,28 @@
                 <item id="type"><![CDATA[number]]></item>
                 <item id="value"><![CDATA[20]]></item>
                 <item id="extra"><![CDATA[]]></item>
+            </item>
+			
+			<item id="9">
+                <item id="displayorder"><![CDATA[9]]></item>
+                <item id="title"><![CDATA[默认标题]]></item>
+                <item id="description"><![CDATA[设置默认标题。只有糗事百科的内容为空时生效]]></item>
+                <item id="variable"><![CDATA[title_default]]></item>
+                <item id="type"><![CDATA[text]]></item>
+                <item id="value"><![CDATA[糗事笑话]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+			
+			
+			<item id="10">
+                <item id="displayorder"><![CDATA[10]]></item>
+                <item id="title"><![CDATA[发帖模式]]></item>
+                <item id="description"><![CDATA[默认单独发帖。可以汇总为一个帖子。]]></item>
+                <item id="variable"><![CDATA[post_model]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[1=单独发帖
+				2=汇总发帖]]></item>
             </item>
 			
 			
