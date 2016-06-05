@@ -17,6 +17,14 @@ $share_rates = explode(':', $share_rate); //µÚÒ»¸öÔªËØÊÇ·ÖÏí´ÎÊı µÚ¶ş¸öÔªËØÊÇÌáÈ
 $fetch_num = $var['htt_zhanhao']['fetch_num']; //ÌáÈ¡´ÎÊı¡£
 
 
+$right_adv1 = $var['htt_zhanhao']['right_adv1']; //ÌáÈ¡´ÎÊı¡£
+$right_adv2 = $var['htt_zhanhao']['right_adv2']; //ÌáÈ¡´ÎÊı¡£
+
+//echo $right_adv1;
+//
+//exit();
+
+
 //echo $fetch_num;
 //exit();
 

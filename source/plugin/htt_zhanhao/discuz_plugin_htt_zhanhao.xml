@@ -89,7 +89,7 @@
 			<item id="0">
 				<item id="displayorder"><![CDATA[0]]></item>
 				<item id="title"><![CDATA[分享比例]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[默认1:1 表示一次分享，增加一次提取。2:1表示2次分享增加一次提取]]></item>
 				<item id="variable"><![CDATA[share_rate]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[1:1]]></item>
@@ -98,34 +98,17 @@
 			<item id="1">
 				<item id="displayorder"><![CDATA[1]]></item>
 				<item id="title"><![CDATA[每日上限]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[每个人最多提取的次数。默认100.]]></item>
 				<item id="variable"><![CDATA[max_num]]></item>
 				<item id="type"><![CDATA[number]]></item>
-				<item id="value"><![CDATA[10]]></item>
+				<item id="value"><![CDATA[100]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
-			<item id="2">
-				<item id="displayorder"><![CDATA[2]]></item>
-				<item id="title"><![CDATA[开始时间]]></item>
-				<item id="description"><![CDATA[只有在时间区间时，才可以提取帐号.]]></item>
-				<item id="variable"><![CDATA[start_date]]></item>
-				<item id="type"><![CDATA[datetime]]></item>
-				<item id="value"><![CDATA[]]></item>
-				<item id="extra"><![CDATA[]]></item>
-			</item>
-			<item id="3">
-				<item id="displayorder"><![CDATA[3]]></item>
-				<item id="title"><![CDATA[结束时间]]></item>
-				<item id="description"><![CDATA[只有在时间区间时，才可以提取帐号]]></item>
-				<item id="variable"><![CDATA[end_date]]></item>
-				<item id="type"><![CDATA[datetime]]></item>
-				<item id="value"><![CDATA[]]></item>
-				<item id="extra"><![CDATA[]]></item>
-			</item>
+			
 			<item id="4">
 				<item id="displayorder"><![CDATA[4]]></item>
 				<item id="title"><![CDATA[用户组]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[可以提取账号的用户组。如果需要所有人可以参与，则请全选。]]></item>
 				<item id="variable"><![CDATA[groups]]></item>
 				<item id="type"><![CDATA[groups]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -149,6 +132,25 @@
 				<item id="variable"><![CDATA[fetch_num]]></item>
 				<item id="type"><![CDATA[number]]></item>
 				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			
+			<item id="7">
+				<item id="displayorder"><![CDATA[7]]></item>
+				<item id="title"><![CDATA[右侧广告位]]></item>
+				<item id="description"><![CDATA[位于右侧公告下方。为空则不显示]]></item>
+				<item id="variable"><![CDATA[right_adv1]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[<a href="http://baidu.com" target="_blank"><img src="http://bbs.wuwenfu.cn/data/attachment/common/cf/154747nxxx4dt4jjzgrd5x.gif" height="300" width="253" alt="网站改版" border="0"></a>]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[8]]></item>
+				<item id="title"><![CDATA[右下角广告位]]></item>
+				<item id="description"><![CDATA[位于右下角落。为空则不显示]]></item>
+				<item id="variable"><![CDATA[right_adv2]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[<a href="http://baidu.com" target="_blank"><img src="http://bbs.wuwenfu.cn/data/attachment/common/cf/154747nxxx4dt4jjzgrd5x.gif" height="300" width="253" alt="网站改版" border="0"></a>]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
@@ -229,7 +231,7 @@
 
 
 				<item id="htt_zhanhao_tips"><![CDATA[
-					<li>删除分类,需要谨慎。尤其该分类下有账号时,数据无法恢复</li>
+					<li>分类的排序是值越大，越靠后。</li>
 					<li>如果无法插件工作,请联系<a href="http://weibo.com/540045865">作者微博</a></li>
 					]]></item>
 					
@@ -260,7 +262,7 @@
 			
 			<item id='my_fetch_record'>我的提取记录</item>
 			
-			<item id='my_fetch_record_empty'>没有提取该分类下任何账号</item>
+			<item id='my_fetch_record_empty'>没有记录</item>
 			
 			
 			

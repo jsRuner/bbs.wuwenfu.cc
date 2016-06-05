@@ -145,7 +145,7 @@ $statselect .= '</select>';*/
 
 
 
-echo '<tr class="header"><th>'.$Plang['username'].'</th><th>'.$lang['ip'].'</th><th>'.$Plang['dateline'].'</th><th>'.$Plang['zhanhao'].'</th><th>'.$Plang['password'].'</th><th></th></tr>';
+echo '<tr class="header"><th></th><th>'.$Plang['username'].'</th><th>'.$lang['ip'].'</th><th>'.$Plang['dateline'].'</th><th>'.$Plang['zhanhao'].'</th><th>'.$Plang['password'].'</th><th></th></tr>';
 
 if(!$resultempty) {
 
@@ -176,12 +176,14 @@ if(!$resultempty) {
 
 
         $i++;
-        echo '<tr><td>'.$record['username'].'</td>'.
+        echo '<tr>
+<td>'.$record['username'].'</td>'.
             '<td>'.$record['ip'].'</td>'.
             '<td>'.date('Y-m-d H:i:s',$record['dateline']).'</td>'.
             '<td>'.$zhanhaos[$record['zid']]['username'].'</td>'.
             '<td>'.$zhanhaos[$record['zid']]['password'].'</td>'.
-            '<td><a id="p'.$i.'" onclick="ajaxget(this.href, this.id, \'\');return false" href="'.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record&id='.$record['id'].'&op=delete">['.$lang['delete'].']</a></td></tr>';
+            '<td><a id="p'.$i.'" onclick="ajaxget(this.href, this.id, \'\');return false" href="'.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record&id='.$record['id'].'&op=delete">['.$lang['delete'].']</a></td>
+            </tr>';
     }
 }
 /*$add = '<input type="button" class="btn" onclick="location.href=\''.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record&op=add\'" value="'.lang('plugin/htt_zhanhao', 'show_add').'" />';

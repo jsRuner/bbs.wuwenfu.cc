@@ -26,7 +26,7 @@ class table_category extends discuz_table
 
 
     public function fetch_all() {
-        return DB::fetch_all("SELECT * FROM %t WHERE 1",array($this->_table));
+        return DB::fetch_all("SELECT * FROM %t WHERE 1 ORDER BY sort",array($this->_table));
     }
 
 	public function delete_by_id($id) {

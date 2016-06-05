@@ -5,6 +5,8 @@ if(!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
 	exit('Access Denied');
 }
 
+$Plang = $scriptlang['htt_zhanhao'];
+
 $ac = !empty($_GET['ac']) ? $_GET['ac'] : '';
 require_once libfile('function/forumlist');
 loadcache('forums');
@@ -76,15 +78,19 @@ switch ($action) {
         break;
 
     case 'del':
-
+        C::t('#htt_zhanhao#category')->delete_by_id($_GET['category_id']);
+        ajaxshowheader();
+        echo $Plang['show_action_succeed'];
+        ajaxshowfooter();
+/*
         if(submitcheck('submit')) {
             foreach($_GET['delete'] as $delete) {
                 DB::query("delete FROM ".DB::table("httzhanhao_category")." where `id`= $delete");
             }
             updatecache(array('plugin', 'setting'));
             cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category', 'succeed');
-        }
-        break;
+        }*/
+//        exit();
 
 
 
@@ -98,29 +104,36 @@ switch ($action) {
         showtips(lang('plugin/htt_zhanhao', 'htt_zhanhao_tips'));
         showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=del', 'enctype');
         showtableheader();
-        echo '<tr class="header"><th></th><th>'.lang('plugin/htt_zhanhao', 'category_title').'</th><th>'.
+        echo '<tr class="header"><th>'.lang('plugin/htt_zhanhao', 'category_title').'</th><th>'.
             lang('plugin/htt_zhanhao', 'category_info').'</th><th>'.
             lang('plugin/htt_zhanhao', 'dateline').'</th><th>'.lang('plugin/htt_zhanhao', 'sort').'
             </th>
 			<th>'.lang('plugin/htt_zhanhao', 'show_action').'
 			</th></tr>';
+        $i = 0;
         foreach($level_list as $tid => $level) {
+            $i++;
             echo '<tr class="hover">
-			<th class="td25"><input class="checkbox" type="checkbox" name="delete['.$level['id'].']" value="'.$level['id'].'"></th><th>'.$level['title'].'</th>
+			<th>'.$level['title'].'</th>
 			<th>'.$level['info'].'</th>
 			<th>'. date("Y-m-d H:i:s",$level['dateline']) .'</th>
 			<th>'.$level['sort'].'</th>
-			<th>'. '<a href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=editor&category_id=' . trim($level["id"]) . '">' . lang('plugin/htt_zhanhao', 'show_editor') . '</a>'.'</th>
+			<th>'. '<a href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=editor&category_id=' . trim($level["id"]) . '">' . lang('plugin/htt_zhanhao', 'show_editor') . '</a>'.'
+			'.'<a id="p'.$i.'" onclick="ajaxget(this.href, this.id, \'\');return false" href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=del&category_id=' . trim($level["id"]) . '">[' .$lang['delete'] . ']</a>'.'
+
+			</th>
 
 			</tr>
 			';
         }
         $add = '<input type="button" class="btn" onclick="location.href=\''.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=add\'" value="'.lang('plugin/htt_zhanhao', 'show_add').'" />';
-        if($level_list) {
+       /* if($level_list) {
             showsubmit('submit', lang('plugin/htt_zhanhao', 'show_del'), $add, '', $multipage);
         } else {
+
             showsubmit('', '', 'td', $add);
-        }
+        }*/
+        showsubmit('', '', 'td', $add);
         showtablefooter();
         showformfooter();
         break;

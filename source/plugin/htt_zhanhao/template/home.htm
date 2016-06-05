@@ -185,6 +185,13 @@
         }
 
 
+        #right_bottom_adv{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+
+
     </style>
 
     <script src="/static/js/common.js"></script>
@@ -275,12 +282,32 @@
 
                     <p> <!--{echo date('Y-m-d H:i',$myzhanhao['dateline']);}--> {lang htt_zhanhao:zhanhao}:{$zhanhaos[$myzhanhao['zid']]['username']} {lang htt_zhanhao:password}:{$zhanhaos[$myzhanhao['zid']]['password']}</p>
 
+
                     <!--{/if}-->
                     <!--{/loop}-->
 
                 </div>
             </div>
             <!--{/if}-->
+
+            <!--{if $right_adv1}-->
+            <div  class="box" style="margin-top: 10px; border-top:  1px solid #D3D3D3;">
+                <!--添加广告位置-->
+                {$right_adv1}
+            </div>
+            <!--{/if}-->
+            <!--{if $right_adv2}-->
+
+            <div class="box" id="right_bottom_adv" style="border-top:  1px solid #D3D3D3;">
+                <!--添加广告位置-->
+                {$right_adv2}
+
+            </div>
+
+
+            <!--{/if}-->
+
+
 
 
 
