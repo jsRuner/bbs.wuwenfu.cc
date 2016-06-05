@@ -143,6 +143,14 @@
         }
 
 
+
+        #right_bottom_adv{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+
+
     </style>
 
     <script src="/static/js/common.js"></script>
@@ -189,6 +197,23 @@
             <div class="box"><div class="bt"><h2>{$newcategorys[$cid]['title']}{lang htt_zhanhao:gonggao}</h2>  </div><div class="bc">
                 <p>{$newcategorys[$cid]['info']}</p>
                 </div></div>
+
+            <!--{if $right_adv1}-->
+            <div  class="box" style="margin-top: 10px; border-top:  1px solid #D3D3D3;">
+                <!--添加广告位置-->
+                {$right_adv1}
+            </div>
+            <!--{/if}-->
+            <!--{if $right_adv2}-->
+
+            <div class="box" id="right_bottom_adv" style="border-top:  1px solid #D3D3D3;">
+                <!--添加广告位置-->
+                {$right_adv2}
+
+            </div>
+
+
+            <!--{/if}-->
 
 
 
