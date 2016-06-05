@@ -138,7 +138,7 @@
 				<item id="description"><![CDATA[]]></item>
 				<item id="variable"><![CDATA[copyright]]></item>
 				<item id="type"><![CDATA[text]]></item>
-				<item id="value"><![CDATA[京ICP备10045583号-6    账号网http://www.zhanghao.cc版权所有.]]></item>
+				<item id="value"><![CDATA[bbs.wuwenfu.cn版权所有.]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
@@ -162,7 +162,7 @@
 		 <item id="language">
 			<item id="scriptlang">
 
-				<item id="yes_zhanhao_login"><![CDATA[需要登录才可以提取账号]]></item>
+				<item id="yes_zhanhao_login"><![CDATA[需要登录才可以提取账号。<a href="plugin.php?id=htt_qqlogin:qqoauth" style="color:red;">立即登录</a]]></item>
 				
 				<item id="undefined_action"><![CDATA[未定义操作]]></item>
 				
@@ -175,15 +175,6 @@
 				
 				
 
-                <item id="no_setting_level"><![CDATA[没有等级]]></item>
-                <item id="error_setting_level"><![CDATA[区间错误]]></item>
-
-				<item id="no_guanzhu"><![CDATA[关注]]></item>
-				<item id="yes_guanzhu"><![CDATA[已关注]]></item>
-
-
-				<item id="quxiao_guanzhu_success"><![CDATA[取消关注成功]]></item>
-				<item id="guanzhu_success"><![CDATA[关注成功]]></item>
 
 
 				<item id="category_title"><![CDATA[分类标题]]></item>

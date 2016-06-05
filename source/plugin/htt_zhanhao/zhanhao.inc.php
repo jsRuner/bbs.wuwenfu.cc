@@ -129,7 +129,7 @@ if($_GET['op'] == 'add') {
         showsetting(lang('plugin/htt_zhanhao', 'username'), 'username', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'password'), 'password', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'category_title'),$categorys, '', 'select');
-        showsetting(lang('plugin/htt_zhanhao', 'many_usernames'),'many_usernames', '', 'textarea');
+        showsetting(lang('plugin/htt_zhanhao', 'many_username'),'many_usernames', '', 'textarea');
         showsubmit('submit');
         showtablefooter();
         showformfooter();

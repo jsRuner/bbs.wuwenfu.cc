@@ -99,10 +99,19 @@ $myzhanhaos = False;
 if(intval($_G['uid']) >0){
     //查询自己的记录。
     $search .= "AND username = '" . $_G['username'] . "'";
+
+    $myzhanhao_num = C::t('#htt_zhanhao#record')->count_by_search($search);
+
+    //如果记录过多。则删除前天的记录。
+    if(count($myzhanhao_num) > 10){
+        //删除今天的0点之前的提取记录。
+        $qiantian = strtotime(date("Y-m-d")." 00:00:00");
+        C::t('#htt_zhanhao#record')->delete_by_username_time($_G['username'],$qiantian);
+    }
+
     $myzhanhaos =  C::t('#htt_zhanhao#record')->fetch_all_by_search($search, ($page - 1) * $ppp, $ppp);
 
-//    print_r($myzhanhaos);
-//    exit();
+
 }
 
 
