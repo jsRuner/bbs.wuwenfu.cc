@@ -24,7 +24,7 @@ switch ($action) {
             showtableheader();
             showsetting(lang('plugin/htt_zhanhao', 'category_title'), 'title', '', 'text');
             showsetting(lang('plugin/htt_zhanhao', 'category_info'), 'info', '', 'textarea');
-            showsetting(lang('plugin/htt_zhanhao', 'category_sort'), 'sort', '', 'text');
+            showsetting(lang('plugin/htt_zhanhao', 'sort'), 'sort', '', 'text');
             showsubmit('submit');
             showtablefooter();
             showformfooter();

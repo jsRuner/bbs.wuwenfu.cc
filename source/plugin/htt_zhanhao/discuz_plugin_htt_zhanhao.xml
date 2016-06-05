@@ -68,6 +68,20 @@
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
+				
+				<item id="4">
+					<item id="name"><![CDATA[home]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[帐号分享]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[1]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[分享帐号]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
 			</item>
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
@@ -78,7 +92,7 @@
 				<item id="description"><![CDATA[]]></item>
 				<item id="variable"><![CDATA[share_rate]]></item>
 				<item id="type"><![CDATA[text]]></item>
-				<item id="value"><![CDATA[]]></item>
+				<item id="value"><![CDATA[1:1]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			<item id="1">
@@ -87,13 +101,13 @@
 				<item id="description"><![CDATA[]]></item>
 				<item id="variable"><![CDATA[max_num]]></item>
 				<item id="type"><![CDATA[number]]></item>
-				<item id="value"><![CDATA[]]></item>
+				<item id="value"><![CDATA[10]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			<item id="2">
 				<item id="displayorder"><![CDATA[2]]></item>
 				<item id="title"><![CDATA[开始时间]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[只有在时间区间时，才可以提取帐号.]]></item>
 				<item id="variable"><![CDATA[start_date]]></item>
 				<item id="type"><![CDATA[datetime]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -102,7 +116,7 @@
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
 				<item id="title"><![CDATA[结束时间]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[只有在时间区间时，才可以提取帐号]]></item>
 				<item id="variable"><![CDATA[end_date]]></item>
 				<item id="type"><![CDATA[datetime]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -117,6 +131,18 @@
 				<item id="value"><![CDATA[]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
+			
+			<item id="5">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[底部信息]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[copyright]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[京ICP备10045583号-6    账号网http://www.zhanghao.cc版权所有.]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			
+			
 		</item>
 		
 		
@@ -143,6 +169,11 @@
 				<item id="category_all"><![CDATA[所有分类]]></item>
 				
 				
+				<item id="ip"><![CDATA[ip地址]]></item>
+				<item id="zhanhao"><![CDATA[账号]]></item>
+				
+				
+				
 				<item id="username"><![CDATA[用户名]]></item>
 				<item id="password"><![CDATA[密码]]></item>
 				
@@ -150,6 +181,8 @@
 				
 				<item id="fetched"><![CDATA[已经领取]]></item>
 				<item id="fetching"><![CDATA[等待领取]]></item>
+				
+				
 				
 				
 
@@ -167,6 +200,11 @@
 
 				<item id="show_action_succeed"><![CDATA[操作成功]]></item>
 				<item id="show_action_error"><![CDATA[操作失败]]></item>
+				
+				
+				<item id="show_fetech_error_01"><![CDATA[提取失败:帐号已经被取走了]]></item>
+				<item id="show_fetech_error_02"><![CDATA[提取失败:你的提取次数已经用完.请分享下面链接,增加提取次数]]></item>
+				<item id="show_fetech_error_03"><![CDATA[操作成功:请好好保存帐号密码,不要随意修改。]]></item>
 
 
 
@@ -174,9 +212,31 @@
 					<li>删除分类,需要谨慎。尤其该分类下有账号时,数据无法恢复</li>
 					<li>如果无法插件工作,请联系<a href="http://weibo.com/540045865">作者微博</a></li>
 					]]></item>
+					
+					
 				
 				
 				</item>
+				
+			<item id="templatelang">
+			<item id='zhanhao'>帐号
+			</item>
+			<item id='password'>密码
+			</item>
+			
+			<item id='fetchpw'>提取密码
+			</item>
+			
+			<item id='gonggao'>公告
+			</item>
+			
+			
+			<item id='free_share'>免费分享
+			</item>
+			
+			
+			
+		</item>
 				
 				
 				

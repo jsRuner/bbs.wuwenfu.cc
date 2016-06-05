@@ -7,9 +7,103 @@
  *      $Id: admincp.inc.php 29364 2012-04-09 02:51:41Z monkey $
  */
 
-if(!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
+if(!defined('IN_DISCUZ') ) {
     exit('Access Denied');
 }
+
+
+global $_G;
+
+
+if($_GET['op'] == 'fetch'){
+/*
+    include template('common/header_ajax');
+    echo"aaaaaa";
+    include template('common/footer_ajax');*/
+/*
+ * 先检查表单
+ * 然后检查uid
+ * 再检查账号是否可用
+ *
+ * 检查可用的次数是否.
+ *
+ * 每天可以提取3次。过期不用，次数不保留。
+ *
+ *
+ * 先根据记录 计算 提取了几次。
+ *
+ * 然后查询剩余次数。
+ *
+ *
+ *
+ *
+ * 需要一个表。存储了uid 次数 dateline
+ *
+ *
+ * 。
+ *
+ *
+ * 可用则返回 恭喜你，账号和密码是多少
+ * 不可用则返回，不好意思，账号刚刚被人领取走了
+ *
+ *
+ *
+ *
+ *
+ * */
+
+    if ($_GET['formhash'] != FORMHASH) {
+        showmessage('undefined_action');
+    }
+    if($_G['uid'] <=0  || $_G['uid'] != $_GET['uid']){
+        showmessage(lang('plugin/htt_zhanhao','need_login'));
+    }
+
+    //直接直接方向，获取账号成功。todo:需要检查是否次数还剩余。
+    $zhanhao = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_id($_GET['zid']);
+
+//    print_r($zhanhao);
+//    exit();
+    //1表示使用了。
+    if($zhanhao['status'] == 1){
+        showmessage(lang('plugin/htt_zhanhao','show_fetech_error_01'));
+
+    }else{
+        //这里记录。
+        $insert_array = array(
+            'username'=>$_G['username'],
+            'zid'=>$_GET['id'],
+            'dateline'=>time(),
+            'ip'=>$_G['clientip'],
+        );
+        C::t('#htt_zhanhao#record')->insert($insert_array);
+        //需要去改变账号的状态
+
+        C::t('#htt_zhanhao#zhanhao')->update_status_by_id($_GET['zid'],1);
+
+        showmessage(lang('plugin/htt_zhanhao','show_fetech_error_03').'<br>'.$zhanhao['username'].'/'.$zhanhao['password'].'');
+    }
+
+
+
+
+
+
+
+
+
+
+    exit();
+
+
+}
+
+if( !defined('IN_ADMINCP')){
+    exit('Access Denied');
+}
+
+
+
 
 $Plang = $scriptlang['htt_zhanhao'];
 

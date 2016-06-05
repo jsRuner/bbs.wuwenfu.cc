@@ -10,34 +10,26 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-class table_zhanhao extends discuz_table
+class table_record extends discuz_table
 {
 	public function __construct() {
 
-		$this->_table = 'httzhanhao_zhanhao';
+		$this->_table = 'httzhanhao_record';
 		$this->_pk    = '';
 
 		parent::__construct();
 	}
 
-	public function fetch_all_by_id($id) {
-		$rs = DB::fetch_all("SELECT * FROM %t WHERE id=%d", array($this->_table, $id));
-        return $rs[0];
-
+	public function fetch_all_by_uid($uid) {
+		return DB::fetch_all("SELECT * FROM %t WHERE uid=%d", array($this->_table, $uid));
 	}
 
 	public function fetch_all_by_username($username) {
 		return DB::fetch_all("SELECT * FROM %t WHERE username=%s", array($this->_table, $username));
 	}
 
-	public function fetch_all() {
-		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1", array($this->_table));
-        $new_rs = array();
-        foreach($rs as $k=>$v){
-            $new_rs[$v['id']] = $v;
-        }
-        return $new_rs;
-
+	public function fetch_all_by_uid_username($uid, $username) {
+		return DB::fetch_all("SELECT * FROM %t WHERE uid=%d AND username=%s", array($this->_table, $uid, $username));
 	}
 
 	public function count_by_uid_username($uid, $username) {
@@ -48,8 +40,8 @@ class table_zhanhao extends discuz_table
 		DB::query("DELETE FROM %t WHERE id=%d ", array($this->_table, $id));
 	}
 
-	public function update_status_by_id($id, $value) {
-		DB::query("UPDATE %t SET status=%s WHERE id=%d", array($this->_table, $value, $id));
+	public function update_comment_by_uid_username($uid, $username, $value) {
+		DB::query("UPDATE %t SET comment=%s WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
 	}
 
 	public function update_locked_by_uid_username($uid, $username, $value) {
