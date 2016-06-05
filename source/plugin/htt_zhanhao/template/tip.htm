@@ -14,7 +14,6 @@
             background: #ffffff;
             color: #333;
         }
-
         a{
             text-decoration: none;
         }
@@ -116,6 +115,32 @@
             padding: 10px;
         }
 
+        .tip{
+            border: 1px solid #D3D3D3;
+            padding-bottom: 30px;
+        }
+
+        .tip p{
+            text-align: center;
+            font-size: 20px;
+        }
+
+        a.btn01 {
+            margin: 0 auto;
+            width: 179px;
+            height: 50px;
+            line-height: 50px;
+            display: block;
+            text-align: center;
+            color: #FFF;
+            font-size: 10.5pt;
+            overflow: hidden;
+            background-image: url(source/plugin/htt_zhanhao/template/images/btn.png);
+            background-repeat: no-repeat;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
 
     </style>
 
@@ -149,29 +174,12 @@
 
             <div class="p10  cred lh">{$newcategorys[$cid]['info']}</div>
 
-            <table class="table1">
-                <thead>
-            <tr><td>{lang htt_zhanhao:zhanhao}</td><td>{lang htt_zhanhao:password}</td></tr>
-            </thead>
-                <tbody>
+            <div class="tip">
+                <p>{$msg}</p>
 
-                <!--{loop $zhanhaos $zhanhao}-->
-
-                <tr><td>{$zhanhao['username']}</td> <td>
-
-                    <a href="plugin.php?id=htt_zhanhao:home&cid=$cid&uid={$_G['uid']}&op=fetch&formhash={FORMHASH}&zid={$zhanhao['id']}" >{lang htt_zhanhao:fetchpw}</a>
-
-                    <!--<button onclick="fetch_zhanhao({$zhanhao['id']})">{lang htt_zhanhao:fetchpw}</button>-->
-                </td></tr>
-
-                <!--{/loop}-->
-
-
-
-
-                </tbody>
-
-            </table>
+                <a href="{$_G['siteurl']}plugin.php?id=htt_zhanhao:home&cid=3&op=share&username={$_G['username']}" onclick="setCopy(this.href);return false;" class="btn01" target="_self">{lang htt_zhanhao:copy_url_03}</a>
+                <!--<p><a href="#">{$_G['siteurl']}plugin.php?id=htt_zhanhao:home&cid=3&op=share&username={$_G['username']}</a></p>-->
+            </div>
 
         </div>
         <div class="right_content">
@@ -200,6 +208,18 @@ function  fetch_zhanhao(id){
 }
 
 
+
+</script>
+
+<script type="text/javascript">
+    function setCopy(content){
+        if(navigator.userAgent.toLowerCase().indexOf('ie') > -1) {
+            clipboardData.setData('Text',content);
+            alert ("{lang htt_zhanhao:copy_url_01}");
+        } else {
+            prompt("{lang htt_zhanhao:copy_url_02}:",content);
+        }
+    }
 
 </script>
 

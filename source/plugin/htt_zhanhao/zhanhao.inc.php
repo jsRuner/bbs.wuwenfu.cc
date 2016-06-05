@@ -66,7 +66,10 @@ if($_GET['op'] == 'fetch'){
 //    exit();
     //1表示使用了。
     if($zhanhao['status'] == 1){
-        showmessage(lang('plugin/htt_zhanhao','show_fetech_error_01'));
+//        showmessage(lang('plugin/htt_zhanhao','show_fetech_error_01'));
+
+
+        include_once template('htt_zhanhao:tip');
 
     }else{
         //这里记录。

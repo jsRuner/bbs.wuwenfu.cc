@@ -142,6 +142,16 @@
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
+			<item id="6">
+				<item id="displayorder"><![CDATA[6]]></item>
+				<item id="title"><![CDATA[默认提取数量]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[fetch_num]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[3]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			
 			
 		</item>
 		
@@ -149,7 +159,18 @@
 		 <item id="language">
 			<item id="scriptlang">
 
-				<item id="yes_guanzhu_login"><![CDATA[需要登录才可以关注版块]]></item>
+				<item id="yes_zhanhao_login"><![CDATA[需要登录才可以提取账号]]></item>
+				
+				<item id="undefined_action"><![CDATA[未定义操作]]></item>
+				
+				<item id="not_in_groups"><![CDATA[你无权限提取账号]]></item>
+				
+				<item id="over_max_num"><![CDATA[你今天已经提取账号的次数已经超过每日最大值，无法继续提取，请明天再来]]></item>
+				
+				<item id="over_fetch_num"><![CDATA[你今天已经提取账号的次数不足，请分享下面的链接,可以增加提取次数]]></item>
+				
+				
+				
 
                 <item id="no_setting_level"><![CDATA[没有等级]]></item>
                 <item id="error_setting_level"><![CDATA[区间错误]]></item>
@@ -229,6 +250,13 @@
 			
 			<item id='gonggao'>公告
 			</item>
+			
+			
+			<item id='copy_url_01'>该地址已经复制到剪切板</item>
+			
+			<item id='copy_url_02'>请复制网站地址</item>
+			
+			<item id='copy_url_03'>复制你的专属链接网址</item>
 			
 			
 			<item id='free_share'>免费分享

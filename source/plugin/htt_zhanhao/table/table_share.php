@@ -10,11 +10,11 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-class table_record extends discuz_table
+class table_share extends discuz_table
 {
 	public function __construct() {
 
-		$this->_table = 'httzhanhao_record';
+		$this->_table = 'httzhanhao_share';
 		$this->_pk    = '';
 
 		parent::__construct();

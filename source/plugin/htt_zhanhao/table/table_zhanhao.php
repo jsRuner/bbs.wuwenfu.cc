@@ -40,9 +40,6 @@ class table_zhanhao extends discuz_table
 
 	}
 
-	public function count_by_uid_username($uid, $username) {
-		return DB::result_first("SELECT COUNT(*) FROM %t WHERE uid=%d AND username=%s", array($this->_table, $uid, $username));
-	}
 
 	public function delete_by_id($id) {
 		DB::query("DELETE FROM %t WHERE id=%d ", array($this->_table, $id));
@@ -50,18 +47,6 @@ class table_zhanhao extends discuz_table
 
 	public function update_status_by_id($id, $value) {
 		DB::query("UPDATE %t SET status=%s WHERE id=%d", array($this->_table, $value, $id));
-	}
-
-	public function update_locked_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET locked=%d WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function update_logindata_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET logindata=%s WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function update_lastswitch_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET lastswitch=%d WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
 	}
 
 	public function count_by_search($condition) {

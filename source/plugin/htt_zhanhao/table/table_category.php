@@ -29,45 +29,10 @@ class table_category extends discuz_table
         return DB::fetch_all("SELECT * FROM %t WHERE 1",array($this->_table));
     }
 
-	public function fetch_all_by_username($username) {
-		return DB::fetch_all("SELECT * FROM %t WHERE username=%s", array($this->_table, $username));
-	}
-
-	public function fetch_all_by_uid_username($uid, $username) {
-		return DB::fetch_all("SELECT * FROM %t WHERE uid=%d AND username=%s", array($this->_table, $uid, $username));
-	}
-
-	public function count_by_uid_username($uid, $username) {
-		return DB::result_first("SELECT COUNT(*) FROM %t WHERE uid=%d AND username=%s", array($this->_table, $uid, $username));
-	}
-
 	public function delete_by_id($id) {
 		DB::query("DELETE FROM %t WHERE id=%d ", array($this->_table, $id));
 	}
 
-	public function update_comment_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET comment=%s WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function update_locked_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET locked=%d WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function update_logindata_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET logindata=%s WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function update_lastswitch_by_uid_username($uid, $username, $value) {
-		DB::query("UPDATE %t SET lastswitch=%d WHERE uid=%d AND username=%s", array($this->_table, $value, $uid, $username));
-	}
-
-	public function count_by_search($condition) {
-		return DB::result_first("SELECT COUNT(*) FROM %t WHERE 1 %i", array($this->_table, $condition));
-	}
-
-	public function fetch_all_by_search($condition, $start, $ppp) {
-		return DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY dateline LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
-	}
 
 }
 
