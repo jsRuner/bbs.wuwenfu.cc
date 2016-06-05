@@ -62,7 +62,7 @@ $cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
 $categorys = C::t('#htt_zhanhao#category')->fetch_all();
 
 if (empty($categorys)) {
-    die('no cate');
+    die(lang('plugin/htt_zhanhao','no_set_category'));
 }
 
 if ($cid == 0) {
@@ -74,6 +74,13 @@ $newcategorys = array();
 foreach ($categorys as $k => $v) {
     $newcategorys[$v['id']] = $v;
 }
+
+//如果cid不在分类范围里。则随机其中一个
+if(!in_array($cid,array_keys($newcategorys))){
+    $ids = array_keys($newcategorys);
+    $cid = $ids[0];
+}
+
 
 $date = date('Y-m-d');
 
@@ -198,25 +205,36 @@ if ($_GET['op'] == 'fetch') {
 
 //    print_r($zhanhao);
 //    exit();
-    //1表示使用了。
-    if ($zhanhao['status'] == 1) {
+    //1表示使用了。2016年6月5日 去掉帐号被提取的提醒。
+//    if ($zhanhao['status'] == 1) {
+    if (false) {
 //        showmessage(lang('plugin/htt_zhanhao','show_fetech_error_01'));
 
-        $msg = lang('plugin/htt_zhanhao', 'show_fetech_error_01');
+//        $msg = lang('plugin/htt_zhanhao', 'show_fetech_error_01');
 
 
     } else {
-        //这里记录。
-        $insert_array = array(
-            'username' => $_G['username'],
-            'zid' => $_GET['zid'],
-            'dateline' => time(),
-            'ip' => $_G['clientip'],
-        );
-        C::t('#htt_zhanhao#record')->insert($insert_array);
-        //需要去改变账号的状态
+        //这里记录。同一个帐号。同一个人提取，则不用重复记录
+        $sea = " AND username ='".$_G['username']."'";
+        $sea .= " AND zid =".$_GET['zid'];
+        $fnum = C::t('#htt_zhanhao#record')->count_by_search($sea);
 
-        C::t('#htt_zhanhao#zhanhao')->update_status_by_id($_GET['zid'], 1);
+        //只有不存在的情况再记录
+        if($fnum <=0){
+
+            $insert_array = array(
+                'username' => $_G['username'],
+                'zid' => $_GET['zid'],
+                'dateline' => time(),
+                'ip' => $_G['clientip'],
+            );
+            C::t('#htt_zhanhao#record')->insert($insert_array);
+            //需要去改变账号的状态
+
+            C::t('#htt_zhanhao#zhanhao')->update_status_by_id($_GET['zid'], 1);
+        }
+
+
 
         $msg = lang('plugin/htt_zhanhao', 'show_fetech_error_03') . '<br>' .lang('plugin/htt_zhanhao', 'zhanhao').':<b style="color:red;">'. $zhanhao['username'] . '</b><br>'.lang('plugin/htt_zhanhao', 'password').':<b style="color:red;">' . $zhanhao['password'] . '</b>';
 

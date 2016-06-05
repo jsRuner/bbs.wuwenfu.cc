@@ -155,10 +155,6 @@ if($_GET['op'] == 'add') {
             exit();
         }
 
-//        print_r($_GET['many_usernames']);
-//
-        exit();
-
         if((!$_GET['username'] && !$_GET['password'])) {
             cpmsg(lang('plugin/htt_zhanhao', 'show_action_error'), '', 'error');
         }

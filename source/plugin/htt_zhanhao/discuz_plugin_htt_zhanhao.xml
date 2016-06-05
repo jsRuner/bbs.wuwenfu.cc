@@ -204,6 +204,9 @@
 				<item id="many_username"><![CDATA[批量添加]]></item>
 				
 				
+				<item id="no_set_category"><![CDATA[没有设置分类]]></item>
+				
+				
 				
 				<item id="fetched"><![CDATA[已经领取]]></item>
 				<item id="fetching"><![CDATA[等待领取]]></item>
