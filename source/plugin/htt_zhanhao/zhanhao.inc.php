@@ -129,11 +129,36 @@ if($_GET['op'] == 'add') {
         showsetting(lang('plugin/htt_zhanhao', 'username'), 'username', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'password'), 'password', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'category_title'),$categorys, '', 'select');
+        showsetting(lang('plugin/htt_zhanhao', 'many_usernames'),'many_usernames', '', 'textarea');
         showsubmit('submit');
         showtablefooter();
         showformfooter();
 
     }else{
+
+        //如果存在批量的账号。则其他的忽略。1-2 空格分割
+        if($_GET['many_usernames']){
+            $many_zhanhaos = explode(';',trim($_GET['many_usernames'],';'));
+
+            foreach($many_zhanhaos as $zhanhao_str){
+                $zhanhao = explode('-',trim($zhanhao_str,' '));
+                $insert_array = array(
+                    'username'=>$zhanhao[0],
+                    'password'=>$zhanhao[1],
+                    'cid'=>$_GET['cid'],
+                    'dateline'=>time(),
+                );
+                DB::insert("httzhanhao_zhanhao",$insert_array);
+            }
+
+            cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao', 'succeed');
+            exit();
+        }
+
+//        print_r($_GET['many_usernames']);
+//
+        exit();
+
         if((!$_GET['username'] && !$_GET['password'])) {
             cpmsg(lang('plugin/htt_zhanhao', 'show_action_error'), '', 'error');
         }
@@ -145,6 +170,7 @@ if($_GET['op'] == 'add') {
         );
         DB::insert("httzhanhao_zhanhao",$insert_array);
         cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao', 'succeed');
+
     }
 
     exit();

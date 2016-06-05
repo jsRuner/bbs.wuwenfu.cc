@@ -54,8 +54,15 @@ class table_zhanhao extends discuz_table
 	}
 
 	public function fetch_all_by_search($condition, $start, $ppp) {
-		return DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY dateline LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
+		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY dateline LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
+        $new_rs = array();
+        foreach($rs as $k=>$v){
+            $new_rs[$v['id']] = $v;
+        }
+        return $new_rs;
 	}
+
+
 
 }
 

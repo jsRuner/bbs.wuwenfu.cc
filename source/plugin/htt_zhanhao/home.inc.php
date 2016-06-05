@@ -80,10 +80,26 @@ $date = date('Y-m-d');
 
 //查询账号与密码
 $srchadd = '';
+//$srchadd = ' AND status = 0 ';
+$srchadd .= ' AND cid = '.$cid;
 $page = 1;
 $ppp = 100;
 
 $zhanhaos = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_search($srchadd, ($page - 1) * $ppp, $ppp);
+
+
+$myzhanhaos = False;
+if(intval($_G['uid']) >0){
+    //查询自己的记录。
+    $search .= "AND username = '" . $_G['username'] . "'";
+    $myzhanhaos =  C::t('#htt_zhanhao#record')->fetch_all_by_search($search, ($page - 1) * $ppp, $ppp);
+
+//    print_r($myzhanhaos);
+//    exit();
+}
+
+
+
 
 //如果是分享的页面。取增加记录
 if($_GET['op'] == 'share'){
@@ -110,9 +126,6 @@ if($_GET['op'] == 'share'){
         C::t('#htt_zhanhao#share')->insert($insert_array);
 
     }
-
-
-
 
 }
 
@@ -173,7 +186,7 @@ if ($_GET['op'] == 'fetch') {
     $fetching_num = floor($share_num / $share_rates[0] * $share_rates[1]);
 
 
-    if ($fetched_num > $fetching_num + $fetch_num) {
+    if ($fetched_num >= $fetching_num + $fetch_num) {
         $msg = lang('plugin/htt_zhanhao', 'over_fetch_num');
         include_once template('htt_zhanhao:tip');
         exit();
@@ -196,7 +209,7 @@ if ($_GET['op'] == 'fetch') {
         //这里记录。
         $insert_array = array(
             'username' => $_G['username'],
-            'zid' => $_GET['id'],
+            'zid' => $_GET['zid'],
             'dateline' => time(),
             'ip' => $_G['clientip'],
         );

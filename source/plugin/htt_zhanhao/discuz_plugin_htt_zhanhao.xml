@@ -155,6 +155,9 @@
 			
 		</item>
 		
+		<item id="installfile"><![CDATA[install.php]]></item>
+            <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		
 		
 		 <item id="language">
 			<item id="scriptlang">
@@ -197,6 +200,8 @@
 				
 				<item id="username"><![CDATA[用户名]]></item>
 				<item id="password"><![CDATA[密码]]></item>
+				
+				<item id="many_username"><![CDATA[批量添加]]></item>
 				
 				
 				
@@ -257,6 +262,12 @@
 			<item id='copy_url_02'>请复制网站地址</item>
 			
 			<item id='copy_url_03'>复制你的专属链接网址</item>
+			
+			
+			<item id='my_fetch_record'>我的提取记录</item>
+			
+			<item id='my_fetch_record_empty'>没有提取该分类下任何账号</item>
+			
 			
 			
 			<item id='free_share'>免费分享
