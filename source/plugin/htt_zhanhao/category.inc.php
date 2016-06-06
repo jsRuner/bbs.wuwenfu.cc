@@ -8,9 +8,6 @@ if(!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
 $Plang = $scriptlang['htt_zhanhao'];
 
 $ac = !empty($_GET['ac']) ? $_GET['ac'] : '';
-require_once libfile('function/forumlist');
-loadcache('forums');
-
 define('PMODURL', 'action=plugins&operation&config&identifier=htt_zhanhao&pmod=category&ac=');
 
 $pluginurl	= ADMINSCRIPT.'?action=plugins&identifier=htt_zhanhao&do='.$pluginid;
@@ -36,9 +33,9 @@ switch ($action) {
                 cpmsg(lang('plugin/htt_zhanhao', 'show_action_error'), '', 'error');
             }
             $insert_array = array(
-                'title'=>$_GET['title'],
-                'info'=>$_GET['info'],
-                'sort'=>$_GET['sort'],
+                'title'=>addslashes($_GET['title']),
+                'info'=>addslashes($_GET['info']),
+                'sort'=>intval($_GET['sort']),
                 'dateline'=>time(),
             );
             DB::insert("httzhanhao_category",$insert_array);
@@ -67,31 +64,24 @@ switch ($action) {
                 cpmsg(lang('plugin/htt_zhanhao', 'show_action_error'), '', 'error');
             }
             $insert_array = array(
-                'title'=>$_GET['title'],
-                'info'=>$_GET['info'],
-                'sort'=>$_GET['sort'],
+                'title'=>addslashes($_GET['title']),
+                'info'=>addslashes($_GET['info']),
+                'sort'=>intval($_GET['sort']),
 //                'dateline'=>time(),
             );
-            DB::update("httzhanhao_category",$insert_array,array('id'=>$_GET['id']));
+            DB::update("httzhanhao_category",$insert_array,array('id'=>intval($_GET['id'])));
             cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category', 'succeed');
         }
         break;
 
     case 'del':
-        C::t('#htt_zhanhao#category')->delete_by_id($_GET['category_id']);
+        if ($_GET['formhash'] != FORMHASH) {
+            showmessage('undefined_action');
+        }
+        C::t('#htt_zhanhao#category')->delete_by_id(intval($_GET['category_id']));
         ajaxshowheader();
         echo $Plang['show_action_succeed'];
         ajaxshowfooter();
-/*
-        if(submitcheck('submit')) {
-            foreach($_GET['delete'] as $delete) {
-                DB::query("delete FROM ".DB::table("httzhanhao_category")." where `id`= $delete");
-            }
-            updatecache(array('plugin', 'setting'));
-            cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category', 'succeed');
-        }*/
-//        exit();
-
 
 
 
@@ -119,7 +109,7 @@ switch ($action) {
 			<th>'. date("Y-m-d H:i:s",$level['dateline']) .'</th>
 			<th>'.$level['sort'].'</th>
 			<th>'. '<a href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=editor&category_id=' . trim($level["id"]) . '">' . lang('plugin/htt_zhanhao', 'show_editor') . '</a>'.'
-			'.'<a id="p'.$i.'" onclick="ajaxget(this.href, this.id, \'\');return false" href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=category&ac=del&category_id=' . trim($level["id"]) . '">[' .$lang['delete'] . ']</a>'.'
+			'.'<a id="p'.$i.'" onclick="ajaxget(this.href, this.id, \'\');return false" href="admin.php?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&formhash='.FORMHASH.'&pmod=category&ac=del&category_id=' . trim($level["id"]) . '">[' .$lang['delete'] . ']</a>'.'
 
 			</th>
 

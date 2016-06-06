@@ -20,6 +20,8 @@ $fetch_num = $var['htt_zhanhao']['fetch_num']; //提取次数。
 $right_adv1 = $var['htt_zhanhao']['right_adv1']; //提取次数。
 $right_adv2 = $var['htt_zhanhao']['right_adv2']; //提取次数。
 
+$seo_key = $var['htt_zhanhao']['seo_key']; //seo
+
 //echo $right_adv1;
 //
 //exit();
@@ -106,7 +108,7 @@ $zhanhaos = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_search($srchadd, ($page -
 $myzhanhaos = False;
 if(intval($_G['uid']) >0){
     //查询自己的记录。
-    $search .= "AND username = '" . $_G['username'] . "'";
+    $search .= "AND username = '" .addslashes( $_G['username'] ). "'";
 
     $myzhanhao_num = C::t('#htt_zhanhao#record')->count_by_search($search);
 
@@ -114,7 +116,7 @@ if(intval($_G['uid']) >0){
     if(count($myzhanhao_num) > 10){
         //删除今天的0点之前的提取记录。
         $qiantian = strtotime(date("Y-m-d")." 00:00:00");
-        C::t('#htt_zhanhao#record')->delete_by_username_time($_G['username'],$qiantian);
+        C::t('#htt_zhanhao#record')->delete_by_username_time(addslashes( $_G['username'] ),$qiantian);
     }
 
     $myzhanhaos =  C::t('#htt_zhanhao#record')->fetch_all_by_search($search, ($page - 1) * $ppp, $ppp);
@@ -131,7 +133,7 @@ if($_GET['op'] == 'share'){
     //先判断ip是否已经被使用过。如果使用过，则无效。没有使用过，则插入
     //计算当前可以领取的次数。
     $search = '';
-    $search .= "AND username = '" . $_G['username'] . "'"; //根据时间。用户名。计算。
+    $search .= "AND username = '" .addslashes( $_G['username']) . "'"; //根据时间。用户名。计算。
     $search .= "AND ip = '" . $_G['clientip'] . "'"; //根据时间。用户名。计算。
     $search .= "AND dateline BETWEEN $st AND $et"; //根据时间。用户名。计算。
 
@@ -143,7 +145,7 @@ if($_GET['op'] == 'share'){
     }else{
         //不存在则插入。
         $insert_array = array(
-            'username' => $_G['username'],
+            'username' => addslashes($_G['username']),
             'dateline' => time(),
             'ip' => $_G['clientip'],
         );
@@ -187,10 +189,10 @@ if ($_GET['op'] == 'fetch') {
      *
      *
      * */
-    $search = "AND username = '" . $_G['username'] . "'"; //根据时间。用户名。计算。
+    $search = "AND username = '" . addslashes($_G['username']) . "'"; //根据时间。用户名。计算。
 
     $search = '';
-    $search .= "AND username = '" . $_G['username'] . "'"; //根据时间。用户名。计算。
+    $search .= "AND username = '" . addslashes($_G['username']) . "'"; //根据时间。用户名。计算。
     $search .= "AND dateline BETWEEN $st AND $et"; //根据时间。用户名。计算。
 
     $fetched_num = C::t('#htt_zhanhao#record')->count_by_search($search);
@@ -203,7 +205,7 @@ if ($_GET['op'] == 'fetch') {
 
     //计算当前可以领取的次数。
     $search = '';
-    $search .= "AND username = '" . $_G['username'] . "'"; //根据时间。用户名。计算。
+    $search .= "AND username = '" . addslashes($_G['username']) . "'"; //根据时间。用户名。计算。
     $search .= "AND dateline BETWEEN $st AND $et"; //根据时间。用户名。计算。
     $share_num = C::t('#htt_zhanhao#share')->count_by_search($search);
     //换算次数。取整数
@@ -218,7 +220,7 @@ if ($_GET['op'] == 'fetch') {
 
 
     //直接直接方向，获取账号成功。todo:需要检查是否次数还剩余。
-    $zhanhao = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_id($_GET['zid']);
+    $zhanhao = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_id(intval($_GET['zid']));
 
 //    print_r($zhanhao);
 //    exit();
@@ -232,23 +234,23 @@ if ($_GET['op'] == 'fetch') {
 
     } else {
         //这里记录。同一个帐号。同一个人提取，则不用重复记录
-        $sea = " AND username ='".$_G['username']."'";
-        $sea .= " AND zid =".$_GET['zid'];
+        $sea = " AND username ='".addslashes($_G['username'])."'";
+        $sea .= " AND zid =".intval($_GET['zid']);
         $fnum = C::t('#htt_zhanhao#record')->count_by_search($sea);
 
         //只有不存在的情况再记录
         if($fnum <=0){
 
             $insert_array = array(
-                'username' => $_G['username'],
-                'zid' => $_GET['zid'],
+                'username' => addslashes($_G['username']),
+                'zid' => intval($_GET['zid']),
                 'dateline' => time(),
                 'ip' => $_G['clientip'],
             );
             C::t('#htt_zhanhao#record')->insert($insert_array);
             //需要去改变账号的状态
 
-            C::t('#htt_zhanhao#zhanhao')->update_status_by_id($_GET['zid'], 1);
+            C::t('#htt_zhanhao#zhanhao')->update_status_by_id(intval($_GET['zid']), 1);
         }
 
 

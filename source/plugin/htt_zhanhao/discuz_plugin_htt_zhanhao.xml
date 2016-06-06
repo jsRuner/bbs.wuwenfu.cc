@@ -140,7 +140,7 @@
 				<item id="title"><![CDATA[右侧广告位]]></item>
 				<item id="description"><![CDATA[位于右侧公告下方。为空则不显示。 要求是 300*253 请通过 运营-自定义广告位-添加-使用html代码 ]]></item>
 				<item id="variable"><![CDATA[right_adv1]]></item>
-				<item id="type"><![CDATA[text]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
 				<item id="value"><![CDATA[<a href="http://baidu.com" target="_blank"><img src="http://bbs.wuwenfu.cn/data/attachment/common/cf/154747nxxx4dt4jjzgrd5x.gif" height="300" width="253" alt="网站改版" border="0"></a>]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
@@ -149,8 +149,19 @@
 				<item id="title"><![CDATA[右下角广告位]]></item>
 				<item id="description"><![CDATA[位于右下角落。为空则不显示 要求是 300*253 请通过 运营-自定义广告位-添加-使用html代码]]></item>
 				<item id="variable"><![CDATA[right_adv2]]></item>
-				<item id="type"><![CDATA[text]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
 				<item id="value"><![CDATA[<a href="http://baidu.com" target="_blank"><img src="http://bbs.wuwenfu.cn/data/attachment/common/cf/154747nxxx4dt4jjzgrd5x.gif" height="300" width="253" alt="网站改版" border="0"></a>]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			
+			<item id="9">
+				<item id="displayorder"><![CDATA[9]]></item>
+				<item id="title"><![CDATA[seo内容]]></item>
+				<item id="description"><![CDATA[seo内容]]></item>
+				<item id="variable"><![CDATA[seo_key]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[宅世界论坛-最新电影,迅雷会员账号分享,爱奇艺会员共享,优酷会员账号共享,会员账号共享分享论坛
+]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
@@ -195,6 +206,7 @@
 				<item id="password"><![CDATA[密码]]></item>
 				
 				<item id="many_username"><![CDATA[批量添加]]></item>
+				<item id="many_username_comment"><![CDATA[批量添加的规则要求:账号与密码用-隔开,账号与账号需要;隔开。例如 user1-password1;user1-password1;user1-password1; 批量如果设置了，则上面的用户与密码无效。]]></item>
 				
 				
 				<item id="no_set_category"><![CDATA[没有设置分类]]></item>
@@ -203,6 +215,8 @@
 				
 				<item id="fetched"><![CDATA[已经领取]]></item>
 				<item id="fetching"><![CDATA[等待领取]]></item>
+				
+				
 				
 				
 				
@@ -255,7 +269,7 @@
 			
 			<item id='copy_url_01'>该地址已经复制到剪切板</item>
 			
-			<item id='copy_url_02'>请复制网站地址</item>
+			<item id='copy_url_02'>请复制网站地址 CTRL+C </item>
 			
 			<item id='copy_url_03'>复制你的专属链接网址</item>
 			
