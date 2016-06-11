@@ -45,5 +45,36 @@
 			</item>
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
+		
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[开关]]></item>
+				<item id="description"><![CDATA[默认开启]]></item>
+				<item id="variable"><![CDATA[is_open]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1=开启
+2=关闭]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[宽度]]></item>
+				<item id="description"><![CDATA[音乐播放器的宽度]]></item>
+				<item id="variable"><![CDATA[width]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[330]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[高度]]></item>
+				<item id="description"><![CDATA[音乐播放器的高度]]></item>
+				<item id="variable"><![CDATA[height]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[86]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
 	</item>
 </root>

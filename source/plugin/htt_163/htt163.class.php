@@ -13,10 +13,25 @@ class plugin_htt_163 {
     protected static $cloudAppService;
     protected static $securityService;
     protected static $securityStatus;
+
+    protected  $is_open;
+    protected $width;
+    protected $height;
+
+
     public function __construct() {
         self::$cloudAppService = Cloud::loadClass('Service_App');
         self::$securityStatus = self::$cloudAppService->getCloudAppStatus('security');
         self::$securityService = Cloud::loadClass('Service_Security');
+
+        global $_G;
+        loadcache('plugin');
+        $var = $_G['cache']['plugin'];
+        $this->is_open =  $var['htt_163']['is_open'];
+        $this->width =  $var['htt_163']['width'];
+        $this->height =  $var['htt_163']['height'];
+
+
     }
 
 }
@@ -28,32 +43,68 @@ class plugin_htt_163_forum extends plugin_htt_163{
 
 
     function post_middle(){
+        if($this->is_open ==2){
+            return '';
+        }
         include_once template('htt_163:index');
         return $music_html;
 //        return '<a>11111111</a>';
     }
 
     function post_btn_extra(){
+        if($this->is_open ==2){
+            return '';
+        }
         include_once template('htt_163:index_js');
         return $music_js_html;
     }
 
 
     public function post_report_message($param) {
+        if($this->is_open ==2){
+            return ;
+        }
         global $_G, $extra, $redirecturl;
-        file_put_contents("c://1.txt",json_encode($param));
+        file_put_contents("c://22.txt",json_encode($param));
         $info = $param['param'][2];
         //读取cookie，如果有数据。则关联。并销毁。
 //        file_put_contents("c://1cookie.txt",getcookie('music_163'));
         if($music_str = getcookie('music_163')){
+            //$music_str = del_music,则表示是清空操作。
+            //先执行查询操作。如果有则更新。
+            if($music_str == 'del_music'){
+                C::t('#htt_163#music')->delete($info['tid']);
+                dsetcookie('music_163','');
+                return;
+
+            }
+
             $music = explode(':',$music_str);
-            $insetdata = array(
-                'tid'=>$info['tid'],
-                'music_id'=>intval($music['0']),
-                'music_p'=>intval($music['1']),
-                'dateline'=>time()
-            );
-            C::t('#htt_163#music')->insert($insetdata);
+
+            $rs = C::t('#htt_163#music')->count_by_tid($info['tid']);
+            if($rs > 0){
+                //存在则进行更新操作。
+                $update_data = array(
+                    'music_id'=>intval($music['0']),
+                    'music_p'=>intval($music['1']),
+                    'dateline'=>time()
+                );
+                C::t('#htt_163#music')->update($info['tid'],$update_data);
+                dsetcookie('music_163','');
+
+            }else{
+
+                $insetdata = array(
+                    'tid'=>$info['tid'],
+                    'music_id'=>intval($music['0']),
+                    'music_p'=>intval($music['1']),
+                    'dateline'=>time()
+                );
+                C::t('#htt_163#music')->insert($insetdata);
+
+            }
+
+
             dsetcookie('music_163','');
 
         }
@@ -61,7 +112,17 @@ class plugin_htt_163_forum extends plugin_htt_163{
 
     }
 
+
+
+
     public function viewthread_posttop(){
+        if($this->is_open ==2){
+            return array();
+        }
+
+        $width = $this->width;
+        $height = $this->height;
+
         //获取当前的帖子id。查询是否有music
         global $_G,$postlist,$_GET;
         $tid = $_GET['tid'];
@@ -76,6 +137,11 @@ class plugin_htt_163_forum extends plugin_htt_163{
     }
 
     public function viewthread_postbottom(){
+        if($this->is_open ==2){
+            return array();
+        }
+        $width = $this->width;
+        $height = $this->height;
         global $_G,$postlist,$_GET;
         $tid = $_GET['tid'];
         $rs = C::t('#htt_163#music')->fetch_all_by_tid($tid);

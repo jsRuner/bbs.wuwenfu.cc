@@ -4,11 +4,17 @@
 
     document.getElementById('postsubmit').onclick = function(){
         music_url = document.getElementsByName('163music')[0].value;
+
+        if(music_url ==''){
+            setcookie('music_163','del_music',30);
+            return;
+        }
+
         //截取字符串。取最后的数字编号。
         //http://music.163.com/#/song?id=158796
         arr = music_url.split('?id=');
         music_url = arr[1];
-        alert(music_url);
+//        alert(music_url);
         music_position = document.getElementsByName('music_position');
         for(var i=0; i<music_position.length; i++){
 //            alert(i);

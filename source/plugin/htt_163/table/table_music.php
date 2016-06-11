@@ -15,16 +15,21 @@ class table_music extends discuz_table
 	public function __construct() {
 
 		$this->_table = 'htt163_music';
-		$this->_pk    = '';
+		$this->_pk    = 'tid';
 
 		parent::__construct();
 	}
 
 
 	public function fetch_all_by_tid($tid) {
-        $rs = DB::fetch_all("SELECT * FROM %t WHERE tid=%s", array($this->_table, $tid));
+        $rs = DB::fetch_all("SELECT * FROM %t WHERE tid=%d", array($this->_table, $tid));
         return $rs[0];
 	}
+
+
+    public function count_by_tid($tid) {
+        return DB::result_first("SELECT COUNT(*) FROM %t WHERE tid=%d", array($this->_table, $tid));
+    }
 
 
 
