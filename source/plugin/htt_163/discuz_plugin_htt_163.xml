@@ -76,5 +76,20 @@
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 		</item>
+		
+		<item id="installfile"><![CDATA[install.php]]></item>
+            <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+			
+			
+			 <item id="language">
+		<item id="templatelang">
+			<item id='music_url'>网易音乐链接</item>
+			<item id='help'>注意：链接必须类似 http://music.163.com/#/song?id=857384</item>
+			<item id='post_top'>帖子顶部</item>
+			<item id='post_bottom'>帖子尾部</item>
+		</item>
+		
+		</item>
+			
 	</item>
 </root>

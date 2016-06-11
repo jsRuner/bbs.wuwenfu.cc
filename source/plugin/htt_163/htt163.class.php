@@ -46,6 +46,14 @@ class plugin_htt_163_forum extends plugin_htt_163{
         if($this->is_open ==2){
             return '';
         }
+        //如果存在tid。则去检测是否有数据。
+        $tid = intval($_GET['tid']);
+
+        if($tid > 0){
+            //如果存在。则去查数据
+            $info = C::t('#htt_163#music')->fetch_all_by_tid($tid);
+        }
+
         include_once template('htt_163:index');
         return $music_html;
 //        return '<a>11111111</a>';
@@ -65,11 +73,14 @@ class plugin_htt_163_forum extends plugin_htt_163{
             return ;
         }
         global $_G, $extra, $redirecturl;
-        file_put_contents("c://22.txt",json_encode($param));
+//        file_put_contents("c://22.txt",json_encode($param));
         $info = $param['param'][2];
         //读取cookie，如果有数据。则关联。并销毁。
 //        file_put_contents("c://1cookie.txt",getcookie('music_163'));
         if($music_str = getcookie('music_163')){
+
+            $music_str = addslashes($music_str);
+
             //$music_str = del_music,则表示是清空操作。
             //先执行查询操作。如果有则更新。
             if($music_str == 'del_music'){
