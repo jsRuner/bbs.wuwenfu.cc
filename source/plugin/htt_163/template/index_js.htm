@@ -9,34 +9,13 @@
             setcookie('music_163','del_music',30);
             return;
         }
-
-        //截取字符串。取最后的数字编号。
-        //http://music.163.com/#/song?id=158796
-        arr = music_url.split('?id=');
-        music_url = arr[1];
-//        alert(music_url);
         music_position = document.getElementsByName('music_position');
         for(var i=0; i<music_position.length; i++){
-//            alert(i);
-//            alert(music_position[i].checked);
             if(music_position[i].checked){
                 music_p = music_position[i].value;
             }
         }
-
-//        Cookie.set("music_163",music_url+':'+music_p, 48);
-        setcookie('music_163',music_url+':'+music_p,30);
-//        alert(music_url);
-//        alert(music_p);
-
-        //如果填写了。则存储到表。
-       /* $.post('http://baidu.com',{},function(){
-            //获取url
-            music_url = $('input[name="163music"]').val();
-            alert(music_url);
-            //分析出id
-            Cookie.set("music_163",'', 48);
-        })*/
+        setcookie('music_163',music_url+'|'+music_p,30);
     }
 
 </script>

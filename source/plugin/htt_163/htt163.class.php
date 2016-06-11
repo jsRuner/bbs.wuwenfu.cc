@@ -79,7 +79,6 @@ class plugin_htt_163_forum extends plugin_htt_163{
 //        file_put_contents("c://1cookie.txt",getcookie('music_163'));
         if($music_str = getcookie('music_163')){
 
-            $music_str = addslashes($music_str);
 
             //$music_str = del_music,则表示是清空操作。
             //先执行查询操作。如果有则更新。
@@ -90,11 +89,22 @@ class plugin_htt_163_forum extends plugin_htt_163{
 
             }
 
-            $music = explode(':',$music_str);
+            $music = explode('|',$music_str);
+            $p = strpos($music[0],'id=');
+            //没找到或者超出长度。
+            if($p == Fase || $p >= strlen($music_str)){
+                dsetcookie('music_163','');
+                return;
+            }
+            $music[0] = substr($music[0],$p+3);
 
             $rs = C::t('#htt_163#music')->count_by_tid($info['tid']);
             if($rs > 0){
                 //存在则进行更新操作。
+
+
+
+
                 $update_data = array(
                     'music_id'=>intval($music['0']),
                     'music_p'=>intval($music['1']),
