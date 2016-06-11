@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" data-track0="home|home|home">
+    <title>哈弗亿元优惠券大派送</title>
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="哈弗HAVAL" />
+    <meta name="description" content="哈弗HAVAL" />
+    <script type="text/javascript">
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                var phoneScale = parseInt(window.screen.width)/640;
+                document.write('<meta name="viewport" content="minimal-ui, width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi" />');
+            }else{
+                document.write('<meta name="viewport" content="minimal-ui, width=640, target-densitydpi=device-dpi" />');
+            }
+        }else{
+            document.write('<meta name="viewport" content="minimal-ui, width=640, user-scalable=no, target-densitydpi=device-dpi" />');
+        }
+    </script>
+    <!--加载微信css-->
+    <link rel="stylesheet" type="text/css" href="css/main-wx.css"/>
+    <script>MClient='m'</script>
+    <script type="text/javascript" src="../common/browserck.js"></script>
+    <script> ZbBase_Project=1016; </script>
+    <script type="text/javascript" src="../app/initdata.js"></script>
+</head>
+<body>
+<div class="load">
+    <div class="bar">
+        <em id="loadCar"></em>
+    </div>
+    <p class="loadtxt">0%</p>
+</div>
+<div class="main">
+    <span class="logo"></span>
+    <section class="page_home">
+        <span class="hongbao"></span>
+        <span class="title"><img src="images/home_title.png" alt=""></span>
+        <span class="yb"></span>
+        <span class="car1"><img src="images/p1_car1.png" alt=""></span>
+        <span class="car2"><img src="images/p1_car2.png" alt=""></span>
+        <span class="btn_get"><img src="images/btn_BTN.png" alt=""></span>
+        <span class="btn_see_about"><img src="images/about_jt.png" alt=""></span>
+        <div class="pop_about">
+            <p>
+                <img src="images/about_text.png" alt="">
+                <a href="javascript:;" class="btn_return"></a>
+            </p>
+            
+        </div>
+    </section>
+    <section class="page_car">
+        <div class="bg"></div>
+        <span class="title"><img src="images/page2_title.png" alt=""></span>
+        <div class="type_bg"></div>
+        <div class="car_bar">
+            <span class="btn_h6" data-type="hf6"><img src="images/p2_car1.png" alt=""></span>
+        </div>
+        <div class="car_bar">
+            <span class="btn_h7" data-type="hf7"><img src="images/p2_car2.png" alt=""></span>
+        </div>
+    </section>
+    <section class="page_shake">
+        <div class="bg"></div>
+        <div class="bao_bg"></div>
+        <span class="title"><strong>&nbsp;&nbsp;恭喜您！</strong><br />获得<span id="titleMoney">0000元</span>购车优惠券</span>
+        <div class="sk_pan">
+            <img src="images/p3_hand_wx.png" alt="" class="shake_img">
+            <div class="prize_txt">
+                <p>购车优惠券</p>
+                <p id="resultMoney">¥<strong>4999</strong></p>
+            </div>
+            <div class="noprize">系统繁忙<br />稍后再试</div>
+            <div class="prized-tt">谢谢参与~</div>
+        </div>
+        <div class="sy"><p><strong id="shengyuH">00000000</strong>元</p></div>
+        <dl>
+            <dt><img src="images/yiy.png" alt=""></dt>
+            <dd>您还有<span id="shakeNum">3</span>次摇优惠券的机会哦~</dd>
+            <dd class="lq" id="yiyLQ">活动最后一天，尽快领取红包！</dd>
+        </dl>
+        <div class="prized">
+            <p>您已参与过本次活动，感谢您的支持~</p>
+            <a href="javascript:;" class="return-home"><img src="images/returnhome.png" alt=""></a>
+        </div>
+    </section>
+    <div class="page_prize">
+        <div class="bg"></div>
+        <div class="jp_ban_parent">
+            <div class="jp_ban">
+                <div class="quan">
+                    <p>¥<strong>2000</strong></p>
+                </div>
+                <div class="quan">
+                    <p>¥<strong>2000</strong></p>
+                </div>
+                <div class="quan">
+                    <p>¥<strong>2000</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page_form">
+        <div class="bg"></div>
+        <div class="form_cont">
+            <form id="v-savewin" method="post">
+            <h3><img src="images/pageform_title.png" alt=""></h3>
+            <table class="form_table">
+                <tr>
+                    <th><span class="x">*</span>姓名</th>
+                    <td>
+                        <input type="text" name="name" placeholder="请填写实际购车人的真实姓名" />
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="x">*</span>性别</th>
+                    <td>
+                        <span class="mradio"><input type="radio" id="nn" checked="checked" name="ext[gender]" value="1"/><label for="nn">男</label></span>
+                        <span class="mradio"><input type="radio" id="nv" name="ext[gender]" value="2"/><label for="nv">女</label></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><span class="x">*</span>手机号</th>
+                    <td>
+                        <input type="tel" name="mobile" placeholder="请填写实际购车人的手机号"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>车型</th>
+                    <td>
+                        <input type="text" id="car_hidden" readonly />
+                        <div class="mselect" style="display: none;">
+                            <select name="ext[car]" id="v-car"></select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>省/市</th>
+                    <td>
+                        <div class="mselect province">
+                            <select name="ext[province]" id="v-province" class="w2"></select>
+                        </div>
+                        <div class="mselect city">
+                            <select name="ext[city]" id="v-city" class="w2"></select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>门店</th>
+                    <td>
+                        <div class="mselect ">
+                            <select name="ext[dealer]" id="v-dealer"></select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <p>请尽快填写表单，优惠券将在5分钟后失效哦</p>
+            <p>信息不完整或信息有误，优惠券将无法使用<br />您的个人信息我们将为您保密。</p>
+                <p>短信功能仅限于联通、移动、电信用户</p>
+                <a href="javascript:;" class="btn_submit"></a>
+            <input type="hidden" name="rid" value="" />
+            <input type="hidden" name="ext[client]" value="wx" />
+            <input type="hidden" name="ext[media]" value="" />
+            </form>
+        </div>
+    </div>
+    <div class="page_getdone">
+        <div class="ban">
+            <p>￥<strong id="doneMoney">0000</strong></p>
+        </div>
+        <div class="down_txt">
+            <p>请凭以下优惠券序列号到4S店购车使用</p>
+            <p>（优惠券有效期至2016年6月30日）</p>
+            <p id="ticket_txt">XXXXXXXXXXXXXXX</p>
+        </div>
+        <span class="share-tips"><img src="images/pdone-share.png" alt=""></span>
+    </div>
+</div>
+<div id="orientLayer" class="mod-orient-layer">
+    <div class="mod-orient-layer__content"><i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+    </div>
+</div>
+<div class="weui_dialog_alert" id="dialog2">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title"> </strong></div>
+        <div class="weui_dialog_bd weui_dialog_content"> </div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<script>
+    var _hmt=_hmt || [];
+    var media = ZbBase.getParam('media');
+    function trackEvent(str){
+        var tmpStr = '哈弗亿元优惠券大派送_'+str+"_"+media;
+        _hmt.push(['_trackEvent', tmpStr, tmpStr]);
+    }
+</script>
+<script src="//hm.baidu.com/hm.js?e3eeb125678dffbfac5783411e355a2b"></script>
+<script type="text/javascript">
+    var wxDefault = {
+        title:"雷哥好礼相送，惊喜出乎“亿”料",
+        desc:"哈弗SUV倾情放送亿元优惠券，人气靓车等你带走！",
+        imgUrl:API.URI.host+"/m/images/120.jpg",
+        link:API.URI.host+"/m/index-wx.html",
+        success:function(){
+            trackEvent('share_message');
+        },successtl:function(){
+            trackEvent('share_timeline');
+        }
+    };
+    var actOverTxt = "活动结束，请尽快到店使用优惠券！";
+</script>
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/preloadjs-0.6.0.min.js"></script>
+<script type="text/javascript" src="js/fastclick.min.js"></script>
+<script type="text/javascript" src="js/TweenMax.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="../common/dealer.js"></script>
+<script type="text/javascript" src="../common/dealerevent.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/weixin.js"></script>
+</body>
+</html>
