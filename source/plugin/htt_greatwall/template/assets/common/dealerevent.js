@@ -1,12 +1,12 @@
 $(function(){
-	//åˆå§‹åŒ– è½¦å‹ çœ å¸‚ ç»é”€å•† å¹¶è”åŠ¨
-	bindCar();
-	$('#v-car').change(function () {
+    //³õÊ¼»¯ ³µĞÍ Ê¡ ÊĞ ¾­ÏúÉÌ ²¢Áª¶¯
+    bindCar();
+    $('#v-car').change(function () {
         now_car = $(this).val();
         bindProvince();
         $('#v-province').change();
     }).change();
-	$('#v-province').change(function () {
+    $('#v-province').change(function () {
         bindCity();
         $('#v-city').change();
     });
@@ -17,8 +17,8 @@ $(function(){
 });
 var now_car='';
 function bindCar() {
-    var car = [['hf7','å“ˆå¼—H7'],['hf6','å“ˆå¼—H6Coupe1.5T']];
-    var str = "";//"<option value=\"\">" + "è¯·é€‰æ‹©" + "</option>";
+    var car = [['hf7','¹ş¸¥H7'],['hf6','¹ş¸¥H6Coupe1.5T']];
+    var str = "";//"<option value=\"\">" + "ÇëÑ¡Ôñ" + "</option>";
     for (var i = 0; i < car.length; i++) {
         str += "<option value=\"" + car[i][0] + "\">" + car[i][1] + "</option>";
     }
@@ -27,7 +27,7 @@ function bindCar() {
 }
 function bindProvince() {
     if (JSonData) {
-        var str = "<option value=\"\">" + "è¯·é€‰æ‹©" + "</option>";
+        var str = "<option value=\"\">" + "ÇëÑ¡Ôñ" + "</option>";
         for (var i = 0; i < JSonData[now_car].length; i++) {
             if (str.indexOf(JSonData[now_car][i].pro) < 0) {
                 str += "<option value=\"" + JSonData[now_car][i].pro + "\">" + JSonData[now_car][i].pro + "</option>";
@@ -38,7 +38,7 @@ function bindProvince() {
 }
 function bindCity() {
     var province = $('#v-province').find("option:selected").text();
-    var str = "<option value=\"\">" + "è¯·é€‰æ‹©" + "</option>";
+    var str = "<option value=\"\">" + "ÇëÑ¡Ôñ" + "</option>";
     for (var i = 0; i < JSonData[now_car].length; i++) {
         if (JSonData[now_car][i].pro == province) {
             if (str.indexOf(JSonData[now_car][i].city) < 0) {
@@ -49,7 +49,7 @@ function bindCity() {
     $('#v-city').html(str);
 }
 function bindDealer() {
-    var str = "<option value=\"\">" + "è¯·é€‰æ‹©" + "</option>";
+    var str = "<option value=\"\">" + "ÇëÑ¡Ôñ" + "</option>";
     var city = $('#v-city').find("option:selected").text();
     for (var i = 0; i < JSonData[now_car].length; i++) {
         if (JSonData[now_car][i].city == city) {

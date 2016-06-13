@@ -3,104 +3,104 @@
 
 
 var lottery={
-	num:3,
-	index : 1, //èµ·ç‚¹
-	speed : 400, //åˆå§‹é€Ÿåº¦
-	roll:0, //å®šæ—¶å™¨id
-	cycle : 1, //å·²è·‘çš„åœˆé€Ÿ
-	times : 2, //è‡³å°‘è·‘å‡ åœˆ
-	prize : -1, //ä¸­å¥–ç´¢å¼•
-	btn:0,
-	keytoprize: function(keys){
-		var karr = [[0],[1],[4,12],[6,9],[2,11],[3,8,7],[5,10]];//
-		var tarr = karr[keys];
-		var n = Math.floor(tarr.length*Math.random());
-		if(tarr[n] == 0){
-			showJsTip('æ²¡æœ‰å¥–å“äº†ï¼Œè°¢è°¢å‚ä¸ï¼');
-		}else{
-			lottery.prize = tarr[n];
-			lottery.reset();
-		}
-	},
-	run : function () {
-		lottery.index += 1;
-		var before = lottery.index < 1 ? 12 : lottery.index - 1;
-		lottery.index = lottery.index > 12 ? 1 : lottery.index;
-		$(".roll-" + lottery.index).addClass("active");
-		$(".roll-" + before).removeClass("active");
-		//åˆæ­¥åŠ å¿«çš„è¿‡ç¨‹
-		lottery.upSpeed();
-		lottery.downSpeed();
-	},
-	//æé€Ÿ
-	upSpeed : function () {
-		if (lottery.cycle < 2 && lottery.speed > 100) {
-			lottery.speed -= lottery.index * 8;
-			lottery.stop();
-			lottery.start();
-		}
-	},
-	//é™é€Ÿ
-	downSpeed:function () {
-		if (lottery.index == 12) {
-			lottery.cycle += 1;
-		}
-		if (lottery.cycle > lottery.times - 1 && lottery.speed < 400) {
-			lottery.speed += 20;
-			lottery.stop();
-			lottery.start();
-		}
-		if (lottery.cycle > lottery.times && lottery.index == lottery.prize) {
-			
-			lottery.stop();
-			lottery.showPrize();
-		}
+    num:3,
+    index : 1, //Æğµã
+    speed : 400, //³õÊ¼ËÙ¶È
+    roll:0, //¶¨Ê±Æ÷id
+    cycle : 1, //ÒÑÅÜµÄÈ¦ËÙ
+    times : 2, //ÖÁÉÙÅÜ¼¸È¦
+    prize : -1, //ÖĞ½±Ë÷Òı
+    btn:0,
+    keytoprize: function(keys){
+        var karr = [[0],[1],[4,12],[6,9],[2,11],[3,8,7],[5,10]];//
+        var tarr = karr[keys];
+        var n = Math.floor(tarr.length*Math.random());
+        if(tarr[n] == 0){
+            showJsTip('Ã»ÓĞ½±Æ·ÁË£¬Ğ»Ğ»²ÎÓë£¡');
+        }else{
+            lottery.prize = tarr[n];
+            lottery.reset();
+        }
+    },
+    run : function () {
+        lottery.index += 1;
+        var before = lottery.index < 1 ? 12 : lottery.index - 1;
+        lottery.index = lottery.index > 12 ? 1 : lottery.index;
+        $(".roll-" + lottery.index).addClass("active");
+        $(".roll-" + before).removeClass("active");
+        //³õ²½¼Ó¿ìµÄ¹ı³Ì
+        lottery.upSpeed();
+        lottery.downSpeed();
+    },
+    //ÌáËÙ
+    upSpeed : function () {
+        if (lottery.cycle < 2 && lottery.speed > 100) {
+            lottery.speed -= lottery.index * 8;
+            lottery.stop();
+            lottery.start();
+        }
+    },
+    //½µËÙ
+    downSpeed:function () {
+        if (lottery.index == 12) {
+            lottery.cycle += 1;
+        }
+        if (lottery.cycle > lottery.times - 1 && lottery.speed < 400) {
+            lottery.speed += 20;
+            lottery.stop();
+            lottery.start();
+        }
+        if (lottery.cycle > lottery.times && lottery.index == lottery.prize) {
 
-	},
-	//å…ˆåœæ­¢å†æ˜¾ç¤ºç»“æœ æŒ‰é’®æ˜¾ç¤ºå‡ºæ¥
-	showPrize:function(){
-		setTimeout(function(){
-			//alert("ä¸­å¥–å·ï¼š"+lottery.prize);
-			$('.cjhb').show();
-			$('.cjhb-innum').html( $(".roll-" + lottery.index).find('.roll-num').html() );
+            lottery.stop();
+            lottery.showPrize();
+        }
 
-			$('.hb-num').eq(2-lottery.num).html( $(".roll-" + lottery.index).find('.roll-num').html() );
-			
-			/*lottery.index =1;
-			$(".roll").removeClass("active");
-			$(".roll-" + lottery.index).addClass("active");*/
-			_isajaxing=0;
-		},700);
-	},
+    },
+    //ÏÈÍ£Ö¹ÔÙÏÔÊ¾½á¹û °´Å¥ÏÔÊ¾³öÀ´
+    showPrize:function(){
+        setTimeout(function(){
+            //alert("ÖĞ½±ºÅ£º"+lottery.prize);
+            $('.cjhb').show();
+            $('.cjhb-innum').html( $(".roll-" + lottery.index).find('.roll-num').html() );
 
-	//é‡æ–°å¼€å§‹
-	reset : function () {
-		//$("#go").unbind('click',lottery.reset);
-		lottery.num-=1;
-		$('.roll-word span').html(lottery.num);
-		$('.cjhb-words span').html(lottery.num);
-		if(lottery.num==0){
-			$('.cjhb-p img').attr('src','images/ling.png');
-		}
-			$('.cjhb-in').removeClass('cjhb-no');
-			$('.cjhb-innum').show();
-		lottery.btn=$(this);
-		lottery.speed = 400;
-		lottery.cycle = 0;
-		//lottery.prize = Math.floor(Math.random() * 12) + 1;
-		lottery.run();
-	},
-	start : function () {
-		lottery.roll = setInterval(lottery.run, lottery.speed);
-	},
+            $('.hb-num').eq(2-lottery.num).html( $(".roll-" + lottery.index).find('.roll-num').html() );
 
-	stop : function () {
-		clearInterval(lottery.roll);
-	},
-	goto : function (n){
-		//n 0-ä¸ä¸­å°† 1-ä¸€ç­‰å¥– 2---6  0-6 11-16
-		lottery.keytoprize(n%10);
-	}
+            /*lottery.index =1;
+             $(".roll").removeClass("active");
+             $(".roll-" + lottery.index).addClass("active");*/
+            _isajaxing=0;
+        },700);
+    },
+
+    //ÖØĞÂ¿ªÊ¼
+    reset : function () {
+        //$("#go").unbind('click',lottery.reset);
+        lottery.num-=1;
+        $('.roll-word span').html(lottery.num);
+        $('.cjhb-words span').html(lottery.num);
+        if(lottery.num==0){
+            $('.cjhb-p img').attr('src','source/plugin/htt_greatwall/template/assets/images/ling.png');
+        }
+        $('.cjhb-in').removeClass('cjhb-no');
+        $('.cjhb-innum').show();
+        lottery.btn=$(this);
+        lottery.speed = 400;
+        lottery.cycle = 0;
+        //lottery.prize = Math.floor(Math.random() * 12) + 1;
+        lottery.run();
+    },
+    start : function () {
+        lottery.roll = setInterval(lottery.run, lottery.speed);
+    },
+
+    stop : function () {
+        clearInterval(lottery.roll);
+    },
+    goto : function (n){
+        //n 0-²»ÖĞ½« 1-Ò»µÈ½± 2---6  0-6 11-16
+        lottery.keytoprize(n%10);
+    }
 
 };
 
