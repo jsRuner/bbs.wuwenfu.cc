@@ -71,7 +71,6 @@ function get_avatar($uid, $size = 'middle', $type = '') {
     return 'uc_server/data/avatar/'.$dir1.'/'.$dir2.'/'.$dir3.'/'.substr($uid, -2).$typeadd."_avatar_$size.jpg";
 }
 
-
 function set_home($uid, $dir = '.') {
     $uid = sprintf("%09d", $uid);
     $dir1 = substr($uid, 0, 3);
@@ -115,6 +114,8 @@ function htt_random_int($length=5){
 
 
 global $_G;
+
+global $lang;
 require libfile('function/member');
 require libfile('class/member');
 if($_G['setting']['bbclosed']) {
@@ -180,6 +181,13 @@ if($item = DB::fetch($query)) {
         'uid'=>$uid,
     );
     $result = userlogin($username, $password, $_GET['questionid'], $_GET['answer'], 'username', $_G['clientip']);
+
+
+    if($result['status'] <= 0){
+        showmessage(plugin_lang('plugin/htt_qqlogin','login_fail'));
+        exit();
+    }
+
     $_G['group'] = C::t('common_usergroup')->fetch($result['member']['groupid']);
 
 
@@ -201,7 +209,12 @@ $ret = $qc->get_user_info();
 $nickname = $ret['nickname'];
 
 //去空格。与特殊字符.至多保存4个字。
-$nickname =   iconv("utf-8", "gbk",$nickname);
+//2016年6月12日 这里根据需要改变编码。如果是gbk，就转换。否则不进行。
+if($_G['charset'] == 'gbk'){
+
+    $nickname =   iconv("utf-8", "gbk",$nickname);
+}
+
 $nickname = strFilter($nickname);
 
 switch(intval($suffix)){

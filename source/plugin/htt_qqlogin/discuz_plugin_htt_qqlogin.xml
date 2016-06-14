@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
 			<item id="copyright"><![CDATA[吴文付]]></item>
-			<item id="version"><![CDATA[1.3]]></item>
+			<item id="version"><![CDATA[1.4]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[httqqlogin]]></item>
@@ -42,6 +42,49 @@
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
+				
+				<item id="2">
+					<item id="name"><![CDATA[qq_member]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[用户管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[qq_help]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[接口帮助]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				
+				<item id="4">
+					<item id="name"><![CDATA[bind_qq]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[绑定QQ登录]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[17]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[4]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				
+				
 			</item>
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
@@ -87,17 +130,52 @@
 3=不限制]]></item>
 			</item>
 			
+			
+			
 		</item>
 		
 		 <item id="language">
 		<item id="templatelang">
-			<item id='qq_tip1'>只需要一步，快速开始
-			</item>
-			<item id='qq_tip2'>其他登录
-			</item>
-			<item id='qq_tip3'>QQ登录
-			</item>
+			<item id='qq_tip1'><![CDATA[只需要一步，快速开始]]></item>
+			<item id='qq_tip2'><![CDATA[其他登录]]></item>
+			<item id='qq_tip3'><![CDATA[QQ登录]]></item>
 		</item>
+			<item id="scriptlang">
+			<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：无需填写任何资料。需要申请QQ登录接口</li><li>插件QQ群 ：554197629 群文件有视频帮助</li><li>申请接口地址： http://connect.qq.com/manage/login</li>]]></item>
+			<item id="uid"><![CDATA[UID]]></item>
+			<item id="nickname"><![CDATA[昵称]]></item>
+			<item id="photo"><![CDATA[头像]]></item>
+			<item id="username"><![CDATA[注册的用户名]]></item>
+			<item id="dateline"><![CDATA[注册时间]]></item>
+			<item id="openid"><![CDATA[OPENID]]></item>
+			<item id="accesstoken"><![CDATA[ACCESSTOKEN]]></item>
+			<item id="password"><![CDATA[密码]]></item>
+			<item id="please_write_whole"><![CDATA[请填写完整信息]]></item>
+			<item id="action_success"><![CDATA[操作成功]]></item>
+			
+			<item id="bind_user_no_exist"><![CDATA[绑定的用户不存在]]></item>
+			<item id="bind_user_password_wrong"><![CDATA[密码错误]]></item>
+			<item id="bind_user_need_register"><![CDATA[绑定功能需要先QQ注册]]></item>
+			<item id="bind_user_success_login"><![CDATA[绑定成功,现在请使用QQ登录]]></item>
+			
+			<item id="show_export_title"><![CDATA[UID,OPENID,ACCESS_TOKEN,昵称,用户名,头像,注册时间]]></item>
+			<item id="show_export_btn"><![CDATA[导出QQ用户]]></item>
+			<item id="bind_user_by_admin"><![CDATA[请勿随意修改。如果修改则表示该QQ会登录对应的帐号。UID-用户名-密码要正确。用户可以手动绑定QQ注册。具体位置是 设置-用户资料-绑定QQ]]></item>
+			
+			<item id="member_help"><![CDATA[<li>可以删除用户，则该用户点击QQ登录时会重新注册成一个会员。</li>
+<li>通过编辑用户，可以实现老会员绑定QQ登录。操作步骤-老会员先执行QQ注册-编辑老会员记录,修改UID-username-password为之前的资料即可。</li>
+<li>老用户可以自行绑定QQ登录。不建议管理员手动绑定。</li>
+<li>插件卸载的时候,则请备份表或者导出记录。</li>]]></item>
+
+
+			<item id="login_fail"><![CDATA[登录失败]]></item>
+			
+			
+			
+			
+			
+			
+			</item>
 		
 		</item>
 		

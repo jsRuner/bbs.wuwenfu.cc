@@ -57,6 +57,12 @@ class Oauth{
 
     public function qq_login(){
 
+        /*
+                $appid = $this->recorder->readInc("appid");
+                $callback = $this->recorder->readInc("callback");
+                $scope = $this->recorder->readInc("scope");
+
+        */
         $appid = $this->appid;
         $callback = $this->callback;
 //        $scope ='get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idolist,add_idol,del_idol,get_tenpay_addr';
@@ -78,10 +84,23 @@ class Oauth{
 
         $login_url =  $this->urlUtils->combineURL(self::GET_AUTH_CODE_URL, $keysArr);
 
+//        echo $login_url;
+//        exit();
+
+
+
         header("Location:$login_url");
     }
 
     public function qq_callback(){
+
+
+//        print_r($_GET);
+//        echo '------------';
+//        echo 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+//        exit();
+
+
 
         $state = $this->recorder->read("state");
 
