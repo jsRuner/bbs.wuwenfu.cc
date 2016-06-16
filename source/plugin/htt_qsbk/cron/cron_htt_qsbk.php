@@ -128,7 +128,9 @@ if (is_null($fids) || empty($fids)) {
     return;
 }
 $uids = array_filter(explode(',', $uidstr));
+
 $groups = array_filter(unserialize($groupstr));
+
 $members_bygroup = C::t('common_member')->fetch_all_by_groupid($groups);//该组的会员资料
 
 
@@ -195,7 +197,7 @@ $tid = 0; //设置默认值
 
 $lasttid = 0; //上一次的tid.
 
-$fist = 0;
+$first = 0;
 
 
 foreach ($articles as $article) {

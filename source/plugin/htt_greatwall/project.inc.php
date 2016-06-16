@@ -129,6 +129,14 @@ switch ($ac){
         $page = max(1, intval($_GET['page']));
         $count = C::t('#htt_greatwall#project')->count_by_search($search);
         $projects = C::t('#htt_greatwall#project')->fetch_all_by_search($search,($page - 1) * $ppp, $ppp);
+
+        foreach($projects as $key =>$project){
+            $config = json_decode($project['config'],true);
+            $project['start_date'] = $config['start_date'];
+            $project['end_date'] = $config['end_date'];
+            $projects[$key] = $project;
+        }
+
         $project_types = array(
             'nolg03'=>'无记名奖品3选1'
         );

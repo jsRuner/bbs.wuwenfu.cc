@@ -20,8 +20,8 @@ class table_prize extends discuz_table
 		parent::__construct();
 	}
 
-	public function fetch_all_by_id($id) {
-		$rs = DB::fetch_all("SELECT * FROM %t WHERE id=%d", array($this->_table, $id));
+	public function fetch_by_pid($pid) {
+		$rs = DB::fetch_all("SELECT * FROM %t WHERE id=%d", array($this->_table, $pid));
         return $rs[0];
 
 	}
@@ -54,12 +54,9 @@ class table_prize extends discuz_table
 	}
 
 	public function fetch_all_by_search($condition, $start, $ppp) {
-		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY  status asc, dateline LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
-        $new_rs = array();
-        foreach($rs as $k=>$v){
-            $new_rs[$v['id']] = $v;
-        }
-        return $new_rs;
+		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY  price desc,updated LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
+
+        return $rs;
 	}
 
 

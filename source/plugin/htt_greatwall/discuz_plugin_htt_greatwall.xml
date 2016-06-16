@@ -30,7 +30,7 @@
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
 				<item id="1">
-					<item id="name"><![CDATA[member]]></item>
+					<item id="name"><![CDATA[employee]]></item>
 					<item id="param"><![CDATA[]]></item>
 					<item id="menu"><![CDATA[管理员管理]]></item>
 					<item id="url"><![CDATA[]]></item>
@@ -45,7 +45,7 @@
 				<item id="2">
 					<item id="name"><![CDATA[project]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[活动管理]]></item>
+					<item id="menu"><![CDATA[项目管理]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -55,10 +55,12 @@
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
+				
+				
 				<item id="3">
 					<item id="name"><![CDATA[greatwall_manager]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[活动管理]]></item>
+					<item id="menu"><![CDATA[项目管理]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[15]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -68,6 +70,10 @@
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
+				
+				
+				
+				
 			</item>
 		</item>
 		<item id="version"><![CDATA[X3.2]]></item>
@@ -86,16 +92,13 @@
 		
 		 <item id="language">
 			<item id="templatelang">
-				<item id='qq_tip1'>哈弗亿元红包大派送</item>
-				<item id='project_name'>项目名称</item>
-				<item id='project_info'>开始时间</item>
-				<item id='project_name'>结束时间</item>
-				<item id='status'>状态</item>
-				<item id='status_yes'>启用</item>
-				<item id='status_no'>禁用</item>
+				<item id='name'>哈弗亿元红包大派送</item>
 			</item>
 		
 		</item>
+		
+		<item id="installfile"><![CDATA[install.php]]></item>
+            <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
 		
 		
 		

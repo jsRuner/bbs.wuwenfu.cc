@@ -5,12 +5,12 @@
  * Blog: wuwenfu.cn
  * Date: 2016/6/13
  * Time: 16:42
- * description:
+ * description: 论坛管理员的项目管理。提供 编辑操作。
  *
  *
  */
 
-
+//error_reporting(E_ALL);
 
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
@@ -19,6 +19,9 @@ if(!defined('IN_DISCUZ')) {
 global $_G;
 
 loadcache('plugin');
+
+//include_once 'source/function/function_admincp.php';
+include_once 'source/function/function_core.php';
 
 $plugin_lang = array(
     'name'=>'活动标题',
@@ -77,7 +80,7 @@ switch ($ac){
 
         break;
     case 'edit': //编辑。启用和禁用操作。
-        if(!submitcheck('submit')) {
+        if(!$_GET['submit']) {
 
             $project = C::t('#htt_greatwall#project')->fetch_by_pid($_GET['pid']);
 
@@ -85,19 +88,12 @@ switch ($ac){
             $project['start_date'] = $config['start_date'];
             $project['end_date'] = $config['end_date'];
 
+            include_once template('htt_greatwall:manager_project_edit');
 
 
-            echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
-            showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project&ac=edit&pid='.$_GET['pid'], 'enctype');
-            showtableheader();
-            showsetting('项目名称', 'name', $project['name'], 'text');
-            showsetting('开始时间','start_date', $project['end_date'], 'calendar', '', 0, '', 1);
-            showsetting('结束时间','end_date', $project['end_date'], 'calendar', '', 0, '', 1);
-            showsubmit('submit');
-            showtablefooter();
-            showformfooter();
 
         }else{
+
 
             if(!$_GET['name'] && !$_GET['start_date']&&!$_GET['end_date']) {
                 cpmsg('请填写完整信息', '', 'error');
@@ -114,10 +110,16 @@ switch ($ac){
                 'name'=>$_GET['name'],
                 'config'=>json_encode($config),
                 'updated'=>date('Y-m-d H:i:s'),
+                'status' => $_GET['status'],
             );
 
+
             C::t('#htt_greatwall#project')->update($pid,$insert_array);
-            cpmsg('操作成功', 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project', 'succeed');
+
+//            cpmg('操作成功');
+//            echo 11;
+
+            showmessage('操作成功', '/plugin.php?id=htt_greatwall:manager', 'succeed');
 
         }
 
@@ -126,8 +128,10 @@ switch ($ac){
 
 
 
+
+
         break;
-    default: //显示列表.带分页的。
+    default: //显示主页面
 
         $extra = $search = '';
 
@@ -140,7 +144,21 @@ switch ($ac){
             'nolg03'=>'无记名奖品3选1'
         );
 
-        var_dump($projects);
+        $project_statuss = array(
+            '-1'=>'删除',
+            '0'=>'待审',
+            '1'=>'启用',
+        );
+
+
+        foreach($projects as $key =>$project){
+            $config = json_decode($project['config'],true);
+            $project['start_date'] = $config['start_date'];
+            $project['end_date'] = $config['end_date'];
+            $projects[$key] = $project;
+        }
+
+        include_once template('htt_greatwall:manager_index');
 
 
 

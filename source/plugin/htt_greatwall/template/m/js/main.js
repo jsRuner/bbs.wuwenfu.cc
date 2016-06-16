@@ -22,12 +22,12 @@ $(function(){
             last_x: 0,
             last_y: 0,
             last_z: 0,
-            shake_num: 0,  //æ‘‡çš„æ•°é‡
-            send_status: 0,  //å‘é€æ•°æ®çŠ¶æ€ï¼Œ0æœªå‘é€ï¼Œ1æ­£åœ¨å‘é€ï¼Œ-1åœ
-            draw_num: 0  //æ‘‡çš„æ¬¡æ•° æŠ½å¥–æ¬¡æ•°
+            shake_num: 0,  //Ò¡µÄÊıÁ¿
+            send_status: 0,  //·¢ËÍÊı¾İ×´Ì¬£¬0Î´·¢ËÍ£¬1ÕıÔÚ·¢ËÍ£¬-1Í£
+            draw_num: 0  //Ò¡µÄ´ÎÊı ³é½±´ÎÊı
         },
         getRequest: function () {
-            var url = location.search; //è·å–urlä¸­"?"ç¬¦åçš„å­—ä¸²
+            var url = location.search; //»ñÈ¡urlÖĞ"?"·ûºóµÄ×Ö´®
             var theRequest = new Object();
             if (url.indexOf("?") != -1) {
                 var str = url.substr(1);
@@ -40,7 +40,7 @@ $(function(){
         },
         init: function () {
             this.bindEvent();
-            //è·å–urlå‚æ•°
+            //»ñÈ¡url²ÎÊı
             this.urlParam = this.getRequest();
             this.sendData();
         },
@@ -49,7 +49,7 @@ $(function(){
             if (window.DeviceMotionEvent) {
                 window.addEventListener('devicemotion', that.deviceMotionHandler, false);
             } else {
-                alert('æœ¬è®¾å¤‡ä¸æ”¯æŒdevicemotionäº‹ä»¶');
+                alert('±¾Éè±¸²»Ö§³ÖdevicemotionÊÂ¼ş');
             }
         },
         deviceMotionHandler: function (eventData) {
@@ -64,13 +64,13 @@ $(function(){
                 var speed = Math.abs(shake.config.x + shake.config.y + shake.config.z - shake.config.last_x - shake.config.last_y - shake.config.last_z) / diffTime * 10000;
                 var status = document.getElementById("status");
                 if (speed > shake.config.SHAKE_THRESHOLD) {
-                    // ç´¯åŠ æ‘‡çš„æ¬¡æ•°
+                    // ÀÛ¼ÓÒ¡µÄ´ÎÊı
                     shake.config.shake_num++;
 
                     if (!shake.config.send_status) {
                         shake.config.send_status = 1;
                         setTimeout(shake.sendData, 600);
-                        //å¼€å§‹æ’­æ”¾å£°éŸ³
+                        //¿ªÊ¼²¥·ÅÉùÒô
                     }
                 }
                 shake.config.last_x = shake.config.x;
@@ -78,16 +78,16 @@ $(function(){
                 shake.config.last_z = shake.config.z;
             }
         },
-        isLuck: false, //æ˜¯å¦å·²ä¸­å¥–
+        isLuck: false, //ÊÇ·ñÒÑÖĞ½±
         sendData: function () {
             var that = this;
             var t = new Date().getTime().toString();
             var num = shake.config.shake_num;
             shake.config.shake_num = 0;
             if (num && !shake.isLuck) {
-                //å¦‚æœæ‘‡çš„æ•°é‡å¤§äº0æäº¤æœåŠ¡å™¨
+                //Èç¹ûÒ¡µÄÊıÁ¿´óÓÚ0Ìá½»·şÎñÆ÷
                 if(App.shakeNum <= 0){
-                    //æ‘‡äº†3æ¬¡ï¼Œç¦æ­¢æŠ½å¥–
+                    //Ò¡ÁË3´Î£¬½ûÖ¹³é½±
                     App.prizeResult();
                 }else{
                     App.lottery();
@@ -125,13 +125,13 @@ $(function(){
         init:function(){
             this.orientation();
             initMusic();
-            this.resize();  //åˆå§‹åŒ–é¡µé¢ï¼Œåˆ¤æ–­é¡µé¢é«˜åº¦
-            this.handle();  //æ·»åŠ äº‹ä»¶
+            this.resize();  //³õÊ¼»¯Ò³Ãæ£¬ÅĞ¶ÏÒ³Ãæ¸ß¶È
+            this.handle();  //Ìí¼ÓÊÂ¼ş
             this.addTimeLine();
             FastClick.attach(document.body);
         },
         /*
-         * æ£€æŸ¥æ¥æºï¼Œå¦‚æœæ¥è‡ªå¾®ä¿¡ï¼Œé‚£ä¹ˆç›´æ¥è·³è½¬åˆ°ç¬¬äºŒé¡µï¼Œä¹Ÿå°±æ˜¯é€‰æ‹©è½¦å‹é¡µ
+         * ¼ì²éÀ´Ô´£¬Èç¹ûÀ´×ÔÎ¢ĞÅ£¬ÄÇÃ´Ö±½ÓÌø×ªµ½µÚ¶şÒ³£¬Ò²¾ÍÊÇÑ¡Ôñ³µĞÍÒ³
          * */
         checkAuthor:function(){
             if(pageAuthor == "wx"){
@@ -221,7 +221,7 @@ $(function(){
             pm['set[client]'] = this.browser.isWx ? "wx" : "m";
             $.post(API.URI.savegame, pm, function(d){
                 if(d.status==1){
-                    //alert('ä¿å­˜æˆåŠŸ');
+                    //alert('±£´æ³É¹¦');
                 }else{
                     //showJsTip(d.info);
                 }
@@ -244,26 +244,26 @@ $(function(){
                 success:function(d){
                     _isajaxing=0;
                     if(d.status==1 && d.prize_id>0){
-                        //alert('å¥–å“ID:'+d.prize_id+' å¥–å“æ ‡è®°è‡ªå®šä¹‰['+d.keys+']'+' åˆ¸å·['+d.ticket+']'+'å¥–å“æ—¥å¿—ID:'+d.rid);
+                        //alert('½±Æ·ID:'+d.prize_id+' ½±Æ·±ê¼Ç×Ô¶¨Òå['+d.keys+']'+' È¯ºÅ['+d.ticket+']'+'½±Æ·ÈÕÖ¾ID:'+d.rid);
                         //$("#v-savewin :input[name='rid']").val(d.rid);
                         $(".page_shake").removeClass("noprize").addClass("prizing");
-                        self.prizeArr.push(App.keysMoney[d.keys%10]);  //ä¸­å¥–money
-                        self.prizeKeys.push(d.keys);  //ä¸­å¥–keys
+                        self.prizeArr.push(App.keysMoney[d.keys%10]);  //ÖĞ½±money
+                        self.prizeKeys.push(d.keys);  //ÖĞ½±keys
                         self.prizeLog.push(d.rid);
                         var datas = {money:App.keysMoney[Number(d.keys%10)], prize_id: d.prize_id};
-                        App.setLottery(datas); //å¤„ç†è¿”å›ç»“æœ
+                        App.setLottery(datas); //´¦Àí·µ»Ø½á¹û
                     }else if(d.fg == -202){
                         $(".page_shake").addClass('prized');
                     }else{
-                        self.prizeArrNum.push(0);  //ä¿å­˜å…·ä½“çš„é¢é¢
+                        self.prizeArrNum.push(0);  //±£´æ¾ßÌåµÄÃæ¶î
                         App.setLottery({"prize_id":0});
                     }
                     trackEvent("lottery_num_"+(3-App.shakeNum+1));
                 },
                 error:function(xhr, err, e){
                     if(err == "timeout"){
-                        //è¯·æ±‚è¶…æ—¶
-                        showJsTip("æ‘‡å¥–äººæ•°å¤ªå¤šå•¦ï¼Œè¯·ç¨åé‡è¯•å“¦~", function(){
+                        //ÇëÇó³¬Ê±
+                        showJsTip("Ò¡½±ÈËÊıÌ«¶àÀ²£¬ÇëÉÔºóÖØÊÔÅ¶~", function(){
                             location.reload();
                         });
 
@@ -274,11 +274,11 @@ $(function(){
         },
         setLottery:function(datas){
             App.shakeNum--;
-            var tpl = datas.money > 0 ? "ï¿¥<strong>"+ datas.money +"</strong>" : "<strong>ç³»ç»Ÿç¹å¿™</strong>";
-            $("#shakeNum").text(App.shakeNum);  //è®¾ç½®è¿˜å¯ä»¥æ‘‡å‡ æ¬¡
+            var tpl = datas.money > 0 ? "£¤<strong>"+ datas.money +"</strong>" : "<strong>ÏµÍ³·±Ã¦</strong>";
+            $("#shakeNum").text(App.shakeNum);  //ÉèÖÃ»¹¿ÉÒÔÒ¡¼¸´Î
             if(datas.prize_id >0){
                 $("#resultMoney").html(tpl);
-                $("#titleMoney").html(datas.money+"å…ƒ");
+                $("#titleMoney").html(datas.money+"Ôª");
                 TweenMax.to('.shake_img',.3, { alpha:0, onComplete:function(){}});
                 TweenMax.set('.prize_txt', { scale:0});
                 TweenMax.to('.prize_txt',.5, { scale:1, onComplete:function(){ }});
@@ -297,7 +297,7 @@ $(function(){
             }
 
         },
-        //å»å¾€é€‰æ‹©è½¦å‹é¡µ
+        //È¥ÍùÑ¡Ôñ³µĞÍÒ³
         goCarPageCallback:function(){
             TweenMax.to(App.pages.car.find(".bg"), 4, {scale:1.3, ease:Linear.easeNone});
             $(".btn_h6, .btn_h7").on(touchstart,function(){
@@ -305,13 +305,13 @@ $(function(){
                 if(App.selectedCar == "hf6"){
                     $("#v-car")[0].selectedIndex = 1;
                     $("#v-car").change();
-                    $("#car_hidden").val("å“ˆå¼—H6Coupe1.5T");
+                    $("#car_hidden").val("¹ş¸¥H6Coupe1.5T");
                 }else{
-                    $("#car_hidden").val("å“ˆå¼—H7");
+                    $("#car_hidden").val("¹ş¸¥H7");
                 }
-                //å»å¾€æ‘‡å¥–é¡µ
+                //È¥ÍùÒ¡½±Ò³
                 //API.DATA.remain = "00000000";
-                $("#shengyuH").text(API.DATA.remain);   //æ˜¾ç¤ºå‰©ä½™çº¢åŒ…
+                $("#shengyuH").text(API.DATA.remain);   //ÏÔÊ¾Ê£Óàºì°ü
                 //$("#shakeNum").text(0);
                 App.movePage(App.pages.car, App.pages.shake, function(){
                     App.goShakePageCallback();
@@ -322,24 +322,24 @@ $(function(){
             trackEvent("page_car-PV");
 
         },
-        //å»å¾€æ‘‡ä¸€æ‘‡é¡µé¢
+        //È¥ÍùÒ¡Ò»Ò¡Ò³Ãæ
         //
         goShakePageCallback:function(){
             TweenMax.to(App.pages.shake.find(".bg"), 4, {scale:1.3, ease:Linear.easeNone});
-            /*			showJsTip(actOverTxt||"æ´»åŠ¨ç»“æŸï¼Œè¯·å°½å¿«åˆ°åº—ä½¿ç”¨çº¢åŒ…ï¼", function(){
+            /*			showJsTip(actOverTxt||"»î¶¯½áÊø£¬Çë¾¡¿ìµ½µêÊ¹ÓÃºì°ü£¡", function(){
              location.reload();
              });*/
             shake.init();
             trackEvent("page_shake-PV");
         },
-        //ä¸‰æ¬¡æ‘‡å¥–ç»“æŸ
+        //Èı´ÎÒ¡½±½áÊø
         prizeResult:function(){
             shake.config.send_status = 1;
             trackEvent("lottery_end");
             var noprize = 0;
             $(".jp_ban p").each(function(i){
                 if(App.prizeArr[i] > 0){
-                    var tpl = "ï¿¥<strong>"+App.prizeArr[i] +"</strong>";
+                    var tpl = "£¤<strong>"+App.prizeArr[i] +"</strong>";
                 }else{
                     $(this).parent().addClass("noprize");
                     var tpl = "";
@@ -366,7 +366,7 @@ $(function(){
             });
             trackEvent("page_prize-PV");
         },
-        //å»å¾€è¡¨å•é¡µ
+        //È¥Íù±íµ¥Ò³
         goFormPageCallback:function(){
             $(".btn_submit").on(touchstart,function(){
                 App.saveuser();
@@ -377,7 +377,7 @@ $(function(){
             });
             trackEvent("page_form-PV");
         },
-        //å»å¾€æœ€ç»ˆé¡µ
+        //È¥Íù×îÖÕÒ³
         goDonePageCallback:function(txt){
             $("#doneMoney").text(this.selectedMoney);
             $("#ticket_txt").text(txt);
@@ -386,30 +386,30 @@ $(function(){
             });
             trackEvent("page_done-PV");
         },
-        //æäº¤ç”¨æˆ·ä¿¡æ¯
+        //Ìá½»ÓÃ»§ĞÅÏ¢
         saveuser:function(){
             if($("#v-savewin :input[name='name']").val()==""){
-                showJsTip("è¯·è¾“å…¥æ‚¨çš„å§“å");
+                showJsTip("ÇëÊäÈëÄúµÄĞÕÃû");
                 return;
             }
             var mobile = $("#v-savewin :input[name='mobile']").val();
             if(mobile==""||mobile.length!=11){
-                showJsTip("è¯·è¾“å…¥æ‚¨çš„æ‰‹æœº");
+                showJsTip("ÇëÊäÈëÄúµÄÊÖ»ú");
                 return;
             }
             var province = $('#v-province option:selected').val();
             var city = $('#v-city option:selected').val();
             var dealer = $('#v-dealer option:selected').val();
             if(province == ""){
-                showJsTip("è¯·é€‰æ‹©çœä»½");
+                showJsTip("ÇëÑ¡ÔñÊ¡·İ");
                 return;
             }
             if(city == ""){
-                showJsTip("è¯·é€‰æ‹©å¸‚");
+                showJsTip("ÇëÑ¡ÔñÊĞ");
                 return;
             }
             if(dealer == ""){
-                showJsTip("è¯·é€‰æ‹©é—¨åº—");
+                showJsTip("ÇëÑ¡ÔñÃÅµê");
                 return;
             }
             var pm = $("#v-savewin").serialize();
@@ -421,14 +421,14 @@ $(function(){
                     if(d.rid > 0){
                         $.get(API.URI.sendsms, {id:d.rid},function(d){});
                     }
-                    //æˆåŠŸç”¨æˆ·ä¿¡æ¯
+                    //³É¹¦ÓÃ»§ĞÅÏ¢
                     App.goDonePageCallback(d.ticket || "XX");
                     trackEvent("submit_ok"+d.ticket);
                     /*showJsTip(d.info, function(){
                      location.reload();
                      });*/
                 }else{
-                    //å¼‚å¸¸å¤„ç†
+                    //Òì³£´¦Àí
                     //App.goDonePageCallback();
                     showJsTip(d.info);
                 }
@@ -498,8 +498,8 @@ $(function(){
             loader.loadManifest(manifest);
         }
     };
-    var musicPath = 'source/plugin/htt_greatwall/template/m/images/bg.mp3';//æ˜¯å¦å«æœ‰èƒŒæ™¯éŸ³ä¹ï¼Œæœ‰å°±ä¼ è·¯å¾„ï¼Œæ²¡æœ‰å°±ä¸º'';
-//åˆå§‹åŒ–éŸ³ä¹ï¼Œå¦‚æœmusicPath=''ï¼Œç›¸å½“äºä»€ä¹ˆéƒ½æ²¡åš
+    var musicPath = 'source/plugin/htt_greatwall/template/m/images/bg.mp3';//ÊÇ·ñº¬ÓĞ±³¾°ÒôÀÖ£¬ÓĞ¾Í´«Â·¾¶£¬Ã»ÓĞ¾ÍÎª'';
+//³õÊ¼»¯ÒôÀÖ£¬Èç¹ûmusicPath=''£¬Ïàµ±ÓÚÊ²Ã´¶¼Ã»×ö
     function initMusic(){
         if(musicPath!=''){
             $('body').append('<div class="musicicon musicrotate"></div><audio id="media" loop preload="preload" src="'+musicPath+'"></audio>');
@@ -515,9 +515,9 @@ $(function(){
             })
         }
     }
-//è€å¿ƒç­‰å¾…å‡½æ•° é˜²æ­¢å¤šæ¬¡é‡å¤æäº¤
+//ÄÍĞÄµÈ´ıº¯Êı ·ÀÖ¹¶à´ÎÖØ¸´Ìá½»
     function showJsWait(){
-        showJsTip('æäº¤ä¸­ï¼Œè¯·ç­‰å¾…å“¦~');
+        showJsTip('Ìá½»ÖĞ£¬ÇëµÈ´ıÅ¶~');
     }
     function showJsTip(str){
         alert(str);
@@ -541,6 +541,6 @@ $(function(){
         });
     }
 
-    //åˆå§‹åŒ–åª’ä½“æ¥æº
+    //³õÊ¼»¯Ã½ÌåÀ´Ô´
     $("#v-savewin :input[name='ext[media]']").val( getParam('media') );
 });

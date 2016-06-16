@@ -8,7 +8,7 @@
 		<item id="plugin">
 			<item id="available"><![CDATA[1]]></item>
 			<item id="adminid"><![CDATA[0]]></item>
-			<item id="name"><![CDATA[北岸直播]]></item>
+			<item id="name"><![CDATA[鍖楀哺鐩存挱]]></item>
 			<item id="identifier"><![CDATA[htt_tv]]></item>
 			<item id="description"><![CDATA[]]></item>
 			<item id="datatables"><![CDATA[]]></item>
@@ -19,7 +19,7 @@
 				<item id="0">
 					<item id="name"><![CDATA[htttv]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[网络电视]]></item>
+					<item id="menu"><![CDATA[缃戠粶鐢佃]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[1]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -35,20 +35,20 @@
 		<item id="var">
 			<item id="0">
 				<item id="displayorder"><![CDATA[0]]></item>
-				<item id="title"><![CDATA[电台名称]]></item>
-				<item id="description"><![CDATA[会显示在电视上方]]></item>
+				<item id="title"><![CDATA[鐢靛彴鍚嶇О]]></item>
+				<item id="description"><![CDATA[浼氭樉绀哄湪鐢佃涓婃柟]]></item>
 				<item id="variable"><![CDATA[tv_name]]></item>
 				<item id="type"><![CDATA[text]]></item>
-				<item id="value"><![CDATA[北岸电视台]]></item>
+				<item id="value"><![CDATA[鍖楀哺鐢佃鍙癩]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			<item id="1">
 				<item id="displayorder"><![CDATA[1]]></item>
-				<item id="title"><![CDATA[头部通知]]></item>
-				<item id="description"><![CDATA[电视上方，红色显示。]]></item>
+				<item id="title"><![CDATA[澶撮儴閫氱煡]]></item>
+				<item id="description"><![CDATA[鐢佃涓婃柟锛岀孩鑹叉樉绀恒�俔]></item>
 				<item id="variable"><![CDATA[tv_msg]]></item>
 				<item id="type"><![CDATA[textarea]]></item>
-				<item id="value"><![CDATA[北岸电视台上线了]]></item>
+				<item id="value"><![CDATA[鍖楀哺鐢佃鍙颁笂绾夸簡]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 		</item>

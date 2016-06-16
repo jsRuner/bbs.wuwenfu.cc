@@ -22,6 +22,14 @@ function checkWindow(){
 }
 var change = function(){
     $('.con-st-page1 img').click(function(){
+
+        //如果没有登录，则提示。
+        if(API.DATA.LG_USER.id <=0){
+            alert('请先去登录');
+            return;
+        }
+
+
         gamesatrt();
         $('#page1').fadeOut();
         $('#page3').show();
@@ -35,6 +43,11 @@ var change = function(){
     });
     //点击开始
     $('.con-st-page2 img').click(function(){
+        //如果没有登录，则提示。
+        if(API.DATA.LG_USER.id <=0){
+            alert('请先去登录');
+            return;
+        }
         gamesatrt();
         $('#page2').fadeOut();
         $('#page3').fadeIn();

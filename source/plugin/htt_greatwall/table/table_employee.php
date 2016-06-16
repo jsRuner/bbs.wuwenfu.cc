@@ -10,18 +10,18 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-class table_project extends discuz_table
+class table_employee extends discuz_table
 {
 	public function __construct() {
 
-		$this->_table = 'greatwall_project';
+		$this->_table = 'greatwall_employee';
 		$this->_pk    = 'id';
 
 		parent::__construct();
 	}
 
-	public function fetch_by_pid($pid) {
-		$rs = DB::fetch_all("SELECT * FROM %t WHERE id=%d", array($this->_table, $pid));
+	public function fetch_by_eid($eid) {
+		$rs = DB::fetch_all("SELECT * FROM %t WHERE id=%d", array($this->_table, $eid));
         return $rs[0];
 
 	}

@@ -186,7 +186,7 @@ $tid = 0; //设置默认值
 
 $lasttid = 0; //上一次的tid.
 
-$fist = 0;
+$first = 0;
 
 
 foreach ($articles as $article) {

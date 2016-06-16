@@ -42,7 +42,7 @@ var fid = parseInt('$_G[fid]');
 								<a href="forum.php?mod=post&action=newthread&fid=$_G[fid]" onclick="switchAdvanceMode(this.href);doane(event);">{lang post_advancemode}</a>
 							</span>
 							<!--{eval $seditor = array('fastpost', array('at', 'bold', 'color', 'img', 'link', 'quote', 'code', 'smilies'), !$allowfastpost ? 1 : 0, $allowpostattach && $allowfastpost ? '<span class="pipe z">|</span><span id="spanButtonPlaceholder">'.lang('template', 'upload').'</span>' : '');}-->
-							<!--{hook/forumdisplay_fastpost_ctrl_extra}-->
+                            <!--{hook/forumdisplay_fastpost_ctrl_extra}-->
 							<!--{subtemplate common/seditor}-->
 						</div>
 						<div class="area">

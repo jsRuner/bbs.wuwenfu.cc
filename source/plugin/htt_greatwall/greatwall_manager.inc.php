@@ -1,17 +1,13 @@
 <?php
 
 /**
- * 活动管理。论坛管理员负责。
- *
+ * 活动管理。admin负责。
  *
  *
  */
-if(!defined('IN_DISCUZ')) {
-	exit('Access Denied');
-}
 
-
-
+$url = "/plugin.php?id=htt_greatwall:manager";
+Header("Location: $url");
 
 
 ?>

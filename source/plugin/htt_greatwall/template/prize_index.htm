@@ -1,0 +1,200 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <title>北京现代活动平台 </title>
+    <meta name="keywords" content="北京现代活动平台 ">
+    <meta name="description" content="北京现代活动平台 ">
+    <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/css/style.css">
+    <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/jqueryui/jquery-ui.min.css">
+    <script type="text/javascript"
+            src="source/plugin/htt_greatwall/template/manager/Public/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript"
+            src="source/plugin/htt_greatwall/template/manager/Public/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript"
+            src="source/plugin/htt_greatwall/template/manager/Public/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="source/plugin/htt_greatwall/template/manager/Public/js/component.js"></script>
+    <script type="text/javascript" src="source/plugin/htt_greatwall/template/manager/Public/js/main.js"></script>
+</head>
+<body>
+
+<div class="header top-bar">
+    <span>您好,app1016<a href="/app/Manage/Public/logout.html" target="_TOP">[退出]</a></span>
+
+    <div class="logo">北京现代活动平台- 【哈弗亿元红包大放送】</div>
+    <!--a href="/greatwall" target="_blank"><img src="source/plugin/htt_greatwall/template/manager/Public/images/store_08.jpg" width="107" height="27" class="goWeb" /></a-->
+</div>
+
+<div class="containe">
+    <div class="shadow">&nbsp;</div>
+    <div class="sidebar">
+        <div class="current">
+            <h3 class="icon1"><a href="javascript:;">活动管理</a></h3>
+            <ul>
+                <li ><a href="plugin.php?id=htt_greatwall:manager"><span>项目管理</span></a></li>
+                <li class="current"><a href="plugin.php?id=htt_greatwall:prize"><span>奖品管理</span></a></li>
+                <li><a href="plugin.php?id=htt_greatwall:prize_log"><span>中奖列表</span></a></li>
+                <li><a href="plugin.php?id=htt_greatwall:manager"><span>游戏记录</span></a></li>
+                <!--<li><a href="plugin.php?id=htt_greatwall:manager"><span>使用券列表</span></a></li>-->
+                <!--<li><a href="plugin.php?id=htt_greatwall:manager"><span>限制IP列表</span></a></li>-->
+            </ul>
+        </div>
+        <div class="">
+            <h3 class="icon5"><a href="javascript:;">系统设置</a></h3>
+            <ul>
+                <li><a href="plugin.php?id=htt_greatwall:manager"><span>修改密码</span></a></li>
+            </ul>
+        </div><!--
+<em class="onOff">
+	<a href="javascritp:;" class="on">收起</a>
+</em>
+-->
+        <script>
+            $(function () {
+                $(".sidebar > div").click(function () {
+                    $(this).addClass("current").siblings().removeClass("current");
+                });
+                $(".sidebar > li").click(function () {
+                    if ($(this).hasClass("current")) return false;
+                    $(this).addClass("current").siblings().removeClass("current");
+                    return false;
+                });
+
+            });
+        </script>
+    </div>
+
+
+
+    <div class="content" id="workground">
+        <div id="headBar"><div id="finder-header" class="finder-header" entity_type_id="1001" model="Prize">
+            <h1 class="title">
+                <form id="finder-search" field_type="varchar" current_key="" style="display:none;">
+                    <fieldset class="TitleSearch"><label></label>
+                        <input type="text" class="searchItem searchtxt">
+                        <input type="submit" value="搜索" class="searchBtn">
+                    </fieldset>
+                </form>
+
+                <strong class="icon_2">
+                    奖品
+                </strong>
+                <a href="plugin.php?id=htt_greatwall:prize&ac=add" class="addIcon savecondition">[新增]</a>
+                <!--<a href="/app/Manage/Prize/mark/status/0.html" confirm="确定停用选中项？" class="delIcon savecondition">[停用]</a>
+                <a href="/app/Manage/Prize/mark/status/1.html" confirm="确定启用选中项？" class="delIcon savecondition">[启用]</a>-->
+            </h1>
+        </div><form name="finder-form" id="finder-form" method="post" action="/app/Manage/Prize/index.html">
+            <div class="finder-filter clearfix" id="finder-filter" style="display:none;">
+                <strong>当前过滤条件(<span class="lnk">清除</span>)</strong>
+                <ul class="finder-filter-info">
+                    <li class="ffitpl">
+                        <span>root</span><img src="/app/Application/Manage/View/Public/images/blank.gif" class="ico_s ico_del_s">
+                        <input type="hidden" name="dummyInput">
+                    </li>
+                </ul>
+            </div>
+            <input name="listRows" type="hidden">
+            <input name="orderBy" type="hidden" value="id">
+            <input name="orderType" type="hidden" value="desc">
+        </form><div class="filter-tip" id="finder-tip" count="3">
+            <i class="selected">您当前选定了<em>0</em>条记录，<strong onclick="$.unselectAll()" style="cursor:pointer">点此取消选定</strong>。<strong onclick="$.selectAll()" style="cursor:pointer">点此选定全部</strong>的							<span class=".totals">3</span>条记录</i>
+            <i class="selectedall">您当前选定了全部的<span class=".totals">3</span>条记录，<strong onclick="$.unselectAll()" style="cursor:pointer">点此取消选定</strong>全部记录</i>
+        </div></div>
+        <div id="main" >
+
+
+            <div class="data_grid" id="finder-list">
+                <table width="100%">
+                    <thead>
+                    <tr>
+                        <!--<th width="40"><input type="checkbox" class="sellist"></th>-->
+                        <th width="80">操作</th>
+                        <th>名称</th>
+                        <!--<th>标记</th>-->
+                        <th>总量</th>
+                        <!--<th>已送出</th>-->
+                        <th>中奖率(百分率)</th>
+                        <!--<th>限定分数</th>-->
+                        <!--<th>关联批次</th>-->
+                        <th width="80">状态</th>
+                        <th width="170">更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                  <!--  <tr class="" item-id="25">
+                        <td>
+                            <input type="checkbox" name="data_id[]" value="25">
+                        </td>
+                        <td>
+                            <a class="bianj savecondition" href="/app/Manage/Prize/edit/id/25.html" title="编辑"></a>
+                        </td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>20</td>
+                        <td>0</td>
+                        <td>40</td>
+                        <td>0</td>
+                        <td>YYYQ</td>
+                        <td><font style="color:green">启用</font></td>
+                        <td>2016-04-21 10:59:48</td>
+                    </tr>
+-->
+
+
+                    <!--{loop $prizes $prize}-->
+
+
+
+                    <tr class="" item-id="25">
+                       <!-- <td>
+                            <input type="checkbox" name="data_id[]" value="25">
+                        </td>-->
+                        <td>
+                            <a class="bianj savecondition" href="plugin.php?id=htt_greatwall:prize&ac=edit&pid={$prize['id']}" title="编辑"></a>
+                            <!--<a class="bianj savecondition" href="plugin.php?id=htt_greatwall:prize&ac=enabled&pid={$prize['id']}" title="禁用"></a>-->
+                            <!--<a class="bianj savecondition" href="plugin.php?id=htt_greatwall:prize&ac=disable&pid={$prize['id']}" title="启用"></a>-->
+                            <a href="plugin.php?id=htt_greatwall:prize&ac=disable&pid={$prize['id']}"  >[禁用]</a>
+                            <a href="plugin.php?id=htt_greatwall:prize&ac=enabled&pid={$prize['id']}"  >[启用]</a>
+                        </td>
+                        <td>{$prize['name']}</td>
+                        <td>{$prize['prizes_nums']}</td>
+                        <td>{$prize['probability']}</td>
+                        <td><font style="color:green">$prize_statuss[$prize['status']]</font></td>
+                        <td>{$prize['updated']}</td>
+                    </tr>
+
+
+                    <!--{/loop}-->
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <script>
+                $(function(){
+                    $.finder({ model: 'Prize', enforce: '' });
+                });
+            </script></div>
+        <div id="footBar"><div class="foot_action page_nav" id="finder-footer">
+            <div class="page_num"></div>
+            <div class="page_total">3 条记录 1/1 页</div>
+        </div></div>
+    </div>
+    </div>
+
+<div class="footer">
+    <img src="/app/Application/Manage/View/Public/images/store_62.jpg" width="163" height="35"><p>Copyright 2014 好耶集团</p>
+</div>
+
+
+    <div id="mask" style="display: none;"></div>
+    <div id="cover"></div>
+    <div id="loading" style="display: none;"><span> 正在加载... </span></div>
+
+
+</body>
+</html>

@@ -49,13 +49,14 @@
 </em>
 -->
         <script>
-            $(function () {
-                $(".sidebar > div").click(function () {
-                    $(this).addClass("current").siblings().removeClass("current");
+            var jq = jQuery;
+            jq(function () {
+                jq(".sidebar > div").click(function () {
+                    jq(this).addClass("current").siblings().removeClass("current");
                 });
-                $(".sidebar > li").click(function () {
-                    if ($(this).hasClass("current")) return false;
-                    $(this).addClass("current").siblings().removeClass("current");
+                jq(".sidebar > li").click(function () {
+                    if (jq(this).hasClass("current")) return false;
+                    jq(this).addClass("current").siblings().removeClass("current");
                     return false;
                 });
 
@@ -65,95 +66,143 @@
 
     <div class="content" id="workground">
         <div id="headBar">
-            <div id="finder-header" class="finder-header" entity_type_id="" model="Project">
-                <h1 class="title">
-                    <form id="finder-search" field_type="varchar" current_key="" style="display:none;">
-                        <fieldset class="TitleSearch"><label></label>
-                            <input type="text" class="searchItem searchtxt">
-                            <input type="submit" value="搜索" class="searchBtn">
-                        </fieldset>
-                    </form>
-
-                    <strong class="icon_2">
-                        项目
-                    </strong>
-                </h1>
             </div>
 
 
-            <div id="main" style="height: 197px;">
+            <div id="main" ><h1 class="title">
+                <strong class="icon_1">项目
+                    修改
+                </strong>
+            </h1>
+                <form class="tableform" method="post" action="plugin.php?id=htt_greatwall:manager&ac=edit&pid={$_GET['pid']}" id="frmEdit">
 
+                    <div class="detail_form">
+                        <div class="table">
+                            <table>
+                                <tbody><tr>
+                                    <th>*名称</th>
+                                    <td><input class="w1" type="text" value="{$project['name']}" name="name" vtype="required"></td>
+                                </tr>
+                                <tr>
+                                    <th>*类型</th>
+                                    <td><select name="project_type" vtype="required">
+                                        <option value="nolg03" selected="">无记名奖品3选1</option>                    	</select></td>
+                                </tr>
+                                <tr>
+                                    <th>*活动开始日期</th>
+                                    <td><input class="v-date" type="text" value="{$project['start_date']}" name="start_date" title="活动开始后，不可清空数据" vtype="required" readonly="" ></td>
+                                </tr>
+                                <tr>
+                                    <th>活动结束日期</th>
+                                    <td><input class="v-date" type="text" value="{$project['end_date']}" name="end_date" title="按日期零点算" ></td>
+                                </tr>
+                               <!-- <tr>
+                                    <th>活动地址</th>
+                                    <td><input class="w1" type="text" value="" name="cfg[weburl]" title="活动地址，测试和记录用"></td>
+                                </tr>
+                                <tr>
+                                    <th>是否开启奖品分数限定</th>
+                                    <td>
+                                        <select name="cfg[pointlimit]" class="sel">
+                                            <option value="0" selected="">禁用</option>
+                                            <option value="1">启用</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>是否开启用户获取唯一奖品限定</th>
+                                    <td>
+                                        <select name="cfg[prizeonlyone]" class="sel">
+                                            <option value="0" selected="">禁用</option>
+                                            <option value="1">启用</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>是否开启IP限定</th>
+                                    <td>
+                                        <select name="cfg[iplimit]" class="sel">
+                                            <option value="0" selected="">禁用</option>
+                                            <option value="1">启用</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>游戏额外记录信息</th>
+                                    <td>
+                                        <div class="v-fcw-warp">
+                                        </div>
+                                        <button type="button" id="v-fcw-add">添加</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>中奖额外记录信息</th>
+                                    <td>
+                                        <div class="v-plog-warp">
+                                            <div class="v-plog">
+                                                标记<input type="text" name="cfg[plogfield][k][]" value="client" class="w1" style="width:100px;" vtype="required">
+                                                描述<input type="text" name="cfg[plogfield][v][]" value="来自" class="w1" style="width:100px;" vtype="required">
+                                                <button type="button" class="v-plog-del">删除</button>
+                                            </div><div class="v-plog">
+                                            标记<input type="text" name="cfg[plogfield][k][]" value="media" class="w1" style="width:100px;" vtype="required">
+                                            描述<input type="text" name="cfg[plogfield][v][]" value="媒体" class="w1" style="width:100px;" vtype="required">
+                                            <button type="button" class="v-plog-del">删除</button>
+                                        </div>                        </div>
+                                        <button type="button" id="v-plog-add">添加</button>
+                                    </td>
+                                </tr>-->
+                                <tr>
+                                    <th>状态</th>
+                                    <td>
+                                        <select name="status" class="sel">
+                                            <option value="1" <!--{if $project['status'] == 1 }-->selected<!--{/if}--> >启用</option>
+                                            <option value="0" <!--{if $project['status'] == 0 }-->selected<!--{/if}--> >待审</option>
+                                            <option value="-1" <!--{if $project['status'] == -1 }-->selected<!--{/if}--> >删除</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                    </div>
 
-                <div class="data_grid" id="finder-list">
-                    <table width="100%">
-                        <thead>
-                        <tr>
-                            <th width="40"><input type="checkbox" class="sellist"></th>
-                            <th width="180">操作</th>
-                            <th>名称</th>
-                            <th>类型</th>
-                            <th>开始时间</th>
-                            <th>结束时间</th>
-                            <th width="80">状态</th>
-                            <th width="170">更新时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!-- <tr class="" item-id="1016">
-                             <td>
-                                 <input type="checkbox" name="data_id[]" value="1016">
-                             </td>
-                             <td>
-                                 <a class="bianj savecondition" href="/app/Manage/Project/edit/id/1016.html" title="编辑"></a>
-                                 <a class="savecondition" href="/app/Manage/Employee/edit/project_id/1016.html" title="创建管理员">管理员</a>
-                             </td>
-                             <td>哈弗亿元红包大放送</td>
-                             <td>无记名奖品3选1</td>
-                             <td>2016-04-19 </td>
-                             <td>2016-06-30</td>
-                             <td><font style="color:green">启用</font></td>
-                             <td>2016-06-08 23:20:15</td>
-                         </tr>   -->
-
-                        <!--{loop $projects $project}-->
-
-                        <tr class="" item-id="1016">
-                            <td>
-                                <input type="checkbox" name="data_id[]" value="1016">
-                            </td>
-                            <td>
-                                <a class="bianj savecondition" href="/app/Manage/Project/edit/id/1016.html"
-                                   title="编辑"></a>
-                                <!--<a class="savecondition" href="/app/Manage/Employee/edit/project_id/1016.html"-->
-                                   <!--title="创建管理员">管理员</a>-->
-                            </td>
-                            <td>{$project['name']}</td>
-                            <td>{$project_types[$project['project_type']]}</td>
-                            <td>{$project['start_date']}</td>
-                            <td>{$project['end_date']}</td>
-                            <td><font style="color:green">启用</font></td>
-                            <td>{$project['updated']}</td>
-                        </tr>
-
-
-                        <!--{/loop}-->
-
-
-                        </tbody>
-                    </table>
+                <div class="editBtnBox">
+                    <input type="submit" class="blueSmallBtn" id="submit_submit" name="submit" title="按 Enter 键可随时提交您的修改" value="提交">
+                    <!--<a href="javascript:$('#frmEdit').submit();" class="blueSmallBtn" onclick="">保 存</a>-->
+                    <a href="plugin.php?id=htt_greatwall:manager" class="whiteBtn usecondition">取 消</a>
                 </div>
+                </form>
 
-                <script>
-                    $(function () {
-                        $.finder({model: 'Project', enforce: ''});
+
+
+                <script type="text/javascript">
+
+                    jq(function(){
+                       /* $("#v-fcw-add").click(function(){
+                            var p=$(".v-fcw-warp");
+                            p.append($(".v-fcw-def").html());
+                        });
+                        $(".v-fcw-warp").delegate(".v-fcw-del","click",function(){
+                            $(this).parent(".v-fcw").remove();
+                        });
+                        $("#v-plog-add").click(function(){
+                            var p=$(".v-plog-warp");
+                            p.append($(".v-plog-def").html());
+                        });
+                        $(".v-plog-warp").delegate(".v-plog-del","click",function(){
+                            $(this).parent(".v-plog").remove();
+                        });*/
+
+                        console.log(1);
+                        console.log(jq);
+                        console.log(jq('#frmEdit'));
+
+                        jq("#frmEdit .v-date").datepicker({dateFormat: 'yy-mm-dd'});
                     });
-                </script>
-            </div>
+                </script></div>
+
+
+
             <div id="footBar">
-                <div class="foot_action page_nav" id="finder-footer">
-                    <div class="page_num"></div>
-                    <div class="page_total">1 条记录 1/1 页</div>
-                </div>
             </div>
         </div>
     </div>
@@ -162,6 +211,9 @@
     <div id="mask" style="display: none;"></div>
     <div id="cover"></div>
     <div id="loading" style="display: none;"><span> 正在加载... </span></div>
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="position: absolute; top: 77px; left: 397px; z-index: 1; display: none;"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="<上月"><span class="ui-icon ui-icon-circle-triangle-w">&lt;上月</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="下月>"><span class="ui-icon ui-icon-circle-triangle-e">下月&gt;</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-year">2016</span>年&nbsp;<span class="ui-datepicker-month">六月</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th><span title="星期一">一</span></th><th><span title="星期二">二</span></th><th><span title="星期三">三</span></th><th><span title="星期四">四</span></th><th><span title="星期五">五</span></th><th class="ui-datepicker-week-end"><span title="星期六">六</span></th><th class="ui-datepicker-week-end"><span title="星期日">日</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">1</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">2</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">3</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">4</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">5</a></td></tr><tr><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">6</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">7</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">8</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">9</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">10</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">11</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">12</a></td></tr><tr><td class="  ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default ui-state-highlight" href="#">13</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">14</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">15</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">16</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">17</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">18</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">19</a></td></tr><tr><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">20</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">21</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">22</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">23</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">24</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">25</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">26</a></td></tr><tr><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">27</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">28</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default" href="#">29</a></td><td class="  ui-datepicker-current-day" data-handler="selectDay" data-event="click" data-month="5" data-year="2016"><a class="ui-state-default ui-state-active" href="#">30</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td></tr></tbody></table></div>
 
 
 </body>

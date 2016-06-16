@@ -40,6 +40,7 @@ $modcachelist = array(
 
 $mod = !in_array(C::app()->var['mod'], $modarray) ? 'index' : C::app()->var['mod'];
 
+
 define('CURMODULE', $mod);
 $cachelist = array();
 if(isset($modcachelist[CURMODULE])) {

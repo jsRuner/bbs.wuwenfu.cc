@@ -10,7 +10,7 @@
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
-class plugin_htt_qsbk {
+class plugin_htt_toutiao {
     //TODO - Insert your code here
 
 

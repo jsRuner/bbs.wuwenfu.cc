@@ -14,9 +14,8 @@
             <item id="datatables"><![CDATA[]]></item>
             <item id="directory"><![CDATA[htt_qsbk/]]></item>
             <item id="copyright"><![CDATA[吴文付]]></item>
-            <item id="version"><![CDATA[2.0]]></item>
+            <item id="version"><![CDATA[2.1]]></item>
             <item id="__modules">
-			
                 <item id="0">
                     <item id="name"><![CDATA[htt_qsbk]]></item>
                     <item id="displayorder"><![CDATA[0]]></item>
@@ -29,17 +28,9 @@
                     <item id="navsubname"><![CDATA[]]></item>
                     <item id="navsuburl"><![CDATA[]]></item>
                 </item>
-				
-
-               
-				
-				
-				
-
             </item>
         </item>
         <item id="version"><![CDATA[X3.2]]></item>
-
         <item id="var">
             <item id="0">
                 <item id="displayorder"><![CDATA[0]]></item>
@@ -50,7 +41,6 @@
                 <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
 			<item id="1">
                 <item id="displayorder"><![CDATA[1]]></item>
                 <item id="title"><![CDATA[用户id]]></item>
@@ -60,7 +50,6 @@
                 <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
 			<item id="2">
                 <item id="displayorder"><![CDATA[2]]></item>
                 <item id="title"><![CDATA[用户组]]></item>
@@ -70,10 +59,6 @@
                 <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
-			
-			
-			
 			<item id="3">
                 <item id="displayorder"><![CDATA[3]]></item>
                 <item id="title"><![CDATA[数量]]></item>
@@ -83,11 +68,6 @@
                 <item id="value"><![CDATA[20]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
-			
-			
-			
-
             <item id="4">
                 <item id="displayorder"><![CDATA[4]]></item>
                 <item id="title"><![CDATA[编码设置]]></item>
@@ -97,11 +77,7 @@
                 <item id="value"><![CDATA[2]]></item>
                 <item id="extra"><![CDATA[1=utf-8
 2=gbk]]></item>
-
-
         </item>
-		
-		
 <item id="5">
                 <item id="displayorder"><![CDATA[5]]></item>
                 <item id="title"><![CDATA[采集模式]]></item>
@@ -113,8 +89,6 @@
 				2=纯图
 				3=随机]]></item>
 </item>
-
-
 <item id="7">
                 <item id="displayorder"><![CDATA[7]]></item>
                 <item id="title"><![CDATA[审核设置]]></item>
@@ -124,11 +98,7 @@
                 <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[1=不审核
 2=审核]]></item>
-
-
             </item>
-			
-			
 			<item id="8">
                 <item id="displayorder"><![CDATA[8]]></item>
                 <item id="title"><![CDATA[标题最大长度]]></item>
@@ -138,7 +108,6 @@
                 <item id="value"><![CDATA[20]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
 			<item id="9">
                 <item id="displayorder"><![CDATA[9]]></item>
                 <item id="title"><![CDATA[默认标题]]></item>
@@ -148,8 +117,6 @@
                 <item id="value"><![CDATA[糗事笑话]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-			
-			
 			<item id="10">
                 <item id="displayorder"><![CDATA[10]]></item>
                 <item id="title"><![CDATA[发帖模式]]></item>
@@ -160,68 +127,23 @@
                 <item id="extra"><![CDATA[1=单独发帖
 				2=汇总发帖]]></item>
             </item>
-			
-			
-			
-			
-			
 			</item>
-		
-		
-		
 		<item id="language">
 			<item id="scriptlang">
 				<item id="error_setting_fid"><![CDATA[插件设置错误:版块未设置]]></item>
 				<item id="error_setting_uid"><![CDATA[插件设置错误:用户未设置]]></item>
-				
 				<item id="error_setting_imgpath"><![CDATA[插件设置错误:图片路径不存在或者不可写]]></item>
-				
-				
 				<item id="error_setting_threads"><![CDATA[插件设置错误:采集数量超出(0-20)范围]]></item>
-				
-				
 				<item id="error_curl"><![CDATA[插件工作需要curl模块]]></item>
-				
 				<item id="info_cronname"><![CDATA[每日糗事采集计划]]></item>
-				
-				
-				
-				
-				
 			</item>
-			
 		<item id="installlang">
-				
-				
 				<item id="error_setting_imgpath"><![CDATA[请先创建默认图片目录data/attachment/forum/hs_qsbk/,权限为可写]]></item>
-				
-				
-				
-				
 				<item id="error_curl"><![CDATA[插件工作需要curl模块]]></item>
-				
-				
-				
-				
-				
-				
 			</item>
-			
-			
-			
-			
-		
-			
 		</item>
-
         <item id="installfile"><![CDATA[install.php]]></item>
 		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
 		<item id="checkfile"><![CDATA[check.php]]></item>
-		
-		
-
-
     </item>
-
-
 </root>

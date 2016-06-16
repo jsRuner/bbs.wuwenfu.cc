@@ -1,6 +1,6 @@
 <?php
 /**
- *    [qsbkwwf(qsbkwwf.cron_qsbkwwf)] (C)2016-2099 Powered by 吴文付.
+ *    [htttoutiao(htt_toutiao.cron_toutiao)] (C)2016-2099 Powered by 吴文付.
  *    Version: 1.0
  *    Date: 2016-4-2 16:24
  *    Warning: Don't delete this comment
@@ -108,88 +108,78 @@ function curl_qsbk($url)
 
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
-$fidstr = $var['htt_qsbk']['fids'];
-$uidstr = $var['htt_qsbk']['uids'];
-$groupstr = $var['htt_qsbk']['groups']; //用户组
-$threads = $var['htt_qsbk']['threads'];
-$charset_num = $var['htt_qsbk']['charset'];  // 1utf-8 2gbk
-$caiji_model = $var['htt_qsbk']['caiji_model']; //1纯文 2表示纯图 3图文
-$check = $var['htt_qsbk']['check'];  //1不审核 2审核。
-$title_length = $var['htt_qsbk']['title_length']; //标题长度
-$title_default = $var['htt_qsbk']['title_default']; //默认标题
-$post_model = $var['htt_qsbk']['post_model']; //发帖模式
+$fidstr = $var['htt_toutiao']['fids'];
 
-//如果采集数量为0.则不执行后面的操作。不采集。
-if ($threads == 0) {
+$fids = unserialize($fidstr);
+
+//var_dump($fids);
+
+//exit();
+
+
+//$uidstr = $var['htt_toutiao']['uids'];
+
+//$groupstr = $var['htt_toutiao']['groups']; //用户组
+//$threads = $var['htt_toutiao']['threads'];
+$charset_num = $var['htt_toutiao']['charset'];  // 1utf-8 2gbk
+//$caiji_model = $var['htt_toutiao']['caiji_model']; //1纯文 2表示纯图 3图文
+//$check = $var['htt_toutiao']['check'];  //1不审核 2审核。
+//$title_length = $var['htt_toutiao']['title_length']; //标题长度
+$title_default = $var['htt_toutiao']['title_default']; //默认标题
+//$post_model = $var['htt_toutiao']['post_model']; //发帖模式
+$model = $var['htt_toutiao']['model']; //采集的模块
+
+//echo 11;
+
+//echo $models;
+//exit();
+/*
+$models = array_filter(unserialize($model_str));
+if (is_null($models) || empty($models)) {
     return;
-}
-$fids = array_filter(unserialize($fidstr));
-if (is_null($fids) || empty($fids)) {
-    return;
-}
-$uids = array_filter(explode(',', $uidstr));
+}*/
 
-$groups = array_filter(unserialize($groupstr));
+//print_r($models) ;
+//exit();
 
-$members_bygroup = C::t('common_member')->fetch_all_by_groupid($groups);//该组的会员资料
-
-
-if (empty($uidstr)) {
-    $uids = array();
-    foreach ($members_bygroup as $item) {
-        $uids[] = $item['uid'];
-    }
-}
-
-
-if (empty($uids)) {
-    return;
-}
-//检查是否超出范围。
-if ($threads < 0 || $threads > 20) {
-    return;
-}
 
 //数据源。
 $urls = array(
-    'text_hot' => "http://www.qiushibaike.com/text/",
-    'text_new' => "http://www.qiushibaike.com/textnew/",
-    'pic_hot' => "http://www.qiushibaike.com/imgrank/",
-    'pic_new' => "http://www.qiushibaike.com/pic/",
-    '24h' => "http://www.qiushibaike.com/hot/",
-    '8h' => "http://www.qiushibaike.com/",
+    '1' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_hot", //热点
+    '2' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_society", //社会
+    '3' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_entertainment",//娱乐
+    '4' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_tech", //科技
+    '5' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_car", //车辆
+    '6' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_sports", //体育
+    '7' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_finance", //财经
+    '8' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_military", //军事
+    '9' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_world", //国际
+    '10' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_fashion", //时尚
+    '11' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_travel", //旅游
 );
 
-switch ($caiji_model) {
-    case 1:
-        $urls = array(
-            'text_hot' => "http://www.qiushibaike.com/text/",
-            'text_new' => "http://www.qiushibaike.com/textnew/",
-        );
-        break;
-    case 2:
-        $urls = array(
-            'pic_hot' => "http://www.qiushibaike.com/imgrank/",
-            'pic_new' => "http://www.qiushibaike.com/pic/",
-        );
-        break;
-    default:
-        $urls = $urls;
-        break;
-}
 
-#从数组中随机取一个
-$rand_keys = array_rand($urls, 1);
-$url = $urls[$rand_keys];
+//单独选。只读取一个。
+//$rand_keys = array_rand($urls, 1);
+$url = $urls[$model];
+//$url = 'http://toutiao.com/api/article/recent/?source=2&count=20&category=news_society'; //社会消息请求接口。
 $html = curl_qsbk($url);
+
+$toutiaos = json_decode($html,true);
+//echo '<pre>';
+//var_dump($toutiaos);
+//echo '</pre>';
+//
+////echo $html;
+//exit();
 
 $imgpath = set_home('data/attachment/forum'); //返回的是全路径。
 
-//解析数据
-include_once DISCUZ_ROOT . './source/plugin/htt_qsbk/include/phpQuery/phpQuery.php';
-phpquery::newDocumentHTML($html, 'utf-8');
+////解析数据
+//include_once DISCUZ_ROOT . './source/plugin/htt_toutiao/include/phpQuery/phpQuery.php';
+//phpquery::newDocumentHTML($html, 'utf-8');
 #获取段子列表。最外面那个。
-$articles = pq(".article");
+$articles = $toutiaos['data'];
 $count = 1; //计数
 
 
@@ -197,20 +187,29 @@ $tid = 0; //设置默认值
 
 $lasttid = 0; //上一次的tid.
 
-$fist = 0;
+$first = 0;
 
 
 foreach ($articles as $article) {
 
-    //如果超过数量。则退出循环。
-    if ($count > $threads) {
-        break;
-    }
 
 
     $data = array();
-    $data['content'] = pq($article)->find(".content")->text();
-    $data['img'] = pq($article)->find(".thumb a img")->attr('src');
+    $data['url'] = $article['article_url']; //增加标题.
+    $data['title'] = $article['title']; //增加标题.
+
+//    echo iconv("UTF-8", "gbk", $data['title']);
+//
+//    echo '<br>';
+//
+//    continue;
+
+    $data['content'] = $article['abstract']; //摘要
+    if(empty($article['image_list'])){
+        $data['img'] = '';
+    }else{
+        $data['img'] = $article['image_list'][0]['url'];
+    }
 
     $remote = 0;
     //图片存在。
@@ -239,21 +238,18 @@ foreach ($articles as $article) {
         $attachment = 0; //附件,0无附件 1普通附件 2有图片附件
     }
 
-    //修改审核参数。-2
-    if ($check == '2') {
-        $invisible = -2; //需要审核
-        $displayorder = -2; //显示顺序
-    } else {
-        $invisible = 0; //无须审核。
-        $displayorder = 0; //需要审核的帖子为-2
-    }
+
+
+
+    $invisible = 0; //无须审核。
+    $displayorder = 0; //需要审核的帖子为-2
 
 //随机选择一个版块和用户。
     $fid_key = array_rand($fids, 1);
-    $uid_key = array_rand($uids, 1);
 
     $fid = $fids[$fid_key];
-    $uid = $uids[$uid_key];
+
+    $uid = 1; //默认就是管理员
 
     $forum = C::t('forum_forum')->fetch_info_by_fid($fid);
 
@@ -266,14 +262,9 @@ foreach ($articles as $article) {
     //转换编码。如果不是utf-8。则需要转换。默认为utf-8
     if ($charset_num != 1) {
         $data['content'] = iconv("UTF-8", "gbk", $data['content']);
+        $data['title'] = iconv("UTF-8", "gbk", $data['title']);
     }
-    //控制标题的长度。存在内容。同时内容长度超过最大长度。则截取。
-    if (!empty($data['content']) && strlen($data['content']) > $title_length) {
-
-        $subject = cutstr($data['content'], $title_length, '');
-    } else {
-        $subject = $data['content'];
-    }
+    $subject = $data['content'];
     //标题去掉一次特殊字符串.否则引发首页四格图片无法正常显示
     $subject = strFilter($subject);
     //避免标题为空情况.则设置
@@ -283,21 +274,12 @@ foreach ($articles as $article) {
 
 
     $publishdate = TIMESTAMP;
-
-
     $message = $data['content'];
-
-    //如果是汇总模式。则标题需要单独处理。
-    if ($post_model == 1) {
-        $title_total = $subject;
-    } else {
-
-        $title_total = date('Y-m-d') . $title_default;
-    }
+    $title_total = date('Y-m-d') . $title_default;
 
 
     //只有tid没有设置。或者 tid是单独发帖模式。则插入主题。
-    if ($tid <= 0 || $post_model == 1) {
+    if ($tid <= 0 ) {
 
         $newthread = array(
             'fid' => $fid,
@@ -344,11 +326,21 @@ foreach ($articles as $article) {
 
     useractionlog($uid, 'tid');
     //如果是汇总模式 又是第一条  则first =1。
-    if ($post_model == 2 && $count == 1) {
+    if ($count == 1) {
         $first = 1; //0是非首贴，1是首贴。
     }
 
     //插入post表。这里会执行2个表操作
+
+    $message .= '
+
+
+
+
+
+    [b][url='.$data['url'].']'.lang('plugin/htt_toutiao','btn_text').'[/url]';
+
+
     $pid = insertpost(array(
         'fid' => $fid,
         'tid' => $tid,
@@ -414,51 +406,46 @@ foreach ($articles as $article) {
             'picid' => 0,
         ));
         //需要更新post。添加附件内容。
-        C::t('forum_post')->update(0, $pid, array('message' => $message . "[attach]" . $aid . "[/attach]"));
-
-    }
-    if ($check == '2') {
-
-        updatemoderate('tid', $tid);
-        C::t('forum_forum')->update_forum_counter($fid, 0, 0, 1);
-
-
-        //插入审核表。
-        if ($tid != $lasttid) {
-
-            C::t('common_moderate')->insert('tid', array(
-                'id' => $tid,
-                'status' => '0',
-                'dateline' => $publishdate,
-            ));
-
-            //通知审核。
-            manage_addnotify('verifythread');
+        if(empty($data['title'])){
+            $data['title'] = cutstr($data[$context],36,'');
         }
 
-
-        return;
-    } else {
+        C::t('forum_post')->update(0, $pid, array('message' => '[b][size=5]'.$data['title'].'[/size][/b]'."
 
 
-        if ($tid != $lasttid) {
-
-            $subject = str_replace("\t", ' ', $subject);
-            $lastpost = "$tid\t" . $subject . "\t" . TIMESTAMP . "\t$author";
-            C::t('forum_forum')->update($fid, array('lastpost' => $lastpost));
+        [attach]" . $aid . "[/attach]
 
 
-            C::t('forum_forum')->update_forum_counter($fid, 1, 1, 1);
+        ".$message));
 
-            //如果子论坛，还需要更新上级。
-            if ($forum['type'] == 'sub') {
-                C::t('forum_forum')->update($forum['fup'], array('lastpost' => $lastpost));
-            }
+    }else{
+        //如果附件为空则应当如此。
+        C::t('forum_post')->update(0, $pid, array('message' => '[b][size=5]'.$data['title'].'[/size][/b]
 
-        }
 
+        '.$message));
 
     }
+
+
+    if ($tid != $lasttid) {
+
+        $subject = str_replace("\t", ' ', $subject);
+        $lastpost = "$tid\t" . $subject . "\t" . TIMESTAMP . "\t$author";
+        C::t('forum_forum')->update($fid, array('lastpost' => $lastpost));
+
+
+        C::t('forum_forum')->update_forum_counter($fid, 1, 1, 1);
+
+        //如果子论坛，还需要更新上级。
+        if ($forum['type'] == 'sub') {
+            C::t('forum_forum')->update($forum['fup'], array('lastpost' => $lastpost));
+        }
+
+    }
+
+
+
     //沙发数据
     //tid 发送变化再插入。
     if ($tid != $lasttid) {
@@ -470,6 +457,10 @@ foreach ($articles as $article) {
     $count = $count + 1;
 
     $lasttid = $tid; //记录之前的tid。
+
+//    echo $tid;
+//
+//    exit();
 
 }
 ?>

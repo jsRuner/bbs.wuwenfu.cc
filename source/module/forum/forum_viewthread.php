@@ -679,6 +679,10 @@ foreach($postarr as $post) {
 			if($post['tags']) {
 				$post['relateitem'] = getrelateitem($post['tags'], $post['tid'], $_G['setting']['relatenum'], $_G['setting']['relatetime']);
 			}
+
+//            print_r($post['tags']);
+//            exit();
+
 			if(!$_G['forum']['disablecollect']) {
 				if($incollection) {
 					$post['relatecollection'] = getrelatecollection($post['tid'], false, $post['releatcollectionnum'], $post['releatcollectionmore']);

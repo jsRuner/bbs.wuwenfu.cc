@@ -11,7 +11,6 @@ if(!defined('IN_DISCUZ') || !defined('IN_ADMINCP')) {
 }
 require_once libfile('function/common', 'plugin/kylefu_spider_movie');
 require_once libfile('class/spider', 'plugin/kylefu_spider_movie');
-
 $operation	= trim($_GET['operation']);
 $pmod		= trim($_GET['pmod']);
 $spider_class= trim($_GET['spider']);

@@ -20,6 +20,10 @@ var_dump($_G);
 echo '</pre>';
 
 exit();*/
+if($_G['uid'] <=0 ){
+    header('location:http://bbs.wuwenfu.cn/');
+}
+
 
 if(!checkmobile()){
     //pc
