@@ -20,6 +20,17 @@ global $_G;
 
 loadcache('plugin');
 
+
+
+
+
+if($_G['uid'] <=0 ){
+
+    showmessage('需要登录',$_G['siteurl']);
+//    header('location:http://bbs.wuwenfu.cn/');
+}
+
+
 //include_once 'source/function/function_admincp.php';
 include_once 'source/function/function_core.php';
 
@@ -39,8 +50,22 @@ $prize_statuss = array(
 
 $ac = !empty($_GET['ac']) ? $_GET['ac'] : '';
 
+
+$employees = C::t('#htt_greatwall#employee')->fetch_all_by_search(' AND username=\''.$_G['username'].'\'',0,1000);
+$pids = '';
+foreach($employees as $employee){
+    $pids .= $employee['project_id'];
+    $pids .=',';
+}
+
+$pids = trim($pids,',');
+
+if($pids == ''){
+    die('没有你可以操作的项目');
+}
+
 //查询出项目列表。
-$query = DB::query("SELECT `id`,`name` FROM  ".DB::table("greatwall_project")." WHERE  1");
+$query = DB::query("SELECT `id`,`name` FROM  ".DB::table("greatwall_project")." WHERE  1".' AND id IN('.$pids.')');
 while($project = DB::fetch($query)){
     $projects[] = $project;
 }
@@ -107,13 +132,14 @@ switch ($ac){
 
     case 'del': //删除
 
-        if(submitcheck('submit')) {
-            foreach($_GET['delete'] as $delete) {
-                C::t('#htt_greatwall#project')->delete($delete);
-            }
-            cpmsg('操作成功', 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project', 'succeed');
-        }
+        if($_GET['pid']) {
 
+            $update_array = array(
+                'status'=>-1,
+            );
+            C::t('#htt_greatwall#prize')->update($_GET['pid'],$update_array);
+            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize', 'succeed');
+        }
         break;
     case 'edit': //编辑。启用和禁用操作。
         if(!$_GET['submit']) {
@@ -169,11 +195,12 @@ switch ($ac){
 
         $extra = $search = ' AND status != -1';
 
+        //2016年6月18日 增加条件，只显示所属项目的奖品。
 
         $ppp = 20;
         $page = max(1, intval($_GET['page']));
-        $count = C::t('#htt_greatwall#prize')->count_by_search($search);
-        $prizes = C::t('#htt_greatwall#prize')->fetch_all_by_search($search,($page - 1) * $ppp, $ppp);
+        $count = C::t('#htt_greatwall#prize')->count_by_search($search.' AND project_id IN('.$pids.')');
+        $prizes = C::t('#htt_greatwall#prize')->fetch_all_by_search($search.' AND project_id IN('.$pids.')',($page - 1) * $ppp, $ppp);
 
 
 

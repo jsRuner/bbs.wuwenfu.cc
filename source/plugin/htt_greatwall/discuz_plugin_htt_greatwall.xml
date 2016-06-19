@@ -10,25 +10,13 @@
 			<item id="adminid"><![CDATA[1]]></item>
 			<item id="name"><![CDATA[北岸红包大派送]]></item>
 			<item id="identifier"><![CDATA[htt_greatwall]]></item>
-			<item id="description"><![CDATA[发起爱车红包活动]]></item>
+			<item id="description"><![CDATA[发起红包活动]]></item>
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_greatwall/]]></item>
 			<item id="copyright"><![CDATA[wuwenfu.cn]]></item>
 			<item id="version"><![CDATA[1.0]]></item>
 			<item id="__modules">
-				<item id="0">
-					<item id="name"><![CDATA[greatwall]]></item>
-					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[红包大派送]]></item>
-					<item id="url"><![CDATA[]]></item>
-					<item id="type"><![CDATA[1]]></item>
-					<item id="adminid"><![CDATA[0]]></item>
-					<item id="displayorder"><![CDATA[0]]></item>
-					<item id="navtitle"><![CDATA[红包大派送]]></item>
-					<item id="navicon"><![CDATA[]]></item>
-					<item id="navsubname"><![CDATA[]]></item>
-					<item id="navsuburl"><![CDATA[]]></item>
-				</item>
+				
 				<item id="1">
 					<item id="name"><![CDATA[employee]]></item>
 					<item id="param"><![CDATA[]]></item>
@@ -84,7 +72,7 @@
 				<item id="description"><![CDATA[总开光。默认开启，选择关闭，则所有活动无法进入。]]></item>
 				<item id="variable"><![CDATA[switch]]></item>
 				<item id="type"><![CDATA[select]]></item>
-				<item id="value"><![CDATA[]]></item>
+				<item id="value"><![CDATA[1]]></item>
 				<item id="extra"><![CDATA[1=开启
 2=关闭]]></item>
 			</item>

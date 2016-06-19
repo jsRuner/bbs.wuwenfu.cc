@@ -50,11 +50,11 @@ class table_prize extends discuz_table
 	}
 
 	public function count_by_search($condition) {
-		return DB::result_first("SELECT COUNT(*) FROM %t WHERE 1 %i", array($this->_table, $condition));
+		return DB::result_first("SELECT COUNT(*) FROM %t WHERE 1 %i AND status != '-1'", array($this->_table, $condition));
 	}
 
 	public function fetch_all_by_search($condition, $start, $ppp) {
-		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY  price desc,updated LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
+		$rs =  DB::fetch_all("SELECT * FROM %t WHERE 1 %i AND status != '-1' ORDER BY  price desc,updated LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
 
         return $rs;
 	}

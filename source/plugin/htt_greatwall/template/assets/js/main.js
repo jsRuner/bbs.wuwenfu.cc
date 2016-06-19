@@ -1,4 +1,4 @@
-
+//
 var stageH = $(window).height();
 var stageW = $(window).width();
 var _isajaxing = 0;
@@ -246,8 +246,9 @@ var page4=function(){
                 lottery.goto(parseInt(d.keys));
             }else{
                 if(d.fg==-202){
-                    _isajaxing =0;
-                    showJsTip(d.info);
+                    //_isajaxing =0;
+                    //showJsTip(d.info);
+                    showJsTip('Ω±∆∑…Ë÷√¥ÌŒÛ');
                 }
                 else{
                     //lottery.goto(0);

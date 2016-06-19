@@ -17,7 +17,7 @@ loadcache('plugin');
 $plugin_lang = array(
     'project'=>'项目',
     'username'=>'用户名',
-    'password'=>'密码',
+//    'password'=>'密码',
     'name'=>'真实姓名',
     'mobile'=>'手机号码',
     'form_check_error'=>'请填写完整信息',
@@ -40,7 +40,7 @@ switch ($ac){
             showtableheader();
             showsetting($plugin_lang['project'],$projects, '', 'select');
             showsetting($plugin_lang['username'], 'username', '', 'text');
-            showsetting($plugin_lang['password'],'password', '', 'text');
+//            showsetting($plugin_lang['password'],'password', '', 'text');
             showsetting($plugin_lang['name'],'name', '', 'text');
             showsetting($plugin_lang['mobile'],'mobile', '', 'text');
             showsubmit('submit');
@@ -49,9 +49,16 @@ switch ($ac){
 
         }else{
 
-            if(!$_GET['name'] && !$_GET['password']) {
+            if(!$_GET['name'] && !$_GET['username']) {
                 cpmsg($plugin_lang['form_check_error'], '', 'error');
             }
+
+            //这里需要检测username 是否存在.
+            $rs = C::t('common_member')->fetch_by_username($_GET['username']);
+            if(!$rs){
+                cpmsg('不存在该帐号', '', 'error');
+            }
+
 
             $config = array(
                 'start_date'=>$_GET['start_date'],
@@ -60,7 +67,7 @@ switch ($ac){
 
             $insert_array = array(
                 'username'=>$_GET['username'],
-                'password'=>$_GET['password'],
+//                'password'=>$_GET['password'],
                 'name'=>$_GET['name'],
                 'mobile'=>$_GET['mobile'],
                 'updated'=>date('Y-m-d H:i:s'),
@@ -107,7 +114,7 @@ switch ($ac){
             showtableheader();
             showsetting($plugin_lang['project'],$projects, $employee['project_id'], 'select');
             showsetting($plugin_lang['username'], 'username',$employee['username'], 'text');
-            showsetting($plugin_lang['password'],'password',$employee['password'], 'text');
+//            showsetting($plugin_lang['password'],'password',$employee['password'], 'text');
             showsetting($plugin_lang['name'],'name',$employee['name'], 'text');
             showsetting($plugin_lang['mobile'],'mobile',$employee['mobile'], 'text');
             showsubmit('submit');
@@ -116,15 +123,21 @@ switch ($ac){
 
         }else{
 
-            if(!$_GET['username'] && !$_GET['password']) {
+            if(!$_GET['username']) {
                 cpmsg($plugin_lang['form_check_error'], '', 'error');
+            }
+
+            //这里需要检测username 是否存在.
+            $rs = C::t('common_member')->fetch_by_username($_GET['username']);
+            if(!$rs){
+                cpmsg('不存在该帐号', '', 'error');
             }
 
             $eid = intval($_GET['eid']);
 
             $insert_array = array(
                 'username'=>$_GET['username'],
-                'password'=>$_GET['password'],
+//                'password'=>$_GET['password'],
                 'name'=>$_GET['name'],
                 'mobile'=>$_GET['mobile'],
                 'updated'=>date('Y-m-d H:i:s'),
@@ -155,15 +168,13 @@ switch ($ac){
         showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=employee&ac=del', 'enctype');
         showtableheader();
         echo '<tr class="header"><th></th><th>'.$plugin_lang['username'].'</th><th>'.
-            $plugin_lang['password'].'</th><th>'.
+//            $plugin_lang['password'].'</th><th>'.
             $plugin_lang['name'].'</th><th>'.
             $plugin_lang['mobile'].'</th><th></th></tr>';
         foreach($employees as $eid => $employee) {
             echo '<tr class="hover">
 <th class="td25"><input class="checkbox" type="checkbox" name="delete['.$employee['id'].']" value="'.$employee['id'].'"></th>
-            <th><a href="forum.php?mod=viewthread&tid='.$employee['id'].'" target="_blank">'.$employee['username'].'</a></th>
-                <th>'.
-                $employee['password'].'</th>
+            <th>'.$employee['username'].'</th>
                 <th>'.
                 $employee['name'].'</th>
                 <th>'.

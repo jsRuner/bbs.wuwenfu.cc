@@ -16,9 +16,18 @@ if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
+
 global $_G;
 
 loadcache('plugin');
+
+
+if($_G['uid'] <=0 ){
+
+    showmessage('需要登录',$_G['siteurl']);
+//    header('location:http://bbs.wuwenfu.cn/');
+}
+
 
 //include_once 'source/function/function_admincp.php';
 include_once 'source/function/function_core.php';
@@ -133,13 +142,28 @@ switch ($ac){
         break;
     default: //显示主页面
 
+
+
+        //只显示关联的项目。先根据当前的用户名查询资料。如果存在，则查看
+//        echo $_G['username'];
+
+        $employees = C::t('#htt_greatwall#employee')->fetch_all_by_search(' AND username=\''.$_G['username'].'\'',0,1000);
+        $eids = '';
+        foreach($employees as $employee){
+            $eids .= $employee['project_id'];
+            $eids .=',';
+        }
+
+        $eids = trim($eids,',');
+
         $extra = $search = '';
+
 
 
         $ppp = 100;
         $page = max(1, intval($_GET['page']));
-        $count = C::t('#htt_greatwall#project')->count_by_search($search);
-        $projects = C::t('#htt_greatwall#project')->fetch_all_by_search($search,($page - 1) * $ppp, $ppp);
+        $count = C::t('#htt_greatwall#project')->count_by_search($search.' AND id IN('.$eids.')');
+        $projects = C::t('#htt_greatwall#project')->fetch_all_by_search($search.' AND id IN('.$eids.')',($page - 1) * $ppp, $ppp);
         $project_types = array(
             'nolg03'=>'无记名奖品3选1'
         );

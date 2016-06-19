@@ -16,7 +16,16 @@ if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
+
+
 global $_G;
+
+
+if($_G['uid'] <=0 ){
+
+    showmessage('需要登录',$_G['siteurl']);
+//    header('location:http://bbs.wuwenfu.cn/');
+}
 
 loadcache('plugin');
 
@@ -37,7 +46,39 @@ $prize_statuss = array(
     '1'=>'启用',
 );
 
+
+$use_status = array(
+    '0'=>'未使用',
+    '1'=>'已使用',
+);
+
 $ac = !empty($_GET['ac']) ? $_GET['ac'] : '';
+
+
+
+
+$employees = C::t('#htt_greatwall#employee')->fetch_all_by_search(' AND username=\''.$_G['username'].'\'',0,1000);
+$pids = '';
+foreach($employees as $employee){
+    $pids .= $employee['project_id'];
+    $pids .=',';
+}
+
+$pids = trim($pids,',');
+
+if($pids == ''){
+    die('没有你可以操作的项目');
+}
+
+//所有的奖品。
+$prizes = C::t('#htt_greatwall#prize')->fetch_all_by_search(' AND project_id IN('.$pids.')',0,1000);
+$temp = array();
+foreach($prizes as $prize){
+    $temp[$prize['id']] = $prize;
+}
+
+$prizes = $temp;
+
 
 switch ($ac){
     case 'add'://添加
@@ -78,8 +119,8 @@ switch ($ac){
             $update_array = array(
                 'status'=>1,
             );
-            C::t('#htt_greatwall#prize')->update($_GET['pid'],$update_array);
-            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize', 'succeed');
+            C::t('#htt_greatwall#prize_log')->update($_GET['pid'],$update_array);
+            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize_log', 'succeed');
         }
 
 
@@ -90,10 +131,25 @@ switch ($ac){
             $update_array = array(
                 'status'=>0,
             );
-            C::t('#htt_greatwall#prize')->update($_GET['pid'],$update_array);
-            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize', 'succeed');
+            C::t('#htt_greatwall#prize_log')->update($_GET['pid'],$update_array);
+            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize_log', 'succeed');
         }
         break;
+
+    case 'useed': //核销为使用。
+        if($_GET['pid']) {
+
+            $update_array = array(
+                'is_use'=>1,
+            );
+
+            C::t('#htt_greatwall#prize_log')->update($_GET['pid'],$update_array);
+
+            showmessage('操作成功', '/plugin.php?id=htt_greatwall:prize_log', 'succeed');
+
+        }
+        break;
+
 
     case 'del': //删除
 
@@ -162,8 +218,8 @@ switch ($ac){
 
         $ppp = 15;
         $page = max(1, intval($_GET['page']));
-        $count = C::t('#htt_greatwall#prize_log')->count_by_search($search);
-        $prize_logs = C::t('#htt_greatwall#prize_log')->fetch_all_by_search($search,($page - 1) * $ppp, $ppp);
+        $count = C::t('#htt_greatwall#prize_log')->count_by_search($search.' AND project_id IN('.$pids.')');
+        $prize_logs = C::t('#htt_greatwall#prize_log')->fetch_all_by_search($search.' AND project_id IN('.$pids.')',($page - 1) * $ppp, $ppp);
 
 
 

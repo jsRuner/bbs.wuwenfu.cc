@@ -85,7 +85,7 @@ switch ($ac){
             showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project&ac=edit&pid='.$_GET['pid'], 'enctype');
             showtableheader();
             showsetting('项目名称', 'name', $project['name'], 'text');
-            showsetting('开始时间','start_date', $project['end_date'], 'calendar', '', 0, '', 1);
+            showsetting('开始时间','start_date',$project['start_date'], 'calendar', '', 0, '', 1);
             showsetting('结束时间','end_date', $project['end_date'], 'calendar', '', 0, '', 1);
             showsubmit('submit');
             showtablefooter();
@@ -144,20 +144,18 @@ switch ($ac){
 
         showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project&ac=del', 'enctype');
         showtableheader();
-        echo '<tr class="header"><th></th><th>'.$plugin_lang['name'].'</th><th>'.
-            $plugin_lang['project_type'].'</th><th>'.
+        echo '<tr class="header"><th></th><th>'.$plugin_lang['name'].'</th>
+            <th>'.
             $plugin_lang['start_date'].'</th><th>'.
             $plugin_lang['end_date'].'</th><th></th></tr>';
         foreach($projects as $pid => $project) {
             echo '<tr class="hover">
 <th class="td25"><input class="checkbox" type="checkbox" name="delete['.$project['id'].']" value="'.$project['id'].'"></th>
-            <th><a href="forum.php?mod=viewthread&tid='.$project['id'].'" target="_blank">'.$project['name'].'</a></th>
-            <th>'.
-                $project_types[$project['project_type']].'</th>
+            <th>'.$project['name'].'</th>
                 <th>'.
-                $project['created'].'</th>
+                $project['start_date'].'</th>
                 <th>'.
-                $project['updated'].'</th>
+                $project['end_date'].'</th>
                 <th>'.
                 '<a href="'.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_greatwall&pmod=project&ac=edit&pid='.$project['id'].'">编辑</a></th>
                 </tr>';

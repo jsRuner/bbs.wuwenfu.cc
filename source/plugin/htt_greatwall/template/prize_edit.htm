@@ -1,9 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk">
-    <title>北京现代活动平台 </title>
-    <meta name="keywords" content="北京现代活动平台 ">
-    <meta name="description" content="北京现代活动平台 ">
+    <title>北岸红包活动平台 </title>
+    <meta name="keywords" content="北岸红包活动平台 ">
+    <meta name="description" content="北岸红包活动平台 ">
     <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/css/style.css">
     <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/jqueryui/jquery-ui.min.css">
     <script type="text/javascript"
@@ -18,9 +18,9 @@
 <body>
 
 <div class="header top-bar">
-    <span>您好,app1016<a href="/app/Manage/Public/logout.html" target="_TOP">[退出]</a></span>
+    <span>您好,{$_G['username']}<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" target="_TOP">[退出]</a></span>
 
-    <div class="logo">北京现代活动平台- 【哈弗亿元红包大放送】</div>
+    <div class="logo">北岸红包活动平台- 【哈弗亿元红包大放送】</div>
     <!--a href="/greatwall" target="_blank"><img src="source/plugin/htt_greatwall/template/manager/Public/images/store_08.jpg" width="107" height="27" class="goWeb" /></a-->
 </div>
 
@@ -32,16 +32,13 @@
             <ul>
                 <li ><a href="plugin.php?id=htt_greatwall:manager"><span>项目管理</span></a></li>
                 <li class="current"><a href="plugin.php?id=htt_greatwall:prize"><span>奖品管理</span></a></li>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>中奖列表</span></a></li>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>游戏记录</span></a></li>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>使用券列表</span></a></li>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>限制IP列表</span></a></li>
+                <li><a href="plugin.php?id=htt_greatwall:prize_log"><span>中奖列表</span></a></li>
             </ul>
         </div>
         <div class="">
             <h3 class="icon5"><a href="javascript:;">系统设置</a></h3>
             <ul>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>修改密码</span></a></li>
+                <li><a href="/home.php?mod=spacecp&ac=profile&op=password"><span>修改密码</span></a></li>
             </ul>
         </div><!--
 <em class="onOff">
@@ -181,7 +178,7 @@
                                 <th>状态作用说明</th>
                                 <td>
                                     启用：奖品正常状态，前台用户可参与抽取<br>
-                                    待审：奖品锁定状态，前台用户不可参与该奖品的抽奖，<br>
+                                    锁定：奖品锁定状态，前台用户不可参与该奖品的抽奖，<br>
                                     删除：就是没有了
                                 </td>
                             </tr>
@@ -192,7 +189,7 @@
                                 <td>
                                     <select name="status" class="sel">
                                         <option value="1" <!--{if $prize['status'] == 1 }-->selected<!--{/if}-->  >启用</option>
-                                        <option value="0"   <!--{if $prize['status'] == 0 }-->selected<!--{/if}-->  >待审</option>
+                                        <option value="0"   <!--{if $prize['status'] == 0 }-->selected<!--{/if}-->  >锁定</option>
                                         <option value="-1"  <!--{if $prize['status'] == -1 }-->selected<!--{/if}-->   >删除</option>
                                     </select>
                                 </td>

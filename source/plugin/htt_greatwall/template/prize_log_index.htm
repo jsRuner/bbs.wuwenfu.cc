@@ -1,9 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk">
-    <title>北京现代活动平台 </title>
-    <meta name="keywords" content="北京现代活动平台 ">
-    <meta name="description" content="北京现代活动平台 ">
+    <title>北岸红包活动平台 </title>
+    <meta name="keywords" content="北岸红包活动平台 ">
+    <meta name="description" content="北岸红包活动平台 ">
     <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/css/style.css">
     <link rel="stylesheet" href="source/plugin/htt_greatwall/template/manager/Public/jqueryui/jquery-ui.min.css">
     <script type="text/javascript"
@@ -18,9 +18,9 @@
 <body>
 
 <div class="header top-bar">
-    <span>您好,app1016<a href="/app/Manage/Public/logout.html" target="_TOP">[退出]</a></span>
+    <span>您好,{$_G['username']}<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" target="_TOP">[退出]</a></span>
 
-    <div class="logo">北京现代活动平台- 【哈弗亿元红包大放送】</div>
+    <div class="logo">北岸红包活动平台- 【哈弗亿元红包大放送】</div>
     <!--a href="/greatwall" target="_blank"><img src="source/plugin/htt_greatwall/template/manager/Public/images/store_08.jpg" width="107" height="27" class="goWeb" /></a-->
 </div>
 
@@ -33,15 +33,12 @@
                 <li><a href="plugin.php?id=htt_greatwall:manager"><span>项目管理</span></a></li>
                 <li><a href="plugin.php?id=htt_greatwall:prize"><span>奖品管理</span></a></li>
                 <li class="current"><a href="plugin.php?id=htt_greatwall:prize_log"><span>中奖列表</span></a></li>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>游戏记录</span></a></li>
-                <!--<li><a href="plugin.php?id=htt_greatwall:manager"><span>使用券列表</span></a></li>-->
-                <!--<li><a href="plugin.php?id=htt_greatwall:manager"><span>限制IP列表</span></a></li>-->
             </ul>
         </div>
         <div class="">
             <h3 class="icon5"><a href="javascript:;">系统设置</a></h3>
             <ul>
-                <li><a href="plugin.php?id=htt_greatwall:manager"><span>修改密码</span></a></li>
+                <li><a href="/home.php?mod=spacecp&ac=profile&op=password"><span>修改密码</span></a></li>
             </ul>
         </div><!--
 <em class="onOff">
@@ -68,7 +65,7 @@
         <div id="headBar">
             <div id="finder-header" class="finder-header" entity_type_id="1001" model="Prize">
                 <h1 class="title">
-                    <form id="finder-search" field_type="varchar" current_key="created">
+                  <!--  <form id="finder-search" field_type="varchar" current_key="created">
                         <fieldset class="search">
             <span class="name">
                 <h4><label>时间</label><em></em></h4>
@@ -89,13 +86,13 @@
             </span>
                             <input type="submit" value="搜索" class="searchBtn">
                         </fieldset>
-                    </form>
+                    </form>-->
 
                     <strong class="icon_2">
                         中奖记录
                     </strong>
-                    <a href="javascript:$.dialog('/app/Manage/PrizeLog/export.html',{ height:480, width:540, title:'输入导出条件...', padding:'0 0' });"
-                       class="delIcon">[导出]</a>
+                  <!--  <a href="javascript:$.dialog('/app/Manage/PrizeLog/export.html',{ height:480, width:540, title:'输入导出条件...', padding:'0 0' });"
+                       class="delIcon">[导出]</a>-->
                 </h1>
             </div>
         </div>
@@ -108,12 +105,13 @@
                     <tr>
                         <th width="40"></th>
                         <th>用户ID</th>
-                        <th>用户昵称</th>
+                        <!--<th>用户名</th>-->
                         <th>姓名</th>
                         <th>手机</th>
                         <th>地址</th>
                         <th>奖品</th>
                         <th>券号</th>
+                        <th>是否使用</th>
                         <th>IP</th>
                         <th width="170">创建时间</th>
                     </tr>
@@ -149,10 +147,8 @@
                              <input type="checkbox" name="data_id[]" value="25">
                          </td>-->
                         <td>
-                            <a class="bianj savecondition"
-                               href="plugin.php?id=htt_greatwall:prize&ac=edit&pid={$prize_log['id']}" title="编辑"></a>
-                            <!--<a class="bianj savecondition" href="plugin.php?id=htt_greatwall:prize&ac=enabled&pid={$prize['id']}" title="禁用"></a>-->
-                            <!--<a class="bianj savecondition" href="plugin.php?id=htt_greatwall:prize&ac=disable&pid={$prize['id']}" title="启用"></a>-->
+                            <!--<a href="plugin.php?id=htt_greatwall:prize&ac=edit&pid={$prize_log['id']}" title="编辑">[编辑]</a>-->
+                            <a  href="plugin.php?id=htt_greatwall:prize_log&ac=useed&pid={$prize_log['id']}" title="设置为已经使用">[设置为已经使用]</a>
                             <!--<a href="plugin.php?id=htt_greatwall:prize&ac=disable&pid={$prize_log['id']}">[禁用]</a>-->
                             <!--<a href="plugin.php?id=htt_greatwall:prize&ac=enabled&pid={$prize_log['id']}">[启用]</a>-->
                             <a href="plugin.php?id=htt_greatwall:prize_log&ac=del&pid={$prize_log['id']}">[删除]</a>
@@ -161,9 +157,10 @@
                         <td>{$prize_log['name']}</td>
                         <td>{$prize_log['mobile']}</td>
                         <td>{$prize_log['addr']}</td>
-                        <td>{$prize_log['addr']}</td>
-                        <td>{$prize_log['prize_id']}</td>
+                        <!--<td>{$prize_log['addr']}</td>-->
+                        <td>{$prizes[$prize_log['prize_id']]['name']}</td>
                         <td>{$prize_log['ticket']}</td>
+                        <td>{$use_status[$prize_log['is_use']]}</td>
                         <td>{$prize_log['ip']}</td>
                         <!--<td><font style="color:green">$prize_log_statuss[$prize_log['status']]</font></td>-->
                         <td>{$prize_log['created']}</td>
@@ -186,7 +183,7 @@
         <div id="footBar">
             <div class="foot_action page_nav" id="finder-footer">
                 <div class="page_num"></div>
-                <div class="page_total">3 条记录 1/1 页</div>
+                <div class="page_total"></div>
             </div>
         </div>
     </div>
