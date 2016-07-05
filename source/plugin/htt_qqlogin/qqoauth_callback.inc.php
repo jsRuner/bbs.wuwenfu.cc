@@ -143,6 +143,12 @@ $callback = trim( $_G['siteurl'],'/').'/plugin.php?id=htt_qqlogin:qqoauth_callba
 
 
 
+if($temp = getcookie('con_request_uri')){
+    $referer = $temp;
+}else{
+    $referer = dreferer();
+}
+
 if($is_open==2){
     die('qq is closed');
 }
@@ -194,7 +200,12 @@ if($item = DB::fetch($query)) {
 //µÇÂ¼×´Ì¬¡£
     setloginstatus($result['member'], 2592000);
 
-    $referer = dreferer();
+    $referer = $referer && (strpos($referer, 'logging') === false) && (strpos($referer, 'mod=login') === false) ? $referer : 'index.php';
+
+//    echo $referer;
+//    exit();
+
+
     $ucsynlogin = $setting['allowsynlogin'] ? uc_user_synlogin($_G['uid']) : '';
     $param = array('username' => $_G['member']['username'], 'usergroup' => $_G['group']['grouptitle'], 'uid' => $_G['member']['uid']);
     showmessage('login_succeed', $referer ? $referer : './', $param, array('showdialog' => 1, 'locationtime' => true, 'extrajs' => $ucsynlogin));
