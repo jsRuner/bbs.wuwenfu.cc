@@ -11,6 +11,12 @@ class plugin_htt_qqlogin {
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
         $is_open =  $var['htt_qqlogin']['is_open'];
+        $site_url = $var['htt_qqlogin']['site_url'];
+        if(empty($site_url)){
+            $site_url = $_G['siteurl'];
+        }
+        $site_url = rtrim($site_url,'/');
+
         if($is_open==2){
             return '';
         }
@@ -27,6 +33,11 @@ class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
         $is_open =  $var['htt_qqlogin']['is_open'];
+        $site_url = $var['htt_qqlogin']['site_url'];
+        if(empty($site_url)){
+            $site_url = $_G['siteurl'];
+        }
+        $site_url = rtrim($site_url,'/');
         if($is_open==2){
             return '';
         }

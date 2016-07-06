@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="Version"><![CDATA[X3.2]]></item>
+	<item id="Version"><![CDATA[X3 X3.1 X3.2 X3.2 F1.0]]></item>
 	<item id="Time"><![CDATA[2016-05-31 19:01]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://bbs.wuwenfu.net/)]]></item>
 	<item id="Data">
@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
 			<item id="copyright"><![CDATA[ÎâÎÄ¸¶]]></item>
-			<item id="version"><![CDATA[1.4]]></item>
+			<item id="version"><![CDATA[1.6]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[httqqlogin]]></item>
@@ -108,6 +108,7 @@
 				<item id="value"><![CDATA[]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
+			
 			<item id="2">
 				<item id="displayorder"><![CDATA[2]]></item>
 				<item id="title"><![CDATA[KEY]]></item>
@@ -128,6 +129,16 @@
 				<item id="extra"><![CDATA[1=´¿×ÖÄ¸
 2=´¿Êý×Ö
 3=²»ÏÞÖÆ]]></item>
+			</item>
+			
+			<item id="4">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[Õ¾µãµØÖ·]]></item>
+				<item id="description"><![CDATA[±ØÌî¡£ÒªºÍÉêÇëQQµÇÂ¼½Ó¿ÚµÄÍøÕ¾ÓòÃû¡¢»Øµ÷µØÖ·ÖÐÓòÃûÒ»ÖÂ¡£ÀýÈçhttp://bbs.wuwenfu.cn]]></item>
+				<item id="variable"><![CDATA[site_url]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
 			
