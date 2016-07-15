@@ -16,6 +16,10 @@ class mobileplugin_htt_qqlogin {
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
+        if($_G['uid'] > 0){
+            return '';
+        }
+
         if($is_open==2 || $_G['uid'] >0){
             return '';
         }

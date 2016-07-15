@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_zhanhao/]]></item>
 			<item id="copyright"><![CDATA[wuwenfu.cn]]></item>
-			<item id="version"><![CDATA[1.0]]></item>
+			<item id="version"><![CDATA[1.1]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[httzhanghao]]></item>
@@ -170,6 +170,7 @@
 		
 		<item id="installfile"><![CDATA[install.php]]></item>
             <item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+			<item id="upgradefile"><![CDATA[upgrade.php]]></item>
 		
 		
 		 <item id="language">
@@ -228,9 +229,17 @@
 				<item id="search"><![CDATA[搜索]]></item>
 				
 				<item id="dateline"><![CDATA[创建时间]]></item>
+				<item id="deplay_time"><![CDATA[发布时间]]></item>
+				
+				<item id="start_time"><![CDATA[开始时间]]></item>
+				<item id="end_time"><![CDATA[结束时间]]></item>
+				
+				
+				
 				<item id="sort"><![CDATA[排序]]></item>
 				<item id="show_add"><![CDATA[添加]]></item>
 				<item id="show_del"><![CDATA[删除]]></item>
+				<item id="del_many"><![CDATA[批量删除]]></item>
 				<item id="show_editor"><![CDATA[编辑]]></item>
 				<item id="show_action"><![CDATA[操作]]></item>
 

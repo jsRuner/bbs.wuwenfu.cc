@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="gb2312">
     <title>{$seo_key}</title>
 
     <meta name="Keywords" content="{$seo_key}">
@@ -144,7 +144,7 @@
             background: #ECF5FB;
             color: #0186DE;
             font-size: 15px;
-            font-family: 寰蒋闆呴粦;
+            font-family: 微软雅黑;
             border: 1px solid #E6E6E6;
             border-width: 1px 0 0 1px;
         }
@@ -227,6 +227,10 @@
 
             <div class="p10  cred lh">{$newcategorys[$cid]['info']}</div>
 
+            <!--{if $update_time}-->
+            <div class="p10 lh" style="text-align: center">距离下一次更新:{$update_time} 秒</div>
+            <!--{/if}-->
+
             <table class="table1">
                 <thead>
                 <tr>
@@ -246,6 +250,11 @@
 
                         <a href="plugin.php?id=htt_zhanhao:home&cid=$cid&uid={$_G['uid']}&op=fetch&formhash={FORMHASH}&zid={$zhanhao['id']}">{lang
                             htt_zhanhao:fetchpw}</a>
+
+                        <span style="float: right;margin-right: 5px">更新时间:{$zhanhao['deyplay_time_str']}</span>
+
+
+                        <!--<p style="text-align: right;bottom: 5px;">{$zhanhao['deyplay_time_str']}</p>-->
 
                         <!--<button onclick="fetch_zhanhao({$zhanhao['id']})">{lang htt_zhanhao:fetchpw}</button>-->
                     </td>
@@ -294,14 +303,14 @@
 
             <!--{if $right_adv1}-->
             <div  class="box" style="margin-top: 10px; border-top:  1px solid #D3D3D3;">
-                <!--娣诲姞骞垮憡浣嶇疆-->
+                <!--添加广告位置-->
                 {$right_adv1}
             </div>
             <!--{/if}-->
             <!--{if $right_adv2}-->
 
             <div class="box" id="right_bottom_adv" style="border-top:  1px solid #D3D3D3;">
-                <!--娣诲姞骞垮憡浣嶇疆-->
+                <!--添加广告位置-->
                 {$right_adv2}
 
             </div>

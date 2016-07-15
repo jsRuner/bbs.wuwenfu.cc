@@ -108,11 +108,11 @@ function cloudaddons_removelog($rid) {
 	global $_G;
 	cloudaddons_open('&mod=app&ac=removelog&rid='.$rid);
 }
-
+//2016年7月7日 正版检测
 function cloudaddons_validator($addonid) {
 	$array = cloudaddons_getmd5($addonid);
 	if(cloudaddons_open('&mod=app&ac=validator&ver=2&addonid='.$addonid.($array !== false ? '&rid='.$array['RevisionID'].'&sn='.$array['SN'].'&rd='.$array['RevisionDateline'] : '')) === '0') {
-		cpmsg('cloudaddons_genuine_message', '', 'error', array('addonid' => $addonid));
+//		cpmsg('cloudaddons_genuine_message', '', 'error', array('addonid' => $addonid));
 	}
 }
 

@@ -67,8 +67,10 @@ $categorys = array('cid', $category_list);
 
 if($_GET['op'] == 'add') {
     if(!submitcheck('submit')) {
+        echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
         showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=add', 'enctype');
         showtableheader();
+        showsetting(lang('plugin/htt_zhanhao', 'deplay_time'), 'deplay_time', '', 'calendar','',0,'',1);
         showsetting(lang('plugin/htt_zhanhao', 'username'), 'username', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'password'), 'password', '', 'text');
         showsetting(lang('plugin/htt_zhanhao', 'category_title'),$categorys, '', 'select');
@@ -88,6 +90,7 @@ if($_GET['op'] == 'add') {
                 $insert_array = array(
                     'username'=>$zhanhao[0],
                     'password'=>$zhanhao[1],
+                    'deplay_time'=>strtotime($_GET['deplay_time']),
                     'cid'=>intval($_GET['cid']),
                     'dateline'=>time(),
                 );
@@ -104,6 +107,7 @@ if($_GET['op'] == 'add') {
         $insert_array = array(
             'username'=>addslashes($_GET['username']),
             'password'=>addslashes($_GET['password']),
+            'deplay_time'=>strtotime($_GET['deplay_time']),
             'cid'=>intval($_GET['cid']),
             'dateline'=>time(),
         );
@@ -114,7 +118,35 @@ if($_GET['op'] == 'add') {
 
     exit();
 
-} elseif($_GET['op'] == 'delete') {
+}elseif($_GET['op'] == 'del_many'){
+
+
+    if(!submitcheck('submit')) {
+//        选择分类。删除该分类的帐号。
+        echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
+        showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=del_many', 'enctype');
+        showtableheader();
+        showsetting(lang('plugin/htt_zhanhao', 'category_title'),$categorys, '', 'select');
+        showsubmit('submit');
+        showtablefooter();
+        showformfooter();
+
+    }else{
+
+        $insert_array = array(
+            'cid'=>intval($_GET['cid']),
+            'status'=>1,
+        );
+        DB::delete("httzhanhao_zhanhao",$insert_array);
+        cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao', 'succeed');
+
+    }
+    exit();
+}
+
+
+
+elseif($_GET['op'] == 'delete') {
     if ($_GET['formhash'] != FORMHASH) {
         showmessage('undefined_action');
     }
@@ -220,7 +252,17 @@ if(!$resultempty) {
     }
 }
 $add = '<input type="button" class="btn" onclick="location.href=\''.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=add\'" value="'.lang('plugin/htt_zhanhao', 'show_add').'" />';
-showsubmit('', '', 'td', $add);
+$del_many = '<input type="button" class="btn" onclick="location.href=\''.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=del_many\'" value="'.lang('plugin/htt_zhanhao', 'del_many').'" />';
+
+if($zhanhaos) {
+    showsubmit('', '', $del_many, $add);
+
+}else{
+    showsubmit('', '', $add);
+
+}
+
+
 showtablefooter();
 
 echo multi($count, $ppp, $page, ADMINSCRIPT."?action=plugins&operation=config&do=$pluginid&identifier=htt_zhanhao&pmod=zhanhao$extra");

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_share` (
 ) ENGINE=MyISAM;
 
 
+ALTER TABLE  `cdb_httzhanhao_zhanhao` ADD  `deplay_time` INT( 11 ) NOT NULL COMMENT  '发布的时间' AFTER  `dateline`
 
 
 

@@ -1,0 +1,87 @@
+/* 分页 */
+.pages {zoom:1;overflow:hidden;}
+	.pages ul {height:21px;overflow:hidden;}
+		.pages li {float:left;margin-right:2px;height:21px;line-height:21px;overflow:hidden;}
+			.pages li a {float:left;padding:0 6px;height:19px;line-height:19px;border:1px solid #E3E4DD;font-size:14px;font-family:Verdana;vertical-align:middle;overflow:hidden;}
+			.pages li a, .pages li a:visited {color:#8F8F8F;}
+			.pages li a:hover {text-decoration:none;border-color:#839B1B;color:#FFF;background-color:#839B1B;}
+			.pages .select {background-color:#839B1B;}
+			.pages .select a , .pages .select a:visited {color:#FFF; border:1px solid #839B1B;}
+		.pages .prevpage, .pages .lastpage {width:21px;}
+			.pages .prevpage a, .pages .prevpage a:visited, .pages .nextpage a, .pages .nextpage a:visited, .pages .lastpage a, .pages .lastpage a:visited, .gopage button {background-image:url(bg_pages.gif);background-repeat:no-repeat;background-color:#FFF;}
+			.pages .prevpage a:hover, .pages .nextpage a:hover, .pages .lastpage a:hover {background-color:#839B1B;} 
+			.pages .prevpage a, .pages .prevpage a:visited  {padding:0 0 0 19px;width:0;background-position:7px -26px;}
+				.pages .prevpage a:hover {background-position:-21px -51px}
+			.pages .nextpage a, .pages .nextpage a:visited {padding:0px 14px 0 7px;line-height:21px;font-size:12px;background-position: 47px 6px;}
+				.pages .nextpage a:hover {background-position:19px -19px;}
+			.pages .lastpage a, .pages .lastpage a:visited {padding:0px 0 0 19px;width:0;background-position:6px -58px;}
+				.pages .lastpage a:hover {background-position:-18px -83px;}
+		.pages .gopage {margin-left:3px;margin-right:0;line-height:23px;color:#5A5A5A;}
+			.gopage span, .gopage input, .gopage button {float:left;line-height:23px;overflow:hidden;}
+			.gopage input, .gopage button {margin:0 5px;width:35px;height:19px;line-height:19px;font-size:12px;color:#5A5A5A;}
+			.gopage input {padding-top:2px;height:17px;line-height:17px;border:1px solid #E3E4DD;}
+			.gopage button {margin-right:0;padding:0;height:21px;border:none;color:#5A5A5A;background-position:0 -129px;}
+			
+/* 文本框{单行} */
+.inp_radio input, .inp_checkbox input {width:13px;height:13px;vertical-align:middle;}
+body .inp_txt_active {border-color:#7DBDE2;} /* -_- */
+.navgation .layout {margin:0 auto;width:980px;overflow:visible;}
+.iblock {display:inline-block;*display:inline;zoom:1;}
+.clearall {zoom:1;}
+.clearall:after {content:".";display:block;clear:both;height:0;visibility:hidden;}
+
+/* 虾米音乐 */
+.inp_txt {margin:10px 10px 10px 0;padding-top:2px;width:275px;height:18px;font-size:12px;line-height:15px;color:#666666;}
+.music_list {margin-top:5px;width:100%;overflow:hidden;}
+.music_list li {clear:both;width:100%;height:21px;line-height:23px;border-bottom:1px dotted #DFE5E7;overflow:hidden;}
+.music_list li span {float:left;text-indent:3px;}
+.music_list li a {float:right;padding-right:3px;}
+.pages {margin-top:10px;}
+
+/* confirm */
+.dk_confirm {position:relative;padding:30px 0 13px;width:320px;overflow:hidden;}
+	.dk_confimocont {padding:0 9px;border:1px solid #D9E6BB;zoom:1;background:#E1ECC5;}
+	.dk_confim_add {position:relative;width:100%;}
+		.dk_confim_add span {position:absolute;z-index:1;display:block;top:0;width:10px;overflow:hidden;background-image:url(bg_confim.gif);background-repeat:no-repeat;}
+			.dk_confim_add .dk_confim_addleft {left:-10px;}
+			.dk_confim_add .dk_confim_addright {right:-10px;}
+	.dk_confim_header {cursor:move;margin-top:-30px;height:30px;background:url(bg_confim.gif) repeat-x 0 -44px;}
+		.dk_confim_header h5 {font-size:14px;height:30px;line-height:32px;color:#334F67;overflow:hidden;}
+		.dk_confim_header span {height:30px;}
+		.dk_confim_header .dk_confim_addleft {background-position:-10px -13px;}
+		.dk_confim_header .dk_confim_addright {background-position:0 -13px;}
+	.dk_confim_footer {margin-bottom:-13px;height:13px;background:url(bg_confim.gif) repeat-x 0 -75px;}
+		.dk_confim_footer span {height:13px;}
+		.dk_confim_footer .dk_confim_addleft {background-position:-10px 0;}
+		.dk_confim_footer .dk_confim_addright {background-position:0 0;}
+	.dk_confimclose {position:absolute;z-index:1;top:10px;right:10px;padding-top:15px;width:15px;height:0;background:url(bg_confim.gif) no-repeat -3px -89px;cursor:pointer;overflow:hidden;}
+	.dk_confimmain {padding:10px;border:1px solid #D9E6BB;background:#FFF;overflow:hidden;}
+
+
+/* button */
+	.btn_sm, .btn_option, .btn_sm span, .btn_option span, .btn_sm_m, .btn_option_m, .btn_sm_m span, .btn_option_m span, .btn_reply {background:url(bg_btn.gif) no-repeat 0 0;}
+	.btn_sm, .btn_option, .btn_sm_m, .btn_option_m, .btn_reply {display:inline-block;*display:inline;zoom:1;padding-left:5px;overflow:hidden;}
+		.btn_sm span, .btn_option span, .btn_sm_m span, .btn_option_m span {float:left;padding:0 10px 0 5px;cursor:pointer;zoom:1;}
+		.btn_sm:hover, .btn_option:hover, .btn_sm_m:hover, .btn_option_m:hover {text-decoration:none;}
+		.btn_sm span, .btn_sm_m span {font-weight:800;color:#FFF;}
+		.btn_option span, .btn_option_m span {font-weight:800;color:#334F67;}
+		/* 大按钮 */
+		.btn_sm, .btn_option {height:30px;line-height:33px;font-size:14px;vertical-align:middle;}
+			.btn_sm {background-position:0 -204px;}
+			.btn_sm:hover {background-position:0 -269px;}
+				.btn_sm span {background-position:right -234px;}
+				.btn_sm:hover span {background-position:right -299px;}
+			.btn_option {background-position:0 -332px;}
+			.btn_option:hover {background-position:0 -397px;}
+				.btn_option span {background-position:right -362px;}
+				.btn_option:hover span {background-position:right -427px;}
+		/* 小按钮 */
+		.btn_sm_m, .btn_option_m {height:23px;line-height:23px;font-size:12px;vertical-align:middle;}
+			.btn_sm_m {background-position:0 0;}
+			.btn_sm_m:hover {background-position:0 -51px;}
+				.btn_sm_m span {background-position:right -23px;}
+				.btn_sm_m:hover span {background-position:right -74px;}
+			.btn_option_m {background-position:0 -102px;}
+			.btn_option_m:hover {background-position:0 -153px;}
+				.btn_option_m span {background-position:right -125px;}
+				.btn_option_m:hover span {background-position:right -176px;}

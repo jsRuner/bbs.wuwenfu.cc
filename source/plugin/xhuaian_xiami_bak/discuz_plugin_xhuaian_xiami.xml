@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X1.5,X2,X2.5,X3]]></item>
+	<item id="Time"><![CDATA[2013-03-10 22:00]]></item>
+	<item id="From"><![CDATA[90 Discuz!(http://discuz.xhuaian.com)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[ÏºÃ×ÌûÄÚÒôÀÖ²¥·ÅÆ÷]]></item>
+			<item id="adminid"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[ÏºÃ×ÌûÄÚÒôÀÖ²¥·ÅÆ÷]]></item>
+			<item id="identifier"><![CDATA[xhuaian_xiami]]></item>
+			<item id="description"><![CDATA[ÏºÃ×ÌûÄÚÒôÀÖ²¥·ÅÆ÷£¬»ùÓÚÏºÃ×£¬Ìá¹©ÒôÀÖËÑË÷£¬Ìæ»»DZÔ­ÓÐµÄÒôÀÖ²¥·ÅÆ÷£¡]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[xhuaian_xiami/]]></item>
+			<item id="copyright"><![CDATA[90 Discuz!]]></item>
+			<item id="version"><![CDATA[v1.0.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[music]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[help]]></item>
+					<item id="menu"><![CDATA[ÎÊÌâ·´À¡]]></item>
+					<item id="url"><![CDATA[http://discuz.xhuaian.com/email/]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[more]]></item>
+					<item id="menu"><![CDATA[¸ü¶à²úÆ·]]></item>
+					<item id="url"><![CDATA[http://addon.discuz.com/?@2299.developer]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				
+				<item id="3">
+					<item id="name"><![CDATA[music_mobile]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X1.5,X2,X2.5,X3]]></item>
+		<item id="license"><![CDATA[  [*]±¾²å¼þ°æÈ¨¹éÊô²å¼þ×÷Õß,¼°ÆäÏÂÊô90 Discuz!ËùÓÐ.
+[*]Î´¾­²å¼þ×÷ÕßÐí¿É,ÈÎºÎÈË²»µÃÒÔÈÎºÎÐÎÊ½ÔÚÈÎºÎµØ·½·¢²¼/×ª·¢Ô­°æÒÔ¼°ÆäÑÜÉúµÄÐÞ¸Ä°æ.
+[*][b]²å¼þ×÷Õß:[/b]90 Discuz!
+[*][b]×÷Æ·¼ò½é:[/b]ÏºÃ×ÌûÄÚÒôÀÖ²¥·ÅÆ÷£¬»ùÓÚÏºÃ×£¬Ìá¹©ÒôÀÖËÑË÷£¬Ìæ»»DZÔ­ÓÐµÄÒôÀÖ²¥·ÅÆ÷£¡
+[*]ÈçÓÐÈÎºÎ¹ØÓÚÊ¹ÓÃÉÏµÄÒÉÎÊ,ÇëÖÁ[url]http://discuz.xhuaian.com/[/url]Õ¾Îñ·´À¡ÇøÌá³ö.
+[*]×îºó,¸ÐÐ»ÄúÊ¹ÓÃÎÒÃÇµÄ²å¼þ,Ò²Ï£ÍûÄúÄÜ¹»¸ø90 Discuz!Ìá¹©¸üºÃµÄÒâ¼û([url=http://discuz.xhuaian.com/]Çëµã»÷ÕâÀï½øÈë90 Discuz!¹Ù·½Õ¾[/url]).]]></item>
+		<item id="intro"><![CDATA[
+			[color=DeepSkyBlue][b]±¾²å¼þ½éÉÜ:[/b][/color]
+				Ãû³Æ: [b]ÏºÃ×ÌûÄÚÒôÀÖ²¥·ÅÆ÷[/b]
+				°æ±¾: [b]1.0.0£¨Ãâ·Ñ°æ£©[/b]
+				×÷Õß: 90 Discuz!
+				90 Discuz!ÈÙÓþ³öÆ· 
+				
+				-------------------------------------------
+				90 Discuz!ÍÅ¶Ó°æÈ¨ËùÓÐ!
+				½ûÖ¹ÈÎºÎÐÎÊ½µÄ·â×°ÔÙ·¢²¼ÐÐÎª.
+				ÌØ´ËÉùÃ÷.
+
+				2013Äê03ÔÂ10ÈÕ
+			]]></item>
+	</item>
+</root>

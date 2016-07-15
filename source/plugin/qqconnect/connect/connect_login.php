@@ -109,6 +109,7 @@ if($op == 'init') {
 
 		$conuintoken = $response['access_token'];
 		$conopenid = strtoupper($response['openid']);
+
 		if(!$conuintoken || !$conopenid) {
 			showmessage('qqconnect:connect_get_access_token_failed', $referer);
 		}
@@ -136,9 +137,12 @@ if($op == 'init') {
 
 	$user_auth_fields = 1;
 
+
 	$cookie_expires = 2592000;
 	dsetcookie('client_created', TIMESTAMP, $cookie_expires);
 	dsetcookie('client_token', $conopenid, $cookie_expires);
+
+
 
 	$connect_member = array();
 	$fields = array('uid', 'conuin', 'conuinsecret', 'conopenid');
@@ -429,6 +433,7 @@ function connect_login($connect_member) {
 	dsetcookie('connect_uin', $connect_member['conopenid'], 31536000);
 	return true;
 }
+
 
 function getErrorMessage($errroCode) {
 	$str = sprintf('connect_error_code_%d', $errroCode);

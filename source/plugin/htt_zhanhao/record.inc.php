@@ -17,7 +17,33 @@ $Plang = $scriptlang['htt_zhanhao'];
 
 if($_GET['op'] == 'add') {
 
-} elseif($_GET['op'] == 'delete') {
+}
+elseif($_GET['op'] == 'del_many'){
+
+
+    if(!submitcheck('submit')) {
+//        选择日期 。删除这个日期时间段内的
+        echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
+        showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record&op=del_many', 'enctype');
+        showtableheader();
+        showsetting(lang('plugin/htt_zhanhao', 'start_time'),'start_time', '', 'calendar','',0,'',1);
+        showsetting(lang('plugin/htt_zhanhao', 'end_time'),'end_time', '', 'calendar','',0,'',1);
+
+        showsubmit('submit');
+        showtablefooter();
+        showformfooter();
+
+    }else{
+
+
+        DB::delete("httzhanhao_record",'dateline >'.strtotime($_GET['start_time']).' AND dateline <='.strtotime($_GET['end_time']));
+        cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record', 'succeed');
+
+    }
+    exit();
+}
+
+elseif($_GET['op'] == 'delete') {
     //判断来源
     if ($_GET['formhash'] != FORMHASH) {
         showmessage('undefined_action');
@@ -86,6 +112,15 @@ if(!$resultempty) {
             </tr>';
     }
 }
+
+
+$del_many = '<input type="button" class="btn" onclick="location.href=\''.ADMINSCRIPT.'?action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=record&op=del_many\'" value="'.lang('plugin/htt_zhanhao', 'del_many').'" />';
+
+if($records){
+    showsubmit('', '', $del_many);
+
+}
+
 showtablefooter();
 
 echo multi($count, $ppp, $page, ADMINSCRIPT."?action=plugins&operation=config&do=$pluginid&identifier=htt_zhanhao&pmod=record$extra");

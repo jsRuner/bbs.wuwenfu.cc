@@ -4,7 +4,7 @@
 $_config = array();
 
 // ----------------------------  CONFIG DB  ----------------------------- //
-$_config['db']['1']['dbhost'] = 'localhost';
+$_config['db']['1']['dbhost'] = '127.0.0.1';
 $_config['db']['1']['dbuser'] = 'root';
 $_config['db']['1']['dbpw'] = 'root';
 $_config['db']['1']['dbcharset'] = 'gbk';

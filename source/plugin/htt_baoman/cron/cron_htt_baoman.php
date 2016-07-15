@@ -18,6 +18,13 @@
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+
+
+include_once 'source/plugin/htt_baoman/function/htt_function.php';
+
+
+
+
 function set_home($dir = '.')
 {
     $dir1 = date('Ym');

@@ -5,6 +5,12 @@ if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
 
+include_once 'source/plugin/htt_zhanhao/function/function_htt.php';
+
+//echo time_tran(time());
+
+//exit();
+
 global $_G;
 
 loadcache('plugin');
@@ -99,10 +105,36 @@ $date = date('Y-m-d');
 $srchadd = '';
 //$srchadd = ' AND status = 0 ';
 $srchadd .= ' AND cid = '.$cid;
+$srchadd .= ' AND deplay_time <= '.time(); //增加时间查询。当前时间要大于发布的时间。
+$srchadd .= ' AND status = 0 '; //只显示已经发布的
 $page = 1;
 $ppp = 100;
 
 $zhanhaos = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_search($srchadd, ($page - 1) * $ppp, $ppp);
+
+
+//循环。增加一个信息。计算时间。
+$temp = array();
+foreach($zhanhaos as $k=>$zhanhao){
+
+    $zhanhao['deyplay_time_str'] = time_tran($zhanhao['deplay_time']);
+
+    $temp[$key] = $zhanhao;
+}
+
+$zhanhaos = $temp;
+
+
+
+//查询最新的一个发布时间帐号。发布时间大于当前时间的。取最近的一条。
+
+$zhanhaos_last = C::t('#htt_zhanhao#zhanhao')->fetch_all_by_search(' AND deplay_time >'.time().' AND cid = '.$cid, ($page - 1) * $ppp, 1);
+//计算还需要多久更新。单位是秒
+if($zhanhaos_last){
+    $update_time =$zhanhaos_last[array_keys($zhanhaos_last)[0]]['deplay_time'] - time();
+}else{
+    $update_time = 0;
+}
 
 
 $myzhanhaos = False;
@@ -267,7 +299,13 @@ if ($_GET['op'] == 'fetch') {
 
 }
 
+//需要计算最近的一次更新时间。大于当前的时间的最新一次更新时间。
 
+
+
+
+
+//每个帐号需要增加显示当前更新的多少秒。
 
 
 
