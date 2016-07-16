@@ -68,7 +68,7 @@ $categorys = array('cid', $category_list);
 if($_GET['op'] == 'add') {
     if(!submitcheck('submit')) {
         echo '<script type="text/javascript" src="static/js/calendar.js"></script>';
-        showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=add', 'enctype');
+        showformheader('plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao&op=add');
         showtableheader();
         showsetting(lang('plugin/htt_zhanhao', 'deplay_time'), 'deplay_time', '', 'calendar','',0,'',1);
         showsetting(lang('plugin/htt_zhanhao', 'username'), 'username', '', 'text');
@@ -83,6 +83,10 @@ if($_GET['op'] == 'add') {
 
         //如果存在批量的账号。则其他的忽略。1-2 空格分割
         if($_GET['many_usernames']){
+
+
+
+
             $many_zhanhaos = explode(';',trim($_GET['many_usernames'],';'));
 
             foreach($many_zhanhaos as $zhanhao_str){

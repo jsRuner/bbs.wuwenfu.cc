@@ -28,10 +28,10 @@ function time_tran($the_time)
                 if ($dur < 86400) {
                     return floor($dur / 3600) . '小时前';
                 } else {
-                    if ($dur < 259200) {//3天内
+                    if (true) {//3天内
                         return floor($dur / 86400) . '天前';
                     } else {
-                        return $the_time;
+                        return '';
                     }
                 }
             }

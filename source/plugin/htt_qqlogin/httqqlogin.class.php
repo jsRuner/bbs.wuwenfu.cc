@@ -24,8 +24,12 @@ class plugin_htt_qqlogin {
         }
         define('IMGDIR','static/image/common');
 
-//        include_once template('htt_qqlogin:qqlogin_simple');
-        $_G['setting']['pluginhooks']['global_login_text'] =  '<a href="'.$site_url.'/plugin.php?id=htt_qqlogin:qqoauth" target="_top" rel="nofollow"><img src="'.IMGDIR.'/qq_login.gif" class="vm" /></a>';
+        //如果没登录，同时非手机端
+        if($_G['uid'] <=0 && !defined('IN_MOBILE') ){
+
+            $_G['setting']['pluginhooks']['global_login_text'] =  '<a href="'.$site_url.'/plugin.php?id=htt_qqlogin:qqoauth" target="_top" rel="nofollow"><img src="'.IMGDIR.'/qq_login.gif" class="vm" /></a>';
+        }
+
     }
 
 
@@ -42,7 +46,8 @@ class plugin_htt_qqlogin {
         }
         $site_url = rtrim($site_url,'/');
 
-        if($is_open==2){
+        //登录过
+        if($is_open==2 || $_G['uid'] > 0){
             return '';
         }
 
@@ -67,7 +72,7 @@ class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
-        if($is_open==2){
+        if($is_open==2 || $_G['uid'] > 0){
             return '';
         }
         include_once template('htt_qqlogin:qqlogin_simple_connect');
@@ -84,7 +89,7 @@ class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
-        if($is_open==2){
+        if($is_open==2 || $_G['uid'] > 0){
             return '';
         }
         include_once template('htt_qqlogin:qqlogin_simple_connect');

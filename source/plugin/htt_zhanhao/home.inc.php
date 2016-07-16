@@ -1,9 +1,11 @@
 <?php
+error_reporting(E_ALL);
 
 
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+
 
 include_once 'source/plugin/htt_zhanhao/function/function_htt.php';
 
@@ -38,12 +40,25 @@ $seo_key = $var['htt_zhanhao']['seo_key']; //seo
 
 $max_num = $var['htt_zhanhao']['max_num']; //最多提取次数。即通过分享。最多可以提取多次。
 $groupstr = $var['htt_zhanhao']['groups'];
+
+
+
+
 $groups = array_filter(unserialize($groupstr));
+
+
+
+
 $members_bygroup = C::t('common_member')->fetch_all_by_groupid($groups);//该组的会员资料
+
+
+
+
 $uids = array();
 foreach ($members_bygroup as $item) {
     $uids[] = $item['uid'];
 }
+
 
 
 $copyright = $var['htt_zhanhao']['copyright'];
@@ -71,6 +86,7 @@ var_dump($_G);
 echo '</pre>';
 exit();*/
 //读取分类信息。
+
 
 
 $cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
@@ -119,10 +135,11 @@ foreach($zhanhaos as $k=>$zhanhao){
 
     $zhanhao['deyplay_time_str'] = time_tran($zhanhao['deplay_time']);
 
-    $temp[$key] = $zhanhao;
+    $temp[$k] = $zhanhao;
 }
 
 $zhanhaos = $temp;
+
 
 
 
@@ -292,6 +309,8 @@ if ($_GET['op'] == 'fetch') {
 //        showmessage(lang('plugin/htt_zhanhao', 'show_fetech_error_03') . '<br>' . $zhanhao['username'] . '/' . $zhanhao['password'] . '');
     }
 
+
+
     include_once template('htt_zhanhao:tip');
 
     exit();
@@ -308,11 +327,17 @@ if ($_GET['op'] == 'fetch') {
 //每个帐号需要增加显示当前更新的多少秒。
 
 
+//判断是否为手机、
+//if(true){
+/*if(define('IN_MOBILE')){
+    include_once template('htt_zhanhao:home_mobile');
+    exit();
+}*/
 
 
 include_once template('htt_zhanhao:home');
 
-exit();
+
 
 
 ?>

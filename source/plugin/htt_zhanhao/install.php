@@ -11,7 +11,7 @@ if(!defined('IN_DISCUZ')) {
 runquery("
 
 CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_record` (
-  `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(15) NOT NULL COMMENT '提取者用户名',
   `zid` int(11) NOT NULL COMMENT '提取的账号id',
   `dateline` int(11) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_record` (
 
 
 CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_category` (
-  `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(25) NOT NULL COMMENT '分类标题',
   `info` varchar(2048) NOT NULL COMMENT '分类描叙',
   `dateline` int(11) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_category` (
 
 
 CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_zhanhao` (
-  `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL COMMENT '账号',
   `password` varchar(25) NOT NULL COMMENT '密码',
   `dateline` int(11) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_zhanhao` (
 
 
 CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_share` (
-   `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL COMMENT '分享者的用户名',
   `dateline` int(11) NOT NULL,
   `ip` varchar(25) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `cdb_httzhanhao_share` (
 ) ENGINE=MyISAM;
 
 
-ALTER TABLE  `cdb_httzhanhao_zhanhao` ADD  `deplay_time` INT( 11 ) NOT NULL COMMENT  '发布的时间' AFTER  `dateline`
+ALTER TABLE  `cdb_httzhanhao_zhanhao` ADD  `deplay_time` INT( 11 ) NOT NULL COMMENT  '发布的时间' AFTER  `dateline`;
 
 
 

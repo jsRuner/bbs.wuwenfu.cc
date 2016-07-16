@@ -16,16 +16,13 @@ class mobileplugin_htt_qqlogin {
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
-        if($_G['uid'] > 0){
+
+        //判断是否为登录界面。如果是，则显示登录按钮
+
+        if($is_open==2 || $_G['uid'] >0 || $_GET['mod'] != 'logging' || $_GET['action'] != 'login'){
             return '';
         }
 
-        if($is_open==2 || $_G['uid'] >0){
-            return '';
-        }
-      /*  return '
-<a href="plugin.php?id=htt_qqlogin:qqoauth" style="display:block;text-align:center;margin: auto;"><img src="source/plugin/htt_qqlogin/template/image/bt_white_76.png" alt=""></a>
-';*/
         include_once template('htt_qqlogin:qqlogin_mobile');
         return $qqlogin_mobile_html;
     }
