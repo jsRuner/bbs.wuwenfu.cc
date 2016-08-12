@@ -108,32 +108,32 @@ function curl_qsbk($url)
     return $html;
 }
 
-/**
-     * -- 读写缓存文件 --
-     * value为空时读取name字段缓存
-     * @param name String
-     * @param value String
-     */
-     function wwf_cache($name = '',$value = ''){
-        define('PLUGIN_IDENTIFIE', 'htt_toutiao');
-        require_once libfile('function/cache');
-        $cache = array();
-        $cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . PLUGIN_IDENTIFIE . '.php';
-        if(file_exists($cache_file)){
-            $cache = require($cache_file);
-        }
-        if($value != '' && $name != ''){    // 写入缓存
-            $cache[$name] = $value;
-            $cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
-            writetocache(PLUGIN_IDENTIFIE,$cache_text);
-            unset($cache);
-            unset($cache_text);
-            unset($cache_file);
-        }else{  // 读取缓存
-            unset($cache_file);
-            return isset($cache[$name]) ? $cache[$name] : false;
-        }
+/*
+ * -- 读写缓存文件 --
+ * value为空时读取name字段缓存
+ * @param name String
+ * @param value String
+ */
+ function wwf_cache($name = '',$value = ''){
+    define('PLUGIN_IDENTIFIE', 'htt_toutiao');
+    require_once libfile('function/cache');
+    $cache = array();
+    $cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . PLUGIN_IDENTIFIE . '.php';
+    if(file_exists($cache_file)){
+        $cache = require($cache_file);
     }
+    if($value != '' && $name != ''){    // 写入缓存
+        $cache[$name] = $value;
+        $cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
+        writetocache(PLUGIN_IDENTIFIE,$cache_text);
+        unset($cache);
+        unset($cache_text);
+        unset($cache_file);
+    }else{  // 读取缓存
+        unset($cache_file);
+        return isset($cache[$name]) ? $cache[$name] : false;
+    }
+}
 
 
 //先从缓存读取。如果采集过，则不执行了。

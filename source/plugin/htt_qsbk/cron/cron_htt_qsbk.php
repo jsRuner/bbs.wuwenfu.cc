@@ -10,7 +10,7 @@
  *    week: -1
  *    day:-1
  *    hour:5
- *    minute:30
+ *    minute:10,20,30,40,50
  */
 
 //error_reporting(E_ALL);
@@ -101,10 +101,65 @@ function curl_qsbk($url)
     curl_close($curl);
 
     if (empty($html)) {
-        return curl_qsbk($url);
+        return '';
     }
     return $html;
 }
+
+
+
+/*
+ * -- 读写缓存文件 --
+ * value为空时读取name字段缓存
+ * @param name String
+ * @param value String
+ */
+ function wwf_cache($name = '',$value = ''){
+    $f = "htt_qsbk";
+    require_once libfile('function/cache');
+    $cache = array();
+    $cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . $f . '.php';
+    if(file_exists($cache_file)){
+        $cache = require($cache_file);
+    }
+    if($value != '' && $name != ''){    // 写入缓存
+        $cache[$name] = $value;
+        $cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
+        writetocache($f,$cache_text);
+        unset($cache);
+        unset($cache_text);
+        unset($cache_file);
+    }else{  // 读取缓存
+        unset($cache_file);
+        return isset($cache[$name]) ? $cache[$name] : false;
+    }
+}
+
+//先从缓存读取。如果采集过，则不执行了。
+//如果没有。则读取数据库，如果采集过，则写入缓存
+
+$qsbk_ed = wwf_cache('qsbk');
+$tid_ed = wwf_cache('qsbk_tid');
+$pid_ed = wwf_cache('qsbk_pid');
+//不为空。同时时间是今天的。则表示成功了 ，不执行了。
+if ( $qsbk_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) > 0 ) {
+   return;
+}
+//处理昨天的情况。如果是昨天的，则消除其他的参数
+if ( $qsbk_ed == strtotime("-1 day")) {
+    wwf_cache('qsbk_tid',0);
+    wwf_cache('qsbk_pid',0);
+}
+
+
+//如果是今天。存在tid，不存在pid,则需要进行删除操作。
+if ( $qsbk_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) <= 0 ) {
+        C::t('forum_thread')->delete($tid_ed);
+}
+
+
+
+
 
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
@@ -117,7 +172,9 @@ $caiji_model = $var['htt_qsbk']['caiji_model']; //1纯文 2表示纯图 3图文
 $check = $var['htt_qsbk']['check'];  //1不审核 2审核。
 $title_length = $var['htt_qsbk']['title_length']; //标题长度
 $title_default = $var['htt_qsbk']['title_default']; //默认标题
-$post_model = $var['htt_qsbk']['post_model']; //发帖模式
+// $post_model = $var['htt_qsbk']['post_model']; //发帖模式
+$post_model = 2; //发帖模式
+
 
 //如果采集数量为0.则不执行后面的操作。不采集。
 if ($threads == 0) {
@@ -325,6 +382,9 @@ foreach ($articles as $article) {
         //插入主题
         $tid = C::t('forum_thread')->insert($newthread, true);
 
+        //记录id
+        wwf_cache('qsbk_tid',$tid);
+
         //remote 0表示本地。主题图片表。
         C::t('forum_threadimage')->insert(array(
             'tid' => $tid,
@@ -372,6 +432,8 @@ foreach ($articles as $article) {
         'replycredit' => '0',//回帖获得积分记录
         'status' => '0'//帖子状态
     ));
+
+    wwf_cache('qsbk_pid',$pid);
 
     if ($data['img'] != '') {
 
@@ -472,4 +534,6 @@ foreach ($articles as $article) {
     $lasttid = $tid; //记录之前的tid。
 
 }
+
+wwf_cache('qsbk',date('Y-m-d'));
 ?>
