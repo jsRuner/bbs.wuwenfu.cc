@@ -10,7 +10,7 @@
  *    week: -1
  *    day:-1
  *    hour:5
- *    minute:30
+ *    minute:10,20,30,40,50
  */
 
 //error_reporting(E_ALL);
@@ -97,14 +97,68 @@ function curl_qsbk($url)
     curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
     curl_setopt($curl, CURLOPT_URL, $url); //设置请求地址
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  //是否输出 1 or true 是不输出 0  or false输出
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, 10*1000);  //5秒等待
+
     $html = curl_exec($curl); //执行curl操作
     curl_close($curl);
 
     if (empty($html)) {
-        return curl_qsbk($url);
+        return '';
     }
     return $html;
 }
+
+/**
+     * -- 读写缓存文件 --
+     * value为空时读取name字段缓存
+     * @param name String
+     * @param value String
+     */
+     function wwf_cache($name = '',$value = ''){
+        define('PLUGIN_IDENTIFIE', 'htt_toutiao');
+        require_once libfile('function/cache');
+        $cache = array();
+        $cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . PLUGIN_IDENTIFIE . '.php';
+        if(file_exists($cache_file)){
+            $cache = require($cache_file);
+        }
+        if($value != '' && $name != ''){    // 写入缓存
+            $cache[$name] = $value;
+            $cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
+            writetocache(PLUGIN_IDENTIFIE,$cache_text);
+            unset($cache);
+            unset($cache_text);
+            unset($cache_file);
+        }else{  // 读取缓存
+            unset($cache_file);
+            return isset($cache[$name]) ? $cache[$name] : false;
+        }
+    }
+
+
+//先从缓存读取。如果采集过，则不执行了。
+//如果没有。则读取数据库，如果采集过，则写入缓存
+
+$toutiao_ed = wwf_cache('toutiao');
+$tid_ed = wwf_cache('toutiao_tid');
+$pid_ed = wwf_cache('toutiao_pid');
+//不为空。同时时间是今天的。则表示成功了 ，不执行了。
+if ( $toutiao_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) > 0 ) {
+   return;
+}
+//处理昨天的情况。如果是昨天的，则消除其他的参数
+if ( $toutiao_ed == strtotime("-1 day")) {
+    wwf_cache('toutiao_tid',0);
+    wwf_cache('toutiao_pid',0);
+}
+
+
+//如果是今天。存在tid，不存在pid,则需要进行删除操作。
+if ( $toutiao_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) <= 0 ) {
+        C::t('forum_thread')->delete($tid_ed);
+}
+
+
 
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
@@ -112,74 +166,43 @@ $fidstr = $var['htt_toutiao']['fids'];
 
 $fids = unserialize($fidstr);
 
-//var_dump($fids);
-
-//exit();
-
-
-//$uidstr = $var['htt_toutiao']['uids'];
-
-//$groupstr = $var['htt_toutiao']['groups']; //用户组
-//$threads = $var['htt_toutiao']['threads'];
 $charset_num = $var['htt_toutiao']['charset'];  // 1utf-8 2gbk
-//$caiji_model = $var['htt_toutiao']['caiji_model']; //1纯文 2表示纯图 3图文
-//$check = $var['htt_toutiao']['check'];  //1不审核 2审核。
-//$title_length = $var['htt_toutiao']['title_length']; //标题长度
 $title_default = $var['htt_toutiao']['title_default']; //默认标题
-//$post_model = $var['htt_toutiao']['post_model']; //发帖模式
-$model = $var['htt_toutiao']['model']; //采集的模块
-
-//echo 11;
-
-//echo $models;
-//exit();
-/*
-$models = array_filter(unserialize($model_str));
-if (is_null($models) || empty($models)) {
-    return;
-}*/
-
-//print_r($models) ;
-//exit();
+$key = $var['htt_toutiao']['key']; //采集的新闻关键字
 
 
-//数据源。
-$urls = array(
-    '1' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_hot", //热点
-    '2' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_society", //社会
-    '3' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_entertainment",//娱乐
-    '4' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_tech", //科技
-    '5' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_car", //车辆
-    '6' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_sports", //体育
-    '7' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_finance", //财经
-    '8' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_military", //军事
-    '9' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_world", //国际
-    '10' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_fashion", //时尚
-    '11' => "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_travel", //旅游
+
+
+$param =array(
+    'q'=>$key,
+    'range'=>'all',
+    'c'=>'news',
+    'sort'=>'time',
 );
 
-
-//单独选。只读取一个。
-//$rand_keys = array_rand($urls, 1);
-$url = $urls[$model];
-//$url = 'http://toutiao.com/api/article/recent/?source=2&count=20&category=news_society'; //社会消息请求接口。
+$url = 'http://search.sina.com.cn/?'.http_build_query($param);
 $html = curl_qsbk($url);
 
-$toutiaos = json_decode($html,true);
-//echo '<pre>';
-//var_dump($toutiaos);
-//echo '</pre>';
-//
-////echo $html;
-//exit();
+
+
+
+//解析数据
+include_once DISCUZ_ROOT . './source/plugin/htt_toutiao/include/phpQuery/phpQuery.php';
+phpquery::newDocumentHTML($html,'gbk');
+
+
+#获取段子列表。最外面那个。
+$articles = pq(".box-result");
+
+
+
+
 
 $imgpath = set_home('data/attachment/forum'); //返回的是全路径。
 
-////解析数据
-//include_once DISCUZ_ROOT . './source/plugin/htt_toutiao/include/phpQuery/phpQuery.php';
-//phpquery::newDocumentHTML($html, 'utf-8');
-#获取段子列表。最外面那个。
-$articles = $toutiaos['data'];
+
+
+
 $count = 1; //计数
 
 
@@ -190,26 +213,24 @@ $lasttid = 0; //上一次的tid.
 $first = 0;
 
 
+
+
 foreach ($articles as $article) {
 
 
 
     $data = array();
-    $data['url'] = $article['article_url']; //增加标题.
-    $data['title'] = $article['title']; //增加标题.
+    $data['url'] = pq($article)->find('h2 a')->attr('href'); //增加标题.
 
-//    echo iconv("UTF-8", "gbk", $data['title']);
-//
-//    echo '<br>';
-//
-//    continue;
 
-    $data['content'] = $article['abstract']; //摘要
-    if(empty($article['image_list'])){
-        $data['img'] = '';
-    }else{
-        $data['img'] = $article['image_list'][0]['url'];
-    }
+    $data['title'] = pq($article)->find('h2 a')->text(); //增加标题.
+
+
+
+    $data['content'] = pq($article)->find('p')->text(); //摘要
+
+    $data['img'] = pq($article)->find('img')->attr('src'); //摘要
+
 
     $remote = 0;
     //图片存在。
@@ -244,7 +265,7 @@ foreach ($articles as $article) {
     $invisible = 0; //无须审核。
     $displayorder = 0; //需要审核的帖子为-2
 
-//随机选择一个版块和用户。
+    //随机选择一个版块和用户。
     $fid_key = array_rand($fids, 1);
 
     $fid = $fids[$fid_key];
@@ -307,6 +328,9 @@ foreach ($articles as $article) {
         //插入主题
         $tid = C::t('forum_thread')->insert($newthread, true);
 
+        //记录id
+        wwf_cache('toutiao_tid',$tid);
+
         //remote 0表示本地。主题图片表。
         C::t('forum_threadimage')->insert(array(
             'tid' => $tid,
@@ -364,6 +388,8 @@ foreach ($articles as $article) {
         'replycredit' => '0',//回帖获得积分记录
         'status' => '0'//帖子状态
     ));
+
+    wwf_cache('toutiao_pid',$pid);
 
     if ($data['img'] != '') {
 
@@ -457,10 +483,6 @@ foreach ($articles as $article) {
     $count = $count + 1;
 
     $lasttid = $tid; //记录之前的tid。
-
-//    echo $tid;
-//
-//    exit();
-
 }
+wwf_cache('toutiao',date('Y-m-d'));
 ?>

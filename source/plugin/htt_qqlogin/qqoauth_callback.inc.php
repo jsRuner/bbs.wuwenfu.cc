@@ -1,4 +1,7 @@
 <?php
+
+
+error_reporting(E_ALL);
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }

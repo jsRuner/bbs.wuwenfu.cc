@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="Version"><![CDATA[X3.2]]></item>
+	<item id="Version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 	<item id="Time"><![CDATA[2016-06-06 13:53]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://bbs.wuwenfu.net/)]]></item>
 	<item id="Data">
@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_toutiao/]]></item>
 			<item id="copyright"><![CDATA[ÎâÎÄ¸¶]]></item>
-			<item id="version"><![CDATA[1.1]]></item>
+			<item id="version"><![CDATA[1.4]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[htt_toutiao]]></item>
@@ -30,7 +30,7 @@
 				</item>
 			</item>
 		</item>
-		<item id="version"><![CDATA[X3.2]]></item>
+		<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 		<item id="var">
 			<item id="0">
 				<item id="displayorder"><![CDATA[0]]></item>
@@ -54,7 +54,7 @@
 			<item id="2">
 				<item id="displayorder"><![CDATA[2]]></item>
 				<item id="title"><![CDATA[Ä¬ÈÏ±êÌâ]]></item>
-				<item id="description"><![CDATA[ÉèÖÃÄ¬ÈÏ±êÌâ]]></item>
+				<item id="description"><![CDATA[ÉèÖÃÄ¬ÈÏ±êÌâ¡£±êÌâ¸ñÊ½:2016Äê7ÔÂ30ÈÕ½ñÈÕÍ·Ìõ]]></item>
 				<item id="variable"><![CDATA[title_default]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[½ñÈÕÍ·Ìõ]]></item>
@@ -62,22 +62,12 @@
 			</item>
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
-				<item id="title"><![CDATA[Ä£¿é]]></item>
-				<item id="description"><![CDATA[Ñ¡ÔñÄãÐèÒª²É¼¯µÄÄ£¿é¡£»áËæ»úÑ¡ÔñÆäÖÐµÄÄ£¿é¡£]]></item>
-				<item id="variable"><![CDATA[model]]></item>
-				<item id="type"><![CDATA[select]]></item>
-				<item id="value"><![CDATA[]]></item>
-				<item id="extra"><![CDATA[1=ÈÈµã
-2=Éç»á
-3=ÓéÀÖ
-4=¿Æ¼¼
-5=³µÁ¾
-6=ÌåÓý
-7=²Æ¾­
-8=¾üÊÂ
-9=¹ú¼Ê
-10=Ê±ÉÐ
-11=ÂÃÓÎ]]></item>
+				<item id="title"><![CDATA[¹Ø¼ü×Ö]]></item>
+				<item id="description"><![CDATA[ÇëÊäÈë¹Ø¼ü×Ö,ÀýÈçÌåÓý»òÕß²ÊÆ±µÈ¡£¿ÉÒÔÏÈÈ¥ http://search.sina.com.cn/Ô¤ÀÀÄÚÈÝÐ§¹û]]></item>
+				<item id="variable"><![CDATA[key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[ÈÈµãÐÂÎÅ]]></item>
+				<item id="extra"><![CDATA[]]></item>
 			</item>
 		</item>
 		

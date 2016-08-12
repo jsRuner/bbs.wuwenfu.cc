@@ -139,7 +139,7 @@ if($_GET['op'] == 'add') {
 
         $insert_array = array(
             'cid'=>intval($_GET['cid']),
-            'status'=>1,
+            //'status'=>1,
         );
         DB::delete("httzhanhao_zhanhao",$insert_array);
         cpmsg(lang('plugin/htt_zhanhao', 'show_action_succeed'), 'action=plugins&operation=config&do='.$pluginid.'&identifier=htt_zhanhao&pmod=zhanhao', 'succeed');

@@ -10,7 +10,7 @@
  *    week: -1
  *    day:-1
  *    hour:5
- *    minute:30
+ *    minute:10,20,30,40,50
  */
 
 //error_reporting(E_ALL);
@@ -104,14 +104,67 @@ function curl_qsbk($url)
     curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
     curl_setopt($curl, CURLOPT_URL, $url); //设置请求地址
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  //是否输出 1 or true 是不输出 0  or false输出
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, 10*1000);  //10秒等待
     $html = curl_exec($curl); //执行curl操作
     curl_close($curl);
 
     if (empty($html)) {
-        return curl_qsbk($url);
+        return '';
     }
     return $html;
 }
+
+
+/**
+ * -- 读写缓存文件 --
+ * value为空时读取name字段缓存
+ * @param name String
+ * @param value String
+ */
+function wwf_cache($name = '',$value = ''){
+    $cache_file_name = 'htt_baoman';
+
+    require_once libfile('function/cache');
+    $cache = array();
+    $cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . $cache_file_name . '.php';
+    if(file_exists($cache_file)){
+        $cache = require($cache_file);
+    }
+    if($value != '' && $name != ''){    // 写入缓存
+        $cache[$name] = $value;
+        $cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
+        writetocache($cache_file_name,$cache_text);
+        unset($cache);
+        unset($cache_text);
+        unset($cache_file);
+    }else{  // 读取缓存
+        unset($cache_file);
+        return isset($cache[$name]) ? $cache[$name] : false;
+    }
+}
+
+
+//先从缓存读取。如果采集过，则不执行了。
+//如果没有。则读取数据库，如果采集过，则写入缓存
+
+$baoman_ed = wwf_cache('baoman');
+$tid_ed = wwf_cache('baoman_tid');
+$pid_ed = wwf_cache('baoman_pid');
+//不为空。同时时间是今天的。则表示成功了 ，不执行了。
+if ( $baoman_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) > 0 ) {
+    return ;
+}
+
+//如果存在tid，不存在pid,则需要进行删除操作。
+if ( empty($pid_ed) || intval($pid_ed) <= 0 ) {
+    if(intval($tid_ed) > 0){
+        C::t('forum_thread')->delete($tid_ed);
+    }
+}
+
+
+
+
 
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
@@ -331,6 +384,8 @@ foreach ($articles as $article) {
         //插入主题
         $tid = C::t('forum_thread')->insert($newthread, true);
 
+        wwf_cache('baoman_tid',$tid);
+
         //remote 0表示本地。主题图片表。
         C::t('forum_threadimage')->insert(array(
             'tid' => $tid,
@@ -378,6 +433,8 @@ foreach ($articles as $article) {
         'replycredit' => '0',//回帖获得积分记录
         'status' => '0'//帖子状态
     ));
+
+    wwf_cache('baoman_pid',$pid);
 
     if ($data['img'] != '') {
 
@@ -478,4 +535,7 @@ foreach ($articles as $article) {
     $lasttid = $tid; //记录之前的tid。
 
 }
+
+wwf_cache('baoman',date('Y-m-d'));
+
 ?>
