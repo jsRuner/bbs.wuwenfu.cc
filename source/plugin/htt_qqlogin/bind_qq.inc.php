@@ -41,13 +41,15 @@ if($_POST['username']) {
 
     if(empty($user)){
         //绑定的用户不存在
-        showmessage($plugin_lang['bind_user_no_exist']);
+        showmessage(lang('plugin/htt_qqlogin', 'bind_user_no_exist'));
+        // showmessage($plugin_lang['bind_user_no_exist']);
     }
 
     $password = $_POST['password'];
     if($user['password'] != md5(md5($password).$user['salt'])){
         //说明密码错误。
-        showmessage($plugin_lang['bind_user_password_wrong']);
+        showmessage(lang('plugin/htt_qqlogin', 'bind_user_password_wrong'));
+        // showmessage($plugin_lang['bind_user_password_wrong']);
     }
     //更新绑定的资料。
     $update_array = array(
@@ -58,7 +60,7 @@ if($_POST['username']) {
     //索引应当是openid
     C::t('#htt_qqlogin#qqlogin')->update_by_openid($qq_member['openid'],$update_array);
     //退出重新登录。
-    showmessage($plugin_lang['bind_user_success_login'],'/member.php?mod=logging&action=logout&formhash='.FORMHASH);
+    showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'),'/member.php?mod=logging&action=logout&formhash='.FORMHASH);
 
 
 }

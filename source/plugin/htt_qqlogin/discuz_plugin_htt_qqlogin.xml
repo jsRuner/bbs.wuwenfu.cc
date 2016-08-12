@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
 			<item id="copyright"><![CDATA[吴文付]]></item>
-			<item id="version"><![CDATA[1.7]]></item>
+			<item id="version"><![CDATA[1.8]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[httqqlogin]]></item>
@@ -136,7 +136,7 @@
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
 				<item id="title"><![CDATA[用户名后缀]]></item>
-				<item id="description"><![CDATA[默认后缀是字母或者数字混合。例如北岸的云_rq123]]></item>
+				<item id="description"><![CDATA[默认后缀是字母或者数字混合。例如北岸的云_rq123.该参数是防止用户名重复]]></item>
 				<item id="variable"><![CDATA[suffix]]></item>
 				<item id="type"><![CDATA[select]]></item>
 				<item id="value"><![CDATA[3]]></item>
@@ -146,12 +146,23 @@
 			</item>
 			
 			<item id="4">
-				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="displayorder"><![CDATA[4]]></item>
 				<item id="title"><![CDATA[站点地址]]></item>
 				<item id="description"><![CDATA[必填。要和申请QQ登录接口的网站域名、回调地址中域名一致。例如http://bbs.wuwenfu.cn]]></item>
 				<item id="variable"><![CDATA[site_url]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+
+
+			<item id="5">
+				<item id="displayorder"><![CDATA[5]]></item>
+				<item id="title"><![CDATA[后缀的长度]]></item>
+				<item id="description"><![CDATA[如果出现注册用户非QQ昵称，则将值减小。为0则没有后缀。禁止为负数，否则程序异常]]></item>
+				<item id="variable"><![CDATA[suffix_length]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[5]]></item>
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
@@ -164,9 +175,19 @@
 			<item id='qq_tip1'><![CDATA[只需要一步，快速开始]]></item>
 			<item id='qq_tip2'><![CDATA[快捷登录]]></item>
 			<item id='qq_tip3'><![CDATA[QQ登录]]></item>
+
+			<item id='old_username'><![CDATA[用户名]]></item>
+
+			<item id='old_password'><![CDATA[密码]]></item>
+
+			<item id='submit'><![CDATA[提交]]></item>
+
+			<item id='tip'><![CDATA[如果绑定成功,则下次QQ登录，自动登录该帐号]]></item>
+
+
 		</item>
 			<item id="scriptlang">
-			<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：无需填写任何资料。需要申请QQ登录接口</li><li>插件QQ群 ：554197629 群文件有视频帮助</li><li>申请接口地址： http://connect.qq.com/manage/login</li>]]></item>
+			<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：用户无需填写任何资料。需要申请QQ登录接口</li><li>插件QQ群 ：554197629 群文件有视频帮助</li><li>申请接口地址： http://connect.qq.com/manage/login</li>]]></item>
 			<item id="uid"><![CDATA[UID]]></item>
 			<item id="nickname"><![CDATA[昵称]]></item>
 			<item id="photo"><![CDATA[头像]]></item>
@@ -187,10 +208,9 @@
 			<item id="show_export_btn"><![CDATA[导出QQ用户]]></item>
 			<item id="bind_user_by_admin"><![CDATA[请勿随意修改。如果修改则表示该QQ会登录对应的帐号。UID-用户名-密码要正确。用户可以手动绑定QQ注册。具体位置是 设置-用户资料-绑定QQ]]></item>
 			
-			<item id="member_help"><![CDATA[<li>可以删除用户，则该用户点击QQ登录时会重新注册成一个会员。</li>
-<li>通过编辑用户，可以实现老会员绑定QQ登录。操作步骤-老会员先执行QQ注册-编辑老会员记录,修改UID-username-password为之前的资料即可。</li>
-<li>老用户可以自行绑定QQ登录。不建议管理员手动绑定。</li>
-<li>插件卸载的时候,则请备份表或者导出记录。</li>]]></item>
+			<item id="member_help"><![CDATA[<li>如果用QQ的昵称不满意，可以从下表中删除用户，则该用户点击QQ登录时会重新注册成一个会员。</li>
+<li>之前的用户可以自行绑定QQ登录。需要正确输入之前的帐号与密码。</li>
+<li>插件卸载的时候,会删除QQ注册的资料，如果有需要，则请备份表或者导出记录。</li>]]></item>
 
 
 			<item id="login_fail"><![CDATA[登录失败]]></item>

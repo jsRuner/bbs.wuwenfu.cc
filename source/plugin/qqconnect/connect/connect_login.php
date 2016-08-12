@@ -412,7 +412,11 @@ if($op == 'init') {
 
 	dheader('Location:' . $redirect);
 }
-
+/**
+ * ¹Ù·½µÄº¯Êý
+ * @param  [type] $connect_member [description]
+ * @return [type]                 [description]
+ */
 function connect_login($connect_member) {
 	global $_G;
 

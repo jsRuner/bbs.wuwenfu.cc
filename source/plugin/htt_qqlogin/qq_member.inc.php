@@ -103,7 +103,7 @@ switch ($ac){
 
         $extra = $search = '';
 
-        $ppp = 100;
+        $ppp = 50;
         $page = max(1, intval($_GET['page']));
         $count = C::t('#htt_qqlogin#qqlogin')->count_by_search($search);
         $qqlogins = C::t('#htt_qqlogin#qqlogin')->fetch_all_by_search($search,($page - 1) * $ppp, $ppp);

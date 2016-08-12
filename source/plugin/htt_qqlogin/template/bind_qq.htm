@@ -1,17 +1,23 @@
+
+
+
+
 <tr id="tr_telephone">
-    <th id="th_telephone">{$lang['username']}</th>
+    <th id="th_telephone"> {lang htt_qqlogin:old_username}</th>
     <td id="td_telephone">
         <input type="text" name="username" id="telephone" class="px" value="" tabindex="1"><div class="rq mtn" id="showerror_telephone"></div><p class="d"></p></td>
     <td class="p">
+    {lang htt_qqlogin:tip}
 
     </td>
 </tr>
 
 <tr id="tr_telephone">
-    <th id="th_telephone">{$lang['password']}</th>
+    <th id="th_telephone">{lang htt_qqlogin:old_password}</th>
     <td id="td_telephone">
         <input type="text" name="password" id="telephone" class="px" value="" tabindex="1"><div class="rq mtn" id="showerror_telephone"></div><p class="d"></p></td>
     <td class="p">
+    {lang htt_qqlogin:tip}
 
     </td>
 </tr>
@@ -21,7 +27,16 @@
     <th>&nbsp;</th>
     <td colspan="2">
         <input type="hidden" name="profilesubmit" value="true">
-        <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc"><strong>{$lang['save']}</strong></button>
+        <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc"><strong>{lang htt_qqlogin:submit}</strong></button>
         <span id="submit_result" class="rq"></span>
     </td>
 </tr>
+
+
+<style type="text/css">
+#profilelist > tbody > tr:nth-child(1){
+    display: none;
+}
+   
+
+</style>
