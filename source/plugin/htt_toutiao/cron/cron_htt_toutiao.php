@@ -146,15 +146,17 @@ $pid_ed = wwf_cache('toutiao_pid');
 if ( $toutiao_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) > 0 ) {
    return;
 }
+
+
 //处理昨天的情况。如果是昨天的，则消除其他的参数
-if ( $toutiao_ed == strtotime("-1 day")) {
+if ( $toutiao_ed == date('Y-m-d',strtotime("-1 day"))) {
     wwf_cache('toutiao_tid',0);
     wwf_cache('toutiao_pid',0);
 }
 
 
 //如果是今天。存在tid，不存在pid,则需要进行删除操作。
-if ( $toutiao_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) <= 0 ) {
+if (  intval($tid_ed) > 0 && intval($pid_ed) <= 0 ) {
         C::t('forum_thread')->delete($tid_ed);
 }
 

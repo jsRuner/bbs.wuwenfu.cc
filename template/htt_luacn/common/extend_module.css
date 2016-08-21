@@ -1,0 +1,401 @@
+/** forum::index**/
+
+
+ 
+#blizz-tracker-lite{
+	position: relative;
+}
+
+#blizz-tracker-lite a {
+	position: relative;
+	text-decoration: none;
+
+}
+
+
+
+#blizz-tracker-lite .blizzard-posts {
+    padding-top: 27px;
+    height: 240px
+}
+
+#blizz-tracker-lite .blizzard-posts-empty {
+    height: 80px
+}
+
+#blizz-tracker-lite .blizzard-posts .header-2 {
+    height: 27px;
+    padding-left: 80px
+}
+
+#blizz-tracker-lite .blizzard-posts .header-2 a {
+    font-weight: normal;
+    font-size: 11px;
+    letter-spacing: .02em;
+    text-transform: none
+}
+
+#blizz-tracker-lite.cjk .blizzard-posts .header-2 a {
+    font-size: 12px;
+
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow {
+    background-image: url({STYLEIMGDIR}/bt_lite_ctrl.gif)
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-left {
+    background-position: 0 0
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-left:hover {
+    background-position: 0 100%
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-right {
+    background-position: 100% 0
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-right:hover {
+    background-position: 100% 100%
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge {
+    background-image: url({STYLEIMGDIR}/bt_mask_bg.png);
+    background-repeat: no-repeat
+}
+
+.ie67 #blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge {
+    background-image: url({STYLEIMGDIR}/bt_mask_bg.gif)
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-left {
+    background-position: 0 0
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-right {
+    background-position: 100% 0
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post {
+    background: url({STYLEIMGDIR}/bt_lite_bg.png) no-repeat
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(1) {
+    background-position: 0 0
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(1):hover {
+    background-position: 0 100%
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(2) {
+    background-position: -307px 0
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(2):hover {
+    background-position: -307px 100%
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(3) {
+    background-position: -614px 0
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post:nth-child(3):hover {
+    background-position: -614px 100%
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post .desc {
+    padding: 35px 35px 0 35px;
+    display: block
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post .desc .int {
+    height: 65px;
+    line-height: 125%;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden
+} 
+
+/*-------------*/
+#blizz-tracker-lite .blizzard-posts .paging-arrow {
+    position: absolute;
+    top: 94px;
+    z-index: 3;
+    width: 40px;
+    height: 65px
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-left {
+    left: 0;
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow.arrow-right {
+    right: 0
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper {
+    width: 994px;
+    height: 193px;
+    position: absolute;
+    overflow: hidden
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge {
+    height: 200px;
+    position: absolute
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-left {
+    left: 0;
+    width: 68px
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-right {
+    right: 0;
+    width: 68px
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask {
+    width: 994px;
+    height: 193px;
+    position: absolute;
+    overflow: hidden
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask .holder {
+    height: 185px;
+    position: absolute;
+    left: 35px;
+    white-space: nowrap
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask .holder .set {
+    white-space: normal;
+    height: 185px;
+    overflow: hidden;
+    float: left
+}
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask .holder .set .tracked-blizzard-post {
+    width: 307px;
+    height: 185px;
+    display: block;
+    position: relative;
+    float: left
+}
+
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-right { background-position: right -58px; }
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask-edge.mask-left { background-position: 0 -58px; }
+
+
+#blizz-tracker-lite .blizzard-posts .mask-wrapper .mask .holder .set .tracked-blizzard-post {
+    height: 193px;
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post .info {
+    position: absolute;
+    top: 114px;
+    font-size: 10px;
+    left: 35px;
+    width: 235px;
+    line-height: 150%;
+}
+
+.tracked-blizzard-post .desc {
+    color: #004e8a;
+}
+
+.tracked-blizzard-post .info {
+    color: #613916;
+}
+
+
+.employee-icon {
+    background-image: url({STYLEIMGDIR}/employee.gif);
+    background-repeat: no-repeat;
+    display: block;
+    width: 20px;
+    height: 13px
+}
+
+.employee-icon a {
+    display: block;
+    overflow: hidden;
+    width: 20px;
+    height: 13px
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post .info .char .employee-icon {
+    float: left;
+    position: relative;
+    top: 2px;
+    margin-right: 2px;
+}
+#blizz-tracker-lite .forum-post-icon .blizzard_icon, .employee-icon {
+    background-image: url({STYLEIMGDIR}/icon_netease.gif);
+    background-position: 0 100%;
+}
+
+#blizz-tracker-lite  .blizzard-posts .tracked-blizzard-post .info .char {
+    font-size: 12px;
+    font-weight: bold;
+    color:black;
+}
+
+#blizz-tracker-lite .blizzard-posts .header-2 {
+    height: auto;
+    color: #f0e29a;
+    font-size: 12px;
+    padding-left: 45px;
+}
+
+#blizz-tracker-lite .blizzard-posts .tracked-blizzard-post .desc {
+    padding: 50px 24px 0;
+}
+
+#blizz-tracker-lite .blizzard-posts .paging-arrow {
+    height: 67px;
+    top: 50%;
+    margin-top: -20px;
+    background-image: url({STYLEIMGDIR}/bt_lite_ctrl.gif);
+}
+
+#ct .mn{
+	
+	background: url({STYLEIMGDIR}/bg-index.jpg) no-repeat 0 0 ;
+}
+
+#ct div.bm_h.cl > h2{
+	margin-top: 15px;
+}
+
+.fl .bm{
+	padding: 10px 0;
+}
+
+.fl .bm_h{
+	background:none;
+	border: none;
+}
+.fl_row td{
+	border: none;
+}
+
+.bm_h{
+	height: auto;
+}
+.bmw .bm_h a {
+    color: #71330e;
+    margin: 0;
+    padding: 0 0 0 20px;
+    font: 20px arial;
+    line-height: 41px;
+    letter-spacing: -0.05em;
+    background: url({STYLEIMGDIR}/collapse-expand.png) no-repeat 0 -8px;
+   
+    text-decoration: none;
+}
+
+.bmw .bm_h a:hover{
+	color: white;
+	/*background-position: 100% -106px;*/
+	 background-position: 0 -90px;
+}
+
+
+
+.bm_h .o{
+	display: none;
+} 
+
+
+
+
+.bm{
+	background: none;
+	border: none;
+}
+
+.bmw{
+	border: none;
+}
+
+.fl_tb td .wowdiv{
+	width: 310px;
+	height:106px;
+	background-color: rgba(0, 0, 0, 0.25);
+	margin: 2px;
+}
+
+.fl_icn_g {
+	  width: 50px;
+    height: 50px;
+    padding: 10px 0 0 10px;
+    float: left;
+    display: block;
+    text-align: center;
+}
+
+.wowdiv dl{
+	display: block;
+    float: left;
+    padding: 11px 0 0 3px;
+    margin-left: 0px !important;
+}
+
+.wowdiv a{
+	text-decoration: none;
+}
+
+.wowdiv a:hover{
+	color: white;
+}
+
+#ct .mn{
+	background-color: #1a0f08 !important;
+}
+
+.bm_h{
+	background: url({STYLEIMGDIR}/code_bg.png);
+    margin-top: 10px;
+    border: none;
+
+}
+
+.bbda{
+	border: none;
+}
+
+#scrolltop{
+	display: none;
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** end **/

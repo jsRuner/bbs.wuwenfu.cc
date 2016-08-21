@@ -31,8 +31,6 @@ class plugin_htt_robot{
     function global_footer(){
         global $_G;
 
-       
-
         //获取插件的参数。
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
