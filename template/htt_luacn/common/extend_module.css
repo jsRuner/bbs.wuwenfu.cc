@@ -399,7 +399,7 @@
 
 
 
-#newspecial > img{
+#newspecialtmp> img{
     display: none;
 }
 
@@ -428,8 +428,6 @@
 #newspecial.next .button-left, #newspecial.next .button-right { background-image: url("../images/buttons/button-1-next.png"); }
 #newspecial.next .button-left { padding-left:12px; }
 #newspecial.next .button-right { padding-right:28px; }
-
-
 
 .button-right,.button-left{
     display: inline-block;
@@ -544,4 +542,266 @@ border: none;
     display: none;
 }
 
+
+#fastpostsubmit{
+    background-image: url({STYLEIMGDIR}/button-1.png);
+    background-repeat: no-repeat;
+    background-position: 0 -41px;
+    padding: 0 0 0 28px;
+    border: 0px !important;
+}
+#fastpostsubmit strong{
+     background-image: url({STYLEIMGDIR}/button-1.png);
+    background-repeat: no-repeat;
+    background-position: 100% -164px;
+    height: 38px;
+        padding: 0 28px 0 0;
+        line-height: 38px;
+        font-family: Dotum;
+        display: inline-block;
+}
+
+
+.pn{
+    background:none;
+    border: none !important;
+
+}
+
+
+.pnpost .pn {
+    height: 38px;
+}
+
 /** end **/
+
+
+/**forum::viewthread**/
+#wp {
+    background: url(http://bbs.wuwenfu.net/template/htt_luacn/images/content-topbot.jpg) 0 0 no-repeat;
+    background-color: #1a0f08 !important;
+}
+
+#newspecial .button-left,#newspecial .button-right { background-image: url({STYLEIMGDIR}/button-1.png); background-repeat: no-repeat; color: #ffae00; }
+#newspecial .button-left { padding:0 0 0 28px; background-position:0 0; height:38px; line-height:37px; }
+#newspecial .button-right { padding: 0 28px 0 0; background-position: 100% -123px; font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size:12px; height:38px; line-height:38px; text-transform: uppercase; }
+#newspecial .button-right { font-family: Dotum; }
+#newspecial:hover .button-left { background-position: 0 -41px; }
+#newspecial:hover .button-right { color:#FFF; background-position:100% -164px; }
+
+#newspecial.processing .button-left,
+#newspecial.processing:hover .button-left,
+#newspecial.disabled .button-left,
+#newspecial.disabled:hover .button-left { background-position: 0 -82px; cursor: default; }
+
+#newspecial.processing .button-right,
+#newspecial.processing:hover .button-right,
+#newspecial.disabled .button-right,
+#newspecial.disabled:hover .button-right { background-position: 100% -205px; cursor: default; color: #953203 }
+
+#newspecial.previous .button-left, #newspecial.next .button-right { background-image: url("../images/buttons/button-1-previous.png"); }
+#newspecial.previous .button-left { padding-left:28px; }
+#newspecial.previous .button-right { padding-right:12px; }
+
+#newspecial.next .button-left, #newspecial.next .button-right { background-image: url("../images/buttons/button-1-next.png"); }
+#newspecial.next .button-left { padding-left:12px; }
+#newspecial.next .button-right { padding-right:28px; }
+
+.button-right,.button-left{
+    display: inline-block;
+}
+
+
+
+
+
+#post_reply .button-left,#post_reply .button-right { background-image: url({STYLEIMGDIR}/button-1.png); background-repeat: no-repeat; color: #ffae00; }
+#post_reply .button-left { padding:0 0 0 28px; background-position:0 0; height:38px; line-height:37px; }
+#post_reply .button-right { padding: 0 28px 0 0; background-position: 100% -123px; font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size:12px; height:38px; line-height:38px; text-transform: uppercase; }
+#post_reply .button-right { font-family: Dotum; }
+#post_reply:hover .button-left { background-position: 0 -41px; }
+#post_reply:hover .button-right { color:#FFF; background-position:100% -164px; }
+
+#post_reply.processing .button-left,
+#post_reply.processing:hover .button-left,
+#post_reply.disabled .button-left,
+#post_reply.disabled:hover .button-left { background-position: 0 -82px; cursor: default; }
+
+#post_reply.processing .button-right,
+#post_reply.processing:hover .button-right,
+#post_reply.disabled .button-right,
+#post_reply.disabled:hover .button-right { background-position: 100% -205px; cursor: default; color: #953203 }
+
+#post_reply.previous .button-left, #post_reply.next .button-right { background-image: url("../images/buttons/button-1-previous.png"); }
+#post_reply.previous .button-left { padding-left:28px; }
+#post_reply.previous .button-right { padding-right:12px; }
+
+#post_reply.next .button-left, #post_reply.next .button-right { background-image: url("../images/buttons/button-1-next.png"); }
+#post_reply.next .button-left { padding-left:12px; }
+#post_reply.next .button-right { padding-right:28px; }
+
+.pg a, .pg strong, .pgb a, .pg label{
+    background:none;
+    border: none;
+    color: #953203;
+}
+
+.bbs {
+    border-bottom: none !important;
+}
+
+.bm {
+    border: none;
+    background: none;
+}
+
+.pls {
+    background: none;
+    border:none;
+}
+
+#thread_subject{
+    color: #F3E6D0;
+    font-size:30px;
+}
+
+
+#postlist > table.ad{
+    display: none;
+}
+
+.pi {
+
+    border-bottom:none;
+}
+
+.plhin{
+    background: url({STYLEIMGDIR}/post_bg.jpg) 50% 0 no-repeat;
+}
+
+.ad{
+    display: none;
+}
+
+.po{
+    border: none;
+}
+
+
+.pi strong a{
+    border: none;
+}
+
+#p_btn{
+    display: none;
+}
+
+
+.tedt .pt{
+    background-color: #261913;
+}
+
+
+.pnc, a.pnc{
+    background-color: #261913;
+
+}
+
+.pn{
+    background:none;
+    border: none !important;
+
+}
+
+
+.pnpost .pn {
+    height: 38px;
+}
+
+
+
+
+
+#newspecialtmp .button-left,#newspecialtmp .button-right { background-image: url({STYLEIMGDIR}/button-1.png); background-repeat: no-repeat; color: #ffae00; }
+#newspecialtmp .button-left { padding:0 0 0 28px; background-position:0 0; height:38px; line-height:37px; }
+#newspecialtmp .button-right { padding: 0 28px 0 0; background-position: 100% -123px; font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size:12px; height:38px; line-height:38px; text-transform: uppercase; }
+#newspecialtmp .button-right { font-family: Dotum; }
+#newspecialtmp:hover .button-left { background-position: 0 -41px; }
+#newspecialtmp:hover .button-right { color:#FFF; background-position:100% -164px; }
+
+#newspecialtmp.processing .button-left,
+#newspecialtmp.processing:hover .button-left,
+#newspecialtmp.disabled .button-left,
+#newspecialtmp.disabled:hover .button-left { background-position: 0 -82px; cursor: default; }
+
+#newspecialtmp.processing .button-right,
+#newspecialtmp.processing:hover .button-right,
+#newspecialtmp.disabled .button-right,
+#newspecialtmp.disabled:hover .button-right { background-position: 100% -205px; cursor: default; color: #953203 }
+
+#newspecialtmp.previous .button-left, #newspecialtmp.next .button-right { background-image: url("../images/buttons/button-1-previous.png"); }
+#newspecialtmp.previous .button-left { padding-left:28px; }
+#newspecialtmp.previous .button-right { padding-right:12px; }
+
+#newspecialtmp.next .button-left, #newspecialtmp.next .button-right { background-image: url("../images/buttons/button-1-next.png"); }
+#newspecialtmp.next .button-left { padding-left:12px; }
+#newspecialtmp.next .button-right { padding-right:28px; }
+
+
+
+#post_replytmp.button-left,#post_replytmp.button-right { background-image: url({STYLEIMGDIR}/button-1.png); background-repeat: no-repeat; color: #ffae00; }
+#post_replytmp.button-left { padding:0 0 0 28px; background-position:0 0; height:38px; line-height:37px; }
+#post_replytmp.button-right { padding: 0 28px 0 0; background-position: 100% -123px; font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size:12px; height:38px; line-height:38px; text-transform: uppercase; }
+#post_replytmp.button-right { font-family: Dotum; }
+#post_replytmp:hover .button-left { background-position: 0 -41px; }
+#post_replytmp:hover .button-right { color:#FFF; background-position:100% -164px; }
+
+#post_replytmp.processing .button-left,
+#post_replytmp.processing:hover .button-left,
+#post_replytmp.disabled .button-left,
+#post_replytmp.disabled:hover .button-left { background-position: 0 -82px; cursor: default; }
+
+#post_replytmp.processing .button-right,
+#post_replytmp.processing:hover .button-right,
+#post_replytmp.disabled .button-right,
+#post_replytmp.disabled:hover .button-right { background-position: 100% -205px; cursor: default; color: #953203 }
+
+#post_replytmp.previous .button-left, #post_replytmp.next .button-right { background-image: url("../images/buttons/button-1-previous.png"); }
+#post_replytmp.previous .button-left { padding-left:28px; }
+#post_replytmp.previous .button-right { padding-right:12px; }
+
+#post_replytmp.next .button-left, #post_replytmp.next .button-right { background-image: url("../images/buttons/button-1-next.png"); }
+#post_replytmp.next .button-left { padding-left:12px; }
+#post_replytmp.next .button-right { padding-right:28px; }
+
+
+
+#fastpostsubmit{
+    background-image: url({STYLEIMGDIR}/button-1.png);
+    background-repeat: no-repeat;
+    background-position: 0 -41px;
+    padding: 0 0 0 28px;
+    border: 0px !important;
+}
+#fastpostsubmit strong{
+     background-image: url({STYLEIMGDIR}/button-1.png);
+    background-repeat: no-repeat;
+    background-position: 100% -164px;
+    height: 38px;
+        padding: 0 28px 0 0;
+        line-height: 38px;
+        font-family: Dotum;
+        display: inline-block;
+}
+
+.pls .avatar img{
+    background-color: #643414;
+    background-image: none;
+}
+
+
+/**end**/
+
+
+
+

@@ -159,10 +159,6 @@ a{
 #hd .wp .user-plate .ui-context a:hover { color: #fff; }
 
 
-#wp{
-	background: url({STYLEIMGDIR}/bt-lite-bg.jpg) 0 0 no-repeat;
-	/*background: url({STYLEIMGDIR}/content-topbot.jpg) 0 0 no-repeat;*/
-}
 
 #pt .z{
 
@@ -174,4 +170,32 @@ padding: 7px 0 0 20px;
 	border: none;
 }
 
+#scrolltop{
+	display: none;
+}
+
+
+.m_c {
+	background-color: #170C06;
+}
+
+
+.pbt input,textarea,#seccodeverify_cSvsRWos{
+    color: #00B6FF;
+    background-color: #643414 !important;
+    border: none;
+}
+
+.area,.tedt .bar{
+	border: none;
+	background-color: #643414;
+}
+
+.px, .pt, .ps, select{
+	background-image: none;
+}
+
+.tedt .area{
+	padding: 0px;
+}
 
