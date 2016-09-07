@@ -372,9 +372,7 @@
 	border: none;
 }
 
-#scrolltop{
-	display: none;
-}
+
 /** end **/
 
 
@@ -538,9 +536,6 @@ border: none;
 #newspecialtmp.next .button-left { padding-left:12px; }
 #newspecialtmp.next .button-right { padding-right:28px; }
 
-#scrolltop{
-    display: none;
-}
 
 
 #fastpostsubmit{

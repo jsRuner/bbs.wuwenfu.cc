@@ -72,11 +72,9 @@ function connect_login($connect_member) {
             C::t('common_member_archive')->move_to_master($member['uid']);
         }
     }
-
     require_once libfile('function/member');
     $cookietime = 1296000;
     setloginstatus($member, $cookietime);
-
     dsetcookie('connect_login', 1, $cookietime);
     dsetcookie('connect_is_bind', '1', 31536000);
     dsetcookie('connect_uin', $connect_member['conopenid'], 31536000);
@@ -135,9 +133,7 @@ function htt_random_int($length=5){
     return $hash;
 }
 
-
 global $_G;
-
 global $lang;
 require libfile('function/member');
 require libfile('class/member');
@@ -157,19 +153,10 @@ if(!function_exists('sendmail')) {
 loaducenter();
 loadcache('plugin');
 $var = $_G['cache']['plugin'];
-$is_open =  $var['htt_qqlogin']['is_open'];
-
 $appid =  $var['htt_qqlogin']['appid'];
 $appkey =  $var['htt_qqlogin']['key'];
-$suffix =  $var['htt_qqlogin']['suffix']; //后缀类型。1是字母2是数字3是不限制。
-
 $callback = trim( $_G['siteurl'],'/').'/plugin.php?id=htt_qqlogin:qqoauth_callback';
-
-
 $suffix_length =  $var['htt_qqlogin']['suffix_length']; //后缀长度。
-
-
-
 
 if($temp = getcookie('con_request_uri')){
     $referer = $temp;
@@ -177,28 +164,13 @@ if($temp = getcookie('con_request_uri')){
     $referer = dreferer();
 }
 
-if($is_open==2){
-    die('qq is closed');
-}
 
 $qc = new QC();
 $qc->set_config($appid,$appkey,$callback);
-
-
 $access_token = $qc->qq_callback();
-
-
-
-
-
-
 $openid = $qc->get_openid();
-
 //避免sql注入
 $openid = daddslashes($openid);
-
-
-
 $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= '$openid'");
 
 $qqinfo = array();
@@ -208,6 +180,14 @@ if($item = DB::fetch($query)) {
     $username = $members[$qqinfo['uid']];
     $members = C::t('common_member')->fetch_by_username($username);
     $uid = $qqinfo['uid'];
+
+    //绑定的QQ被使用了。
+    if($_G['uid'] > 0 && $uid != $_G['uid']){
+        showmessage(lang('plugin/htt_qqlogin', 'have_bind_qq'),$_G['siteurl']);
+        exit();
+    }
+
+
     $password = $qqinfo['password'];
 
     $connect_member = array();
@@ -232,24 +212,14 @@ if($item = DB::fetch($query)) {
 
     dsetcookie('stats_qc_login', 3, 86400);
     showmessage('login_succeed', $referer, $param, array('extrajs' => $ucsynlogin));
-
-
-
-
     exit();
-
-
-
 }
-//先操作ucenter_members表。
 
+//先操作ucenter_members表。
 $qc = new QC($access_token,$openid);
 $qc->set_config($appid,$appkey,$callback);
 $ret = $qc->get_user_info();
-
 $nickname = $ret['nickname'];
-
-
 
 //去空格。与特殊字符.至多保存4个字。
 //2016年6月12日 这里根据需要改变编码。如果是gbk，就转换。否则不进行。
@@ -266,45 +236,41 @@ $nickname = strFilter($nickname);
 
 if($suffix_length <=0){
     $username = $nickname;
-    
-
 }else{
-
-    switch(intval($suffix)){
-    case 1:
-        $username = $nickname.'_'.htt_random_str($suffix_length);
-        break;
-    case 2:
-        $username = $nickname.'_'.htt_random_int($suffix_length);
-        break;
-    default:
-        $username = $nickname.'_'.random($suffix_length);
-        break;
-    }
-
+    $username = $nickname.'_'.random($suffix_length);
 }
-
-
 
 if(strlen($username)>15){
     $username = 'qq_'.time();
 }
 
 
+//绑定操作。
+if ($_G['uid'] > 0 ) {
+   $insert_array = array(
+    'uid'=>$_G['uid'],
+    'openid'=>$openid,
+    'access_token'=>$access_token,
+    'nickname'=>$nickname,
+    'username'=>$username,
+    'password'=>'',
+    'photo'=>$ret['figureurl_qq_1'],
+    'dateline'=>TIMESTAMP,
+);
+DB::insert("httqqlogin",$insert_array);
+//退出重新登录。
+    showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'),'/member.php?mod=logging&action=logout&formhash='.FORMHASH);
+exit();
+}
 
 $password = uniqid();
 $email = time().'@qq.com';
 $questionid = '';
 $answer = '';
-
-
 $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
-
 $_G['uid'] = $uid;
-
 //保存头像到指定目录。
 set_home($uid,'uc_server/data/avatar');
-
 $avatar = get_avatar($uid,'small');
 
 if(!file_exists($avatar)){
@@ -333,11 +299,6 @@ if($uid <= 0) {
         if($uid ==-3){
             showmessage('profile_username_duplicate');
         }
-
-
-        
-
-
     } elseif($uid == -4) {
         showmessage('profile_email_illegal');
     } elseif($uid == -5) {
@@ -361,13 +322,8 @@ $insert_array = array(
 );
 DB::insert("httqqlogin",$insert_array);
 C::t('common_member')->insert($uid, $username, md5(random(10)), $email, $_G['clientip'], 10);
-
 C::t('common_member')->update($uid,array('avatarstatus'=>1));
-
-
-
 C::t('common_member_status')->update($_G['uid'], array('lastip' => $_G['clientip'], 'port' => $_G['remoteport'], 'lastvisit' =>TIMESTAMP, 'lastactivity' => TIMESTAMP));
-
 
 //用户新提醒数量表
 C::t('common_member_newprompt')->insert(
@@ -377,12 +333,9 @@ C::t('common_member_newprompt')->insert(
     )
 );
 
-
-
 //趋势统计
 include_once libfile('function/stat');
 updatestat('register');
-
 $setting = $_G['setting'];
 $welcomemsg = & $setting['welcomemsg'];
 $welcomemsgtitle = & $setting['welcomemsgtitle'];
@@ -403,9 +356,7 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
     }
 }
 
-
 //登录逻辑。
-
     $connect_member = array();
     $connect_member['uid'] = $uid; //QQConnect的access token
     $connect_member['conuin'] = $access_token;//QQConnect的access token

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="version"><![CDATA[X3,X3.1,X3.2]]></item>
+	<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 	<item id="Time"><![CDATA[2016-05-31 19:01]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://bbs.wuwenfu.net/)]]></item>
 	<item id="Data">
@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
 			<item id="copyright"><![CDATA[ÎâÎÄ¸¶]]></item>
-			<item id="version"><![CDATA[1.8]]></item>
+			<item id="version"><![CDATA[1.9]]></item>
 			<item id="__modules">
 				<item id="0">
 					<item id="name"><![CDATA[httqqlogin]]></item>
@@ -73,7 +73,7 @@
 				<item id="4">
 					<item id="name"><![CDATA[bind_qq]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[°ó¶¨QQµÇÂ¼]]></item>
+					<item id="menu"><![CDATA[QQÉèÖÃ]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[17]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -101,18 +101,8 @@
 				
 			</item>
 		</item>
-		<item id="version"><![CDATA[X3,X3.1,X3.2]]></item>
+		<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 		<item id="var">
-			<item id="0">
-				<item id="displayorder"><![CDATA[0]]></item>
-				<item id="title"><![CDATA[¿ª¹Ø]]></item>
-				<item id="description"><![CDATA[Ä¬ÈÏ¹Ø±Õ]]></item>
-				<item id="variable"><![CDATA[is_open]]></item>
-				<item id="type"><![CDATA[select]]></item>
-				<item id="value"><![CDATA[2]]></item>
-				<item id="extra"><![CDATA[1=¿ªÆô
-2=¹Ø±Õ]]></item>
-			</item>
 			<item id="1">
 				<item id="displayorder"><![CDATA[1]]></item>
 				<item id="title"><![CDATA[APPID]]></item>
@@ -133,22 +123,11 @@
 				<item id="extra"><![CDATA[]]></item>
 			</item>
 			
+			
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
-				<item id="title"><![CDATA[ÓÃ»§Ãûºó×º]]></item>
-				<item id="description"><![CDATA[Ä¬ÈÏºó×ºÊÇ×ÖÄ¸»òÕßÊý×Ö»ìºÏ¡£ÀýÈç±±°¶µÄÔÆ_rq123.¸Ã²ÎÊýÊÇ·ÀÖ¹ÓÃ»§ÃûÖØ¸´]]></item>
-				<item id="variable"><![CDATA[suffix]]></item>
-				<item id="type"><![CDATA[select]]></item>
-				<item id="value"><![CDATA[3]]></item>
-				<item id="extra"><![CDATA[1=´¿×ÖÄ¸
-2=´¿Êý×Ö
-3=²»ÏÞÖÆ]]></item>
-			</item>
-			
-			<item id="4">
-				<item id="displayorder"><![CDATA[4]]></item>
 				<item id="title"><![CDATA[Õ¾µãµØÖ·]]></item>
-				<item id="description"><![CDATA[±ØÌî¡£ÒªºÍÉêÇëQQµÇÂ¼½Ó¿ÚµÄÍøÕ¾ÓòÃû¡¢»Øµ÷µØÖ·ÖÐÓòÃûÒ»ÖÂ¡£ÀýÈçhttp://bbs.wuwenfu.cn]]></item>
+				<item id="description"><![CDATA[±£³ÖÓëÉêÇëQQµÇÂ¼½Ó¿ÚµÄÍøÕ¾ÓòÃû¡¢»Øµ÷µØÖ·ÖÐÓòÃûÒ»ÖÂ¡£ÀýÈçhttp://bbs.wuwenfu.cn]]></item>
 				<item id="variable"><![CDATA[site_url]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -156,10 +135,10 @@
 			</item>
 
 
-			<item id="5">
-				<item id="displayorder"><![CDATA[5]]></item>
-				<item id="title"><![CDATA[ºó×ºµÄ³¤¶È]]></item>
-				<item id="description"><![CDATA[Èç¹û³öÏÖ×¢²áÓÃ»§·ÇQQêÇ³Æ£¬Ôò½«Öµ¼õÐ¡¡£Îª0ÔòÃ»ÓÐºó×º¡£½ûÖ¹Îª¸ºÊý£¬·ñÔò³ÌÐòÒì³£]]></item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[êÇ³Æºó×ºµÄ³¤¶È]]></item>
+				<item id="description"><![CDATA[Èç¹ûQQ×¢²áÊ±ÎÞ·¨»ñÈ¡êÇ³Æ£¬Çë½«¸Ã²ÎÊýÉèÖÃµ÷Ð¡,×îÐ¡Îª0]]></item>
 				<item id="variable"><![CDATA[suffix_length]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[5]]></item>
@@ -171,57 +150,47 @@
 		</item>
 		
 		 <item id="language">
-		<item id="templatelang">
-			<item id='qq_tip1'><![CDATA[Ö»ÐèÒªÒ»²½£¬¿ìËÙ¿ªÊ¼]]></item>
-			<item id='qq_tip2'><![CDATA[¿ì½ÝµÇÂ¼]]></item>
-			<item id='qq_tip3'><![CDATA[QQµÇÂ¼]]></item>
-
-			<item id='old_username'><![CDATA[ÓÃ»§Ãû]]></item>
-
-			<item id='old_password'><![CDATA[ÃÜÂë]]></item>
-
-			<item id='submit'><![CDATA[Ìá½»]]></item>
-
-			<item id='tip'><![CDATA[Èç¹û°ó¶¨³É¹¦,ÔòÏÂ´ÎQQµÇÂ¼£¬×Ô¶¯µÇÂ¼¸ÃÕÊºÅ]]></item>
-
-
-		</item>
-			<item id="scriptlang">
-			<item id='qq_help'><![CDATA[<li>±±°¶QQµÇÂ¼²å¼þ µØÖ· http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>´Ë²å¼þÓë¹Ù·½×Ô´øµÄ²»Í¬£ºÓÃ»§ÎÞÐèÌîÐ´ÈÎºÎ×ÊÁÏ¡£ÐèÒªÉêÇëQQµÇÂ¼½Ó¿Ú</li><li>²å¼þQQÈº £º554197629 ÈºÎÄ¼þÓÐÊÓÆµ°ïÖú</li><li>ÉêÇë½Ó¿ÚµØÖ·£º http://connect.qq.com/manage/login</li>]]></item>
-			<item id="uid"><![CDATA[UID]]></item>
-			<item id="nickname"><![CDATA[êÇ³Æ]]></item>
-			<item id="photo"><![CDATA[Í·Ïñ]]></item>
-			<item id="username"><![CDATA[×¢²áµÄÓÃ»§Ãû]]></item>
-			<item id="dateline"><![CDATA[×¢²áÊ±¼ä]]></item>
-			<item id="openid"><![CDATA[OPENID]]></item>
-			<item id="accesstoken"><![CDATA[ACCESSTOKEN]]></item>
-			<item id="password"><![CDATA[ÃÜÂë]]></item>
-			<item id="please_write_whole"><![CDATA[ÇëÌîÐ´ÍêÕûÐÅÏ¢]]></item>
-			<item id="action_success"><![CDATA[²Ù×÷³É¹¦]]></item>
-			
-			<item id="bind_user_no_exist"><![CDATA[°ó¶¨µÄÓÃ»§²»´æÔÚ]]></item>
-			<item id="bind_user_password_wrong"><![CDATA[ÃÜÂë´íÎó]]></item>
-			<item id="bind_user_need_register"><![CDATA[°ó¶¨¹¦ÄÜÐèÒªÏÈQQ×¢²á]]></item>
-			<item id="bind_user_success_login"><![CDATA[°ó¶¨³É¹¦,ÏÖÔÚÇëÊ¹ÓÃQQµÇÂ¼]]></item>
-			
-			<item id="show_export_title"><![CDATA[UID,OPENID,ACCESS_TOKEN,êÇ³Æ,ÓÃ»§Ãû,Í·Ïñ,×¢²áÊ±¼ä]]></item>
-			<item id="show_export_btn"><![CDATA[µ¼³öQQÓÃ»§]]></item>
-			<item id="bind_user_by_admin"><![CDATA[ÇëÎðËæÒâÐÞ¸Ä¡£Èç¹ûÐÞ¸ÄÔò±íÊ¾¸ÃQQ»áµÇÂ¼¶ÔÓ¦µÄÕÊºÅ¡£UID-ÓÃ»§Ãû-ÃÜÂëÒªÕýÈ·¡£ÓÃ»§¿ÉÒÔÊÖ¶¯°ó¶¨QQ×¢²á¡£¾ßÌåÎ»ÖÃÊÇ ÉèÖÃ-ÓÃ»§×ÊÁÏ-°ó¶¨QQ]]></item>
-			
-			<item id="member_help"><![CDATA[<li>Èç¹ûÓÃQQµÄêÇ³Æ²»ÂúÒâ£¬¿ÉÒÔ´ÓÏÂ±íÖÐÉ¾³ýÓÃ»§£¬Ôò¸ÃÓÃ»§µã»÷QQµÇÂ¼Ê±»áÖØÐÂ×¢²á³ÉÒ»¸ö»áÔ±¡£</li>
-<li>Ö®Ç°µÄÓÃ»§¿ÉÒÔ×ÔÐÐ°ó¶¨QQµÇÂ¼¡£ÐèÒªÕýÈ·ÊäÈëÖ®Ç°µÄÕÊºÅÓëÃÜÂë¡£</li>
-<li>²å¼þÐ¶ÔØµÄÊ±ºò,»áÉ¾³ýQQ×¢²áµÄ×ÊÁÏ£¬Èç¹ûÓÐÐèÒª£¬ÔòÇë±¸·Ý±í»òÕßµ¼³ö¼ÇÂ¼¡£</li>]]></item>
-
-
-			<item id="login_fail"><![CDATA[µÇÂ¼Ê§°Ü]]></item>
-			
-			
-			
-			
-			
-			
+			<item id="templatelang">
+				<item id='qq_tip1'><![CDATA[Ö»ÐèÒªÒ»²½£¬¿ìËÙ¿ªÊ¼]]></item>
+				<item id='qq_tip2'><![CDATA[¿ì½ÝµÇÂ¼]]></item>
+				<item id='qq_tip3'><![CDATA[QQµÇÂ¼]]></item>
+				
+				<item id='current_qq'><![CDATA[µ±Ç°°ó¶¨µÄQQêÇ³Æ]]></item>
+				
 			</item>
 		
+			<item id="scriptlang">
+				<item id='qq_help'><![CDATA[<li>±±°¶QQµÇÂ¼²å¼þ µØÖ· http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>´Ë²å¼þÓë¹Ù·½×Ô´øµÄ²»Í¬£ºÓÃ»§ÎÞÐèÌîÐ´ÈÎºÎ×ÊÁÏ¡£µ«ÐèÒªÉêÇë½Ó¿Ú</li><li>²å¼þQQÈº £º554197629 ÈºÎÄ¼þÓÐÊÓÆµ½éÉÜÅäÖÃ¹ý³Ì</li><li>ÉêÇë½Ó¿ÚµØÖ·£º http://connect.qq.com/manage/login</li>]]></item>
+				<item id="uid"><![CDATA[UID]]></item>
+				<item id="nickname"><![CDATA[êÇ³Æ]]></item>
+				<item id="photo"><![CDATA[Í·Ïñ]]></item>
+				<item id="username"><![CDATA[×¢²áµÄÓÃ»§Ãû]]></item>
+				<item id="dateline"><![CDATA[×¢²áÊ±¼ä]]></item>
+				<item id="openid"><![CDATA[OPENID]]></item>
+				<item id="accesstoken"><![CDATA[ACCESSTOKEN]]></item>
+				<item id="password"><![CDATA[ÃÜÂë]]></item>
+				
+				<item id="please_write_whole"><![CDATA[ÇëÌîÐ´ÍêÕûÐÅÏ¢]]></item>
+				<item id="action_success"><![CDATA[²Ù×÷³É¹¦]]></item>
+				
+				<item id="bind_user_no_exist"><![CDATA[°ó¶¨µÄÓÃ»§²»´æÔÚ]]></item>
+				<item id="bind_user_password_wrong"><![CDATA[ÃÜÂë´íÎó]]></item>
+				
+				<item id="bind_user_success_login"><![CDATA[°ó¶¨³É¹¦,ÏÖÔÚ¿ÉÒÔÊ¹ÓÃQQµÇÂ¼ÊÔÊÔ]]></item>
+				
+				<item id="show_export_title"><![CDATA[UID,OPENID,ACCESS_TOKEN,êÇ³Æ,ÓÃ»§Ãû,Í·Ïñ,×¢²áÊ±¼ä]]></item>
+				
+				<item id="show_export_btn"><![CDATA[µ¼³öQQÓÃ»§]]></item>
+				
+				<item id="bind_user_by_admin"><![CDATA[ÇëÎðËæÒâÐÞ¸Ä¡£Èç¹ûÐÞ¸ÄÔò±íÊ¾¸ÃQQ»áµÇÂ¼¶ÔÓ¦µÄÕÊºÅ¡£UID-ÓÃ»§Ãû-ÃÜÂëÒªÕýÈ·¡£ÓÃ»§¿ÉÒÔÊÖ¶¯°ó¶¨QQ×¢²á¡£¾ßÌåÎ»ÖÃÊÇ ÉèÖÃ-ÓÃ»§×ÊÁÏ-QQÉèÖÃ]]></item>
+				
+				<item id="member_help"><![CDATA[<li>²å¼þÐ¶ÔØµÄÊ±ºò,»áÉ¾³ý²å¼þ²úÉúµÄÊý¾Ý£¬ÇëÎñ±Ø±¸·Ý±í»òÕßµ¼³ö¼ÇÂ¼</li>]]></item>
+				<item id="login_fail"><![CDATA[µÇÂ¼Ê§°Ü]]></item>
+				
+				<item id="no_bind_qq"><![CDATA[Ã»ÓÐ°ó¶¨QQ]]></item>
+				<item id="have_bind_qq"><![CDATA[¸ÃQQÒÑ¾­°ó¶¨ÁËÆäËûÓÃ»§¡£ÇëÁªÏµ¹ÜÀíÔ±]]></item>
+				
+			</item>
 		</item>
 		
 		<item id="installfile"><![CDATA[install.php]]></item>

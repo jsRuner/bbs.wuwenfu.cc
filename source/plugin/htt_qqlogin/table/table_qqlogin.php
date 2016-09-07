@@ -46,7 +46,6 @@ class table_qqlogin extends discuz_table
 
 	}
 
-
 	public function delete_by_id($id) {
 		DB::query("DELETE FROM %t WHERE id=%d ", array($this->_table, $id));
 	}

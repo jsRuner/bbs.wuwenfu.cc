@@ -12,16 +12,13 @@ class plugin_htt_qqlogin {
         global $_G;
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
-        $is_open =  $var['htt_qqlogin']['is_open'];
         $site_url = $var['htt_qqlogin']['site_url'];
         if(empty($site_url)){
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
 
-        if($is_open==2){
-            return '';
-        }
+
         define('IMGDIR','static/image/common');
 
         //如果没登录，同时非手机端
@@ -39,7 +36,6 @@ class plugin_htt_qqlogin {
         global $_G;
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
-        $is_open =  $var['htt_qqlogin']['is_open'];
         $site_url = $var['htt_qqlogin']['site_url'];
         if(empty($site_url)){
             $site_url = $_G['siteurl'];
@@ -47,32 +43,51 @@ class plugin_htt_qqlogin {
         $site_url = rtrim($site_url,'/');
 
         //登录过
-        if($is_open==2 || $_G['uid'] > 0){
+        if( $_G['uid'] > 0){
             return '';
         }
 
         include_once template('htt_qqlogin:qqlogin_connect');
         return $qqlogin_html;
     }
-}
 
-class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
-
-
-
-
-
-    function logging_method() {
+    // 头部姓名 绑定QQ的提示。
+    function global_usernav_extra1() {
         global $_G;
+        include_once template('htt_qqlogin:module');
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
-        $is_open =  $var['htt_qqlogin']['is_open'];
         $site_url = $var['htt_qqlogin']['site_url'];
         if(empty($site_url)){
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
-        if($is_open==2 || $_G['uid'] > 0){
+
+        //插件没开启，用户没登录。
+        if($_G['uid'] < 0){
+            return '';
+        }
+        $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `uid`= ".$_G['uid']);
+        if($item = DB::fetch($query)) {
+            # code...
+            return '';
+        }
+        return tpl_global_usernav_extra1();
+    }
+}
+
+class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
+
+    function logging_method() {
+        global $_G;
+        loadcache('plugin');
+        $var = $_G['cache']['plugin'];
+        $site_url = $var['htt_qqlogin']['site_url'];
+        if(empty($site_url)){
+            $site_url = $_G['siteurl'];
+        }
+        $site_url = rtrim($site_url,'/');
+        if( $_G['uid'] > 0){
             return '';
         }
         include_once template('htt_qqlogin:qqlogin_simple_connect');
@@ -83,13 +98,12 @@ class plugin_htt_qqlogin_member extends plugin_htt_qqlogin{
         global $_G;
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
-        $is_open =  $var['htt_qqlogin']['is_open'];
         $site_url = $var['htt_qqlogin']['site_url'];
         if(empty($site_url)){
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
-        if($is_open==2 || $_G['uid'] > 0){
+        if($_G['uid'] > 0){
             return '';
         }
         include_once template('htt_qqlogin:qqlogin_simple_connect');
