@@ -30,6 +30,51 @@ function curl_html($url)
     return $html;
 }
 
+function arrayToString($arr) {
+    if (is_array($arr)){
+        return implode(',', array_map('arrayToString', $arr));
+    }
+    return $arr;
+}
+//过滤掉图片
+function filterImg($str){
+//    $str=preg_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_/+.~#?&//=]+(.jpg|.png){1})','<img src="\0" />',$str);
+
+
+    $str=preg_replace('(,{1}((f|ht){1}tp://)[-a-zA-Z0-9@:%_/+.~#?&//=]+(.jpg|.png){1})','',$str);
+
+    return $str;
+}
+
+function linkAdd($content){
+    //提取替换出所有A标签（统一标记<{link}>）
+    preg_match_all('{<a.*?href=".*?".*?>.*?</a>}i',$content,$linkList);
+    $linkList=$linkList[0];
+    $str=preg_replace('{<a.*?href=".*?".*?>.*?</a>}i','<{link}>',$content);
+    //提取替换出所有的IMG标签（统一标记<{img}>）
+    preg_match_all('{<img[^>]+>}im',$content,$imgList);
+    $imgList=$imgList[0];
+    $str=preg_replace('{<img[^>]+>}im','<{img}>',$str);
+
+    //提取替换标准的URL地址
+    $str=preg_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_/+.~#?&//=]+[^(.jpg)|^(.png)])','<a href="\0" target="_blank">\0</a>',$str);
+
+
+    //还原A统一标记为原来的A标签
+    $arrLen=count($linkList);
+    for($i=0;$i<$arrLen;$i++){
+        $str=preg_replace('{<{link}>}',$linkList[$i],$str,1);
+    }
+
+    //还原IMG统一标记为原来的IMG标签
+    $arrLen2=count($imgList);
+    for($i=0;$i<$arrLen2;$i++){
+        $str=preg_replace('{<{img}>}',$imgList[$i],$str,1);
+    }
+
+    return $str;
+}
+
 global $_G;
 
 loadcache('plugin');
@@ -45,19 +90,23 @@ $robot_secret = $var['htt_robot']['robot_secret']; //secret
 $check = $var['htt_robot']['is_show'];  //1隐藏 2启用
 
 $info = $_POST['msg'];
-
 //如果是茉莉机器人
 if ($robot_type == 2) {
     $url = "http://i.itpk.cn/api.php?question=".urlencode($info)."&api_key=$robot_key&api_secret=$robot_secret";
     $returnmsg = dfsockopen($url);
+
 }else{
     $url = 'http://www.tuling123.com/openapi/api?key=' . $robot_key . '&info=' . urlencode($info);
     $replystr = dfsockopen($url);
     $replyarr = json_decode($replystr, true);
-    $returnmsg = $replyarr['text'];
+    $returnmsg = arrayToString($replyarr);
+    $returnmsg = filterImg($returnmsg);
+    $returnmsg = linkAdd($returnmsg);
+    $returnmsg=preg_replace('((\d)+,{1})','',$returnmsg);
 }
 
-//输入结果
+
+header("Content-Type: application/json; charset=utf-8");
 echo json_encode(array('msg' =>$returnmsg));
 
 

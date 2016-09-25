@@ -3,7 +3,7 @@
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
 	<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 	<item id="Time"><![CDATA[2016-05-31 19:01]]></item>
-	<item id="From"><![CDATA[Discuz! Board (http://bbs.wuwenfu.net/)]]></item>
+	<item id="From"><![CDATA[北岸的云(http://wuwenfu.cn)]]></item>
 	<item id="Data">
 		<item id="plugin">
 			<item id="available"><![CDATA[0]]></item>
@@ -106,7 +106,7 @@
 			<item id="1">
 				<item id="displayorder"><![CDATA[1]]></item>
 				<item id="title"><![CDATA[APPID]]></item>
-				<item id="description"><![CDATA[http://connect.qq.com/intro/login 申请appid]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com 申请appid]]></item>
 				<item id="variable"><![CDATA[appid]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -116,7 +116,7 @@
 			<item id="2">
 				<item id="displayorder"><![CDATA[2]]></item>
 				<item id="title"><![CDATA[KEY]]></item>
-				<item id="description"><![CDATA[http://connect.qq.com/intro/login 申请key]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com 申请key]]></item>
 				<item id="variable"><![CDATA[key]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -127,7 +127,7 @@
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
 				<item id="title"><![CDATA[站点地址]]></item>
-				<item id="description"><![CDATA[保持与申请QQ登录接口的网站域名、回调地址中域名一致。例如http://bbs.wuwenfu.cn]]></item>
+				<item id="description"><![CDATA[保持与申请QQ登录接口的网站域名。例如http://bbs.wuwenfu.cn]]></item>
 				<item id="variable"><![CDATA[site_url]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -156,11 +156,17 @@
 				<item id='qq_tip3'><![CDATA[QQ登录]]></item>
 				
 				<item id='current_qq'><![CDATA[当前绑定的QQ昵称]]></item>
+
+				<item id='old_username'><![CDATA[用户名]]></item>
+				<item id='old_password'><![CDATA[密码]]></item>
+				<item id='submit'><![CDATA[提交]]></item>
+				<item id='bind_qq_tip'><![CDATA[输入用户名-密码,则表示使用当前QQ来登录该帐号。]]></item>
+
 				
 			</item>
 		
 			<item id="scriptlang">
-				<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：用户无需填写任何资料。但需要申请接口</li><li>插件QQ群 ：554197629 群文件有视频介绍配置过程</li><li>申请接口地址： http://connect.qq.com/manage/login</li>]]></item>
+				<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：用户无需填写任何资料。但需要申请接口</li><li>插件QQ群 ：554197629 群文件有视频介绍配置过程</li><li>申请接口地址： http://connect.qq.com</li>]]></item>
 				<item id="uid"><![CDATA[UID]]></item>
 				<item id="nickname"><![CDATA[昵称]]></item>
 				<item id="photo"><![CDATA[头像]]></item>
@@ -169,6 +175,7 @@
 				<item id="openid"><![CDATA[OPENID]]></item>
 				<item id="accesstoken"><![CDATA[ACCESSTOKEN]]></item>
 				<item id="password"><![CDATA[密码]]></item>
+				<item id="default_password"><![CDATA[欢迎您通过QQ登录注册帐号,您的默认密码]]></item>
 				
 				<item id="please_write_whole"><![CDATA[请填写完整信息]]></item>
 				<item id="action_success"><![CDATA[操作成功]]></item>

@@ -183,6 +183,7 @@ if($item = DB::fetch($query)) {
 
     //绑定的QQ被使用了。
     if($_G['uid'] > 0 && $uid != $_G['uid']){
+        //判断用户名是否是QQ注册的。如果是。则进入表单。
         showmessage(lang('plugin/htt_qqlogin', 'have_bind_qq'),$_G['siteurl']);
         exit();
     }
@@ -256,11 +257,11 @@ if ($_G['uid'] > 0 ) {
     'password'=>'',
     'photo'=>$ret['figureurl_qq_1'],
     'dateline'=>TIMESTAMP,
-);
-DB::insert("httqqlogin",$insert_array);
-//退出重新登录。
-    showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'),'/member.php?mod=logging&action=logout&formhash='.FORMHASH);
-exit();
+    );
+    DB::insert("httqqlogin",$insert_array);
+    //退出重新登录。
+        showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'),'/member.php?mod=logging&action=logout&formhash='.FORMHASH);
+    exit();
 }
 
 $password = uniqid();
@@ -353,6 +354,9 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
         sendmail_cron($email, $welcomemsgtitle, $welcomemsgtxt);
         $welcomemsgtxt = nl2br(str_replace(':', '&#58;', $welcomemsgtxt));
         notification_add($uid, 'system', $welcomemsgtxt, array('from_id' => 0, 'from_idtype' => 'welcomemsg'), 1);
+
+        $welcomemsgtxt =  lang('plugin/htt_qqlogin', 'default_password').': '.$password;
+        notification_add($uid, 'system', $welcomemsgtxt);
     }
 }
 
@@ -378,6 +382,6 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
     }
 
     dsetcookie('stats_qc_login', 3, 86400);
-    showmessage('login_succeed', $referer, $param, array('extrajs' => $ucsynlogin));
+    showmessage('login_succeed', $_G['siteurl'], $param, array('extrajs' => $ucsynlogin));
 
     exit();

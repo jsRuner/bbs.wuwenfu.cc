@@ -137,25 +137,39 @@ function curl_qsbk($url)
 
 //先从缓存读取。如果采集过，则不执行了。
 //如果没有。则读取数据库，如果采集过，则写入缓存
+//增加参数。执行一次，则保存缓存，如果不成功，则只删除
 
 $qsbk_ed = wwf_cache('qsbk');
 $tid_ed = wwf_cache('qsbk_tid');
 $pid_ed = wwf_cache('qsbk_pid');
+$do_count = wwf_cache('qsbk_do');
 //不为空。同时时间是今天的。则表示成功了 ，不执行了。
 if ( $qsbk_ed == date('Y-m-d') && intval($tid_ed) > 0 && intval($pid_ed) > 0 ) {
    return;
 }
+
 //处理昨天的情况。如果是昨天的，则消除其他的参数
 if ( $qsbk_ed == date('Y-m-d',strtotime("-1 day"))) {
     wwf_cache('qsbk_tid',0);
-    wwf_cache('qsbk_pid',0);
+    wwf_cache('qsbk_pid',0); 
+    wwf_cache('qsbk_do',0);
 }
 
 
 //如果是今天。存在tid，不存在pid,则需要进行删除操作。
+//只要发现失败了，则执行删除逻辑。不再执行了。
 if (   intval($tid_ed) > 0 && intval($pid_ed) <= 0 ) {
         C::t('forum_thread')->delete($tid_ed);
+        return;
 }
+
+//只要执行过了，则不执行采集了
+if(intval('qsbk_do') >= 1 ){
+    return;
+}
+
+
+wwf_cache('qsbk_do',1);
 
 
 
@@ -239,6 +253,8 @@ switch ($caiji_model) {
 $rand_keys = array_rand($urls, 1);
 $url = $urls[$rand_keys];
 $html = curl_qsbk($url);
+
+
 
 $imgpath = set_home('data/attachment/forum'); //返回的是全路径。
 

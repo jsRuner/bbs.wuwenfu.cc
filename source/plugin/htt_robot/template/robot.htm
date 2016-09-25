@@ -7,12 +7,15 @@
     <script  type="text/javascript"  src="source/plugin/htt_robot/template/robot.js?t={$t}"></script>
 
     <div id="robot_container_closed">
+        <div id="robot_container_closed_body" style="width: 60px;height: 60px;">
+            
+        </div>
         <!--我是机器人-->
     </div>
 
 
     <div id="robot_container_open">
-        <div class="title">
+        <div class="title" id="robot_title">
             <img src="source/plugin/htt_robot/template/image/robot.png" alt="">
             <span>{$robot_name}</span>
             <div class="headBtn"><a hidefocus="" href="javascript: void(0);" class="zhichiVoice" title="{lang htt_robot:zhichiVoice}"></a> <a hidefocus="" href="javascript: void(0);" class="zhichiMin" title="{lang htt_robot:zhichiMin}"></a> <a hidefocus="" href="javascript: void(0);" class="zhichiMax" title="{lang htt_robot:zhichiMax}"></a> <a hidefocus="" href="javascript: void(0);" class="zhichiClose" title="{lang htt_robot:zhichiClose}"></a></div>
@@ -54,6 +57,25 @@
 
 
     <input type="hidden" id="formhash" value="{FORMHASH}">
+
+
+    <script src="source/plugin/htt_robot/template/drag.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var oBox = document.getElementById("robot_container_closed");
+    var oBox_body = document.getElementById("robot_container_closed_body");
+
+    var oBar = document.getElementById("robot_container_open");
+
+    var oBar_title = document.getElementById("robot_title");
+
+    startDrag( oBox_body,oBox);
+
+
+    startDrag(oBar_title, oBar);
+
+
+
+</script>
 
 
 

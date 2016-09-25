@@ -28,7 +28,7 @@ jq(window).load(function(){
 
     var robot_close =  jq('#robot_container_closed'); //聊天的容器
     //var close_btn =  jq('#close_btn'); //关闭按钮
-    var close_btn =  jq('#robot_container_open .title .headBtn'); //关闭按钮
+    var close_btn =  jq('#robot_container_open .title .headBtn .zhichiClose'); //关闭按钮
 
     var robot_open =  jq('#robot_container_open');
 
@@ -64,30 +64,25 @@ jq(window).load(function(){
     }
 
 
-
-
     //console.log(host);
 
     //打开机器人。
-   robot_close.bind('click',function(){
+   robot_close.bind('ondblclick',function(){
        robot_open.show();
        robot_close.hide();
-
        //设置cookie
-       setCookie('robot_status',1)
-
+       setCookie('robot_status',1)      
     })
 
     //关闭机器人。
     close_btn.bind('click',function(){
 
-        var xx = confirm(close_text)
-        if (xx) {
+        // var xx = confirm(close_text)
+        if (true) {
             robot_open.hide();
             robot_close.show();
             //设置cookie
             setCookie('robot_status',2)
-
         }
        
     })

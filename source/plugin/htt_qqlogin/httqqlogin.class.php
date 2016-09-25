@@ -70,6 +70,15 @@ class plugin_htt_qqlogin {
         $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `uid`= ".$_G['uid']);
         if($item = DB::fetch($query)) {
             # code...
+            //存在QQ登录。要区分是否是QQ登录的用户。还是已经绑定了老帐号
+            //如果不是老帐号，则提示关联。判断的依据。帐号时间与QQ登录中的时间对比。如果误差不超过1分钟。则说明需要绑定老帐号。
+            $member_query = DB::query("SELECT * FROM  ".DB::table("ucenter_members")." WHERE  `uid`= ".$_G['uid']);
+            $member_info = DB::fetch($member_query);
+
+            if (abs($item['dateline']-$member_info['regdate']) <= 10) {
+                # code...
+                return '<a href="'.$site_url.'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank"><img src="static/image/common/qq_bind_small.gif" class="qq_bind" align="absmiddle" alt=""></a>';
+            }
             return '';
         }
         return tpl_global_usernav_extra1();
