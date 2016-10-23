@@ -51,20 +51,18 @@ if ($uid<=0) {
 	return;
 }
 
-// $fid = $_GET['fid'];
-//避免注入
-$fid = intval(getgpc('fid','G'));
+$fid = $_GET['fid'];
 
 
 
 
 $favid = $fid;
 
-// $guanzhu = $_GET['guanzhu']; #存在则是关注.todo:不根据它判断
+$guanzhu = $_GET['guanzhu']; #存在则是关注.todo:不根据它判断
 
 #查询是否存在。
 $guanzhuinfo = '';
-$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid ");
+$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
 while($item = DB::fetch($query)) {
 	// var_dump($item);
 	$guanzhuinfo = $item;

@@ -10,32 +10,6 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 class plugin_htt_baidu {
-	/**
-	 * -- 读写缓存文件 --
-	 * value为空时读取name字段缓存
-	 * @param name String
-	 * @param value String
-	 */
-	 function _cache($name = '',$value = ''){
-		define('PLUGIN_IDENTIFIE', 'htt_baidu');
-		require_once libfile('function/cache');
-		$cache = array();
-		$cache_file = DISCUZ_ROOT.'data/sysdata/cache_' . PLUGIN_IDENTIFIE . '.php';
-		if(file_exists($cache_file)){
-			$cache = require($cache_file);
-		}
-		if($value != '' && $name != ''){	// 写入缓存
-			$cache[$name] = $value;
-			$cache_text = "\r\nreturn ".arrayeval($cache).";\r\n";
-			writetocache(PLUGIN_IDENTIFIE,$cache_text);
-			unset($cache);
-			unset($cache_text);
-			unset($cache_file);
-		}else{	// 读取缓存
-			unset($cache_file);
-			return isset($cache[$name]) ? $cache[$name] : false;
-		}
-	}
 
 }
 
@@ -47,7 +21,6 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
         return true;
     }
 
-    //关注量增加缓存处理。
 	function forumdisplay_forumaction_output() {
 		#读取数据。判断是否关注了该版块。
 		global $_G;
@@ -68,7 +41,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 
 		$guanzhuinfo = '';
 
-		$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid ");
+		$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid LIMIT 0 , 30");
 		while($item = DB::fetch($query)) {
 			// var_dump($item);
 			$guanzhuinfo = $item;
@@ -83,28 +56,11 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 
 		$yesguanzhu = lang("plugin/htt_baidu",'yes_guanzhu');
 
-
-		//添加缓存处理。
-		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu.php';
-		//缓存过期了。
-		if(($_G['timestamp'] - @filemtime($cache_file)) > $cache_time*60) {
-
-			#统计版块的关注数量。
-			$query = DB::query("SELECT count(`id`) as `guanzhu_num` FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid");
-			while($item = DB::fetch($query)) {
-				// var_dump($item);
-				$guanzhu_num = $item['guanzhu_num'];
-			}
-
-			$this->_cache('guanzhu_num_'.$fid,$guanzhu_num);
-
-			
-
-		}else{
-
-			
-			$guanzhu_num = $this->_cache('guanzhu_num_'.$fid);
-
+		#统计版块的关注数量。
+		$query = DB::query("SELECT count(`id`) as `guanzhu_num` FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid");
+		while($item = DB::fetch($query)) {
+			// var_dump($item);
+			$guanzhu_num = $item['guanzhu_num'];
 		}
 
 		#需要获取是否关注和，当前版块的关注人数。
@@ -113,7 +69,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 
 	}
 
-	//只要发帖，回帖编辑等都触发。无须区分太清楚。鼓励活跃度
+	//发帖后触发 {"param":["post_reply_succeed","forum.php?mod=viewthread&tid=96&pid=99&page=1&extra=#pid99",{"fid":"2","tid":"96","pid":99,"from":null,"sechash":""},[],0]}
 	 public function post_report_message($param) {
         global $_G, $extra, $redirecturl;
         #获取uid fid 增加一次积分。该积分值读取插件的设置
@@ -132,7 +88,7 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 
     	loadcache('plugin');
 		$var = $_G['cache']['plugin'];
-		$cache_time =  $var['htt_baidu']['cache_time']; #缓存有效期。
+		$cache_time =  $var['htt_baidu']['cache_time'];
 		$credit_title =  $var['htt_baidu']['credit_title'];
 		$level_title =  $var['htt_baidu']['level_title'];
 
@@ -142,7 +98,11 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		$show_num =  $var['htt_baidu']['show_num']; //关注量 1显示 2不显示
 
 		//如果没有关注，则不显示。如果关注了则根据配置显示积分或者等级或者2者
-		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu.php';
+
+
+
+
+		$cache_file = DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents_'.$tid.'.php';
 
 		//缓存过期了。
 		if(($_G['timestamp'] - @filemtime($cache_file)) > $cache_time*60) {
@@ -152,6 +112,19 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 				$fid = $_G['fid'];
 				$guanzhuinfo = '';
 		    	$query = DB::query("SELECT * FROM  ".DB::table("httbaidu")." WHERE  `fid`=$fid and `uid`=$uid");
+
+                //查询当前板块的自定义头衔。只有一条记录。等级1;等级2;等级3
+                $current_forum_query = DB::query("SELECT * FROM  ".DB::table("httbaidu_forum")." WHERE  `fid`=$fid");
+
+                $current_forum_touxian_temp = DB::fetch($current_forum_query);
+                if(!empty($current_forum_touxian_temp)){
+
+                    $current_forum_touxian = (explode(";",$current_forum_touxian_temp['level_titles']));
+                }else{
+                    $current_forum_touxian = null;
+                }
+
+
 				while($item = DB::fetch($query)) {
 					// var_dump($item);
 					$guanzhuinfo = $item;
@@ -173,7 +146,18 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 		    	$level_num = 0;
 
 				while($item = DB::fetch($query)) {
+
+                    //改变当前等级名称
+                    if(isset($current_forum_touxian[$level_num])){
+//                        $item['leveltitle'] = 'xxxx';
+                        $item['leveltitle'] = $current_forum_touxian[$level_num];
+                    }
+
+
 					$level_num += 1 ;
+
+
+
 					//毕竟是否大于下限，小于上限。如果是-1。则只比较下限
 					if($item['ceil'] == -1){
 						if ($credit>=$item['floor']) {
@@ -220,15 +204,25 @@ class plugin_htt_baidu_forum extends plugin_htt_baidu {
 					}
 
 				}
+
+				// $echoq[] = urlencode($side_html);
+				// $echoq[$tid][] = $side_html;
 				$echoq[] =$side_html;
 
 				$cachestr[] = urlencode($side_html);
 			}
-
-			$this->_cache('httbaiduinfo_'.$tid,$cachestr);
+		//写入缓存的需要加''
+		// $cacheArray .= "\$contents='".json_encode($echoq)."';\n";
+		$cacheArray = "\$contents='".json_encode($cachestr)."';\n";
+		require_once libfile('function/cache');
+		writetocache('htt_baidu_contents', $cacheArray); 
+    	
     	}else{
-		   
-			$contents = $this->_cache('httbaiduinfo_'.$tid);
+		   //你可以从缓存文件里读了.
+    		//读取缓存的数据
+    		include_once DISCUZ_ROOT.'./data/sysdata/cache_htt_baidu_contents.php';
+			
+			$contents= json_decode($contents,true);
 			// var_dump($contents);
 			foreach ($contents as $key => $value) {
 

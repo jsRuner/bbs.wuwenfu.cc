@@ -1,7 +1,7 @@
- <?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="Version"><![CDATA[]]></item>
+	<item id="Version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 	<item id="Time"><![CDATA[2016-04-22 21:48]]></item>
 	<item id="From"><![CDATA[ ()]]></item>
 	<item id="Data">
@@ -14,7 +14,7 @@
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_baidu/]]></item>
 			<item id="copyright"><![CDATA[±±°¶µÄÔÆ]]></item>
-			<item id="version"><![CDATA[1.0]]></item>
+			<item id="version"><![CDATA[1.1]]></item>
 			<item id="__modules">
 				<item id="1">
                     <item id="name"><![CDATA[httbaidu]]></item>
@@ -43,11 +43,25 @@
 					<item id="navsubname"><![CDATA[]]></item>
 					<item id="navsuburl"><![CDATA[]]></item>
 				</item>
+
+				<item id="3">
+					<item id="name"><![CDATA[forum]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[°å¿éÉèÖÃ]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
 				
 
 			</item>
 		</item>
-		<item id="version"><![CDATA[X3.2]]></item>
+		<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 
 
 			<item id="var">
@@ -55,7 +69,7 @@
 <item id="0">
                 <item id="displayorder"><![CDATA[0]]></item>
                 <item id="title"><![CDATA[»ý·ÖÔö·ù]]></item>
-                <item id="description"><![CDATA[·¢Ìû¡¢±à¼­¡¢»ØÌû¾ù¿ÉÒÔÔö¼ÓÖ¸¶¨µÄ»ý·Ö]]></item>
+                <item id="description"><![CDATA[Ã¿´Î·¢Ìû¿ÉÒÔÔö¼ÓÖ¸¶¨µÄ»ý·Ö]]></item>
                 <item id="variable"><![CDATA[credit]]></item>
                 <item id="type"><![CDATA[number]]></item>
                 <item id="value"><![CDATA[1]]></item>
@@ -146,6 +160,13 @@
 
 
         <item id="language">
+			<item id="installlang">
+				<item id="default_level_titles"><![CDATA[ÇàÍ­¼¶±ð;»Æ½ð¼¶±ð;×êÊ¯¼¶±ð]]></item>
+
+			</item>
+
+
+
 			<item id="scriptlang">
 
 				<item id="yes_guanzhu_login"><![CDATA[ÐèÒªµÇÂ¼²Å¿ÉÒÔ¹Ø×¢°æ¿é]]></item>
@@ -169,6 +190,10 @@
 				<item id="show_addlevel"><![CDATA[Ìí¼ÓµÈ¼¶ÉèÖÃ]]></item>
 				<item id="show_dellevel"><![CDATA[É¾³ýµÈ¼¶ÉèÖÃ]]></item>
 
+
+				<item id="show_forum_addlevel"><![CDATA[Ìí¼Ó°æ¿éêÇ³Æ]]></item>
+				<item id="show_forum_dellevel"><![CDATA[É¾³ý°æ¿éêÇ³Æ]]></item>
+
 				<item id="show_addlevel_succeed"><![CDATA[Ìí¼ÓµÈ¼¶ÉèÖÃ³É¹¦]]></item>
 				<item id="show_addlevel_error"><![CDATA[Ìí¼ÓµÈ¼¶ÉèÖÃ´íÎó]]></item>
 
@@ -176,38 +201,34 @@
 				<item id="show_dellevel_succeed"><![CDATA[É¾³ýµÈ¼¶ÉèÖÃ³É¹¦]]></item>
 				<item id="show_dellevel_error"><![CDATA[É¾³ýµÈ¼¶ÉèÖÃ´íÎó]]></item>
 
+
+				<item id="show_forum_addlevel_succeed"><![CDATA[Ìí¼Ó°æ¿éêÇ³ÆÉèÖÃ³É¹¦]]></item>
+				<item id="show__forum_addlevel_error"><![CDATA[Ìí¼Ó°æ¿éêÇ³Æ´íÎó]]></item>
+
+
+				<item id="show_forum_dellevel_succeed"><![CDATA[É¾³ý°æ¿éêÇ³ÆÉèÖÃ³É¹¦]]></item>
+				<item id="show_forum_dellevel_error"><![CDATA[É¾³ý°æ¿éêÇ³ÆÉèÖÃ´íÎó]]></item>
+
+				<item id="forum_name"><![CDATA[°æ¿éêÇ³Æ]]></item>
+
+
+
+
 				<item id="baidu_tips"><![CDATA[
 					<li>µÈ¼¶µÄÇø¼ä±ØÐëÁ¬¹áÍêÕû¡£²»¿ÉÒÔÌøÔ¾»òÕßÈ±ÉÙÄ³¸öÇø¼ä</li>
 					<li>1-100Ö»°üº¬1,²»°üº¬100</li>
 					<li>ÏÂÏÞÄ¬ÈÏÎª0,ÉÏÏÞÄ¬ÈÏ-1,-1±êÊ¶ÎÞÇî´ó¡£</li>
-					<li>Èç¹ûÎÞ·¨²å¼þ¹¤×÷,ÇëÁªÏµ<a href="http://weibo.com/540045865">×÷ÕßÎ¢²©</a></li>
+					<li>Èç¹ûÎÞ·¨²å¼þ¹¤×÷,ÇëÁªÏµ<a href="http://wpa.qq.com/msgrd?v=3&uin=540045865&site=qq&menu=yes">×÷Õß¿Í·þ:540045865</a></li>
+					]]></item>
+
+				<item id="baidu_tips_forum"><![CDATA[
+					<li>Ìá¹©×Ô¶¨ÒåÏÔÊ¾°å¿éÍ·ÏÎ¹¦ÄÜ</li>
+					<li>°å¿éÍ·ÏÎÓÃ¶ººÅ·Ö¸î¡£ÀýÈçxx;xx;xx</li>
+					<li>Èç¹ûÎÞ·¨²å¼þ¹¤×÷,ÇëÁªÏµ<a href="http://wpa.qq.com/msgrd?v=3&uin=540045865&site=qq&menu=yes">×÷Õß¿Í·þ:540045865</a></li>
 					]]></item>
 				
 				
 				</item>
-				
-			<item id="templatelang">
-			<item id='zhanhao'>ÕÊºÅ
-			</item>
-			<item id='password'>ÃÜÂë
-			</item>
-			
-			<item id='fetchpw'>ÌáÈ¡ÃÜÂë
-			</item>
-			
-			<item id='gonggao'>¹«¸æ
-			</item>
-			
-			
-			<item id='free_share'>Ãâ·Ñ·ÖÏí
-			</item>
-			
-			
-			
-		</item>
-			
-			
-			
 				
 				
 				
