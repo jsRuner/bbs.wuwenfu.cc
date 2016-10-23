@@ -275,7 +275,27 @@
 }
 
 
-#robot_container_closed_body,#robot_title{
+.pull-btn {
+    right: 80px;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 24px;
+    border-radius: 2px;
+    font-size: 12px;
+    position: absolute;
+}
+
+
+#help{
+    text-align: left !important;
+}
+
+
+#robot_container_closed_body{
     cursor:move;
 }
 

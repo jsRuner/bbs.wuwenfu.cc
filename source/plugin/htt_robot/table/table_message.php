@@ -39,6 +39,11 @@ class table_message extends discuz_table
 		return DB::result_first("SELECT COUNT(*) FROM %t WHERE 1 %i", array($this->_table, $condition));
 	}
 
+    public function fetch_all($condition) {
+        return DB::fetch_all("SELECT * FROM %t WHERE 1 %i", array($this->_table, $condition));
+    }
+
+
 	public function fetch_all_by_search($condition, $start, $ppp) {
 		return DB::fetch_all("SELECT * FROM %t WHERE 1 %i ORDER BY dateline LIMIT %d, %d", array($this->_table, $condition, $start, $ppp));
 	}

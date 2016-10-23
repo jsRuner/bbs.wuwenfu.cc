@@ -13,8 +13,8 @@
             <item id="description"><![CDATA[可爱的机器人]]></item>
             <item id="datatables"><![CDATA[]]></item>
             <item id="directory"><![CDATA[htt_robot/]]></item>
-            <item id="copyright"><![CDATA[吴文付]]></item>
-            <item id="version"><![CDATA[1.9]]></item>
+            <item id="copyright"><![CDATA[北岸的云wuwenfu.cn]]></item>
+            <item id="version"><![CDATA[2.0]]></item>
             <item id="__modules">
 			
               <item id="0">
@@ -87,10 +87,10 @@
         	<item id="1">
                 <item id="displayorder"><![CDATA[1]]></item>
                 <item id="title"><![CDATA[机器人类型]]></item>
-                <item id="description"><![CDATA[默认是图灵机器人]]></item>
+                <item id="description"><![CDATA[默认是茉莉机器人]]></item>
                 <item id="variable"><![CDATA[robot_type]]></item>
                 <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[1]]></item>
+                <item id="value"><![CDATA[2]]></item>
                 <item id="extra"><![CDATA[1=图灵机器人
 2=茉莉机器人]]></item>
             </item>
@@ -220,6 +220,8 @@
 				<item id="del_many"><![CDATA[批量删除]]></item>
 				<item id="search"><![CDATA[查询]]></item>
 				<item id="guest"><![CDATA[游客]]></item>
+
+				<item id="no_message"><![CDATA[还没有人想我提问哟]]></item>
 				
 				
 					
@@ -241,6 +243,31 @@
 		<item id="please_input"><![CDATA[请输入...]]></item>
 		<item id="copyright"><![CDATA[北岸的云]]></item>
 		<item id="send_text"><![CDATA[发送]]></item>
+
+		<item id="pull_text"><![CDATA[点我]]></item>
+
+		<item id="help"><![CDATA[提示:点我,则随机返回别人的问题。立即试试吧。例如 笑话]]></item>
+
+		<item id="moli_datas"><![CDATA[财神爷灵签;月老灵签;观音灵签;签语;注释;解签;白话]]></item>
+		<!-- <item id="moli_data_yuelao"><![CDATA[月老灵签]]></item>
+		<item id="moli_data_guanyin"><![CDATA[观音灵签]]></item>
+
+
+		<item id="moli_data_qianyu"><![CDATA[签语]]></item>
+		<item id="moli_data_zhushi"><![CDATA[注释]]></item>
+		<item id="moli_data_jieqian"><![CDATA[解签]]></item>
+		<item id="moli_data_jieshuo"><![CDATA[解说]]></item>
+		<item id="moli_data_shuoming"><![CDATA[说明]]></item>
+ -->
+
+
+
+
+
+
+
+		
+
 		
 		<item id="close_text"><![CDATA[要离开我吗?呜呜呜。。。]]></item>
 		<item id="error_empty"><![CDATA[内容不可以为空哟]]></item>

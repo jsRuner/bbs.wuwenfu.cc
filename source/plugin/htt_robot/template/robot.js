@@ -1,28 +1,8 @@
 /**
  * Created by Administrator on 2016/4/8.
  */
+//jq = jQuery;
 
-//绑定点击事件。
-var jq = jQuery.noConflict(); //消除jquery的冲突。
-
-
-function setCookie(name,value)
-{
-var Days = 30;
-var exp = new Date();
-exp.setTime(exp.getTime() + Days*24*60*60*1000);
-document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
-}
-
-
-function getCookie(name)
-{
-var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-if(arr=document.cookie.match(reg))
-return unescape(arr[2]);
-else
-return null;
-}
 
 jq(window).load(function(){
 
@@ -34,6 +14,8 @@ jq(window).load(function(){
 
     //var send_btn = jq('#send_button') //发送按钮
     var send_btn = jq('#sendBtn') //发送按钮
+
+    var pull_btn = jq('#pullBtn') //点我按钮
 
     //var send_input = jq('.do_area input') //内容
     var send_input = jq('#inputMsg') //内容
@@ -57,22 +39,27 @@ jq(window).load(function(){
 
     var robot_status = getCookie('robot_status'); //状态。从cookie获取一次。1是开启，2是关闭。
 
+    var robot_pointer_x = getCookie('robot_pointer_x'); //机器的人位置
+    var robot_pointer_y = getCookie('robot_pointer_y'); //机器的人位置
+
+    var win_h = window.innerHeight||document.documentElement.clientHeight;
+    var win_w = window.innerWidth||document.documentElement.clientWidth;
+
+    //console.log(win_w+'_'+win_h);
+    //console.log(robot_pointer_x+'_'+robot_pointer_y);
+
+
+
+    if(robot_pointer_x && robot_pointer_y && robot_pointer_x<=win_w && robot_pointer_y<=win_h){
+        robot_close.attr('style','position:absolute;left:'+robot_pointer_x+'px;top:'+robot_pointer_y+'px;');
+    }
+
 
     if(robot_status == 1){
         robot_open.show();
         robot_close.hide();
     }
 
-
-    //console.log(host);
-
-    //打开机器人。
-   robot_close.bind('ondblclick',function(){
-       robot_open.show();
-       robot_close.hide();
-       //设置cookie
-       setCookie('robot_status',1)      
-    })
 
     //关闭机器人。
     close_btn.bind('click',function(){
@@ -108,30 +95,40 @@ jq(window).load(function(){
             send_input.val('');
         }
 
-
-        //console.log(msg);
-        //输出一下滚动条的位置。
-        //console.log(msg_list[0].scrollTop)
-        //console.log(msg_list[0].scrollHeight) //滚动条的高度。如果超出多少。则修改距离顶部
-
         var sh = msg_list[0].scrollHeight;
 
         //构造一个li。插入到列表中。
         var me = ' <li class="me"> <span>'+mename+'</span> <div>'+msg+'</div></li>';
         msg_list.append(me);
 
-
-
-        //禁用按钮。避免发言过快。
-        //send_btn.attr('disabled','disabled')
-
         //ajax请求后台。
         jq.ajax({
-            type: 'POST',
+            type: 'GET',
             url: host+'/plugin.php?id=htt_robot:robot',
             data: {msg:msg,formhash:formhashxx},
             success: function(data){
 
+                //判断下返回类型。笑话。
+                if(data.msg.indexOf("content") > 0 ){
+                    var obj = eval('(' + data.msg + ')');
+                    data.msg = obj.content;
+                }
+                //茉莉月老的求签接口
+                if(data.msg.indexOf("type") > 0 ){
+                    var obj = eval('(' + data.msg + ')');
+                    if(obj.type==moli_datas[0]){
+                        console.log(1);
+                        data.msg = '['+moli_datas[3]+':]'+obj.qianyu+'\<br\>['+moli_datas[4]+':]'+obj.zhushi+'\<br\>['+moli_datas[5]+':]'+obj.jieqian+'\<br\>['+moli_datas[6]+':]'+obj.jieshuo;
+                    }
+                    if(obj.type==moli_datas[1]){
+                        console.log(2);
+                        data.msg = '['+moli_datas[3]+':]'+obj.shiyi+'\<br\>['+moli_datas[4]+':]'+obj.zhushi+'\<br\>['+moli_datas[5]+':]'+obj.jieqian+'\<br\>['+moli_datas[6]+':]'+obj.baihua;
+                    }
+                    if(obj.type==moli_datas[2]){
+                        console.log(3);
+                        data.msg = '['+moli_datas[3]+':]'+obj.qianyu+'\<br\>['+moli_datas[4]+':]'+obj.shiyi+'\<br\>['+moli_datas[5]+':]'+obj.jieqian;
+                    }
+                }
                 var robot = ' <li class="robot"> <span>'+robot_name+'</span> <div>'+data.msg+'</div></li>';
                 msg_list.append(robot);
                 console.log(msg_list[0].scrollTop)
@@ -150,28 +147,22 @@ jq(window).load(function(){
             complete:function(XMLHttpRequest, textStatus){
                 //请求完成后。开启按钮。
                 send_btn.attr('disabled',false)
-
-
-
                 var eh = msg_list[0].scrollHeight;
                 msg_list[0].scrollTop = msg_list[0].scrollTop+(eh-sh);
 
             }
-
-
-
         });
-
-
-
-
-
     }
 
 
 
     //点击发送按钮事件。添加ul中。并等待结果。ajaj请求等待结果。
     send_btn.bind('click',sendmsg);
+
+    pull_btn.bind('click',function(){
+        send_input.val('click me');
+        sendmsg();
+    })
 
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
