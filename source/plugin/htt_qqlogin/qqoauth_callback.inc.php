@@ -354,9 +354,6 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
         sendmail_cron($email, $welcomemsgtitle, $welcomemsgtxt);
         $welcomemsgtxt = nl2br(str_replace(':', '&#58;', $welcomemsgtxt));
         notification_add($uid, 'system', $welcomemsgtxt, array('from_id' => 0, 'from_idtype' => 'welcomemsg'), 1);
-
-        $welcomemsgtxt =  lang('plugin/htt_qqlogin', 'default_password').': '.$password;
-        notification_add($uid, 'system', $welcomemsgtxt);
     }
 }
 
