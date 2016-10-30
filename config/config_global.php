@@ -97,6 +97,9 @@ $_config['remote']['cron'] = '0';
 // ---------------------------  CONFIG INPUT  --------------------------- //
 $_config['input']['compatible'] = 1;
 
+// 
+$_config['plugindeveloper'] = 2;
+
 
 // -------------------  THE END  -------------------- //
 

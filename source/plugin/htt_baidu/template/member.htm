@@ -1,0 +1,47 @@
+
+
+<!--{block htt_baidu_member_html}-->
+
+
+    <link rel="stylesheet" type="text/css" href="source/plugin/htt_baidu/template/style.css" />
+
+    <div class="htt_baidu_member">
+    	<div class="title"> {lang htt_baidu:rank} </div>
+    	<div class="list">
+    		<!--{if $members}-->
+				<ul>
+				<!--{loop $members  $key $member}-->
+					<li>{$member['avatar']}<span>{$member['username']}</span></li>
+				<!--{/loop}-->
+				
+				<!-- <li><img src="http://bbs.xx.cn/uc_server/avatar.php?uid=1&size=small"> <span>wuwenfu</span></li>
+				<li><img src="http://bbs.xx.cn/uc_server/avatar.php?uid=1&size=small"> <span>wuwenfu</span></li>
+				<li><img src="http://bbs.xx.cn/uc_server/avatar.php?uid=1&size=small"> <span>wuwenfu</span></li>
+				<li><img src="http://bbs.xx.cn/uc_server/avatar.php?uid=1&size=small"> <span>wuwenfu</span></li>
+				<li><img src="http://bbs.xx.cn/uc_server/avatar.php?uid=1&size=small"> <span>wuwenfu</span></li> -->
+
+				</ul>
+
+    		<!--{else}-->
+
+    			<p> {lang htt_baidu:no_data} </p>
+
+
+
+
+    		<!--{/if}-->
+
+
+
+    			
+    			
+
+
+    	</div>
+    	<div style="clear: both;height: 1px;"></div>
+    </div>
+    
+
+
+
+<!--{/block}-->

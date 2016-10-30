@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2016-04-22 22:36:57
+ * @version $Id$
+ */
+
+#a_guanzhu{
+	background: url(images/guanzhu.png) no-repeat left;
+}
+
+.htt_baidu_member{
+	border: 1px solid #CDCDCD;
+}
+.htt_baidu_member .title{ 
+	margin-top: 1px;
+  padding: 0 10px;
+  background: #F2F2F2;
+  border-bottom: 1px solid #CDCDCD;
+}
+
+.htt_baidu_member .list{
+	margin-top: 5px;
+}
+.htt_baidu_member .list ul li{
+	float: left;
+	padding: 0 10px;
+}
+
+.htt_baidu_member .list ul li span{
+	display: block;
+	width: 48px;
+	text-align: center;
+}
