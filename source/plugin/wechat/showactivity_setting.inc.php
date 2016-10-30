@@ -193,18 +193,14 @@ if(!$ac) {
 	foreach(C::t('forum_post')->fetch_all($posttableid, array_keys($posts), false) as $post) {
 		$array[$posts[$post['pid']]['voters'].'.'.$post['position']] = $post['author'].','.$posts[$post['pid']]['voters'].','.$post['position'];
 	}
-	/*ob_end_clean();
+	ob_end_clean();
 	header('Content-Encoding: none');
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename=showactivity_'.$_GET['tid'].'.csv');
 	header('Pragma: no-cache');
-	header('Expires: 0');*/
+	header('Expires: 0');
 	krsort($array);
 	$detail = lang('plugin/wechat', 'show_export_title')."\r\n".implode("\r\n", $array);
-
-    var_dump($detail);
-    exit();
-
 	if($_G['charset'] != 'gbk') {
 		$detail = diconv($detail, $_G['charset'], 'GBK');
 	}

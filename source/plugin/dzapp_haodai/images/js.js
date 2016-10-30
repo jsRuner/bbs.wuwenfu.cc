@@ -14,14 +14,14 @@ function b(){
 	}
 }
 Jquery(document).ready(function(e) {
-	a(10,10);//#tbox的div距浏览器底部和页面内容区域右侧的距离
+	a(10,10);//#tbox鐨刣iv璺濇祻瑙堝櫒搴曢儴鍜岄〉闈㈠唴瀹瑰尯鍩熷彸渚х殑璺濈
 	b();
 	Jquery('#gotop').click(function(){
 		Jquery(document).scrollTop(0);
 	})
 });
 Jquery(window).resize(function(){
-	a(10,10);//#tbox的div距浏览器底部和页面内容区域右侧的距离
+	a(10,10);//#tbox鐨刣iv璺濇祻瑙堝櫒搴曢儴鍜岄〉闈㈠唴瀹瑰尯鍩熷彸渚х殑璺濈
 });
 
 Jquery(window).scroll(function(e){

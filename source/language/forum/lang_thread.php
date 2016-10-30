@@ -12,14 +12,14 @@ if(!defined('IN_DISCUZ')) {
 }
 
 $lang = array (
-	  'forum_archive' => '´æµµ',
-	  'source' => 'À´Ô´',
+	  'forum_archive' => 'å­˜æ¡£',
+	  'source' => 'æ¥æº',
 
-	  't_question' => '£¿',
-	  't_comma' => '£¬',
-	  't_exclamatory' => '£¡',
-	  't_period' => '¡£',
-	  't_suspension' => '¡­',
+	  't_question' => 'ï¼Ÿ',
+	  't_comma' => 'ï¼Œ',
+	  't_exclamatory' => 'ï¼',
+	  't_period' => 'ã€‚',
+	  't_suspension' => 'â€¦',
 
 );
 ?>

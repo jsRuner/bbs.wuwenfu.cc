@@ -75,13 +75,10 @@ function parseattach($attachpids, $attachtags, &$postlist, $skipaids = array()) 
 		return;
 	}
 	$attachpids = is_array($attachpids) ? $attachpids : array($attachpids);
-
 	$attachexists = FALSE;
 	$skipattachcode = $aids = $payaids = $findattach = array();
-//    echo $_G['tid'];
-//    $_G['tid'] = 9;
 	foreach(C::t('forum_attachment_n')->fetch_all_by_id('tid:'.$_G['tid'], 'pid', $attachpids) as $attach) {
-        $attachexists = TRUE;
+		$attachexists = TRUE;
 		if($skipaids && in_array($attach['aid'], $skipaids)) {
 			$skipattachcode[$attach[pid]][] = "/\[attach\]$attach[aid]\[\/attach\]/i";
 			continue;
@@ -152,12 +149,11 @@ function parseattach($attachpids, $attachtags, &$postlist, $skipaids = array()) 
 			}
 		}
 	}
-	if($attachexists) {
 
+	if($attachexists) {
 		foreach($attachtags as $pid => $aids) {
 			if($findattach[$pid]) {
 				foreach($findattach[$pid] as $aid => $find) {
-
 					$postlist[$pid]['message'] = preg_replace($find, attachinpost($postlist[$pid]['attachments'][$aid], $postlist[$pid]), $postlist[$pid]['message'], 1);
 					$postlist[$pid]['message'] = preg_replace($find, '', $postlist[$pid]['message']);
 				}

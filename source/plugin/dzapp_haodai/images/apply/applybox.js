@@ -94,10 +94,10 @@ function applyNext(next_name) {
             if (Jquery('#xiaofei_two').length > 0) {
                 Jquery('#xiaofei_two').hide();
                 Jquery('.tboxtop').html('<div class="tboxa bac3">' +
-                        '<span class="tbsp1 co3">1.ÌîĞ´¸öÈËÖ°ÒµĞÅÏ¢</span>' +
-                        '<span class = "tbsp2 co3" > 2.ÌîĞ´¸öÈËĞÅÓÃĞÅÏ¢ </span>' +
-                        '<span class = "tbsp3 cow" > 3.ÁôÏÂÁªÏµ·½Ê½ </span>' +
-                        '<span class = "tbsp4 co3" > 4.³É¹¦ÁË£¡ </span></div>');
+                        '<span class="tbsp1 co3">1.å¡«å†™ä¸ªäººèŒä¸šä¿¡æ¯</span>' +
+                        '<span class = "tbsp2 co3" > 2.å¡«å†™ä¸ªäººä¿¡ç”¨ä¿¡æ¯ </span>' +
+                        '<span class = "tbsp3 cow" > 3.ç•™ä¸‹è”ç³»æ–¹å¼ </span>' +
+                        '<span class = "tbsp4 co3" > 4.æˆåŠŸäº†ï¼ </span></div>');
             }
             Jquery('#one').hide();
             Jquery('#two').show();
@@ -108,10 +108,10 @@ function applyNext(next_name) {
         if (bool == true) {
             Jquery('#two').hide();
             if (Jquery('#xiaofei_two').length > 0) {
-                Jquery('.tboxtop').html('<div class="tboxa bac4"><span class="tbsp1 co3">1.ÌîĞ´¸öÈËÖ°ÒµĞÅÏ¢</span>' +
-                        '<span class = "tbsp2 co3" > 2.ÌîĞ´¸öÈËĞÅÓÃĞÅÏ¢ </span>' +
-                        '<span class = "tbsp3 co3" > 3.ÁôÏÂÁªÏµ·½Ê½ </span>' +
-                        '<span class = "tbsp4 cow" > 4.³É¹¦ÁË£¡ </span></div>');
+                Jquery('.tboxtop').html('<div class="tboxa bac4"><span class="tbsp1 co3">1.å¡«å†™ä¸ªäººèŒä¸šä¿¡æ¯</span>' +
+                        '<span class = "tbsp2 co3" > 2.å¡«å†™ä¸ªäººä¿¡ç”¨ä¿¡æ¯ </span>' +
+                        '<span class = "tbsp3 co3" > 3.ç•™ä¸‹è”ç³»æ–¹å¼ </span>' +
+                        '<span class = "tbsp4 cow" > 4.æˆåŠŸäº†ï¼ </span></div>');
             }
             Jquery('#three').show();
             applySend();
@@ -122,7 +122,7 @@ function applyNext(next_name) {
 function checkOneForm() {
     var xd_type = Jquery('#xd_type').val();
     var bool = true;
-    if (xd_type == 1) { //------------------------------------------- ÆóÒµ -------------------------------------------
+    if (xd_type == 1) { //------------------------------------------- ä¼ä¸š -------------------------------------------
         var qiye_type = Jquery('#qiye_type_inp_hidden').val();
         if (qiye_type == '') {
             var dom = Jquery('#qiye_typeTip').show();
@@ -142,7 +142,7 @@ function checkOneForm() {
             var dom = Jquery('#registerTip').show();
             bool = false;
         }
-    } else if (xd_type == 2) { //------------------------------------------- ¹º³µ -------------------------------------------
+    } else if (xd_type == 2) { //------------------------------------------- è´­è½¦ -------------------------------------------
         var has_house = Jquery('input[name="has_house"]:checked').val();
         if (typeof (has_house) == 'undefined') {
             var dom = Jquery('#has_houseTip').show();
@@ -168,7 +168,7 @@ function checkOneForm() {
             var dom = Jquery('#car_useTip').show();
             bool = false;
         }
-    } else if (xd_type == 3) { //------------------------------------------- ¹º·¿ -------------------------------------------
+    } else if (xd_type == 3) { //------------------------------------------- è´­æˆ¿ -------------------------------------------
         var goufang_type = Jquery('#goufang_type_inp_hidden').val();
         if (goufang_type == '') {
             var dom = Jquery('#goufang_typeTip').show();
@@ -183,7 +183,7 @@ function checkOneForm() {
             if (!isNaN(salary)) {
                 if (salary > 1000000) {
                     var dom = Jquery('#salaryTip').show();
-                    Jquery('#salaryTip').text('ÏŞ100ÍòÄÚ');
+                    Jquery('#salaryTip').text('é™100ä¸‡å†…');
                     bool = false;
                 } else {
                     var dom = Jquery('#salaryTip').hide();
@@ -191,7 +191,7 @@ function checkOneForm() {
                 }
             } else {
                 var dom = Jquery('#salaryTip').show();
-                Jquery('#salaryTip').text('ÊäÈë´¿Êı×Ö');
+                Jquery('#salaryTip').text('è¾“å…¥çº¯æ•°å­—');
                 bool = false;
             }
         }
@@ -206,7 +206,7 @@ function checkOneForm() {
             var dom = Jquery('#' + id_name + 'Tip').show();
             bool = false;
         }
-    } else if (xd_type == 4) { //------------------------------------------- Ïû·Ñ -------------------------------------------
+    } else if (xd_type == 4) { //------------------------------------------- æ¶ˆè´¹ -------------------------------------------
         bool = xfCheckOneForm(bool);
     }
     return bool;
@@ -217,19 +217,19 @@ function checkTwoForm() {
     var nickname = Jquery('#nickname').val();
     var nknet = Jquery('#nicknameTip');
     var mobile = Jquery('#mobile').val();
-    if (/[\s><,._\¡£\[\]\{\}\?\/\+\=\|\'\\\":;\~\!\@\#\*\Jquery\%\^\&`\uff00-\uffff)(]+/.test(nickname) && nickname.length > 0) {
+    if (/[\s><,._\ã€‚\[\]\{\}\?\/\+\=\|\'\\\":;\~\!\@\#\*\Jquery\%\^\&`\uff00-\uffff)(]+/.test(nickname) && nickname.length > 0) {
         nknet.show();
-        nknet.text('ÊäÈëÖ»ÏŞÖĞÓ¢ÎÄ');
+        nknet.text('è¾“å…¥åªé™ä¸­è‹±æ–‡');
         bool = false;
     } else if (nickname == '') {
         nknet.show();
         bool = false;
     } else if (nickname.length == 0) {
         nknet.show();
-        nknet.text('ÇëÌîĞ´ÄúµÄ³Æºô');
+        nknet.text('è¯·å¡«å†™æ‚¨çš„ç§°å‘¼');
         bool = false;
     }
-    if (mobile == '' || mobile == 'ÓÃÓÚ½ÓÊÕĞÅ´ûÔ±ÁªÏµ·½Ê½') {
+    if (mobile == '' || mobile == 'ç”¨äºæ¥æ”¶ä¿¡è´·å‘˜è”ç³»æ–¹å¼') {
         Jquery('#mobileTip').show();
         bool = false;
     } else {
@@ -290,37 +290,37 @@ function sendApplydetails() {
 function remarkApply(xd_type) {
     var split_str = '<br />';
     var remark = '';
-    if (xd_type == 1) { //------------------------------------------- ÆóÒµ -------------------------------------------
+    if (xd_type == 1) { //------------------------------------------- ä¼ä¸š -------------------------------------------
         var qiye_type = Jquery('#qiye_type_inp_hidden').val();
-        var monthly = 'ÒøĞĞ¿¨×ßÕËÔÂÊÕÈë:' + Jquery('#monthly').val();
+        var monthly = 'é“¶è¡Œå¡èµ°è´¦æœˆæ”¶å…¥:' + Jquery('#monthly').val();
         var has_house = Jquery('input[name="has_house"]:checked').val();
         var register = Jquery('input[name="register"]:checked').val();
         remark = (qiye_type + split_str + monthly + split_str + has_house + split_str + register);
-    } else if (xd_type == 2) { //------------------------------------------- ¹º³µ -------------------------------------------
+    } else if (xd_type == 2) { //------------------------------------------- è´­è½¦ -------------------------------------------
         var has_house = Jquery('input[name="has_house"]:checked').val();
         var car_number = Jquery('input[name="car_number"]:checked').val();
         var car_type = Jquery('input[name="car_type"]:checked').val();
         var car_stage = Jquery('input[name="car_stage"]:checked').val();
         var car_use = Jquery('input[name="car_use"]:checked').val();
         remark = (has_house + split_str + car_number + split_str + car_type + split_str + car_stage + split_str + car_use);
-    } else if (xd_type == 3) { //------------------------------------------- ¹º·¿ -------------------------------------------
+    } else if (xd_type == 3) { //------------------------------------------- è´­æˆ¿ -------------------------------------------
         var goufang_type = Jquery('#goufang_type_inp_hidden').val();
         var salary = Jquery('#salary_inp_hidden').attr('val') + ':' + Jquery('#salary_inp_hidden').val();
         var first_house = Jquery('input[name="first_house"]:checked').val();
         var second_hand_house = Jquery('input[name="second_hand_house"]:checked').val();
         remark = (goufang_type + split_str + salary + split_str + first_house + split_str + second_hand_house);
-    } else if (xd_type == 4) { //------------------------------------------- Ïû·Ñ -------------------------------------------
+    } else if (xd_type == 4) { //------------------------------------------- æ¶ˆè´¹ -------------------------------------------
         var salary = Jquery('#salary_inp_hidden').attr('val') + ':' + Jquery('#salary_inp_hidden').val();
         var salary_type = Jquery('input[name="salary_type"]:checked').val();
         var qiye_type = Jquery('#qiye_type_inp_hidden').val();
         var year_born = Jquery('#year_born').attr('val') + ':' + Jquery('#year_born').val();
         var job_year = Jquery.trim(Jquery('input[name="job_year"]').val());
-        var job_year_placeholder = Jquery('input[name="job_year"]').attr('placeholder') + 'Äê';   //IE6ÏÂÌáÊ¾Óï
+        var job_year_placeholder = Jquery('input[name="job_year"]').attr('placeholder') + 'å¹´';   //IE6ä¸‹æç¤ºè¯­
         if (job_year_placeholder == job_year) {
             job_year = '';
         }
         var job_month = Jquery.trim(Jquery('input[name="job_month"]').val());
-        var job_month_placeholder = Jquery('input[name="job_month"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+        var job_month_placeholder = Jquery('input[name="job_month"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
         if (job_month_placeholder == job_month) {
             job_month = '';
         }
@@ -328,60 +328,60 @@ function remarkApply(xd_type) {
         if ((job_year + job_month) != '') {
             var str = '';
             if (job_year != '') {
-                str = job_year + 'Äê ';
+                str = job_year + 'å¹´ ';
             }
             if (job_month != '') {
-                str += job_month + 'ÔÂ';
+                str += job_month + 'æœˆ';
             }
-            job_year_month = split_str + 'ÄúµÄ¹¤×÷Ê±¼äÊÇ:' + str;
+            job_year_month = split_str + 'æ‚¨çš„å·¥ä½œæ—¶é—´æ˜¯:' + str;
         }
         var has_blue_card = isHas(Jquery('input[name="has_blue_card"]:checked').val());
         if (has_blue_card != '') {
-            has_blue_card = split_str + 'ÄúÊÇ·ñÓĞĞÅÓÃ¿¨:' + has_blue_card + split_str;
+            has_blue_card = split_str + 'æ‚¨æ˜¯å¦æœ‰ä¿¡ç”¨å¡:' + has_blue_card + split_str;
         }
         var count_blue_card = Jquery('input[name="count_blue_card"]').val();
-        var count_blue_card_placeholder = Jquery('input[name="count_blue_card"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+        var count_blue_card_placeholder = Jquery('input[name="count_blue_card"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
         if (count_blue_card == count_blue_card_placeholder) {
             count_blue_card = '';
         }
         if (count_blue_card != '') {
-            count_blue_card = 'ÄúÓĞ¼¸ÕÅĞÅÓÃ¿¨:' + count_blue_card + split_str;
+            count_blue_card = 'æ‚¨æœ‰å‡ å¼ ä¿¡ç”¨å¡:' + count_blue_card + split_str;
         }
         var money_blue_card = Jquery('input[name="money_blue_card"]').val();
-        var money_blue_card_placeholder = Jquery('input[name="money_blue_card"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+        var money_blue_card_placeholder = Jquery('input[name="money_blue_card"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
         if (money_blue_card == money_blue_card_placeholder) {
             money_blue_card = '';
         }
         if (money_blue_card != '') {
-            money_blue_card = '¶î¶È×Ü¶îÊÇ¶àÉÙ:' + money_blue_card + split_str;
+            money_blue_card = 'é¢åº¦æ€»é¢æ˜¯å¤šå°‘:' + money_blue_card + split_str;
         }
         var has_debt_card = isHas(Jquery('input[name="has_debt_card"]:checked').val());
         if (has_debt_card != '') {
-            has_debt_card = 'ÊÇ·ñÓĞ¸ºÕ®£¨ĞÅÓÃ¿¨£©:' + has_debt_card + split_str;
+            has_debt_card = 'æ˜¯å¦æœ‰è´Ÿå€ºï¼ˆä¿¡ç”¨å¡ï¼‰:' + has_debt_card + split_str;
         }
         var money_debt_card = Jquery('input[name="money_debt_card"]').val();
-        var money_debt_card_placeholder = Jquery('input[name="money_debt_card"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+        var money_debt_card_placeholder = Jquery('input[name="money_debt_card"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
         if (money_debt_card == money_debt_card_placeholder) {
             money_debt_card = '';
         }
         if (money_debt_card != '') {
-            money_debt_card = '¸ºÕ®¶àÉÙ£¨ĞÅÓÃ¿¨£©:' + money_debt_card + split_str;
+            money_debt_card = 'è´Ÿå€ºå¤šå°‘ï¼ˆä¿¡ç”¨å¡ï¼‰:' + money_debt_card + split_str;
         }
         var has_succ_reply = isHas(Jquery('input[name="has_succ_reply"]:checked').val());
         if (has_succ_reply != '') {
-            has_succ_reply = 'ÄúÖ®Ç°ÊÇ·ñ³É¹¦ÉêÇë´û¿î:' + has_succ_reply + split_str;
+            has_succ_reply = 'æ‚¨ä¹‹å‰æ˜¯å¦æˆåŠŸç”³è¯·è´·æ¬¾:' + has_succ_reply + split_str;
         }
         var has_debt_loan = isHas(Jquery('input[name="has_debt_loan"]:checked').val());
         if (has_debt_loan != '') {
-            has_debt_loan = 'ÊÇ·ñÓĞ¸ºÕ®£¨´û¿î£©:' + has_debt_loan + split_str;
+            has_debt_loan = 'æ˜¯å¦æœ‰è´Ÿå€ºï¼ˆè´·æ¬¾ï¼‰:' + has_debt_loan + split_str;
         }
         var money_debt_loan = Jquery('input[name="money_debt_loan"]').val();
-        var money_debt_loan_placeholder = Jquery('input[name="money_debt_loan"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+        var money_debt_loan_placeholder = Jquery('input[name="money_debt_loan"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
         if (money_debt_loan == money_debt_loan_placeholder) {
             money_debt_loan = '';
         }
         if (money_debt_loan != '') {
-            money_debt_loan = '¸ºÕ®¶àÉÙ£¨´û¿î£©:' + money_debt_loan + split_str;
+            money_debt_loan = 'è´Ÿå€ºå¤šå°‘ï¼ˆè´·æ¬¾ï¼‰:' + money_debt_loan + split_str;
         }
         var xiaofei_two = job_year_month + has_blue_card + count_blue_card + money_blue_card + has_debt_card + money_debt_card +
                 has_succ_reply + has_debt_loan + money_debt_loan;
@@ -398,9 +398,9 @@ function xiaofei_two() {
 function isHas(val) {
     var res = '';
     if (val == 1) {
-        res = 'ÓĞ';
+        res = 'æœ‰';
     } else if (val == 2) {
-        res = 'Ã»ÓĞ';
+        res = 'æ²¡æœ‰';
     }
     return res;
 }
@@ -458,7 +458,7 @@ function yearSelect(obj) {
     var obj = Jquery(obj);
     var val = obj.html();
     var reval = obj.attr('reval');
-    if (val == 'ÆäËû') {
+    if (val == 'å…¶ä»–') {
         Jquery('#year_born').attr('reval', '');
         Jquery('#year_born').val('');
         Jquery('#year_born').attr('class', 'sinp iptsr');
@@ -529,9 +529,9 @@ function inpVal(default_str, obj) {
 }
 
 function salarytypeSel(type) {
-    var salary_show = 'Ã¿ÔÂ´òÈëÒøĞĞ¿¨µÄ¹¤×Ê';
+    var salary_show = 'æ¯æœˆæ‰“å…¥é“¶è¡Œå¡çš„å·¥èµ„';
     if (type == 'two') {
-        salary_show = 'Ã¿ÔÂÁìÈ¡ÏÖ½ğ';
+        salary_show = 'æ¯æœˆé¢†å–ç°é‡‘';
     }
     Jquery('#salary_show').html(salary_show);
     Jquery('#salary_inp_hidden').attr('val', salary_show);

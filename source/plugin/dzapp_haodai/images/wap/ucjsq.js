@@ -55,7 +55,7 @@ $(document).ready(function() {
         var shangye_money = $('#zuhesydk').val();
         var gjj_money = $('#gjj_eds_dkje').val();
         if (shangye_money == 0 && gjj_money == 0) {
-            alert('ÇëÊäÈë´û¿î½ğ¶î');
+            alert('è¯·è¾“å…¥è´·æ¬¾é‡‘é¢');
             return false;
         }
 
@@ -143,7 +143,7 @@ $(document).ready(function() {
     $("#gjjin_btn").click(function() {
         var gjj_money = $('#gjj_eds_dkje').val();
         if (gjj_money == 0) {
-            alert('ÇëÊäÈë´û¿î½ğ¶î');
+            alert('è¯·è¾“å…¥è´·æ¬¾é‡‘é¢');
             return false;
         }
 

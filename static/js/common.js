@@ -203,7 +203,7 @@ function getcookie(name, nounescape) {
 
 function Ajax(recvType, waitId) {
 	var aj = new Object();
-	aj.loading = 'ÇëÉÔºò...';
+	aj.loading = 'è¯·ç¨å€™...';
 	aj.recvType = recvType ? recvType : 'XML';
 	aj.waitId = waitId ? $(waitId) : null;
 	aj.resultHandle = null;
@@ -532,7 +532,7 @@ function showPreview(val, id) {
 
 function showloading(display, waiting) {
 	var display = display ? display : 'block';
-	var waiting = waiting ? waiting : 'ÇëÉÔºò...';
+	var waiting = waiting ? waiting : 'è¯·ç¨å€™...';
 	$('ajaxwaitid').innerHTML = waiting;
 	$('ajaxwaitid').style.display = display;
 }
@@ -1081,7 +1081,7 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 	var menuid = 'fwin_dialog';
 	var menuObj = $(menuid);
 	var showconfirm = 1;
-	confirmtxtdefault = 'È·¶¨';
+	confirmtxtdefault = 'ç¡®å®š';
 	closetime = isUndefined(closetime) ? '' : closetime;
 	closefunc = function () {
 		if(typeof func == 'function') func();
@@ -1094,12 +1094,12 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 	}
 	locationtime = isUndefined(locationtime) ? '' : locationtime;
 	if(locationtime) {
-		leftmsg = locationtime + ' ÃëºóÒ³ÃæÌø×ª';
+		leftmsg = locationtime + ' ç§’åé¡µé¢è·³è½¬';
 		showDialogST = setTimeout(closefunc, locationtime * 1000);
 		showconfirm = 0;
 	}
 	confirmtxt = confirmtxt ? confirmtxt : confirmtxtdefault;
-	canceltxt = canceltxt ? canceltxt : 'È¡Ïû';
+	canceltxt = canceltxt ? canceltxt : 'å–æ¶ˆ';
 
 	if(menuObj) hideMenu('fwin_dialog', 'dialog');
 	menuObj = document.createElement('div');
@@ -1112,8 +1112,8 @@ function showDialog(msg, mode, t, func, cover, funccancel, leftmsg, confirmtxt, 
 		hidedom = '<style type="text/css">object{visibility:hidden;}</style>';
 	}
 	var s = hidedom + '<table cellpadding="0" cellspacing="0" class="fwin"><tr><td class="t_l"></td><td class="t_c"></td><td class="t_r"></td></tr><tr><td class="m_l">&nbsp;&nbsp;</td><td class="m_c"><h3 class="flb"><em>';
-	s += t ? t : 'ÌáÊ¾ĞÅÏ¢';
-	s += '</em><span><a href="javascript:;" id="fwin_dialog_close" class="flbc" onclick="hideMenu(\'' + menuid + '\', \'dialog\')" title="¹Ø±Õ">¹Ø±Õ</a></span></h3>';
+	s += t ? t : 'æç¤ºä¿¡æ¯';
+	s += '</em><span><a href="javascript:;" id="fwin_dialog_close" class="flbc" onclick="hideMenu(\'' + menuid + '\', \'dialog\')" title="å…³é—­">å…³é—­</a></span></h3>';
 	if(mode == 'info') {
 		s += msg ? msg : '';
 	} else {
@@ -1173,7 +1173,7 @@ function showWindow(k, url, mode, cache, menuv) {
 			ajaxpost(url, 'fwin_content_' + k, '', '', '', function() {initMenu();show();});
 		}
 		if(parseInt(BROWSER.ie) != 6) {
-			loadingst = setTimeout(function() {showDialog('', 'info', '<img src="' + IMGDIR + '/loading.gif"> ÇëÉÔºò...')}, 500);
+			loadingst = setTimeout(function() {showDialog('', 'info', '<img src="' + IMGDIR + '/loading.gif"> è¯·ç¨å€™...')}, 500);
 		}
 	};
 	var initMenu = function() {
@@ -1231,7 +1231,7 @@ function showError(msg) {
 	var p = /<script[^\>]*?>([^\x00]*?)<\/script>/ig;
 	msg = msg.replace(p, '');
 	if(msg !== '') {
-		showDialog(msg, 'alert', '´íÎóĞÅÏ¢', null, true, null, '', '', '', 3);
+		showDialog(msg, 'alert', 'é”™è¯¯ä¿¡æ¯', null, true, null, '', '', '', 3);
 	}
 }
 
@@ -1601,20 +1601,20 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 	var tclass = searchtxt.className;
 	searchtxt.className = tclass + ' xg1';
 	if (!!("placeholder" in document.createElement("input"))) {
-		if(searchtxt.value == 'ÇëÊäÈëËÑË÷ÄÚÈİ') {
+		if(searchtxt.value == 'è¯·è¾“å…¥æœç´¢å†…å®¹') {
 			searchtxt.value = '';
 		}
-		searchtxt.placeholder = 'ÇëÊäÈëËÑË÷ÄÚÈİ';
+		searchtxt.placeholder = 'è¯·è¾“å…¥æœç´¢å†…å®¹';
 	} else {
 		searchtxt.onfocus = function () {
-			if(searchtxt.value == 'ÇëÊäÈëËÑË÷ÄÚÈİ') {
+			if(searchtxt.value == 'è¯·è¾“å…¥æœç´¢å†…å®¹') {
 				searchtxt.value = '';
 				searchtxt.className = tclass;
 			}
 		};
 		searchtxt.onblur = function () {
 			if(searchtxt.value == '' ) {
-				searchtxt.value = 'ÇëÊäÈëËÑË÷ÄÚÈİ';
+				searchtxt.value = 'è¯·è¾“å…¥æœç´¢å†…å®¹';
 				searchtxt.className = tclass + ' xg1';
 			}
 		};
@@ -1656,7 +1656,7 @@ function initSearchmenu(searchform, cloudSearchUrl) {
 }
 
 function searchFocus(obj) {
-	if(obj.value == 'ÇëÊäÈëËÑË÷ÄÚÈİ') {
+	if(obj.value == 'è¯·è¾“å…¥æœç´¢å†…å®¹') {
 		obj.value = '';
 	}
 	if($('cloudsearchquery') != null) {
@@ -1783,7 +1783,7 @@ function noticeTitle() {
 
 function noticeTitleFlash() {
 	if(NOTICETITLE.flashNumber < 5 || NOTICETITLE.flashNumber > 4 && !NOTICETITLE['State']) {
-		document.title = (NOTICETITLE['State'] ? '¡¾¡¡¡¡¡¡¡¿' : '¡¾ĞÂÌáĞÑ¡¿') + NOTICETITLE['oldTitle'];
+		document.title = (NOTICETITLE['State'] ? 'ã€ã€€ã€€ã€€ã€‘' : 'ã€æ–°æé†’ã€‘') + NOTICETITLE['oldTitle'];
 		NOTICETITLE['State'] = !NOTICETITLE['State'];
 	}
 	NOTICETITLE.flashNumber = NOTICETITLE.flashNumber < NOTICETITLE.sleep ? ++NOTICETITLE.flashNumber : 0;
@@ -1840,7 +1840,7 @@ function addFavorite(url, title) {
 		try {
 			window.sidebar.addPanel(title, url, '');
         	} catch (e) {
-			showDialog("Çë°´ Ctrl+D ¼üÌí¼Óµ½ÊÕ²Ø¼Ğ", 'notice');
+			showDialog("è¯·æŒ‰ Ctrl+D é”®æ·»åŠ åˆ°æ”¶è—å¤¹", 'notice');
 		}
 	}
 }
@@ -1850,7 +1850,7 @@ function setHomepage(sURL) {
 		document.body.style.behavior = 'url(#default#homepage)';
 		document.body.setHomePage(sURL);
 	} else {
-		showDialog("·Ç IE ä¯ÀÀÆ÷ÇëÊÖ¶¯½«±¾Õ¾ÉèÎªÊ×Ò³", 'notice');
+		showDialog("é IE æµè§ˆå™¨è¯·æ‰‹åŠ¨å°†æœ¬ç«™è®¾ä¸ºé¦–é¡µ", 'notice');
 		doane();
 	}
 }
@@ -1906,10 +1906,10 @@ function toggleBlind(dom) {
 	if(dom) {
 		if(loadUserdata('is_blindman')) {
 			saveUserdata('is_blindman', '');
-			dom.title = '¿ªÆô¸¨Öú·ÃÎÊ';
+			dom.title = 'å¼€å¯è¾…åŠ©è®¿é—®';
 		} else {
 			saveUserdata('is_blindman', '1');
-			dom.title = '¹Ø±Õ¸¨Öú·ÃÎÊ';
+			dom.title = 'å…³é—­è¾…åŠ©è®¿é—®';
 		}
 	}
 }
@@ -1918,9 +1918,9 @@ function checkBlind() {
 	var dom = $('switchblind');
 	if(dom) {
 		if(loadUserdata('is_blindman')) {
-			dom.title = '¹Ø±Õ¸¨Öú·ÃÎÊ';
+			dom.title = 'å…³é—­è¾…åŠ©è®¿é—®';
 		} else {
-			dom.title = '¿ªÆô¸¨Öú·ÃÎÊ';
+			dom.title = 'å¼€å¯è¾…åŠ©è®¿é—®';
 		}
 	}
 }

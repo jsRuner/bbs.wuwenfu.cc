@@ -1,5 +1,5 @@
 /**
- * ธ฿ผถหัห๗
+ * ้ซ็บงๆ็ดข
  */
 
 function conditionSel(obj) {

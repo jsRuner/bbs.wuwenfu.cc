@@ -13,9 +13,9 @@ if(!defined('IN_DISCUZ')) {
 
 $lang = array
 (
-	'bindqq' => 'ÄúÐèÒª°ó¶¨QQÕÊºÅºó²ÅÄÜ¿ªÆô´ËÓ¦ÓÃ',
-	'bindqq_link' => '<a href="javascript:;" class="lightlink" onclick="BindQQ()"><b>¿ªÊ¼°ó¶¨QQ</b></a>',
-	'back' => 'µã»÷ÕâÀï·µ»ØÉÏÒ»Ò³',
+	'bindqq' => 'æ‚¨éœ€è¦ç»‘å®šQQå¸å·åŽæ‰èƒ½å¼€å¯æ­¤åº”ç”¨',
+	'bindqq_link' => '<a href="javascript:;" class="lightlink" onclick="BindQQ()"><b>å¼€å§‹ç»‘å®šQQ</b></a>',
+	'back' => 'ç‚¹å‡»è¿™é‡Œè¿”å›žä¸Šä¸€é¡µ',
 );
 
 ?>

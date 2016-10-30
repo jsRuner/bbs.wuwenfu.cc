@@ -11,7 +11,7 @@ function xfCheckOneForm(bool) {
         if (!isNaN(salary)) {
             if (salary > 1000000) {
                 var dom = Jquery('#salaryTip').show();
-                Jquery('#salaryTip').text('ÏŞ100ÍòÄÚ');
+                Jquery('#salaryTip').text('é™100ä¸‡å†…');
                 bool = false;
             } else {
                 var dom = Jquery('#salaryTip').hide();
@@ -19,7 +19,7 @@ function xfCheckOneForm(bool) {
             }
         } else {
             var dom = Jquery('#salaryTip').show();
-            Jquery('#salaryTip').text('ÊäÈë´¿Êı×Ö');
+            Jquery('#salaryTip').text('è¾“å…¥çº¯æ•°å­—');
             bool = false;
         }
     }
@@ -39,19 +39,19 @@ function xfCheckOneForm(bool) {
     var year_born = Jquery('#year_born_inp').val();
     alert(year_born);
     if (year_born == '') {
-        Jquery('#' + id_name + 'Tip').html('Çë»Ø´ğÎÊÌâ');
+        Jquery('#' + id_name + 'Tip').html('è¯·å›ç­”é—®é¢˜');
         Jquery('#' + id_name + 'Tip').show();
         bool = false;
     } else {
         if (year_born < 1900) {
-            Jquery('#' + id_name + 'Tip').html('ÄúÓĞÕâÃ´ÀÏÂğ');
+            Jquery('#' + id_name + 'Tip').html('æ‚¨æœ‰è¿™ä¹ˆè€å—');
             var dom = Jquery('#' + id_name + 'Tip').show();
             bool = false;
         }
     }
 
-    var jobyear = Jquery.trim(Jquery('#work_year').val());        //-------------------ÄúµÄ¹¤×÷Ê±¼ä - Äê start ---------------------------
-    var job_year_placeholder = Jquery('input[name="job_year"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+    var jobyear = Jquery.trim(Jquery('#work_year').val());        //-------------------æ‚¨çš„å·¥ä½œæ—¶é—´ - å¹´ start ---------------------------
+    var job_year_placeholder = Jquery('input[name="job_year"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
     var id_name = 'jobtime';
     if (job_year_placeholder == jobyear) {
         jobyear = '';
@@ -63,17 +63,17 @@ function xfCheckOneForm(bool) {
         if (!isNaN(jobyear)) {
             if ((jobyear < 0) || (jobyear > 100)) {
                 var dom = Jquery('.jobtime').show();
-                Jquery('.jobtime').text('0<ÄêÊı<45');
+                Jquery('.jobtime').text('0<å¹´æ•°<45');
                 bool = false;
             }
         } else {
             var dom = Jquery('.jobtime').show();
-            Jquery('.jobtime').text('ÊäÈë´¿Êı×Ö');
+            Jquery('.jobtime').text('è¾“å…¥çº¯æ•°å­—');
             bool = false;
         }
-    }//-------------------ÄúµÄ¹¤×÷Ê±¼ä - Äê over  ---------------------------
-    var jobmonth = Jquery.trim(Jquery('#work_month').val());  //-------------------ÄúµÄ¹¤×÷Ê±¼ä - ÔÂ start  ---------------
-    var job_month_placeholder = Jquery('input[name="job_month"]').attr('placeholder');   //IE6ÏÂÌáÊ¾Óï
+    }//-------------------æ‚¨çš„å·¥ä½œæ—¶é—´ - å¹´ over  ---------------------------
+    var jobmonth = Jquery.trim(Jquery('#work_month').val());  //-------------------æ‚¨çš„å·¥ä½œæ—¶é—´ - æœˆ start  ---------------
+    var job_month_placeholder = Jquery('input[name="job_month"]').attr('placeholder');   //IE6ä¸‹æç¤ºè¯­
 
     if (job_month_placeholder == jobmonth) {
         jobmonth = '';
@@ -85,15 +85,15 @@ function xfCheckOneForm(bool) {
         if (!isNaN(jobmonth)) {
             if ((jobmonth < 0) || (jobmonth > 11)) {
                 var dom = Jquery('.jobtime').show();
-                Jquery('.jobtime').text('0<=ÔÂÊı<12');
+                Jquery('.jobtime').text('0<=æœˆæ•°<12');
                 bool = false;
             }
         } else {
             var dom = Jquery('.jobtime').show();
-            Jquery('.jobtime').text('ÊäÈë´¿Êı×Ö');
+            Jquery('.jobtime').text('è¾“å…¥çº¯æ•°å­—');
             bool = false;
         }
-    }     //------------------- ÄúµÄ¹¤×÷Ê±¼ä - ÔÂ over ---------------------------
+    }     //------------------- æ‚¨çš„å·¥ä½œæ—¶é—´ - æœˆ over ---------------------------
     return bool;
 }
 function xfCheckTwoForm(bool) {
@@ -103,47 +103,47 @@ function xfCheckTwoForm(bool) {
         bool = false;
         Jquery('#has_blue_card_tip').show();
     }
-    if (has_blue_card == 'ÓĞ') {
-        var count_blue_card = Jquery('input[name="count_blue_card"]').val();             //1.1ÄúÓĞ¼¸ÕÅĞÅÓÃ¿¨
+    if (has_blue_card == 'æœ‰') {
+        var count_blue_card = Jquery('input[name="count_blue_card"]').val();             //1.1æ‚¨æœ‰å‡ å¼ ä¿¡ç”¨å¡
         if (count_blue_card == '') {
             bool = false;
             Jquery('#count_blue_card_tip').show();
         } else {
             if (isNaN(count_blue_card)) {
                 bool = false;
-                Jquery('#count_blue_card_tip').html('ÇëÊäÈë´¿Êı×Ö');
+                Jquery('#count_blue_card_tip').html('è¯·è¾“å…¥çº¯æ•°å­—');
                 Jquery('#count_blue_card_tip').show();
             } else {
                 if (count_blue_card < 0) {
                     bool = false;
-                    Jquery('#count_blue_card_tip').html('²»ÄÜÎª¸ºÊı');
+                    Jquery('#count_blue_card_tip').html('ä¸èƒ½ä¸ºè´Ÿæ•°');
                     Jquery('#count_blue_card_tip').show();
                 } else if (count_blue_card > 10000) {
                     bool = false;
-                    Jquery('#count_blue_card_tip').html('×î¶à10000ÕÅ');
+                    Jquery('#count_blue_card_tip').html('æœ€å¤š10000å¼ ');
                     Jquery('#count_blue_card_tip').show();
                 } else {
                     Jquery('#count_blue_card_tip').hide();
                 }
             }
         }
-        var money_blue_card = Jquery('input[name="money_blue_card"]').val();            //1.2¶î¶È×Ü¶îÊÇ¶àÉÙ
+        var money_blue_card = Jquery('input[name="money_blue_card"]').val();            //1.2é¢åº¦æ€»é¢æ˜¯å¤šå°‘
         if (money_blue_card == '') {
             bool = false;
             Jquery('#money_blue_card_tip').show();
         } else {
             if (isNaN(money_blue_card)) {
                 bool = false;
-                Jquery('#money_blue_card_tip').html('ÇëÊäÈë´¿Êı×Ö');
+                Jquery('#money_blue_card_tip').html('è¯·è¾“å…¥çº¯æ•°å­—');
                 Jquery('#money_blue_card_tip').show();
             } else {
                 if (money_blue_card < 0) {
                     bool = false;
-                    Jquery('#money_blue_card_tip').html('²»ÄÜÎª¸ºÊı');
+                    Jquery('#money_blue_card_tip').html('ä¸èƒ½ä¸ºè´Ÿæ•°');
                     Jquery('#money_blue_card_tip').show();
                 } else if (money_blue_card > 8000000) {
                     bool = false;
-                    Jquery('#money_blue_card_tip').html('800ÍòÄÚ');
+                    Jquery('#money_blue_card_tip').html('800ä¸‡å†…');
                     Jquery('#money_blue_card_tip').show();
                 } else {
                     Jquery('#money_blue_card_tip').hide();
@@ -160,24 +160,24 @@ function xfCheckTwoForm(bool) {
         bool = false;
         Jquery('#has_debt_card_tip').show();
     }
-    if (has_debt_card == 'ÓĞ') {
-        var money_debt_card = Jquery('input[name="money_debt_card"]').val();             //2.1¸ºÕ®¶àÉÙ
+    if (has_debt_card == 'æœ‰') {
+        var money_debt_card = Jquery('input[name="money_debt_card"]').val();             //2.1è´Ÿå€ºå¤šå°‘
         if (money_debt_card == '') {
             bool = false;
             Jquery('#money_debt_card_tip').show();
         } else {
             if (isNaN(money_debt_card)) {
                 bool = false;
-                Jquery('#money_debt_card_tip').html('ÇëÊäÈë´¿Êı×Ö');
+                Jquery('#money_debt_card_tip').html('è¯·è¾“å…¥çº¯æ•°å­—');
                 Jquery('#money_debt_card_tip').show();
             } else {
                 if (money_debt_card < 0) {
                     bool = false;
-                    Jquery('#money_debt_card_tip').html('²»ÄÜÎª¸ºÊı');
+                    Jquery('#money_debt_card_tip').html('ä¸èƒ½ä¸ºè´Ÿæ•°');
                     Jquery('#money_debt_card_tip').show();
                 } else if (money_debt_card > 8000000) {
                     bool = false;
-                    Jquery('#money_debt_card_tip').html('800ÍòÄÚ');
+                    Jquery('#money_debt_card_tip').html('800ä¸‡å†…');
                     Jquery('#money_debt_card_tip').show();
                 } else {
                     Jquery('#money_debt_card_tip').hide();
@@ -200,24 +200,24 @@ function xfCheckTwoForm(bool) {
         bool = false;
         Jquery('#has_debt_loan_tip').show();
     }
-    if (has_debt_loan == 'ÓĞ') {
-        var money_debt_loan = Jquery('input[name="money_debt_loan"]').val();             //4.1¸ºÕ®¶àÉÙ
+    if (has_debt_loan == 'æœ‰') {
+        var money_debt_loan = Jquery('input[name="money_debt_loan"]').val();             //4.1è´Ÿå€ºå¤šå°‘
         if (money_debt_loan == '') {
             bool = false;
             Jquery('#money_debt_loan_tip').show();
         } else {
             if (isNaN(money_debt_loan)) {
                 bool = false;
-                Jquery('#money_debt_loan_tip').html('ÇëÊäÈë´¿Êı×Ö');
+                Jquery('#money_debt_loan_tip').html('è¯·è¾“å…¥çº¯æ•°å­—');
                 Jquery('#money_debt_loan_tip').show();
             } else {
                 if (money_debt_loan < 0) {
                     bool = false;
-                    Jquery('#money_debt_loan_tip').html('²»ÄÜÎª¸ºÊı');
+                    Jquery('#money_debt_loan_tip').html('ä¸èƒ½ä¸ºè´Ÿæ•°');
                     Jquery('#money_debt_loan_tip').show();
                 } else if (money_debt_loan > 8000000) {
                     bool = false;
-                    Jquery('#money_debt_loan_tip').html('800ÍòÄÚ');
+                    Jquery('#money_debt_loan_tip').html('800ä¸‡å†…');
                     Jquery('#money_debt_loan_tip').show();
                 } else {
                     Jquery('#money_debt_loan_tip').hide();

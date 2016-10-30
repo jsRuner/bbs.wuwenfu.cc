@@ -96,14 +96,14 @@ function dktypeSelect(obj) {
 
     var select_name = obj.attr('name');
 
-    if (select_name == 'type_qiye') {//-------------------------------------------------------∆Û“µ¥˚øÓ------------------------------------
+    if (select_name == 'type_qiye') {//-------------------------------------------------------‰ºÅ‰∏öË¥∑Ê¨æ------------------------------------
 
 
         var Smoney = jq('#wydk_money');
 
         Smoney.attr('reval', 50);
 
-        Smoney.text('50ÕÚ');
+        Smoney.text('50‰∏á');
 
         var Hmoney_ul = jq('#wydk_money_qiye').html();
 
@@ -115,7 +115,7 @@ function dktypeSelect(obj) {
 
         Stime.attr('reval', 12);
 
-        Stime.text('1ƒÍ');
+        Stime.text('1Âπ¥');
 
         var Hmonth_ul = jq('#wydk_month_qiye').html();
 
@@ -123,7 +123,7 @@ function dktypeSelect(obj) {
 
 
 
-    } else if (select_name == 'type_gouche') {//-------------------------------------------------------π∫≥µ¥˚øÓ------------------------------------
+    } else if (select_name == 'type_gouche') {//-------------------------------------------------------Ë¥≠ËΩ¶Ë¥∑Ê¨æ------------------------------------
 
         var Smoney = jq('#wydk_money');
 
@@ -131,7 +131,7 @@ function dktypeSelect(obj) {
 
         Smoney.attr('reval', 15);
 
-        Smoney.text('15ÕÚ');
+        Smoney.text('15‰∏á');
 
         var Hmoney_ul = jq('#wydk_money_gouche').html();
 
@@ -145,7 +145,7 @@ function dktypeSelect(obj) {
 
         Stime.attr('reval', 24);
 
-        Stime.text('2ƒÍ');
+        Stime.text('2Âπ¥');
 
         var Hmonth_ul = jq('#wydk_month_gouche').html();
 
@@ -153,7 +153,7 @@ function dktypeSelect(obj) {
 
 
 
-    } else if (select_name == 'type_goufang') {//-------------------------------------------------------π∫∑ø¥˚øÓ------------------------------------
+    } else if (select_name == 'type_goufang') {//-------------------------------------------------------Ë¥≠ÊàøË¥∑Ê¨æ------------------------------------
 
         var Smoney = jq('#wydk_money');
 
@@ -161,7 +161,7 @@ function dktypeSelect(obj) {
 
         Smoney.attr('reval', 100);
 
-        Smoney.text('100ÕÚ');
+        Smoney.text('100‰∏á');
 
         var Hmoney_ul = jq('#wydk_money_goufang').html();
 
@@ -175,7 +175,7 @@ function dktypeSelect(obj) {
 
         Stime.attr('reval', 240);
 
-        Stime.text('20ƒÍ');
+        Stime.text('20Âπ¥');
 
         var Hmonth_ul = jq('#wydk_month_goufang').html();
 
@@ -183,7 +183,7 @@ function dktypeSelect(obj) {
 
 
 
-    } else if (select_name == 'type_xiaofei') {//-------------------------------------------------------œ˚∑—¥˚øÓ or ≤ªœﬁ------------------------------------
+    } else if (select_name == 'type_xiaofei') {//-------------------------------------------------------Ê∂àË¥πË¥∑Ê¨æ or ‰∏çÈôê------------------------------------
 
         var Smoney = jq('#wydk_money');
 
@@ -191,7 +191,7 @@ function dktypeSelect(obj) {
 
         Smoney.attr('reval', 10);
 
-        Smoney.text('10ÕÚ');
+        Smoney.text('10‰∏á');
 
         var Hmoney_ul = jq('#wydk_money_xiaofei').html();
 
@@ -205,7 +205,7 @@ function dktypeSelect(obj) {
 
         Stime.attr('reval', 12);
 
-        Stime.text('1ƒÍ');
+        Stime.text('1Âπ¥');
 
         var Hmonth_ul = jq('#wydk_month_xiaofei').html();
 
@@ -237,7 +237,7 @@ function FirstPaySelect(obj) {
 
 }
 
-function moneySelect(obj) { //-------¥˚øÓΩ∂Ó-------
+function moneySelect(obj) { //-------Ë¥∑Ê¨æÈáëÈ¢ù-------
 
     var obj = jq(obj);
 
@@ -259,7 +259,7 @@ function moneySelect(obj) { //-------¥˚øÓΩ∂Ó-------
 
 }
 
-function monthSelect(obj) { //-------¥˚øÓ∆⁄œﬁ-------
+function monthSelect(obj) { //-------Ë¥∑Ê¨æÊúüÈôê-------
 
     var obj = jq(obj);
 

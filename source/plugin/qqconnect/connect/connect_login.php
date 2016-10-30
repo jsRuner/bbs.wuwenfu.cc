@@ -109,7 +109,6 @@ if($op == 'init') {
 
 		$conuintoken = $response['access_token'];
 		$conopenid = strtoupper($response['openid']);
-
 		if(!$conuintoken || !$conopenid) {
 			showmessage('qqconnect:connect_get_access_token_failed', $referer);
 		}
@@ -137,12 +136,9 @@ if($op == 'init') {
 
 	$user_auth_fields = 1;
 
-
 	$cookie_expires = 2592000;
 	dsetcookie('client_created', TIMESTAMP, $cookie_expires);
 	dsetcookie('client_token', $conopenid, $cookie_expires);
-
-
 
 	$connect_member = array();
 	$fields = array('uid', 'conuin', 'conuinsecret', 'conopenid');
@@ -203,7 +199,7 @@ if($op == 'init') {
 				)
 			);
 
-		} else { // debug µ±Ç°µÇÂ¼µÄÂÛÌ³ÕËºÅ²¢Ã»ÓĞ°ó¶¨ÈÎºÎQQºÅ£¬Ôò¿ÉÒÔ°ó¶¨µ±Ç°µÄÕâ¸öQQºÅ
+		} else { // debug å½“å‰ç™»å½•çš„è®ºå›è´¦å·å¹¶æ²¡æœ‰ç»‘å®šä»»ä½•QQå·ï¼Œåˆ™å¯ä»¥ç»‘å®šå½“å‰çš„è¿™ä¸ªQQå·
 			if(empty($current_connect_member)) {
 				C::t('#qqconnect#common_member_connect')->insert(
 					!$_G['setting']['connect']['oauth2'] ? array(
@@ -280,7 +276,7 @@ if($op == 'init') {
 
 	} else {
 
-		if($connect_member) { // debug ´Ë·ÖÖ§ÊÇÓÃ»§Ö±½Óµã»÷QQµÇÂ¼£¬²¢ÇÒÕâ¸öQQºÅÒÑ¾­°óºÃÒ»¸öÂÛÌ³ÕËºÅÁË£¬½«Ö±½ÓµÇ½øÂÛÌ³ÁË
+		if($connect_member) { // debug æ­¤åˆ†æ”¯æ˜¯ç”¨æˆ·ç›´æ¥ç‚¹å‡»QQç™»å½•ï¼Œå¹¶ä¸”è¿™ä¸ªQQå·å·²ç»ç»‘å¥½ä¸€ä¸ªè®ºå›è´¦å·äº†ï¼Œå°†ç›´æ¥ç™»è¿›è®ºå›äº†
 			C::t('#qqconnect#common_member_connect')->update($connect_member['uid'],
 				!$_G['setting']['connect']['oauth2'] ? array(
 					'conuin' => $conuin,
@@ -311,7 +307,7 @@ if($op == 'init') {
 			dsetcookie('stats_qc_login', 3, 86400);
 			showmessage('login_succeed', $referer, $param, array('extrajs' => $ucsynlogin));
 
-		} else { // debug ´Ë·ÖÖ§ÊÇÓÃ»§Ö±½Óµã»÷QQµÇÂ¼£¬²¢ÇÒÕâ¸öQQºÅ»¹Î´°ó¶¨ÈÎºÎÂÛÌ³ÕËºÅ£¬½«½«Ìø×ªµ½Ò»¸öĞÂÒ³Òıµ¼ÓÃ»§×¢²á¸öĞÂÂÛÌ³ÕËºÅ»ò°óÒ»¸öÒÑÓĞµÄÂÛÌ³ÕËºÅ
+		} else { // debug æ­¤åˆ†æ”¯æ˜¯ç”¨æˆ·ç›´æ¥ç‚¹å‡»QQç™»å½•ï¼Œå¹¶ä¸”è¿™ä¸ªQQå·è¿˜æœªç»‘å®šä»»ä½•è®ºå›è´¦å·ï¼Œå°†å°†è·³è½¬åˆ°ä¸€ä¸ªæ–°é¡µå¼•å¯¼ç”¨æˆ·æ³¨å†Œä¸ªæ–°è®ºå›è´¦å·æˆ–ç»‘ä¸€ä¸ªå·²æœ‰çš„è®ºå›è´¦å·
 
 			$auth_hash = authcode($conopenid, 'ENCODE');
 			$insert_arr = !$_G['setting']['connect']['oauth2'] ? array(
@@ -412,11 +408,7 @@ if($op == 'init') {
 
 	dheader('Location:' . $redirect);
 }
-/**
- * ¹Ù·½µÄº¯Êı
- * @param  [type] $connect_member [description]
- * @return [type]                 [description]
- */
+
 function connect_login($connect_member) {
 	global $_G;
 
@@ -437,7 +429,6 @@ function connect_login($connect_member) {
 	dsetcookie('connect_uin', $connect_member['conopenid'], 31536000);
 	return true;
 }
-
 
 function getErrorMessage($errroCode) {
 	$str = sprintf('connect_error_code_%d', $errroCode);

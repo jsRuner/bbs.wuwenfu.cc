@@ -4,8 +4,6 @@ var postmaxchars = parseInt('$_G['setting']['maxpostsize']');
 var disablepostctrl = parseInt('{$_G['group']['disablepostctrl']}');
 </script>
 
-
-
 <div id="f_pst" class="pl{if empty($_GET[from])} bm bmw{/if}">
 <form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&action=reply&fid=$_G[fid]&tid=$_G[tid]&extra=$_GET[extra]&replysubmit=yes{if $_GET['ordertype'] != 1}&infloat=yes&handlekey=fastpost{/if}{if $_GET[from]}&from=$_GET[from]{/if}"{if $_GET['ordertype'] != 1} onSubmit="return fastpostvalidate(this)"{/if}>
 	<!--{if empty($_GET[from])}-->

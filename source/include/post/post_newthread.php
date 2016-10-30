@@ -175,7 +175,6 @@ if(!submitcheck('topicsubmit', 0, $seccodecheck, $secqaacheck)) {
 	} else {
 		$publishdate = $_G['timestamp'];
 	}
-
 	$params['publishdate'] = $publishdate;
 	$params['save'] = $_GET['save'];
 

@@ -133,7 +133,6 @@ class discuz_database {
 		}
 		self::checkquery($sql);
 
-
 		$ret = self::$db->query($sql, $silent, $unbuffered);
 		if (!$unbuffered && $ret) {
 			$cmd = trim(strtoupper(substr($sql, 0, strpos($sql, ' '))));

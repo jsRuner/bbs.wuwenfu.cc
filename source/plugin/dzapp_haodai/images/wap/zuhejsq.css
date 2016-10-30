@@ -3,7 +3,7 @@
 body,div,ul,li,a,p,span,form,input,table,tbody,tr,td,dl,dt,dd,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
 img{border:none;}
 input{outline:none;}
-body{font-family:Arial,"宋体"; font-size:12px; color:#333;}
+body{font-family:Arial,"瀹嬩綋"; font-size:12px; color:#333;}
 ul,li{list-style:none;}
 .none {display:none;}
 .fl{float:left;}
@@ -98,7 +98,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#50a8ef', end
 .iptdw ,.xlshow {height: 32px; line-height: 32px; color: #333; width: 100%; text-indent: 10px; border: 1px solid #ccc;}
 .iptdw {background: url("/src/i/wydw.gif") no-repeat right center;}
 .xlshow {background:url(/src/i/dkjsq/daiktub.jpg) right center no-repeat;}
-/**默认系统的下拉框 与 显示**/
+/**榛椫绯荤稗镄跷笅鎷夋 涓?鏄剧ず**/
 .clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
 * html .clearfix {height: 1%;}
 .w65b {width: 69%;border: 1px solid #ccc;}
@@ -115,32 +115,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#50a8ef', end
 .pdlr10 {padding: 0 10px;}
 .wapMainListBtn {padding: 20px 10px 10px 10px;}
 .sqBbtn { height:2.8em; line-height:2.8em; text-align:center; font-size:16px; font-weight:bold; color:#fff; border:1px solid #008dbf; display:block;
-/***渐变**/
+/***娓愬彉**/
 background-image: -webkit-gradient(linear,left top,left bottom,from(#4fc4ee),to(#34b5e3));background-image: -webkit-linear-gradient(#55adf1,#4ca5e9);
 background-image: -moz-linear-gradient(#55adf1,#4ca5e9);
 background-image: -ms-linear-gradient(#55adf1,#4ca5e9);
 background-image: -o-linear-gradient(#55adf1,#4ca5e9);
 background-image: linear-gradient(#55adf1,#4ca5e9);
-/***内阴影**/
+/***鍐呴槾褰?*/
 box-shadow:0px 1px 0px rgba(255, 255, 255, 0.38) inset;
 -ms-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.38) inset;
 -moz-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.38) inset;
 -webkit-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.38) inset;
 -o-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.38) inset;
-/***内阴影**/
-/***边框半径**/
+/***鍐呴槾褰?*/
+/***杈规鍗婂缎**/
 border-radius:3px;
 -ms-border-radius:3px;
 -moz-border-radius:3px;
 -webkit-border-radius:3px;
 -o-border-radius:3px;
-/***文字投影**/
+/***鏂囧瓧鎶曞奖**/
 text-shadow: 0 -1px 0px rgba(7, 0, 2, 0.2);
 }
 .SelectCon{width: 100%; height: 32px; line-height: 32px;position: absolute;right: 0;}
 .SelectLV{width: 100%; height: 32px; line-height: 32px; padding: 5px 0px;}
 
-/*商业贷款计算器*/
+/*鍟嗕箍璐锋璁＄畻鍣?/
 .toptype{}
 .toptypeli{float: left;width: 20%;padding: 12px 33px;height: 24px;line-height: 24px;font-size: 20px;color: white;text-align: center; cursor: pointer;}
 .head_left1{ position: relative; top: 8px; right: 10px; z-index: 100; float: right;}

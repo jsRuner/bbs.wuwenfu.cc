@@ -151,7 +151,7 @@ function JGPageMoneyYz(){
   var ts = obj.parent().parent().parent().children('.Tosearch_ts');
   if(val.length == 0){
 	  ts.show(300);
-	  ts.text('Ç×£¬½ğ¶î±ğÍüÁËÌî');
+	  ts.text('äº²ï¼Œé‡‘é¢åˆ«å¿˜äº†å¡«');
 	  JGPmoney = false;
   }else {
         if (!isNaN(val)) {
@@ -159,7 +159,7 @@ function JGPageMoneyYz(){
             var money = jq(this).attr('reval', val);
         } else {
 	        ts.show(300);
-            ts.text('Ö»Ìî´¿Êı×ÖÓ´');
+            ts.text('åªå¡«çº¯æ•°å­—å“Ÿ');
             JGPmoney = false;
         }
     }
@@ -170,7 +170,7 @@ function JGPageTimeYz(){
   var ts = obj.parent().parent().parent().children('.Tosearch_ts');
   if(val.length == 0){
 	  ts.show(300);
-	  ts.text('Ç×£¬½ğ¶î±ğÍüÁËÌî');
+	  ts.text('äº²ï¼Œé‡‘é¢åˆ«å¿˜äº†å¡«');
 	  JGPmonth = false;
   }else {
         if (!isNaN(val)) {
@@ -178,7 +178,7 @@ function JGPageTimeYz(){
             var money = jq(this).attr('reval', val);
         } else {
 	        ts.show(300);
-            ts.text('Ö»Ìî´¿Êı×ÖÓ´');
+            ts.text('åªå¡«çº¯æ•°å­—å“Ÿ');
             JGPmonth = false;
         }
     }

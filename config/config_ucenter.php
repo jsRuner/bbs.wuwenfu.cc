@@ -3,17 +3,17 @@
 
 define('UC_CONNECT', 'mysql');
 
-define('UC_DBHOST', '127.0.0.1');
+define('UC_DBHOST', 'localhost');
 define('UC_DBUSER', 'root');
 define('UC_DBPW', 'root');
-define('UC_DBNAME', 'zd');
-define('UC_DBCHARSET', 'gbk');
-define('UC_DBTABLEPRE', '`bbs.wuwenfu.net`.pre_ucenter_');
+define('UC_DBNAME', 'ultrax');
+define('UC_DBCHARSET', 'utf8');
+define('UC_DBTABLEPRE', '`ultrax`.pre_ucenter_');
 define('UC_DBCONNECT', 0);
 
-define('UC_CHARSET', 'gbk');
-define('UC_KEY', 'efF7974fF1I021s6939cVa21s6R7AcycteucGeibEcoac448w3A3N2HbYdJ7X3E0');
-define('UC_API', 'http://bbs.wuwenfu.cn/uc_server');
+define('UC_CHARSET', 'utf-8');
+define('UC_KEY', 'c5Y2B3f5k1zde6V0k7L4T7j2Vbk5B7tfM8iaKaY1t1N5ZfT9MddabfzfIffc76K6');
+define('UC_API', 'http://bbs.xx.cn/uc_server');
 define('UC_APPID', '1');
 define('UC_IP', '');
 define('UC_PPP', 20);

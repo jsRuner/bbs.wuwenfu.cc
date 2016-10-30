@@ -260,7 +260,7 @@
 						var fid = listObj.value;
 						if(fid) {
 							var dforum = $('fid');
-							//ÅĞ¶ÏÊÇ·ñÒÑ¾­ÔÚÁĞ±íÖĞ
+							//åˆ¤æ–­æ˜¯å¦å·²ç»åœ¨åˆ—è¡¨ä¸­
 							var haveoption = false;
 							for(var i = 0; i < dforum.options.length; i++) {
 								if(dforum.options[i].value == fid) {
@@ -286,7 +286,7 @@
 					function modifyformurl(mfid) {
 						if(parseInt(mfid)) {
 							backupContent();
-							//noteX ĞŞ¸Ä±íµ¥ÖĞµÄÁ½¸ö¹Ì¶¨µØÖ·
+							//noteX ä¿®æ”¹è¡¨å•ä¸­çš„ä¸¤ä¸ªå›ºå®šåœ°å€
 							$('fastpostform').action = 'home.php?mod=spacecp&ac=follow&op=newthread&topicsubmit=yes&infloat=yes&handlekey=fastnewpost&inajax=1&fid='+mfid;
 							if(upload) {
 								fid = mfid;
@@ -320,7 +320,7 @@
 									if(ele[0] == el.name) {
 										elvalue = !isUndefined(ele[3]) ? ele[3] : '';
 										if(ele[1] == 'SELECT') {
-											//Ìí¼ÓÑ¡Ïî
+											//æ·»åŠ é€‰é¡¹
 											var values = {0:0<!--{if $_G['setting']['followforumid']}-->,$_G['setting']['followforumid']:$_G['setting']['followforumid']<!--{/if}-->};
 											for(var oi = 0; oi < data.length; oi++) {
 												var oObj = data[oi].split(/\x09/);
@@ -356,7 +356,7 @@
 								showDialog(msg, 'notice', null, null, 0, null, null, null, null, 3);
 							}
 							showCreditPrompt();
-							//Çå¿ÕÉÏ´ÎµÄÊäÈë
+							//æ¸…ç©ºä¸Šæ¬¡çš„è¾“å…¥
 							var sObj = $('subject');
 							$('attachlist').innerHTML = $('fastpostmessage').value = sObj.value = '';
 							strLenCalc(sObj, 'checklen', 80);
@@ -365,7 +365,7 @@
 								updateseccode(values.sechash);
 								$('seccodeverify_'+values.sechash).value='';
 							}
-							//var msg = 'ÄúµÄÖ÷ÌâÒÑ·¢²¼£¬<a href="'+url+'" class="xi2">µã»÷ÕâÀï²é¿´Ö÷Ìâ</a>'
+							//var msg = 'æ‚¨çš„ä¸»é¢˜å·²å‘å¸ƒï¼Œ<a href="'+url+'" class="xi2">ç‚¹å‡»è¿™é‡ŒæŸ¥çœ‹ä¸»é¢˜</a>'
 							//showDialog(msg, 'notice', null, null, 0, null, null, null, null, 3);
 						}
 

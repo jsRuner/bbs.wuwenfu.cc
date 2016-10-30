@@ -747,7 +747,7 @@ class Cloud_Service_SearchHelper {
 					'f_id' => $fid,
 					'need_random' => false,
 					'need_num' => $needNum,
-					'version' => $format == 'num' ? 1 : 2, // 1£º·µ»ØÊý×ÖÏÂ±êµÄ½á¹û¼¯¡¢2£º·µ»Ø¹ØÁªÊý×éÐÎÊ½µÄ½á¹û¼¯
+					'version' => $format == 'num' ? 1 : 2, // 1ï¼šè¿”å›žæ•°å­—ä¸‹æ ‡çš„ç»“æžœé›†ã€2ï¼šè¿”å›žå…³è”æ•°ç»„å½¢å¼çš„ç»“æžœé›†
 					'close' => 1,
 				);
 
