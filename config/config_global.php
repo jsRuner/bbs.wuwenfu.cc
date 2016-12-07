@@ -6,10 +6,10 @@ $_config = array();
 // ----------------------------  CONFIG DB  ----------------------------- //
 $_config['db']['1']['dbhost'] = 'localhost';
 $_config['db']['1']['dbuser'] = 'root';
-$_config['db']['1']['dbpw'] = 'root';
+$_config['db']['1']['dbpw'] = '123456';
 $_config['db']['1']['dbcharset'] = 'utf8';
 $_config['db']['1']['pconnect'] = '0';
-$_config['db']['1']['dbname'] = 'ultrax';
+$_config['db']['1']['dbname'] = 'bbs.test.com';
 $_config['db']['1']['tablepre'] = 'pre_';
 $_config['db']['slave'] = '';
 $_config['db']['common']['slave_except_table'] = '';
@@ -98,7 +98,7 @@ $_config['remote']['cron'] = '0';
 $_config['input']['compatible'] = 1;
 
 // 
-$_config['plugindeveloper'] = 2;
+$_config['plugindeveloper'] = 1;
 
 
 // -------------------  THE END  -------------------- //

@@ -5,10 +5,10 @@ define('UC_CONNECT', 'mysql');
 
 define('UC_DBHOST', 'localhost');
 define('UC_DBUSER', 'root');
-define('UC_DBPW', 'root');
-define('UC_DBNAME', 'ultrax');
+define('UC_DBPW', '123456');
+define('UC_DBNAME', 'bbs.test.com');
 define('UC_DBCHARSET', 'utf8');
-define('UC_DBTABLEPRE', '`ultrax`.pre_ucenter_');
+define('UC_DBTABLEPRE', '`bbs.test.com`.pre_ucenter_');
 define('UC_DBCONNECT', 0);
 
 define('UC_CHARSET', 'utf-8');
