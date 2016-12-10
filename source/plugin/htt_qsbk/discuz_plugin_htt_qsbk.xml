@@ -28,6 +28,48 @@
                     <item id="navsubname"><![CDATA[]]></item>
                     <item id="navsuburl"><![CDATA[]]></item>
                 </item>
+                <item id="1">
+                    <item id="name"><![CDATA[htt_qsbk_log]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[采集记录]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+
+                <item id="2">
+                    <item id="name"><![CDATA[htt_qsbk_help]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[插件帮助]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[2]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+                <item id="3">
+                    <item id="name"><![CDATA[more]]></item>
+                    <item id="param"><![CDATA[]]></item>
+                    <item id="menu"><![CDATA[更多插件]]></item>
+                    <item id="url"><![CDATA[]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[3]]></item>
+                    <item id="navtitle"><![CDATA[]]></item>
+                    <item id="navicon"><![CDATA[]]></item>
+                    <item id="navsubname"><![CDATA[]]></item>
+                    <item id="navsuburl"><![CDATA[]]></item>
+                </item>
+
+
             </item>
         </item>
         <item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
@@ -35,7 +77,7 @@
             <item id="0">
                 <item id="displayorder"><![CDATA[0]]></item>
                 <item id="title"><![CDATA[版块设置]]></item>
-                <item id="description"><![CDATA[版块设置,支持多选。多选则随机发布到该版本。禁止为空]]></item>
+                <item id="description"><![CDATA[版块设置,支持多选。必填。多选则随机发布到该版本。禁止为空]]></item>
                 <item id="variable"><![CDATA[fids]]></item>
                 <item id="type"><![CDATA[forums]]></item>
                 <item id="value"><![CDATA[1]]></item>
@@ -43,11 +85,21 @@
             </item>
 			<item id="1">
                 <item id="displayorder"><![CDATA[1]]></item>
-                <item id="title"><![CDATA[用户id]]></item>
-                <item id="description"><![CDATA[用户的编号(uid),必填.多个用户的书写格式1,2,3]]></item>
+                <item id="title"><![CDATA[发帖用户]]></item>
+                <item id="description"><![CDATA[请输入发帖用户的编号(uid).多个用户的书写按照1,2,3格式填写。发帖用户与发帖用户组无法同时生效。]]></item>
                 <item id="variable"><![CDATA[uids]]></item>
                 <item id="type"><![CDATA[text]]></item>
                 <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+
+            <item id="2">
+                <item id="displayorder"><![CDATA[2]]></item>
+                <item id="title"><![CDATA[发帖用户组]]></item>
+                <item id="description"><![CDATA[请选择发帖用户组.可以多选。发帖用户与发帖用户组无法同时生效,仅当发帖用户为空时,用户组才生效。本设置会随机选择用户组中用户进行发帖]]></item>
+                <item id="variable"><![CDATA[groups]]></item>
+                <item id="type"><![CDATA[groups]]></item>
+                <item id="value"><![CDATA[]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
 
@@ -64,27 +116,31 @@
                 <item id="value"><![CDATA[20]]></item>
                 <item id="extra"><![CDATA[]]></item>
             </item>
-            <item id="4">
-                <item id="displayorder"><![CDATA[4]]></item>
-                <item id="title"><![CDATA[编码设置]]></item>
-                <item id="description"><![CDATA[出现乱码时，切换即可]]></item>
-                <item id="variable"><![CDATA[charset]]></item>
-                <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[2]]></item>
-                <item id="extra"><![CDATA[1=utf-8
-2=gbk]]></item>
-        </item>
+
 <item id="5">
                 <item id="displayorder"><![CDATA[5]]></item>
                 <item id="title"><![CDATA[采集模式]]></item>
-                <item id="description"><![CDATA[纯文只采集文字糗事。纯图则只采集图片。其他的则随机]]></item>
+                <item id="description"><![CDATA[纯文只采集文字糗事。纯图则只采集图片。其他的则随机。图片模式有可能会不稳定。图片采集在手机端暂时无法浏览。]]></item>
                 <item id="variable"><![CDATA[caiji_model]]></item>
                 <item id="type"><![CDATA[select]]></item>
-                <item id="value"><![CDATA[2]]></item>
+                <item id="value"><![CDATA[1]]></item>
                 <item id="extra"><![CDATA[1=纯文
 				2=纯图
 				3=随机]]></item>
 </item>
+
+<item id="6">
+                <item id="displayorder"><![CDATA[6]]></item>
+                <item id="title"><![CDATA[发帖模式]]></item>
+                <item id="description"><![CDATA[汇总模式则一次采集产生一个帖子。
+帖子模式则一次采集会产生多个帖子。]]></item>
+                <item id="variable"><![CDATA[post_model]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[1=帖子模式
+2=汇总模式]]></item>
+            </item>
+
 <item id="7">
                 <item id="displayorder"><![CDATA[7]]></item>
                 <item id="title"><![CDATA[审核设置]]></item>
@@ -100,7 +156,7 @@
 			<item id="9">
                 <item id="displayorder"><![CDATA[9]]></item>
                 <item id="title"><![CDATA[默认标题]]></item>
-                <item id="description"><![CDATA[设置默认标题。如默认则产生的效果是 2016年8月12日糗事笑话]]></item>
+                <item id="description"><![CDATA[设置默认标题。如默认则产生的效果是 2016-8-12 10：15糗事笑话。优先获取内容作为标题，如果没有则使用默认标题。]]></item>
                 <item id="variable"><![CDATA[title_default]]></item>
                 <item id="type"><![CDATA[text]]></item>
                 <item id="value"><![CDATA[糗事笑话]]></item>
@@ -115,7 +171,38 @@
 				<item id="error_setting_imgpath"><![CDATA[插件设置错误:图片路径不存在或者不可写]]></item>
 				<item id="error_setting_threads"><![CDATA[插件设置错误:采集数量超出(0-20)范围]]></item>
 				<item id="error_curl"><![CDATA[插件工作需要curl模块]]></item>
-				<item id="info_cronname"><![CDATA[每日糗事采集计划]]></item>
+                <item id="info_cronname"><![CDATA[每日糗事采集计划]]></item>
+
+
+                <item id="stime"><![CDATA[采集时间]]></item>
+                <item id="raw_content"><![CDATA[采集原始内容长度]]></item>
+                <item id="content"><![CDATA[解析的结果长度]]></item>
+                <item id="num"><![CDATA[数据记录数]]></item>
+                <item id="ids"><![CDATA[关联的文章编号]]></item>
+
+                <item id="show_del"><![CDATA[删除]]></item>
+                <item id="show_delall"><![CDATA[删除全部]]></item>
+                <item id="show_del_succeed"><![CDATA[删除成功]]></item>
+
+
+                <item id="qsbk_tips"><![CDATA[
+                    <li>如果无法插件工作,请联系<a href="http://wpa.qq.com/msgrd?v=3&uin=540045865&site=qq&menu=yes">作者客服:540045865</a></li>
+                    ]]></item>
+
+                 <item id="htt_qsbk_help"><![CDATA[
+                    <li>采集必须设置版块</li>
+                    <li>指定发帖用户优先级最高。如果要使用发帖用户组，请清空发帖用户设置。</li>
+                    <li>采集中图片目前在手机端无法显示图片。暂时无法修复，如果介意，请使用纯文模式</li>
+                    <li>采集的时间设置位于后台-计划任务-每日糗事采集。默认是每天固定5点30分执行。</li>
+                    <li>如果修改了计划执行的时间，时间过于靠近，例如每10分钟采集一次，则可能存在重复。建议自行拉大间隔。</li>
+                    <li>汇总模式是一次采集只产生一个帖子。该帖子下最多有20条数据。</li>
+                    <li>帖子模式是一次采集产生多个帖子。最多20条帖子。</li>
+                    <li>糗事百科没有标题，采集自动获取内容的第一个逗号内容作为标题，如果为空，则使用默认的标题</li>
+                    <li><strong>注意：discuz本身的计划任务，只表示如果这个到了时间点，有人访问论坛，才会执行。没人访问，则计划任务不会执行。如果要立即看到采集效果，请手动点击计划任务后面的执行按钮。</strong></li>
+                    ]]></item>
+
+
+
 			</item>
 		<item id="installlang">
 				<item id="error_setting_imgpath"><![CDATA[请先创建默认图片目录data/attachment/forum/hs_qsbk/,权限为可写]]></item>

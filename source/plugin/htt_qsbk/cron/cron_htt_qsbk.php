@@ -10,7 +10,7 @@
  *    week: -1
  *    day:-1
  *    hour:5
- *    minute:10,20,30,40,50
+ *    minute:30
  */
 
 error_reporting(E_ALL);
@@ -119,8 +119,6 @@ $check = $var['htt_qsbk']['check'];  //1不审核 2审核。
 $title_default = $var['htt_qsbk']['title_default']; //默认标题
 $post_model = $var['htt_qsbk']['post_model']; //发帖模式
 
-$post_model = 1;
-
 
 //如果采集数量为0.则不执行后面的操作。不采集。
 if ($threads == 0) {
@@ -207,6 +205,8 @@ $first = 0;
 
 $datas = array();
 $ids = '';
+
+
 // var_dump($articles);
 // exit();
 
@@ -231,6 +231,10 @@ foreach ($articles as $article) {
         //图片目录存在则下载。
         $dir1 = date('Ym');
         $dir2 = date('d');
+        $dir = 'data/attachment/forum';
+
+        !is_dir('data/attachment') && mkdir('data/attachment', 0777);
+        !is_dir('data/attachment/forum') && mkdir('data/attachment/forum', 0777);
 
         !is_dir('data/attachment/forum/' . $dir1) && mkdir($dir . '/' . $dir1, 0777);
         !is_dir('data/attachment/forum/' . $dir1 . '/' . $dir2) && mkdir($dir . '/' . $dir1 . '/' . $dir2, 0777);
@@ -279,21 +283,26 @@ foreach ($articles as $article) {
     $author = $userinfo['username'];
 
     //转换编码。如果不是utf-8。则需要转换。默认为utf-8
-    /*if ($charset_num != 1) {
+    if ($_G['charset'] == 'gbk') {
         $data['content'] = iconv("UTF-8", "gbk", $data['content']);
-    }*/
+    }
     $publishdate = TIMESTAMP;
     $message = $data['content'];
 
-    //如果是汇总模式。则标题需要单独处理。
-    if ($post_model == 1) {
-        $title_total = date('Y-m-d') . $title_default.'('.$count.')';
-    } else {
-
-        $title_total = date('Y-m-d') . $title_default;
+    //先设置标题。取内容的第一逗号内容。如果为空。则取第二个。
+    
+    $p = stripos($message, '，');
+    if ($p>1) {
+        $subject = mb_substr($message, 0,$p);
+    }else{
+        if ($post_model == 1) {
+            $title_total = date('Y-m-d H:i') . $title_default.'('.$count.')';
+        } else {
+            $title_total = date('Y-m-d H:i') . $title_default;
+        }
+        $subject = $title_total;
     }
 
-    $subject = $title_total;
 
 
     //只有tid没有设置。或者 tid是单独发帖模式。则插入主题。
@@ -307,7 +316,7 @@ foreach ($articles as $article) {
             'sortid' => 0,
             'author' => $author,
             'authorid' => $uid,
-            'subject' => $title_total,
+            'subject' => $subject,
             'dateline' => $publishdate,
             'lastpost' => $publishdate,
             'lastposter' => $author,
