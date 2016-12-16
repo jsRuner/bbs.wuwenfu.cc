@@ -1,19 +1,18 @@
 <?php
 /**
- *    [qsbkwwf(qsbkwwf.cron_qsbkwwf)] (C)2016-2099 Powered by 吴文付.
+ *    [htt_qsbk(.cron_htt_qsbk)] (C)2016-2099 Powered by 吴文付.
  *    Version: 1.0
  *    Date: 2016-4-2 16:24
  *    Warning: Don't delete this comment
  *
  *
- *    cronname: info_cronname
+ *    cronname: cron_htt_qsbk
  *    week: -1
  *    day:-1
- *    hour:5
- *    minute:30
+ *    hour:-1
+ *    minute:00,05,10,15,20,25,30,35,40,45,50,55
  */
 
-error_reporting(E_ALL);
 
 if (!defined('IN_DISCUZ')) {
     exit('Access Denied');
@@ -113,11 +112,53 @@ $fidstr = $var['htt_qsbk']['fids'];
 $uidstr = $var['htt_qsbk']['uids'];
 $groupstr = $var['htt_qsbk']['groups']; //用户组
 $threads = $var['htt_qsbk']['threads']; //采集数量。
+$times = $var['htt_qsbk']['times']; //采集时间间隔。
+
+// $times = 5; //修改为5分钟。方便测试。
+
 $charset_num = $var['htt_qsbk']['charset'];  // 1utf-8 2gbk
 $caiji_model = $var['htt_qsbk']['caiji_model']; //1纯文 2表示纯图 3图文
 $check = $var['htt_qsbk']['check'];  //1不审核 2审核。
 $title_default = $var['htt_qsbk']['title_default']; //默认标题
 $post_model = $var['htt_qsbk']['post_model']; //发帖模式
+
+
+
+
+
+//查出num=0的记录。取最新的。判断一下时间。
+//如果存在。则取删除对应的帖子。再对比下时间。符合要求。则执行采集。
+
+$log_last = array();
+$query = DB::query("SELECT * FROM  ".DB::table("htt_qsbk_log")." order by `stime` desc  ");
+
+while($item = DB::fetch($query)) {
+    $log_last = $item;
+    break;
+}
+
+
+
+if (!empty($log_last) && $log_last['num'] == 0 ) {
+    # code...
+    //执行删除逻辑。
+    //删除主题
+    C::t('forum_thread')->delete($log_last['ids']);
+    //删除日志记录。
+    C::t('#htt_qsbk#htt_qsbk_log')->delete($log_last['id']);
+}
+// file_put_contents('data/1.txt',$log_last['stime']."\r\n",FILE_APPEND);
+// file_put_contents('data/1.txt',date('Y-m-d H:i:s')."\r\n",FILE_APPEND);
+// file_put_contents('data/1.txt',$times."\r\n",FILE_APPEND);
+//时间未达到。则放弃执行。
+if ( !empty($log_last) && $log_last['stime']+ intval($times) * 60  > time() ) {
+    # code...
+    // file_put_contents('data/1.txt',$log_last['stime'].'\r\n时间间隔未到',FILE_APPEND);
+    
+    // file_put_contents('data/1.txt',"--------时间未到------------\r\n",FILE_APPEND);
+    return;
+}
+// file_put_contents('data/1.txt',"--------时间满足------------\r\n",FILE_APPEND);
 
 
 //如果采集数量为0.则不执行后面的操作。不采集。
@@ -186,6 +227,8 @@ $html = curl_qsbk($url);
 
 
 
+
+
 $imgpath = set_home('data/attachment/forum'); //返回的是全路径。
 
 //解析数据
@@ -207,8 +250,17 @@ $datas = array();
 $ids = '';
 
 
-// var_dump($articles);
-// exit();
+
+
+$log_data = array(
+    'raw_content'=>$html,
+    'content'=>'',
+    'num'=>0,
+    'ids'=>'',
+    'stime'=>TIMESTAMP,
+    );
+
+$log_id = C::t('#htt_qsbk#htt_qsbk_log')->insert($log_data,true);
 
 foreach ($articles as $article) {
 
@@ -348,6 +400,8 @@ foreach ($articles as $article) {
             'dateline' => $publishdate,
         ));
     }
+    //记录ids。作为删除的标记。
+    C::t('#htt_qsbk#htt_qsbk_log')->update($log_id,array('ids'=>$tid));
 
     useractionlog($uid, 'tid');
 
@@ -476,7 +530,7 @@ $log_data = array(
     'ids'=>trim($ids,','),
     );
 
- C::t('#htt_qsbk#htt_qsbk_log')->insert($log_data);
+C::t('#htt_qsbk#htt_qsbk_log')->update($log_id,$log_data);
 
 
 

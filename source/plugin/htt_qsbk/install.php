@@ -18,7 +18,7 @@ if(!defined('IN_DISCUZ')) {
 runquery("
 CREATE TABLE IF NOT EXISTS `pre_htt_qsbk_log` (
   `id` int(11) NOT NULL,
-  `stime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开始时间',
+  `stime` int(11) NOT NULL   COMMENT '开始时间',
   `raw_content` text NOT NULL COMMENT '原始内容',
   `content` text NOT NULL COMMENT '整理后内容',
   `num` int(11) NOT NULL COMMENT '内容条数',

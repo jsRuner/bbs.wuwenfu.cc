@@ -58,7 +58,7 @@ switch ($action) {
 		foreach($level_list as $tid => $level) {
 			echo '<tr class="hover">
 			<th class="td25"><input class="checkbox" type="checkbox" name="delete['.$level['id'].']" value="'.$level['id'].'"></th>
-			<th>'.$level['stime'].'</th>
+			<th>'.date('Y-m-d H:i:s',$level['stime']).'</th>
 			<th>'.strlen($level['raw_content']).'</th>
 			<th>'.strlen($level['content']).'</th>
 			<th>'.$level['num'].'</th>

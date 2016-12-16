@@ -14,7 +14,7 @@
             <item id="datatables"><![CDATA[]]></item>
             <item id="directory"><![CDATA[htt_qsbk/]]></item>
             <item id="copyright"><![CDATA[吴文付]]></item>
-            <item id="version"><![CDATA[2.2]]></item>
+            <item id="version"><![CDATA[2.3]]></item>
             <item id="__modules">
                 <item id="0">
                     <item id="name"><![CDATA[htt_qsbk]]></item>
@@ -117,6 +117,16 @@
                 <item id="extra"><![CDATA[]]></item>
             </item>
 
+            <item id="4">
+                <item id="displayorder"><![CDATA[4]]></item>
+                <item id="title"><![CDATA[采集间隔]]></item>
+                <item id="description"><![CDATA[采集的时间间隔,必填,默认60分钟。最短5分钟。不要过短，否则会采集失败]]></item>
+                <item id="variable"><![CDATA[times]]></item>
+                <item id="type"><![CDATA[number]]></item>
+                <item id="value"><![CDATA[60]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+
 <item id="5">
                 <item id="displayorder"><![CDATA[5]]></item>
                 <item id="title"><![CDATA[采集模式]]></item>
@@ -171,7 +181,9 @@
 				<item id="error_setting_imgpath"><![CDATA[插件设置错误:图片路径不存在或者不可写]]></item>
 				<item id="error_setting_threads"><![CDATA[插件设置错误:采集数量超出(0-20)范围]]></item>
 				<item id="error_curl"><![CDATA[插件工作需要curl模块]]></item>
-                <item id="info_cronname"><![CDATA[每日糗事采集计划]]></item>
+
+                <item id="cron_htt_qsbk"><![CDATA[每日糗事采集计划]]></item>
+
 
 
                 <item id="stime"><![CDATA[采集时间]]></item>
@@ -186,6 +198,8 @@
 
 
                 <item id="qsbk_tips"><![CDATA[
+                    <li><strong>本插件与其他采集的区别：采集功能不是请求接口，无须与第三方服务器通信。优点：一次付费，永久使用。缺点：如果糗事百科网站有变动，则插件有可能失效。需要联系作者，升级插件。其他第三方插件，如果使用插件，是需要按照周期支付费用的。例如每月20元或者20元采集多少条。因为他们需要独立的服务器将数据采集来，整理好。再提供给插件。</strong></li>
+                    <li><strong>因为糗事百科网站内容改动，导致插件无法工作，请及时联系作者。不接受退款哟。</strong></li>
                     <li>如果无法插件工作,请联系<a href="http://wpa.qq.com/msgrd?v=3&uin=540045865&site=qq&menu=yes">作者客服:540045865</a></li>
                     ]]></item>
 
