@@ -54,7 +54,7 @@ class plugin_htt_qqlogin {
     // 头部姓名 绑定QQ的提示。
     function global_usernav_extra1() {
         global $_G;
-        include_once template('htt_qqlogin:module');
+        
         loadcache('plugin');
         $var = $_G['cache']['plugin'];
         $site_url = $var['htt_qqlogin']['site_url'];
@@ -62,6 +62,7 @@ class plugin_htt_qqlogin {
             $site_url = $_G['siteurl'];
         }
         $site_url = rtrim($site_url,'/');
+        include_once template('htt_qqlogin:module');
 
         //插件没开启，用户没登录。
         if($_G['uid'] < 0){
@@ -81,7 +82,7 @@ class plugin_htt_qqlogin {
                 return '<a href="'.$site_url.'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank"><img src="static/image/common/bb_qq.gif" class="qq_bind" align="absmiddle" alt=""></a>';
             // }
         }
-        return tpl_global_usernav_extra1();
+        return tpl_global_usernav_extra1($site_url);
     }
 }
 

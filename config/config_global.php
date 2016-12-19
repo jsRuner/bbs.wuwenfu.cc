@@ -100,7 +100,6 @@ $_config['input']['compatible'] = 1;
 // 
 $_config['plugindeveloper'] = 1;
 
-
 // -------------------  THE END  -------------------- //
 
 ?>

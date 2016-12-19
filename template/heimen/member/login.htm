@@ -1,0 +1,193 @@
+<!--{template common/header}-->
+
+<!--{eval $loginhash = 'L'.random(4);}-->
+<!--{if empty($_GET['infloat'])}-->
+<div id="ct" class="ptm wp w cl">
+	<div class="nfl" id="main_succeed" style="display: none">
+		<div class="f_c altw">
+			<div class="alert_right">
+				<p id="succeedmessage"></p>
+				<p id="succeedlocation" class="alert_btnleft"></p>
+				<p class="alert_btnleft"><a id="succeedmessage_href">{lang message_forward}</a></p>
+			</div>
+		</div>
+	</div>
+	
+
+<!--{/if}-->
+
+
+	<div id="layer_login_$loginhash" class="denglukuang">
+	
+		<header class="flb">
+		    <img class="logo" src="template/heimen/imges/logo.svg" alt="3D工厂">
+			<span class="y">
+				<a href="member.php?mod={$_G[setting][regname]}" class="xi2">没有账号？现在注册</a>
+				<span>or</span>
+				<a class="xi2" href="javascript:;" onclick="display('layer_login_$loginhash');display('layer_lostpw_$loginhash');" title="{lang getpassword}">{lang getpassword}</a>
+		    </span>
+			<!--{if !empty($_GET['infloat']) && !isset($_GET['frommessage'])}--><a href="javascript:;" class="flbc" onclick="hideWindow('$_GET[handlekey]', 0, 1);" title="{lang close}">❌</a><!--{/if}-->
+		</header>
+		
+		<!--{hook/logging_top}-->
+		<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl" onsubmit="{if $this->setting['pwdsafety']}pwmd5('password3_$loginhash');{/if}pwdclear = 1;ajaxpost('loginform_$loginhash', 'returnmessage_$loginhash', 'returnmessage_$loginhash', 'onerror');return false;" action="member.php?mod=logging&action=login&loginsubmit=yes{if !empty($_GET['handlekey'])}&handlekey=$_GET[handlekey]{/if}{if isset($_GET['frommessage'])}&frommessage{/if}&loginhash=$loginhash">
+			<div class="c">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="referer" value="{echo dreferer()}" />
+				<!--{if $auth}-->
+					<input type="hidden" name="auth" value="$auth" />
+				<!--{/if}-->
+				
+				<p class="yhdl" id="returnmessage_$loginhash">用户登陆</p>
+				
+				<!--{if $invite}-->
+				<div class="rfm">
+					<span>{lang register_from}</span>
+					<a href="home.php?mod=space&uid=$invite[uid]" target="_blank">$invite[username]</a>
+				</div>
+				<!--{/if}-->
+
+				<!--{if !$auth}-->
+				<div class="rfm">
+					<p class="biaoti">
+						<!--{if $this->setting['autoidselect']}--><label for="username_$loginhash">{lang login_id}:</label><!--{else}-->
+							<span class="login_slct">
+								<select name="loginfield" style="float: left;" width="45" id="loginfield_$loginhash">
+									<option value="username">{lang username}:</option>
+									<!--{if getglobal('setting/uidlogin')}-->
+									<option value="uid">{lang uid}</option>
+									<!--{/if}-->
+									<option value="email">{lang email}</option>
+								</select>
+							</span>
+						<!--{/if}-->
+					</p>
+					<span><input type="text" name="username" id="username_$loginhash" autocomplete="off" size="30" class="px p_fre" tabindex="1" value="$username" /></span>
+					
+				</div>
+				
+				<div class="rfm">
+					<p class="biaoti"><label for="password3_$loginhash">{lang login_password}:</label></p>
+					<span><input type="password" id="password3_$loginhash" name="password" onfocus="clearpwd()" size="30" class="px p_fre" tabindex="1" /></span>
+				</div>
+				<!--{/if}-->
+
+
+
+				<!--{if $seccodecheck}-->
+					<!--{block sectpl}--><div class="rfm"><p class="biaoti"><sec>: </p><span><sec><span class="yanzhengma"><sec><sec></span></span></div><!--{/block}-->
+					<!--{subtemplate common/seccheck}-->
+				<!--{/if}-->
+				<!--{hook/logging_input}-->
+
+				<div>						
+					<button class="anniu1" type="submit" name="loginsubmit" value="true" tabindex="1"><strong>{lang login}</strong></button>
+				</div>				
+				
+				<!--{if !empty($_G['setting']['pluginhooks']['logging_method'])}-->
+					<div class="rfm bw0 {if empty($_GET['infloat'])} mbw{/if}">
+						<hr class="l" />
+						<table>
+							<tr>
+								<th>{lang login_method}:</th>
+								<td><!--{hook/logging_method}--></td>
+							</tr>
+						</table>
+					</div>
+				<!--{/if}-->
+				
+			</div>
+		</form>
+	</div>
+	
+	<!--{if $_G['setting']['pwdsafety']}-->
+		<script type="text/javascript" src="{$_G['setting']['jspath']}md5.js?{VERHASH}" reload="1"></script>
+	<!--{/if}-->
+	
+	<div id="layer_lostpw_$loginhash" class="denglukuang" style="display: none;">
+	
+		<header class="flb">
+		    <img class="logo" src="template/heimen/imges/logo.svg" alt="3D工厂" width="150px">
+			<span><!--{if !empty($_GET['infloat']) && !isset($_GET['frommessage'])}--><a href="javascript:;" class="flbc" onclick="hideWindow('login')" title="{lang close}">❌</a><!--{/if}--></span>
+		</header>
+		
+		<form method="post" autocomplete="off" id="lostpwform_$loginhash" class="cl" onsubmit="ajaxpost('lostpwform_$loginhash', 'returnmessage3_$loginhash', 'returnmessage3_$loginhash', 'onerror');return false;" action="member.php?mod=lostpasswd&lostpwsubmit=yes&infloat=yes">
+			<div class="c">
+				<input type="hidden" name="formhash" value="{FORMHASH}" />
+				<input type="hidden" name="handlekey" value="lostpwform" />
+				
+				<p class="yhdl" id="returnmessage3_$loginhash">{lang getpassword}</p>
+				
+				<div class="rfm">
+					<p class="biaoti"><span class="rq" style="color:red;">*</span><label for="lostpw_email">{lang email}:</label></p>
+					<input type="text" name="email" id="lostpw_email" size="30" value=""  tabindex="1" class="px p_fre" />
+				</div>
+				
+				<div class="rfm">
+					<p class="biaoti"><label for="lostpw_username">{lang username}:</label></p>
+					<input type="text" name="username" id="lostpw_username" size="30" value=""  tabindex="1" class="px p_fre" />
+				</div>
+
+				<div>
+					<button class="anniu1" type="submit" name="lostpwsubmit" value="true" tabindex="100"><span>{lang submit}</span></button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+<div id="layer_message_$loginhash"{if empty($_GET['infloat'])} class="f_c blr nfl"{/if} style="display: none;">
+	<h3 class="flb" id="layer_header_$loginhash">
+		<!--{if !empty($_GET['infloat']) && !isset($_GET['frommessage'])}-->
+		<em>{lang login_member}</em>
+		<span><a href="javascript:;" class="flbc" onclick="hideWindow('login')" title="{lang close}">{lang close}</a></span>
+		<!--{/if}-->
+	</h3>
+	<div class="c"><div class="alert_right">
+		<div id="messageleft_$loginhash"></div>
+		<p class="alert_btnleft" id="messageright_$loginhash"></p>
+	</div>
+</div>
+
+<script type="text/javascript" reload="1">
+<!--{if !isset($_GET['viewlostpw'])}-->
+	var pwdclear = 0;
+	function initinput_login() {
+		document.body.focus();
+		<!--{if !$auth}-->
+			if($('loginform_$loginhash')) {
+				$('loginform_$loginhash').username.focus();
+			}
+			<!--{if !$this->setting['autoidselect']}-->
+				simulateSelect('loginfield_$loginhash');
+			<!--{/if}-->
+		<!--{elseif $seccodecheck && !(empty($_GET['auth']) || $questionexist)}-->
+			if($('loginform_$loginhash')) {
+				safescript('seccodefocus', function() {$('loginform_$loginhash').seccodeverify.focus()}, 500, 10);
+			}			
+		<!--{/if}-->
+	}
+	initinput_login();
+	<!--{if $this->setting['sitemessage']['login']}-->
+	showPrompt('custominfo_login_$loginhash', 'mouseover', '<!--{echo trim($this->setting['sitemessage'][login][array_rand($this->setting['sitemessage'][login])])}-->', $this->setting['sitemessage'][time]);
+	<!--{/if}-->
+
+	function clearpwd() {
+		if(pwdclear) {
+			$('password3_$loginhash').value = '';
+		}
+		pwdclear = 0;
+	}
+<!--{else}-->
+	display('layer_login_$loginhash');
+	display('layer_lostpw_$loginhash');
+	$('lostpw_email').focus();
+<!--{/if}-->
+</script>
+
+<!--{eval updatesession();}-->
+<!--{if empty($_GET['infloat'])}-->
+	</div></div></div>
+</div>
+<!--{/if}-->
+<!--{template common/footer}-->

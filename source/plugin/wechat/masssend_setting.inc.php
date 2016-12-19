@@ -55,6 +55,13 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 		showformfooter();
 	} else if ($ac == 'add') {
 		$groups = $wechat_client->getAllGroups();
+		// $groups = array();
+		/*$groups[0] = array(
+			'id'=>'11',
+			'name'=>'hiphp',
+			'count'=>'11',
+
+			);*/
 		if (!$groups) {
 			cpmsg_error('wechat:mass_get_group_failed');
 		}
