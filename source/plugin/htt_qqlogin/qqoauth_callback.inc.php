@@ -155,7 +155,16 @@ loadcache('plugin');
 $var = $_G['cache']['plugin'];
 $appid =  $var['htt_qqlogin']['appid'];
 $appkey =  $var['htt_qqlogin']['key'];
-$callback = trim( $_G['siteurl'],'/').'/plugin.php?id=htt_qqlogin:qqoauth_callback';
+
+$site_url = $var['htt_qqlogin']['site_url'];
+if(empty($site_url)){
+    $site_url = $site_url;
+}
+$site_url = rtrim($site_url,'/');
+
+
+// $callback = trim( $site_url,'/').'/plugin.php?id=htt_qqlogin:qqoauth_callback';
+$callback = $site_url.'/plugin.php?id=htt_qqlogin:qqoauth_callback';
 $suffix_length =  $var['htt_qqlogin']['suffix_length']; //后缀长度。
 
 if($temp = getcookie('con_request_uri')){
@@ -184,7 +193,7 @@ if($item = DB::fetch($query)) {
     //绑定的QQ被使用了。
     if($_G['uid'] > 0 && $uid != $_G['uid']){
         //判断用户名是否是QQ注册的。如果是。则进入表单。
-        showmessage(lang('plugin/htt_qqlogin', 'have_bind_qq'),$_G['siteurl'],array(),array('alert'=>'error'));
+        showmessage(lang('plugin/htt_qqlogin', 'have_bind_qq'),$site_url,array(),array('alert'=>'error'));
         exit();
     }
 
@@ -255,7 +264,7 @@ if ($_G['uid'] > 0 ) {
     );
     DB::insert("httqqlogin",$insert_array);
     //退出重新登录。
-        showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'), $_G['siteurl'],array(),array('alert'=>'right'));
+        showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'), $site_url,array(),array('alert'=>'right'));
     exit();
 }
 
@@ -318,7 +327,7 @@ $notice_msg = lang('plugin/htt_qqlogin', 'passwd_notice');
 
 $notice_msg = str_replace('passwd', $password, $notice_msg);
 
-$notice_msg = str_replace('bindold', '<a href="'.$_G['siteurl'].'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank">绑定</a>', $notice_msg);
+$notice_msg = str_replace('bindold', '<a href="'.$site_url.'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank">绑定</a>', $notice_msg);
 
 $notice_data = array(
     'uid'=>$uid,
@@ -422,6 +431,6 @@ if($newprompt) {
     }
 
     dsetcookie('stats_qc_login', 3, 86400);
-    showmessage('login_succeed', $_G['siteurl'], $param, array('extrajs' => $ucsynlogin));
+    showmessage('login_succeed', $site_url, $param, array('extrajs' => $ucsynlogin));
 
     exit();
