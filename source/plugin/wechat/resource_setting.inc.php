@@ -249,8 +249,11 @@ EOF;
 } elseif(submitcheck('addsubmit')) {
 
 	if(dstrlen($_GET['data']['desc'], CHARSET) > 120) {
-		cpmsg(lang('plugin/wechat', 'resource_msg_desc_toolong'), '', 'error');
+		// cpmsg(lang('plugin/wechat', 'resource_msg_desc_toolong'), '', 'error');
+		$_GET['data']['desc'] = cutstr($_GET['data']['desc'],120,'');
 	}
+
+
 	if($_FILES['pic']['tmp_name']) {
 		$upload = new discuz_upload();
 		if(!getimagesize($_FILES['pic']['tmp_name']) || !$upload->init($_FILES['pic'], 'common', random(3, 1), random(8)) || !$upload->save()) {
@@ -277,7 +280,8 @@ EOF;
 	}
 
 	if(dstrlen($_GET['data']['desc'], CHARSET) > 120) {
-		cpmsg(lang('plugin/wechat', 'resource_msg_desc_toolong'), '', 'error');
+		$_GET['data']['desc'] = cutstr($_GET['data']['desc'],120,'');
+		// cpmsg(lang('plugin/wechat', 'resource_msg_desc_toolong'), '', 'error');
 	}
 	if($_FILES['pic']['tmp_name']) {
 		$upload = new discuz_upload();

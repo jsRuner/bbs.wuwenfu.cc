@@ -114,7 +114,20 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 		$news = array();
 		if ($res['type'] == 0) {
 			if ($res['data']['pic']) {
-				$thumb_media_id = $wechat_client->upload('image', $_G['setting']['attachdir'] . 'common/' . $res['data']['local']);
+				
+				if (!$res['data']['local']) { // 推送不存在Local
+          $temp = explode($_G['siteurl'], $res['data']['pic']); // 截取有效地址
+        $pic_temp = ltrim($temp[1],'./');
+
+
+
+        $thumb_media_id = $wechat_client->upload('image', substr(dirname(__FILE__), 0, -20) . $pic_temp); // 
+       //拼接物理地址
+} else {
+        $thumb_media_id = $wechat_client->upload('image', $_G['setting']['attachdir'] . 'common/' . $res['data']['local']);
+}
+
+
 				if (!$thumb_media_id) {
 					cpmsg_error($wechat_client->error());
 				}
@@ -132,7 +145,20 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 					cpmsg('wechat:mass_no_found');
 				}
 				if ($res['data']['pic']) {
-					$thumb_media_id = $wechat_client->upload('image', $_G['setting']['attachdir'] . 'common/' . $res['data']['local']);
+					
+
+					if (!$res['data']['local']) { // 推送不存在Local
+        $temp = explode($_G['siteurl'], $res['data']['pic']); // 截取有效地址
+        $pic_temp = ltrim($temp[1],'./');
+
+
+
+        $thumb_media_id = $wechat_client->upload('image', substr(dirname(__FILE__), 0, -20) . $pic_temp); // 拼接物理地址
+} else {
+        $thumb_media_id = $wechat_client->upload('image', $_G['setting']['attachdir'] . 'common/' . $res['data']['local']);
+}
+
+
 					if (!$thumb_media_id) {
 						cpmsg_error($wechat_client->error());
 					}
