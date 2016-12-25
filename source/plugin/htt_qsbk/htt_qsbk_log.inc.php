@@ -19,6 +19,11 @@ define('PMODURL', 'action=plugins&operation&config&identifier=htt_qsbk&pmod=htt_
 
 $action = $_GET['ac'];
 
+
+echo $_G['siteroot'];
+echo dirname(__FILE__);
+exit();
+
 switch ($action) {
 	case 'delall':
 		# code...

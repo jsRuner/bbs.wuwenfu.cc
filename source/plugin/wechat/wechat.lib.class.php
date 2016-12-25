@@ -79,24 +79,24 @@ class WeChatServer {
 
 		switch ($result['type']) {
 			case 'text':
-				$result['content'] = (string) $postObj->Content; // Content ÏûÏ¢ÄÚÈÝ
+				$result['content'] = (string) $postObj->Content; // Content æ¶ˆæ¯å†…å®¹
 				break;
 
 			case 'location':
-				$result['X'] = (float) $postObj->Location_X; // Location_X µØÀíÎ»ÖÃÎ³¶È
-				$result['Y'] = (float) $postObj->Location_Y; // Location_Y µØÀíÎ»ÖÃ¾­¶È
-				$result['S'] = (float) $postObj->Scale;      // Scale µØÍ¼Ëõ·Å´óÐ¡
-				$result['I'] = (string) $postObj->Label;     // Label µØÀíÎ»ÖÃÐÅÏ¢
+				$result['X'] = (float) $postObj->Location_X; // Location_X åœ°ç†ä½ç½®çº¬åº¦
+				$result['Y'] = (float) $postObj->Location_Y; // Location_Y åœ°ç†ä½ç½®ç»åº¦
+				$result['S'] = (float) $postObj->Scale;      // Scale åœ°å›¾ç¼©æ”¾å¤§å°
+				$result['I'] = (string) $postObj->Label;     // Label åœ°ç†ä½ç½®ä¿¡æ¯
 				break;
 
 			case 'image':
-				$result['url'] = (string) $postObj->PicUrl;  // PicUrl Í¼Æ¬Á´½Ó£¬¿ª·¢Õß¿ÉÒÔÓÃHTTP GET»ñÈ¡
-				$result['mid'] = (string) $postObj->MediaId; // MediaId Í¼Æ¬ÏûÏ¢Ã½Ìåid£¬¿ÉÒÔµ÷ÓÃ¶àÃ½ÌåÎÄ¼þÏÂÔØ½Ó¿ÚÀ­È¡Êý¾Ý¡£
+				$result['url'] = (string) $postObj->PicUrl;  // PicUrl å›¾ç‰‡é“¾æŽ¥ï¼Œå¼€å‘è€…å¯ä»¥ç”¨HTTP GETèŽ·å–
+				$result['mid'] = (string) $postObj->MediaId; // MediaId å›¾ç‰‡æ¶ˆæ¯åª’ä½“idï¼Œå¯ä»¥è°ƒç”¨å¤šåª’ä½“æ–‡ä»¶ä¸‹è½½æŽ¥å£æ‹‰å–æ•°æ®ã€‚
 				break;
 
 			case 'video':
-				$result['mid'] = (string) $postObj->MediaId;      // MediaId Í¼Æ¬ÏûÏ¢Ã½Ìåid£¬¿ÉÒÔµ÷ÓÃ¶àÃ½ÌåÎÄ¼þÏÂÔØ½Ó¿ÚÀ­È¡Êý¾Ý¡£
-				$result['thumbmid'] = (string) $postObj->ThumbMediaId; // ThumbMediaId ÊÓÆµÏûÏ¢ËõÂÔÍ¼µÄÃ½Ìåid£¬¿ÉÒÔµ÷ÓÃ¶àÃ½ÌåÎÄ¼þÏÂÔØ½Ó¿ÚÀ­È¡Êý¾Ý¡£
+				$result['mid'] = (string) $postObj->MediaId;      // MediaId å›¾ç‰‡æ¶ˆæ¯åª’ä½“idï¼Œå¯ä»¥è°ƒç”¨å¤šåª’ä½“æ–‡ä»¶ä¸‹è½½æŽ¥å£æ‹‰å–æ•°æ®ã€‚
+				$result['thumbmid'] = (string) $postObj->ThumbMediaId; // ThumbMediaId è§†é¢‘æ¶ˆæ¯ç¼©ç•¥å›¾çš„åª’ä½“idï¼Œå¯ä»¥è°ƒç”¨å¤šåª’ä½“æ–‡ä»¶ä¸‹è½½æŽ¥å£æ‹‰å–æ•°æ®ã€‚
 				break;
 
 			case 'link':
@@ -524,6 +524,19 @@ class WeChatClient {
 		return null;
 	}
 
+	public function uploadImg($file_path) {
+		$access_token = $this->getAccessToken();
+		$url = self::$_URL_FILE_API_ROOT . "/cgi-bin/media/uploadimg?access_token=$access_token";
+
+		$res = self::post($url, array('media' => "@$file_path"));
+		$res = json_decode($res, true);
+
+		if (self::checkIsSuc($res)) {
+			return  $res['url'];
+		}
+		return null;
+	}
+
 	public function download($mid) {
 		$access_token = $this->getAccessToken();
 		$url = self::$_URL_FILE_API_ROOT . "/cgi-bin/media/get?access_token=$access_token&media_id=$mid";
@@ -644,15 +657,42 @@ class WeChatClient {
 		$result = array();
 		while ($i < $ii) {
 			$currentArticle = $articles[$i++];
+
+			//å¤„ç†å†…å®¹ä¸­çš„å›¾ç‰‡é—®é¢˜ã€‚
+			preg_match_all('/<img.*? src=\"?(.*?\.(jpg|gif|bmp|bnp|png|mp4))\"?.*?>/i',$currentArticle['content'],$matchs);
+			$match = $matchs[1];
+			foreach ($match as $key => $value) {
+				# code...
+				$temp = explode("http://www.ssdfsyq.net/", $value); // æˆªå–æœ‰æ•ˆåœ°å€
+				// $temp = explode("http://bbs.99496.com/", $value); // æˆªå–æœ‰æ•ˆåœ°å€
+
+		        if (count($temp) == 1) {
+		        	# code...
+		        	$temp[1]  = $temp[0];
+		        }
+		        $pic_temp = ltrim($temp[1],'./');
+
+		        $pic_temp_url = self::uploadImg(substr(dirname(__FILE__), 0, -20).$pic_temp);
+
+		        $currentArticle['content'] = str_replace($value,$pic_temp_url,$currentArticle['content']);
+
+			}
+
+			
+
+
+
+
 			try {
 				array_push($result, array(
 				    'thumb_media_id' => $currentArticle['thumb_media_id'],
 				    'title' => $this->convertToUtf($currentArticle['title']),
-				    'content' => $this->convertToUtf($currentArticle['content']),
+				    // 'content' => $this->convertToUtf($currentArticle['content']),
+				    'content' => urlencode(htmlspecialchars(str_replace("\"","'",$currentArticle['content']))),
 				    'author' => $this->convertToUtf($currentArticle['author']),
 				    'content_source_url' => $this->convertToUtf($currentArticle['url']),
 				    'digest' => $this->convertToUtf($currentArticle['desc']),
-				    'show_cover_pic' => 1
+				    'show_cover_pic' => 0
 				));
 			} catch (Exception $e) {
 
@@ -668,6 +708,7 @@ class WeChatClient {
 		}
 
 		$json = urldecode($json);
+		$json = htmlspecialchars_decode($json);
 
 		$res = self::post($url, $json);
 		if (self::checkIsSuc($res)) {
@@ -704,9 +745,46 @@ class WeChatClient {
 		} else {
 			return false;
 		}
+
+	}
+
+	//é¢„è§ˆæ¶ˆæ¯
+	public function prevMassMsg($msg)
+	{
+		
+		$access_token = $this->getAccessToken();
+		$url = self::$_URL_API_ROOT . "/cgi-bin/message/mass/preview?access_token=$access_token";
+		$post = array();
+
+		// $post['touser'] = 'ojRTZwVoTKKZ4ZaEfBZ-HK87-D0E';
+		$post['touser'] = 'ojRTZwcLwvph5iJoMo0-_RRYYs2s'; //plainçš„
+		if ($msg['type'] == 'media') {
+			$post['mpnews'] = array('media_id' => $msg['media_id']);
+			$post['msgtype'] = 'mpnews';
+		} else {
+			$post['text'] = array('content' => $this->convertToUtf($msg['text']));
+			$post['msgtype'] = 'text';
+		}
+
+		if (defined('JSON_UNESCAPED_UNICODE')) {
+			$json = json_encode($post, JSON_UNESCAPED_UNICODE);
+		} else {
+			$json = json_encode($post);
+		}
+
+		$json = urldecode($json);
+
+		$res = self::post($url, $json);
+		if (self::checkIsSuc($res)) {
+			return json_decode($res, true);
+		} else {
+			return false;
+		}
+		
 	}
 
 	function convertToUtf($str) {
+		// return urlencode(htmlspecialchars(str_replace("\"","'",$str)));
 		return urlencode(diconv($str, CHARSET, 'UTF-8'));
 	}
 

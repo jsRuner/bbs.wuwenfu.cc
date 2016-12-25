@@ -51,17 +51,11 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 		}
 		showtablefooter();
 		echo '<br style="clear:both"><div class="right pg">' . $multi . '</div>';
+		$prev = "";
 		showsubmit('sendsubmit', lang('plugin/wechat', 'mass_send'));
 		showformfooter();
 	} else if ($ac == 'add') {
 		$groups = $wechat_client->getAllGroups();
-		// $groups = array();
-		/*$groups[0] = array(
-			'id'=>'11',
-			'name'=>'hiphp',
-			'count'=>'11',
-
-			);*/
 		if (!$groups) {
 			cpmsg_error('wechat:mass_get_group_failed');
 		}
@@ -117,6 +111,12 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 				
 				if (!$res['data']['local']) { // 推送不存在Local
           $temp = explode($_G['siteurl'], $res['data']['pic']); // 截取有效地址
+
+          if (count($temp) == 1) {
+        	# code...
+        	$temp[1]  = $temp[0];
+        }
+        
         $pic_temp = ltrim($temp[1],'./');
 
 
@@ -149,6 +149,10 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 
 					if (!$res['data']['local']) { // 推送不存在Local
         $temp = explode($_G['siteurl'], $res['data']['pic']); // 截取有效地址
+        if (count($temp) == 1) {
+        	# code...
+        	$temp[1]  = $temp[0];
+        }
         $pic_temp = ltrim($temp[1],'./');
 
 
@@ -209,6 +213,7 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 	}
 
 	$res = $wechat_client->sendMassMsg($msg);
+	// $res = $wechat_client->prevMassMsg($msg);
 
 	if ($res) {
 		C::t('#wechat#mobile_wechat_masssend')->update($massid, array('msg_id' => $res['msg_id'], 'sent_at' => TIMESTAMP));
@@ -218,6 +223,7 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 	} else {
 		cpmsg_error($wechat_client->error());
 	}
+
 } else if (submitcheck('delsubmit')) {
 	$massid = intval($_GET['massid']);
 	$msg = C::t('#wechat#mobile_wechat_masssend')->fetch($massid);
