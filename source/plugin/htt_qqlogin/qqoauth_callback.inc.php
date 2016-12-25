@@ -158,7 +158,7 @@ $appkey =  $var['htt_qqlogin']['key'];
 
 $site_url = $var['htt_qqlogin']['site_url'];
 if(empty($site_url)){
-    $site_url = $site_url;
+    $site_url = $_G['siteurl'];
 }
 $site_url = rtrim($site_url,'/');
 
@@ -221,6 +221,11 @@ if($item = DB::fetch($query)) {
     }
 
     dsetcookie('stats_qc_login', 3, 86400);
+    //2016年12月25日 如果上页面是login界面。则回到首页。
+    if (stripos($referer, 'login') !== false) {
+        # code...
+        $referer = $site_url;
+    }
     showmessage('login_succeed', $referer, $param, array('extrajs' => $ucsynlogin));
     exit();
 }
@@ -283,11 +288,22 @@ if(!file_exists($avatar)){
 }
 
 if($uid <= 0) {
-    if($uid == -1) {
-        showmessage('profile_username_illegal');
-    } elseif($uid == -2) {
-        showmessage('profile_username_protect');
-    } elseif($uid == -3) {
+    if($uid == -1 || $uid == -2) {
+        // showmessage('profile_username_illegal');
+        //如果包含敏感词。则自动为qq_time这样的格式。
+        $username = 'qq_'.time();
+        $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
+        $_G['uid'] = $uid;
+        //保存头像到指定目录。
+        set_home($uid,'uc_server/data/avatar');
+        $avatar = get_avatar($uid,'small');
+        if ($uid<=0) {
+            # code...
+            die('you is not allow register!');
+        }
+
+    }elseif($uid == -3) {
+        //todo:这里还是无法避免重复的问题。
         //如果出现重复，则随机一次。如果还出现，则提示用户名重复。
         //需要添加后缀。
         //如果当前长度为15，则需要截取。根据后台的设置。截取后缀长度。
@@ -299,26 +315,28 @@ if($uid <= 0) {
         $need_len = 15 - $suffix_length - 1 ;
 
         $username = mb_substr($nickname, 0,$need_len).'_'.random($suffix_length);
-
-        echo "$username";
-
         $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
         $_G['uid'] = $uid;
         //保存头像到指定目录。
         set_home($uid,'uc_server/data/avatar');
         $avatar = get_avatar($uid,'small');
 
-        if($uid ==-3){
-            showmessage('profile_username_duplicate');
+        if($uid <=0){
+            die('you is not allow register!');
         }
+
     } elseif($uid == -4) {
         showmessage('profile_email_illegal');
+        exit();
     } elseif($uid == -5) {
         showmessage('profile_email_domain_illegal');
+        exit();
     } elseif($uid == -6) {
         showmessage('profile_email_duplicate');
+        exit();
     } else {
         showmessage('undefined_action');
+        exit();
     }
 }
 
@@ -368,6 +386,12 @@ C::t('common_member_status')->update($_G['uid'], array('lastip' => $_G['clientip
 //统计
 include_once libfile('function/stat');
 updatestat('register');
+
+//统计会员数目。
+if(!function_exists('build_cache_userstats')) {
+    require_once libfile('cache/userstats', 'function');
+}
+build_cache_userstats();
 
 $setting = $_G['setting'];
 $welcomemsg = & $setting['welcomemsg'];
