@@ -6,56 +6,56 @@ if(!defined('IN_DISCUZ')) {
 
 function strFilter($str){
     $str = str_replace('`', '', $str);
-    $str = str_replace('Â·', '', $str);
+    $str = str_replace('¡¤', '', $str);
     $str = str_replace('~', '', $str);
     $str = str_replace('!', '', $str);
-    $str = str_replace('ï¼', '', $str);
+    $str = str_replace('£¡', '', $str);
     $str = str_replace('@', '', $str);
     $str = str_replace('#', '', $str);
     $str = str_replace('$', '', $str);
-    $str = str_replace('ï¿¥', '', $str);
+    $str = str_replace('£¤', '', $str);
     $str = str_replace('%', '', $str);
     $str = str_replace('^', '', $str);
-    $str = str_replace('â€¦â€¦', '', $str);
+    $str = str_replace('¡­¡­', '', $str);
     $str = str_replace('&', '', $str);
     $str = str_replace('*', '', $str);
     $str = str_replace('(', '', $str);
     $str = str_replace(')', '', $str);
-    $str = str_replace('ï¼ˆ', '', $str);
-    $str = str_replace('ï¼‰', '', $str);
+    $str = str_replace('£¨', '', $str);
+    $str = str_replace('£©', '', $str);
     $str = str_replace('-', '', $str);
     $str = str_replace('_', '', $str);
-    $str = str_replace('â€”â€”', '', $str);
+    $str = str_replace('¡ª¡ª', '', $str);
     $str = str_replace('+', '', $str);
     $str = str_replace('=', '', $str);
     $str = str_replace('|', '', $str);
     $str = str_replace('\\', '', $str);
     $str = str_replace('[', '', $str);
     $str = str_replace(']', '', $str);
-    $str = str_replace('ã€', '', $str);
-    $str = str_replace('ã€‘', '', $str);
+    $str = str_replace('¡¾', '', $str);
+    $str = str_replace('¡¿', '', $str);
     $str = str_replace('{', '', $str);
     $str = str_replace('}', '', $str);
     $str = str_replace(';', '', $str);
-    $str = str_replace('ï¼›', '', $str);
+    $str = str_replace('£»', '', $str);
     $str = str_replace(':', '', $str);
-    $str = str_replace('ï¼š', '', $str);
+    $str = str_replace('£º', '', $str);
     $str = str_replace('\'', '', $str);
     $str = str_replace('"', '', $str);
-    $str = str_replace('â€œ', '', $str);
-    $str = str_replace('â€', '', $str);
+    $str = str_replace('¡°', '', $str);
+    $str = str_replace('¡±', '', $str);
     $str = str_replace(',', '', $str);
-    $str = str_replace('ï¼Œ', '', $str);
+    $str = str_replace('£¬', '', $str);
     $str = str_replace('<', '', $str);
     $str = str_replace('>', '', $str);
-    $str = str_replace('ã€Š', '', $str);
-    $str = str_replace('ã€‹', '', $str);
+    $str = str_replace('¡¶', '', $str);
+    $str = str_replace('¡·', '', $str);
     $str = str_replace('.', '', $str);
-    $str = str_replace('ã€‚', '', $str);
+    $str = str_replace('¡£', '', $str);
     $str = str_replace('/', '', $str);
-    $str = str_replace('ã€', '', $str);
+    $str = str_replace('¡¢', '', $str);
     $str = str_replace('?', '', $str);
-    $str = str_replace('ï¼Ÿ', '', $str);
+    $str = str_replace('£¿', '', $str);
     $str = preg_replace("/\s/","",$str);
     // $str = cutstr($str,8,'');
     return trim($str);
@@ -165,7 +165,7 @@ $site_url = rtrim($site_url,'/');
 
 // $callback = trim( $site_url,'/').'/plugin.php?id=htt_qqlogin:qqoauth_callback';
 $callback = $site_url.'/plugin.php?id=htt_qqlogin:qqoauth_callback';
-$suffix_length =  $var['htt_qqlogin']['suffix_length']; //åç¼€é•¿åº¦ã€‚
+$suffix_length =  $var['htt_qqlogin']['suffix_length']; //ºó×º³¤¶È¡£
 
 if($temp = getcookie('con_request_uri')){
     $referer = $temp;
@@ -178,7 +178,7 @@ $qc = new QC();
 $qc->set_config($appid,$appkey,$callback);
 $access_token = $qc->qq_callback();
 $openid = $qc->get_openid();
-//é¿å…sqlæ³¨å…¥
+//±ÜÃâsql×¢Èë
 $openid = daddslashes($openid);
 $query = DB::query("SELECT * FROM  ".DB::table("httqqlogin")." WHERE  `openid`= '$openid'");
 
@@ -190,9 +190,9 @@ if($item = DB::fetch($query)) {
     $members = C::t('common_member')->fetch_by_username($username);
     $uid = $qqinfo['uid'];
 
-    //ç»‘å®šçš„QQè¢«ä½¿ç”¨äº†ã€‚
+    //°ó¶¨µÄQQ±»Ê¹ÓÃÁË¡£
     if($_G['uid'] > 0 && $uid != $_G['uid']){
-        //åˆ¤æ–­ç”¨æˆ·åæ˜¯å¦æ˜¯QQæ³¨å†Œçš„ã€‚å¦‚æœæ˜¯ã€‚åˆ™è¿›å…¥è¡¨å•ã€‚
+        //ÅĞ¶ÏÓÃ»§ÃûÊÇ·ñÊÇQQ×¢²áµÄ¡£Èç¹ûÊÇ¡£Ôò½øÈë±íµ¥¡£
         showmessage(lang('plugin/htt_qqlogin', 'have_bind_qq'),$site_url,array(),array('alert'=>'error'));
         exit();
     }
@@ -201,10 +201,10 @@ if($item = DB::fetch($query)) {
     $password = $qqinfo['password'];
 
     $connect_member = array();
-    $connect_member['uid'] = $qqinfo['uid']; //QQConnectçš„access token
-    $connect_member['conuin'] = $qqinfo['access_token'];//QQConnectçš„access token
-    $connect_member['conuinsecret'] = '';//'QQConnectçš„access token secret'
-    $connect_member['conopenid'] = $openid;//'QQConnectçš„openid
+    $connect_member['uid'] = $qqinfo['uid']; //QQConnectµÄaccess token
+    $connect_member['conuin'] = $qqinfo['access_token'];//QQConnectµÄaccess token
+    $connect_member['conuinsecret'] = '';//'QQConnectµÄaccess token secret'
+    $connect_member['conopenid'] = $openid;//'QQConnectµÄopenid
 
 
     $params['mod'] = 'login';
@@ -221,7 +221,7 @@ if($item = DB::fetch($query)) {
     }
 
     dsetcookie('stats_qc_login', 3, 86400);
-    //2016å¹´12æœˆ25æ—¥ å¦‚æœä¸Šé¡µé¢æ˜¯loginç•Œé¢ã€‚åˆ™å›åˆ°é¦–é¡µã€‚
+    //2016Äê12ÔÂ25ÈÕ Èç¹ûÉÏÒ³ÃæÊÇlogin½çÃæ¡£Ôò»Øµ½Ê×Ò³¡£
     if (stripos($referer, 'login') !== false) {
         # code...
         $referer = $site_url;
@@ -230,7 +230,7 @@ if($item = DB::fetch($query)) {
     exit();
 }
 
-//å…ˆæ“ä½œucenter_membersè¡¨ã€‚
+//ÏÈ²Ù×÷ucenter_members±í¡£
 $qc = new QC($access_token,$openid);
 $qc->set_config($appid,$appkey,$callback);
 $ret = $qc->get_user_info();
@@ -238,8 +238,8 @@ $nickname = $ret['nickname'];
 
 
 
-//å»ç©ºæ ¼ã€‚ä¸ç‰¹æ®Šå­—ç¬¦.è‡³å¤šä¿å­˜4ä¸ªå­—ã€‚
-//2016å¹´6æœˆ12æ—¥ è¿™é‡Œæ ¹æ®éœ€è¦æ”¹å˜ç¼–ç ã€‚å¦‚æœæ˜¯gbkï¼Œå°±è½¬æ¢ã€‚å¦åˆ™ä¸è¿›è¡Œã€‚
+//È¥¿Õ¸ñ¡£ÓëÌØÊâ×Ö·û.ÖÁ¶à±£´æ4¸ö×Ö¡£
+//2016Äê6ÔÂ12ÈÕ ÕâÀï¸ù¾İĞèÒª¸Ä±ä±àÂë¡£Èç¹ûÊÇgbk£¬¾Í×ª»»¡£·ñÔò²»½øĞĞ¡£
 if($_G['charset'] == 'gbk'){
     $nickname =   iconv("utf-8", "gbk",$nickname);
 }
@@ -247,7 +247,7 @@ if($_G['charset'] == 'gbk'){
 
 $nickname = preg_replace('|[^a-zA-Z0-9\x{4e00}-\x{9fa5}]|u', '', $nickname);
 
-//å¦‚æœä¸ºç©ºã€‚åˆ™ä½¿ç”¨ã€‚
+//Èç¹ûÎª¿Õ¡£ÔòÊ¹ÓÃ¡£
 if ($nickname == '') {
     # code...
     $nickname = 'qq_'.time();
@@ -255,7 +255,7 @@ if ($nickname == '') {
 
 $username=$nickname = mb_substr($nickname,0,15);
 
-//ç»‘å®šæ“ä½œã€‚
+//°ó¶¨²Ù×÷¡£
 if ($_G['uid'] > 0 ) {
    $insert_array = array(
     'uid'=>$_G['uid'],
@@ -268,7 +268,7 @@ if ($_G['uid'] > 0 ) {
     'dateline'=>TIMESTAMP,
     );
     DB::insert("httqqlogin",$insert_array);
-    //é€€å‡ºé‡æ–°ç™»å½•ã€‚
+    //ÍË³öÖØĞÂµÇÂ¼¡£
         showmessage( lang('plugin/htt_qqlogin', 'bind_user_success_login'), $site_url,array(),array('alert'=>'right'));
     exit();
 }
@@ -279,7 +279,7 @@ $questionid = '';
 $answer = '';
 $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
 $_G['uid'] = $uid;
-//ä¿å­˜å¤´åƒåˆ°æŒ‡å®šç›®å½•ã€‚
+//±£´æÍ·Ïñµ½Ö¸¶¨Ä¿Â¼¡£
 set_home($uid,'uc_server/data/avatar');
 $avatar = get_avatar($uid,'small');
 
@@ -289,12 +289,21 @@ if(!file_exists($avatar)){
 
 if($uid <= 0) {
     if($uid == -1 || $uid == -2) {
-        // showmessage('profile_username_illegal');
-        //å¦‚æœåŒ…å«æ•æ„Ÿè¯ã€‚åˆ™è‡ªåŠ¨ä¸ºqq_timeè¿™æ ·çš„æ ¼å¼ã€‚
+        if ($uid == -1) {
+            # code...
+            showmessage('profile_username_illegal');
+        }
+        if ($uid == -2) {
+            # code...
+            showmessage('profile_username_protect');
+        }
+        // 
+        die();
+        //Èç¹û°üº¬Ãô¸Ğ´Ê¡£Ôò×Ô¶¯Îªqq_timeÕâÑùµÄ¸ñÊ½¡£
         $username = 'qq_'.time();
         $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
         $_G['uid'] = $uid;
-        //ä¿å­˜å¤´åƒåˆ°æŒ‡å®šç›®å½•ã€‚
+        //±£´æÍ·Ïñµ½Ö¸¶¨Ä¿Â¼¡£
         set_home($uid,'uc_server/data/avatar');
         $avatar = get_avatar($uid,'small');
         if ($uid<=0) {
@@ -303,21 +312,21 @@ if($uid <= 0) {
         }
 
     }elseif($uid == -3) {
-        //todo:è¿™é‡Œè¿˜æ˜¯æ— æ³•é¿å…é‡å¤çš„é—®é¢˜ã€‚
-        //å¦‚æœå‡ºç°é‡å¤ï¼Œåˆ™éšæœºä¸€æ¬¡ã€‚å¦‚æœè¿˜å‡ºç°ï¼Œåˆ™æç¤ºç”¨æˆ·åé‡å¤ã€‚
-        //éœ€è¦æ·»åŠ åç¼€ã€‚
-        //å¦‚æœå½“å‰é•¿åº¦ä¸º15ï¼Œåˆ™éœ€è¦æˆªå–ã€‚æ ¹æ®åå°çš„è®¾ç½®ã€‚æˆªå–åç¼€é•¿åº¦ã€‚
-        //å¦‚æœä½äº15ï¼Œåˆ™ä½†æ˜¯ è¶…è¿‡ 15-åç¼€é•¿åº¦ï¼Œè¿˜æ˜¯éœ€è¦æˆªå–ã€‚è¿˜æ˜¯éœ€è¦æˆªå–åç¼€é•¿åº¦ã€‚
-        //15  3 åˆ™éœ€è¦æˆªå–ã€‚4ä¸ªå­—ç¬¦ã€‚ 15+3+1 -15 = 4   åº”å½“ä¿ç•™ 11ä¸ªå­—ç¬¦ä¸²  15 - 3-1 = 11
-        //12  3 åˆ™éœ€è¦æˆªå–ã€‚1ä¸ªå­—ç¬¦ã€‚ 12+3+1 -15 = 1  åº”å½“ä¿ç•™ 11ä¸ªå­—ç¬¦ä¸² 15 - 3 - 1 = 11
-        //10  3 åˆ™ä¸éœ€è¦æˆªå–ã€‚ 10+3+1 -15 = -1     
+        //todo:ÕâÀï»¹ÊÇÎŞ·¨±ÜÃâÖØ¸´µÄÎÊÌâ¡£
+        //Èç¹û³öÏÖÖØ¸´£¬ÔòËæ»úÒ»´Î¡£Èç¹û»¹³öÏÖ£¬ÔòÌáÊ¾ÓÃ»§ÃûÖØ¸´¡£
+        //ĞèÒªÌí¼Óºó×º¡£
+        //Èç¹ûµ±Ç°³¤¶ÈÎª15£¬ÔòĞèÒª½ØÈ¡¡£¸ù¾İºóÌ¨µÄÉèÖÃ¡£½ØÈ¡ºó×º³¤¶È¡£
+        //Èç¹ûµÍÓÚ15£¬Ôòµ«ÊÇ ³¬¹ı 15-ºó×º³¤¶È£¬»¹ÊÇĞèÒª½ØÈ¡¡£»¹ÊÇĞèÒª½ØÈ¡ºó×º³¤¶È¡£
+        //15  3 ÔòĞèÒª½ØÈ¡¡£4¸ö×Ö·û¡£ 15+3+1 -15 = 4   Ó¦µ±±£Áô 11¸ö×Ö·û´®  15 - 3-1 = 11
+        //12  3 ÔòĞèÒª½ØÈ¡¡£1¸ö×Ö·û¡£ 12+3+1 -15 = 1  Ó¦µ±±£Áô 11¸ö×Ö·û´® 15 - 3 - 1 = 11
+        //10  3 Ôò²»ĞèÒª½ØÈ¡¡£ 10+3+1 -15 = -1     
         
         $need_len = 15 - $suffix_length - 1 ;
 
         $username = mb_substr($nickname, 0,$need_len).'_'.random($suffix_length);
         $uid = uc_user_register($username, $password, $email, $questionid, $answer, $_G['clientip']);
         $_G['uid'] = $uid;
-        //ä¿å­˜å¤´åƒåˆ°æŒ‡å®šç›®å½•ã€‚
+        //±£´æÍ·Ïñµ½Ö¸¶¨Ä¿Â¼¡£
         set_home($uid,'uc_server/data/avatar');
         $avatar = get_avatar($uid,'small');
 
@@ -340,12 +349,12 @@ if($uid <= 0) {
     }
 }
 
-//è¿™é‡Œå‘é€ç³»ç»Ÿé€šçŸ¥ã€‚å‘Šè¯‰å¯¹æ–¹å¯ä»¥ç»‘å®šè€è´¦å·å’Œé»˜è®¤å¯†ç ã€‚
+//ÕâÀï·¢ËÍÏµÍ³Í¨Öª¡£¸æËß¶Ô·½¿ÉÒÔ°ó¶¨ÀÏÕËºÅºÍÄ¬ÈÏÃÜÂë¡£
 $notice_msg = lang('plugin/htt_qqlogin', 'passwd_notice');
 
 $notice_msg = str_replace('passwd', $password, $notice_msg);
 
-$notice_msg = str_replace('bindold', '<a href="'.$site_url.'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank">ç»‘å®š</a>', $notice_msg);
+$notice_msg = str_replace('bindold', '<a href="'.$site_url.'/home.php?mod=spacecp&ac=plugin&op=profile&id=htt_qqlogin:bind_qq" target="_blank">°ó¶¨</a>', $notice_msg);
 
 $notice_data = array(
     'uid'=>$uid,
@@ -353,7 +362,7 @@ $notice_data = array(
     'new'=>1,
     'authorid'=>0,
     'author'=>'',
-    // 'note'=>'ä½ çš„é»˜è®¤å¯†ç æ˜¯123456,è¯·åŠæ—¶ä¿®æ”¹',
+    // 'note'=>'ÄãµÄÄ¬ÈÏÃÜÂëÊÇ123456,Çë¼°Ê±ĞŞ¸Ä',
     'note'=>$notice_msg,
     'dateline'=>TIMESTAMP+2,
     'from_id'=>0,
@@ -383,11 +392,11 @@ C::t('common_member_status')->update($_G['uid'], array('lastip' => $_G['clientip
 
 
 
-//ç»Ÿè®¡
+//Í³¼Æ
 include_once libfile('function/stat');
 updatestat('register');
 
-//ç»Ÿè®¡ä¼šå‘˜æ•°ç›®ã€‚
+//Í³¼Æ»áÔ±ÊıÄ¿¡£
 if(!function_exists('build_cache_userstats')) {
     require_once libfile('cache/userstats', 'function');
 }
@@ -414,7 +423,7 @@ if($welcomemsg && !empty($welcomemsgtxt)) {
 }
 
 
-//å¢åŠ åˆ†ç±»çš„æé†’ã€‚
+//Ôö¼Ó·ÖÀàµÄÌáĞÑ¡£
 C::t('common_member')->increase($uid, array('newprompt' => 1));
 $touid = $uid;
 $categoryname = 'system';
@@ -433,12 +442,12 @@ if($newprompt) {
 
 
 
-//ç™»å½•é€»è¾‘ã€‚
+//µÇÂ¼Âß¼­¡£
     $connect_member = array();
-    $connect_member['uid'] = $uid; //QQConnectçš„access token
-    $connect_member['conuin'] = $access_token;//QQConnectçš„access token
-    $connect_member['conuinsecret'] = '';//'QQConnectçš„access token secret'
-    $connect_member['conopenid'] = $openid;//'QQConnectçš„openid
+    $connect_member['uid'] = $uid; //QQConnectµÄaccess token
+    $connect_member['conuin'] = $access_token;//QQConnectµÄaccess token
+    $connect_member['conuinsecret'] = '';//'QQConnectµÄaccess token secret'
+    $connect_member['conopenid'] = $openid;//'QQConnectµÄopenid
 
 
     $params['mod'] = 'login';

@@ -663,7 +663,7 @@ class WeChatClient {
 			$match = $matchs[1];
 			foreach ($match as $key => $value) {
 				# code...
-				$temp = explode("http://www.ssdfsyq.net/", $value); // 截取有效地址
+				$temp = explode("http://www.ssdfx.net/", $value); // 截取有效地址
 				// $temp = explode("http://bbs.99496.com/", $value); // 截取有效地址
 
 		        if (count($temp) == 1) {

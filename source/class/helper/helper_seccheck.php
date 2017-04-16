@@ -18,10 +18,13 @@ class helper_seccheck {
 		if(!isset($_G['cookie']['sec'.$type])) {
 			return false;
 		}
+
 		list($ssid, $sign) = explode('.', $_G['cookie']['sec'.$type]);
+
 		if($sign != substr(md5($ssid.$_G['uid'].$_G['authkey']), 8, 18)) {
 			return false;
 		}
+
 		$seccheck = C::t('common_seccheck')->fetch($ssid);
 		if(!$seccheck) {
 			return false;
@@ -105,6 +108,7 @@ class helper_seccheck {
 	}
 
 	public static function check_seccode($value, $idhash, $fromjs = 0, $modid = '') {
+
 		global $_G;
 		if(!$_G['setting']['seccodestatus']) {
 			return true;

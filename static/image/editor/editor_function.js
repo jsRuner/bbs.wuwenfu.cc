@@ -9,9 +9,11 @@ function uploadEdit(obj) {
 function edit_save() {
 	var p = window.frames['uchome-ifrHtmlEditor'];
 	var obj = p.window.frames['HtmlEditor'];
-	var status = p.document.getElementById('uchome-editstatus').value;
+	// var status = p.document.getElementById('uchome-editstatus').value;
+	var status = 'code';
 	if(status == 'code') {
-		$('uchome-ttHtmlEditor').value = p.document.getElementById('sourceEditor').value;
+		$('uchome-ttHtmlEditor').value =p.UE.getEditor('editor').getContent();
+		// $('uchome-ttHtmlEditor').value = p.document.getElementById('sourceEditor').value;
 	} else if(status == 'text') {
 		if(BROWSER.ie) {
 			obj.document.body.innerText = p.document.getElementById('dvtext').value;

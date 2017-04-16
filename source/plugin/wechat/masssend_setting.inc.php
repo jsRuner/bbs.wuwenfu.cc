@@ -178,7 +178,23 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 		if (!$newsRes) {
 			cpmsg_error($wechat_client->error());
 		}
-		C::t('#wechat#mobile_wechat_masssend')->insert(array(
+
+		if (intval($_GET['id']) > 0 ) {
+			# code...
+			C::t('#wechat#mobile_wechat_masssend')->update(intval($_GET['id'],array(
+		    'type' => 'media',
+		    'resource_id' => $res['id'],
+		    'text' => '',
+		    'group_id' => $group_id,
+		    'media_id' => $newsRes['media_id'],
+		    'created_at' => $newsRes['created_at']
+			));
+
+			cpmsg('wechat:mass_created_succ', PMODURL, 'succeed');
+
+		}else{
+
+			C::t('#wechat#mobile_wechat_masssend')->insert(array(
 		    'type' => 'media',
 		    'resource_id' => $res['id'],
 		    'text' => '',
@@ -187,16 +203,40 @@ if (!submitcheck('addsubmit') && !submitcheck('sendsubmit') && !submitcheck('del
 		    'created_at' => $newsRes['created_at']
 		));
 		cpmsg('wechat:mass_created_succ', PMODURL, 'succeed');
+
+		}
+		
+
+		
 	} else {
-		$data = array(
-		    'resource_id' => 0,
-		    'type' => 'text',
-		    'text' => $massmessage,
-		    'group_id' => $group_id,
-		    'created_at' => TIMESTAMP
-		);
-		C::t('#wechat#mobile_wechat_masssend')->insert($data);
-		cpmsg('wechat:mass_created_succ', PMODURL, 'succeed');
+
+		if (intval($_GET['id']) > 0 ) {
+			$data = array(
+			    'resource_id' => 0,
+			    'type' => 'text',
+			    'text' => $massmessage,
+			    'group_id' => $group_id,
+			    'created_at' => TIMESTAMP
+			);
+			# code...
+			C::t('#wechat#mobile_wechat_masssend')->update(intval($_GET['id'],$data);
+
+			cpmsg('wechat:mass_created_succ', PMODURL, 'succeed');
+
+		}else{
+
+			$data = array(
+			    'resource_id' => 0,
+			    'type' => 'text',
+			    'text' => $massmessage,
+			    'group_id' => $group_id,
+			    'created_at' => TIMESTAMP
+			);
+
+			C::t('#wechat#mobile_wechat_masssend')->insert($data);
+			cpmsg('wechat:mass_created_succ', PMODURL, 'succeed');
+			
+		}
 	}
 } else if (submitcheck('sendsubmit')) {
 	$massid = intval($_GET['massid']);

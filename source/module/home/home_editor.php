@@ -137,167 +137,161 @@ if (empty($_GET['op'])) {
 			</script>
 		</head>
 		<body style="overflow-y:hidden">
-			<div >
 
-				<table cellpadding="0" cellspacing="0" width="100%" height="100%">
-					<tr>
-						<td height="31">
-							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="edTb">
-								<tr>
-									<td height="31" style="padding-left:3px">
+		 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 
-										<div class="toobar" id="dvToolbar">
-											<div class="icons tble">
-												<a href="javascript:;" class="icoCut" title="<?php echo lang('home/editor', 'editor_cut'); ?>" onClick="format('Cut');return false;"></a>
-												<a href="javascript:;" class="icoCpy" title="<?php echo lang('home/editor', 'editor_copy'); ?>" onClick="format('Copy');return false;"></a>
-												<a href="javascript:;" class="icoPse" title="<?php echo lang('home/editor', 'editor_paste'); ?>" onClick="format('Paste');return false;"></a>
-												<div class="sepline"></div>
-												<a href="javascript:;" class="icoFfm" id="imgFontface" title="<?php echo lang('home/editor', 'editor_font'); ?>" onClick="fGetEv(event);fDisplayElement('fontface','');return false;"></a>
-												<a href="javascript:;" class="icoFsz" id="imgFontsize" title="<?php echo lang('home/editor', 'editor_fontsize'); ?>" onClick="fGetEv(event);fDisplayElement('fontsize','');return false;"></a>
-												<a href="javascript:;" class="icoWgt" onClick="format('Bold');return false;" title="<?php echo lang('home/editor', 'editor_fontbold'); ?>"></a>
-												<a href="javascript:;" class="icoIta" title="<?php echo lang('home/editor', 'editor_fontitalic'); ?>" onClick="format('Italic');return false;"></a>
-												<a href="javascript:;" class="icoUln" onClick="format('Underline');return false;" title="<?php echo lang('home/editor', 'editor_fontunderline'); ?>"></a>
-												<a href="javascript:;" class="icoFcl" title="<?php echo lang('home/editor', 'editor_funtcolor'); ?>" onClick="foreColor(event);return false;" id="imgFontColor"></a>
-												<a href="javascript:;" class="icoAgL" id="imgJustifyleft" onClick="fGetEv(event);format('Justifyleft');return false;" title="<?php echo lang('home/editor', 'editor_align_left'); ?>"></a>
-												<a href="javascript:;" class="icoAgC" id="imgJustifycenter" onClick="fGetEv(event);format('Justifycenter');return false;" title="<?php echo lang('home/editor', 'editor_align_center'); ?>"></a>
-												<a href="javascript:;" class="icoAgR" id="imgJustifyright" onClick="fGetEv(event);format('Justifyright');return false;" title="<?php echo lang('home/editor', 'editor_align_right'); ?>"></a>
+    <style type="text/css">
+        div{
+            width:100%;
+        }
+    </style>
 
-												<a href="javascript:;" class="icoLst" id="imgList" onClick="fGetEv(event);fDisplayElement('divList','');return false;"title="<?php echo lang('home/editor', 'editor_list'); ?>"></a>
-												<a href="javascript:;" class="icoOdt" id="imgInOut" onClick="fGetEv(event);fDisplayElement('divInOut','');return false;" title="<?php echo lang('home/editor', 'editor_indent'); ?>"></a>
-												<div class="sepline"></div>
-												<a href="javascript:;" class="icoUrl" id="icoUrl" onClick="createLink(event, 1);return false;" title="<?php echo lang('home/editor', 'editor_hyperlink'); ?>"></a>
-												<a href="javascript:;" class="icoMoveUrl" onClick="clearLink();return false;" title="<?php echo lang('home/editor', 'editor_remove_link'); ?>"></a>
-												<a href="javascript:;" class="icoImg" id="icoImg" onClick="parent.createImageBox(<?php echo ($isportal ? 'parent.check_catid' : '')?>);return false;" title="<?php echo lang('home/editor', 'editor_link_image'); ?>"></a>
-	<?php if ($isportal) { ?>
-													<a href="javascript:;" class="icoAttach" id="icoAttach" onClick="parent.createAttachBox(<?php echo ($isportal ? 'parent.check_catid' : '')?>);return false;" title="<?php echo lang('home/editor', 'editor_link_attach'); ?>"></a>
-												<?php } ?>
-												<a href="javascript:;" class="icoSwf" id="icoSwf" onClick="createFlash(event, 1);return false;" title="<?php echo lang('home/editor', 'editor_link_flash'); ?>"></a>
-												<a href="javascript:;" class="icoFace" id="faceBox" onClick="faceBox(event);return false;" title="<?php echo lang('home/editor', 'editor_insert_smiley'); ?>"></a>
-	<?php if ($doodle) { ?>
-													<a href="javascript:;" class="icoDoodle" id="doodleBox" onClick="doodleBox(event, this.id);return false;" title="<?php echo lang('home/editor', 'editor_doodle'); ?>"></a>
-												<?php } ?>
-												<?php if ($isportal) { ?>
-													<a href="javascript:;" class="icoPage" id="icoPage" onClick="pageBreak(event, 1);return false;" title="<?php echo lang('home/editor', 'editor_pagebreak'); ?>"></a>
-													<a href="javascript:;" class="icoDown" id="icoDown" onClick="parent.downRemoteFile();return false;" title="<?php echo lang('home/editor', 'editor_download_remote'); ?>"></a>
-	<?php } ?>
-												<a href="javascript:;" class="icoRenew" onClick="renewContent();return false;" title="<?php echo lang('home/editor', 'editor_restore'); ?>"></a>
-												<?php if ($allowhtml) { ?>
-													<input type="checkbox" value="1" name="switchMode" id="switchMode" style="float:left;margin-top:6px!important;margin-top:2px" onClick="setMode(this.checked)" onMouseOver="fSetModeTip(this)" onMouseOut="fHideTip()">
-												<?php } else { ?>
-													<input type="hidden" value="1" name="switchMode" id="switchMode">
-												<?php } ?>
+		<script id="editor" type="text/plain" style="height: 800px;"></script>
 
-											</div>
-											<div class="icons tbri">
-												<a href="javascript:;" class="icoSwitchMdi" title="<?php echo lang('home/editor', 'editor_switch_media'); ?>" onClick="changeEditType(true, event);return false;"></a>
-												<a href="javascript:;" class="icoSwitchTxt" title="<?php echo lang('home/editor', 'editor_switch_text'); ?>" onClick="changeEditType(false, event);return false;"></a>
-												<a href="javascript:;" class="icoFullTxt" onClick="changeEditFull(true, event);return false;"><?php echo lang('home/editor', 'editor_full_screen'); ?></a>
-											</div>
-										</div>
+		<script type="text/javascript">
 
-									</td>
-								</tr>
-							</table>
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
 
-							<div style="width:100px;height:100px;position:absolute;display:none;top:-500px;left:-500px" ID="dvPortrait"></div>
-							<div id="fontface" class="eMenu" style="z-index:99;display:none;top:35px;left:2px;width:110px;height:265px">
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px '<?php echo lang('home/editor', 'editor_font_song'); ?>';"><?php echo lang('home/editor', 'editor_font_song'); ?></a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px '<?php echo lang('home/editor', 'editor_font_hei'); ?>';"><?php echo lang('home/editor', 'editor_font_hei'); ?></a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px '<?php echo lang('home/editor', 'editor_font_kai'); ?>';"><?php echo lang('home/editor', 'editor_font_kai'); ?></a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px '<?php echo lang('home/editor', 'editor_font_li'); ?>';"><?php echo lang('home/editor', 'editor_font_li'); ?></a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px '<?php echo lang('home/editor', 'editor_font_you'); ?>';"><?php echo lang('home/editor', 'editor_font_you'); ?></a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px Arial;">Arial</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px 'Arial Narrow';">Arial Narrow</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px 'Arial Black';">Arial Black</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px 'Comic Sans MS';">Comic Sans MS</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px Courier;">Courier</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px System;">System</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px 'Times New Roman';">Times New Roman</a>
-								<a href="javascript:;" onClick="fontname(this);return false;" class="n" style="font:normal 12px Verdana;">Verdana</a>
-							</div>
-							<div id="fontsize" class="eMenu" style="display:none;top:35px;left:26px;width:125px;height:120px">
-								<a href="javascript:;" onClick="fontsize(1,this);return false;" class="n" style="font-size:xx-small;line-height:120%;"><?php echo lang('home/editor', 'editor_fontsize_xxsmall'); ?></a>
-								<a href="javascript:;" onClick="fontsize(2,this);return false;" class="n" style="font-size:x-small;line-height:120%;"><?php echo lang('home/editor', 'editor_fontsize_xsmall'); ?></a>
-								<a href="javascript:;" onClick="fontsize(3,this);return false;" class="n" style="font-size:small;line-height:120%;"><?php echo lang('home/editor', 'editor_fontsize_small'); ?></a>
-								<a href="javascript:;" onClick="fontsize(4,this);return false;" class="n" style="font-size:medium;line-height:120%;"><?php echo lang('home/editor', 'editor_fontsize_medium'); ?></a>
-								<a href="javascript:;" onClick="fontsize(5,this);return false;" class="n" style="font-size:large;line-height:120%;"><?php echo lang('home/editor', 'editor_fontsize_large'); ?></a>
-							</div>
+    //填充内容。
+    var inihtml = '';
+	var obj = parent.document.getElementById('uchome-ttHtmlEditor');
+	if(obj) {
+		inihtml = obj.value;
+	}
+	if(! inihtml && !window.Event) {
+		inihtml = '<div></div>';
+	}
+	document.getElementById('editor').innerHTML = inihtml;
 
-							<div id="divList" class="eMenu" style="display:none;top:35px;left:26px;width:64px;height:40px;"><a href="javascript:;" onClick="format('Insertorderedlist');fHide(this.parentNode);return false;" class="n"><?php echo lang('home/editor', 'editor_list_order'); ?></a><a href="javascript:;" onClick="format('Insertunorderedlist');fHide(this.parentNode);return false;" class="n"><?php echo lang('home/editor', 'editor_list_unorder'); ?></a></div>
-							<div id="divInOut" class="eMenu" style="display:none;top:35px;left:26px;width:64px;height:40px;"><a href="javascript:;" onClick="format('Indent');fHide(this.parentNode);return false;" class="n"><?php echo lang('home/editor', 'editor_indent_inc'); ?></a><a href="javascript:;" onClick="format('Outdent');fHide(this.parentNode);return false;" class="n"><?php echo lang('home/editor', 'editor_indent_dec'); ?></a></div>
 
-							<div id="dvForeColor" class="eMenu" style="display:none;top:35px;left:26px;width:90px;">
-								<a href="javascript:;" onClick="format(gSetColorType,'#800000');return false;" class="n cs fRd1"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_darkred'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#800080');return false;" class="n cs fRd2"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_purple'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#F00000');return false;" class="n cs fRd3"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_red'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#F000F0');return false;" class="n cs fRd4"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_pink'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#000080');return false;" class="n cs fBu1"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_darkblue'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#0000F0');return false;" class="n cs fBu2"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_blue'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#00F0F0');return false;" class="n cs fBu3"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_lakeblue'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#008080');return false;" class="n cs fGn1"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_greenblue'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#008000');return false;" class="n cs fGn2"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_green'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#808000');return false;" class="n cs fGn3"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_olives'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#00F000');return false;" class="n cs fGn4"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_lightgreen'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#F0C000');return false;" class="n cs fYl1"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_orange'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#000000');return false;" class="n cs fBk1"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_black'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#808080');return false;" class="n cs fBk2"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_grey'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#C0C0C0');return false;" class="n cs fBk3"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_silver'); ?></span></a>
-								<a href="javascript:;" onClick="format(gSetColorType,'#FFFFFF');return false;" class="n cs fWt0"><b class="cb"></b><span><?php echo lang('home/editor', 'editor_color_white'); ?></span></a>
-							</div>
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
 
-							<div id="editFaceBox" class="eMenu" style="display:none;top:35px;left:26px;width:165px;"></div>
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
 
-							<div id="createUrl" class="eMenu" style="display:none;top:35px;left:26px;width:300px;font-size:12px">
-	<?php echo lang('home/editor', 'editor_prompt_textlink'); ?>:<br/>
-								<input type="text" id="insertUrl" name="url" value="http://" onfocus="checkURL(this, 1);" onblur="checkURL(this, 0);" class="t_input" style="width: 190px;"> <input type="button" onclick="createLink();" name="createURL" value="<?php echo lang('home/editor', 'editor_ok'); ?>" class="submit" /> <a href="javascript:;" onclick="fHide($('createUrl'));return false;"><?php echo lang('home/editor', 'editor_cancel'); ?></a>
-							</div>
-							<div id="createImg" class="eMenu" style="display:none;top:35px;left:26px;width:300px;font-size:12px">
-	<?php echo lang('home/editor', 'editor_prompt_imagelink'); ?>:<br/>
-								<input type="text" id="imgUrl" name="imgUrl" value="http://" onfocus="checkURL(this, 1);" onblur="checkURL(this, 0);" class="t_input" style="width: 190px;" /> <input type="button" onclick="createImg();" name="createURL" value="<?php echo lang('home/editor', 'editor_ok'); ?>" class="submit" /> <a href="javascript:;" onclick="fHide($('createImg'));return false;"><?php echo lang('home/editor', 'editor_cancel'); ?></a>
-							</div>
-							<div id="createSwf" class="eMenu" style="display:none;top:35px;left:26px;width:400px;font-size:12px">
-	<?php echo lang('home/editor', 'editor_prompt_videolink'); ?>:<br/>
-								<select name="vtype" id="vtype">
-									<option value="0"><?php echo lang('home/editor', 'editor_prompt_video_flash'); ?></option>
-									<option value="1"><?php echo lang('home/editor', 'editor_prompt_video_media'); ?></option>
-									<option value="2"><?php echo lang('home/editor', 'editor_prompt_video_real'); ?></option>
-									<option value="3"><?php echo lang('home/editor', 'editor_prompt_mp3'); ?></option>
-								</select>
-								<input type="text" id="videoUrl" name="videoUrl" value="http://" onfocus="checkURL(this, 1);" onblur="checkURL(this, 0);" class="t_input" style="width: 200px;" />
-								<input type="button" onclick="createFlash();" name="createURL" value="<?php echo lang('home/editor', 'editor_ok'); ?>" class="submit" />
-								<a href="javascript:;" onclick="fHide($('createSwf'));return false;"><?php echo lang('home/editor', 'editor_cancel'); ?></a>
-							</div>
-							<div id="createPage" class="eMenu" style="display:none;top:35px;left:26px;width:300px;font-size:12px">
-	<?php echo lang('home/editor', 'editor_prompt_pagetitle'); ?>:<br/>
-								<input type="text" id="pageTitle" name="pageTitle" value="" class="t_input" style="width: 190px;" /> <input type="button" onclick="pageBreak();" name="createURL" value="<?php echo lang('home/editor', 'editor_ok'); ?>" class="submit" /> <a href="javascript:;" onclick="fHide($('createPage'));return false;"><?php echo lang('home/editor', 'editor_cancel'); ?></a>
-							</div>
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
 
-						</td></tr>
-					<tr><td>
-							<textarea id="dvtext" style="overflow-y:auto; margin-top: 0; padding:0px 4px 4px;width:100%;height:100%;word-wrap:break-word;border:0;display:none;"></textarea>
-							<div id="dvhtml" style="height:100%;width:100%;overflow:hidden">
-								<SCRIPT LANGUAGE="JavaScript">
-									function blank_load() {
-										var inihtml = '';
-										var obj = parent.document.getElementById('uchome-ttHtmlEditor');
-										if(obj) {
-											inihtml = obj.value;
-										}
-										if(! inihtml && !window.Event) {
-											inihtml = '<div></div>';
-										}
-										window.frames['HtmlEditor'].document.body.innerHTML = inihtml;
-									}
-									document.write('<div id="divEditor" style="padding-left:4px;height:100%;background-color:#fff"><IFRAME class="HtmlEditor" ID="HtmlEditor" name="HtmlEditor" style="height:100%;width:100%;" frameBorder="0" marginHeight=0 marginWidth=0 src="home.php?mod=editor&op=blank&charset=<?php echo $_GET['charset']; ?>" onload="blank_load();"></IFRAME></div>');
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
 
-								</SCRIPT>
-								<textarea id="sourceEditor" style="overflow-y:auto;padding-left:4px;width:100%;height:100%;word-wrap:break-word;display:none;border:0;"></textarea>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<input type="hidden" name="uchome-editstatus" id="uchome-editstatus" value="html">
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		</body>
 	</html>
 	<?php
@@ -314,6 +308,7 @@ if (empty($_GET['op'])) {
 			<meta content="mshtml 6.00.2900.3132" name=generator>
 		</head>
 		<body>
+		1111
 		</body>
 	</html>
 <?php

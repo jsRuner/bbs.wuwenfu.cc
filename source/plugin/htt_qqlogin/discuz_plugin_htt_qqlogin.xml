@@ -3,17 +3,17 @@
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
 	<item id="version"><![CDATA[X3,X3.1,X3.2,F1.0]]></item>
 	<item id="Time"><![CDATA[2016-05-31 19:01]]></item>
-	<item id="From"><![CDATA[��������(http://wuwenfu.cn)]]></item>
+	<item id="From"><![CDATA[北岸的云(http://wuwenfu.cn)]]></item>
 	<item id="Data">
 		<item id="plugin">
 			<item id="available"><![CDATA[0]]></item>
 			<item id="adminid"><![CDATA[1]]></item>
-			<item id="name"><![CDATA[����QQ��¼]]></item>
+			<item id="name"><![CDATA[北岸QQ登录]]></item>
 			<item id="identifier"><![CDATA[htt_qqlogin]]></item>
-			<item id="description"><![CDATA[ͨ��QQ���ٵ�¼��̳]]></item>
+			<item id="description"><![CDATA[通过QQ快速登录论坛]]></item>
 			<item id="datatables"><![CDATA[]]></item>
 			<item id="directory"><![CDATA[htt_qqlogin/]]></item>
-			<item id="copyright"><![CDATA[���ĸ�]]></item>
+			<item id="copyright"><![CDATA[吴文付]]></item>
 			<item id="version"><![CDATA[2.2]]></item>
 			<item id="__modules">
 				<item id="0">
@@ -46,7 +46,7 @@
 				<item id="2">
 					<item id="name"><![CDATA[qq_member]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[�û�����]]></item>
+					<item id="menu"><![CDATA[用户管理]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -59,7 +59,7 @@
 				<item id="3">
 					<item id="name"><![CDATA[qq_help]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[�ӿڰ���]]></item>
+					<item id="menu"><![CDATA[接口帮助]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -73,7 +73,7 @@
 				<item id="4">
 					<item id="name"><![CDATA[bind_qq]]></item>
 					<item id="param"><![CDATA[]]></item>
-					<item id="menu"><![CDATA[QQ����]]></item>
+					<item id="menu"><![CDATA[QQ设置]]></item>
 					<item id="url"><![CDATA[]]></item>
 					<item id="type"><![CDATA[17]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -87,7 +87,7 @@
 				
 				<item id="5">
 					<item id="name"><![CDATA[more]]></item>
-					<item id="menu"><![CDATA[�����Ʒ]]></item>
+					<item id="menu"><![CDATA[更多产品]]></item>
 					<item id="url"><![CDATA[http://addon.discuz.com/?@20307.developer]]></item>
 					<item id="type"><![CDATA[3]]></item>
 					<item id="adminid"><![CDATA[0]]></item>
@@ -106,7 +106,7 @@
 			<item id="1">
 				<item id="displayorder"><![CDATA[1]]></item>
 				<item id="title"><![CDATA[APPID]]></item>
-				<item id="description"><![CDATA[http://connect.qq.com ����appid]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com 申请appid]]></item>
 				<item id="variable"><![CDATA[appid]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -116,7 +116,7 @@
 			<item id="2">
 				<item id="displayorder"><![CDATA[2]]></item>
 				<item id="title"><![CDATA[KEY]]></item>
-				<item id="description"><![CDATA[http://connect.qq.com ����key]]></item>
+				<item id="description"><![CDATA[http://connect.qq.com 申请key]]></item>
 				<item id="variable"><![CDATA[key]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -126,8 +126,8 @@
 			
 			<item id="3">
 				<item id="displayorder"><![CDATA[3]]></item>
-				<item id="title"><![CDATA[վ���ַ]]></item>
-				<item id="description"><![CDATA[������QQ��¼�ӿڵĵ�ַһ�¡��в���������ӿ�д����http://www.abc.com ����д���� http://abc.com]]></item>
+				<item id="title"><![CDATA[站点地址]]></item>
+				<item id="description"><![CDATA[与申请QQ登录接口的地址一致。切不可以申请接口写的是http://www.abc.com 这里写的是 http://abc.com]]></item>
 				<item id="variable"><![CDATA[site_url]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[]]></item>
@@ -137,8 +137,8 @@
 
 			<item id="4">
 				<item id="displayorder"><![CDATA[4]]></item>
-				<item id="title"><![CDATA[�ǳƺ�׺�ĳ���]]></item>
-				<item id="description"><![CDATA[���QQע��ʱ��������,���Զ����Ӻ�׺��Ĭ������5���ַ��ĺ�׺��]]></item>
+				<item id="title"><![CDATA[昵称后缀的长度]]></item>
+				<item id="description"><![CDATA[如果QQ注册时出现重名,则自动添加后缀。默认添加5个字符的后缀。]]></item>
 				<item id="variable"><![CDATA[suffix_length]]></item>
 				<item id="type"><![CDATA[text]]></item>
 				<item id="value"><![CDATA[5]]></item>
@@ -151,55 +151,55 @@
 		
 		 <item id="language">
 			<item id="templatelang">
-				<item id='qq_tip1'><![CDATA[ֻ��Ҫһ�������ٿ�ʼ]]></item>
-				<item id='qq_tip2'><![CDATA[��ݵ�¼]]></item>
-				<item id='qq_tip3'><![CDATA[QQ��¼]]></item>
+				<item id='qq_tip1'><![CDATA[只需要一步，快速开始]]></item>
+				<item id='qq_tip2'><![CDATA[快捷登录]]></item>
+				<item id='qq_tip3'><![CDATA[QQ登录]]></item>
 				
-				<item id='current_qq'><![CDATA[��ǰ�󶨵�QQ�ǳ�]]></item>
+				<item id='current_qq'><![CDATA[当前绑定的QQ昵称]]></item>
 
-				<item id='old_username'><![CDATA[�û���]]></item>
-				<item id='old_password'><![CDATA[����]]></item>
-				<item id='submit'><![CDATA[�ύ]]></item>
-				<item id='bind_qq_tip'><![CDATA[�����û���-����,���ʾ��ǰQQ���󶨸��ʺš�]]></item>
+				<item id='old_username'><![CDATA[用户名]]></item>
+				<item id='old_password'><![CDATA[密码]]></item>
+				<item id='submit'><![CDATA[提交]]></item>
+				<item id='bind_qq_tip'><![CDATA[输入用户名-密码,则表示当前QQ来绑定该帐号。]]></item>
 
 				
 			</item>
 		
 			<item id="scriptlang">
-				<item id='qq_help'><![CDATA[<li>����QQ��¼��� ��ַ http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>�˲����ٷ��Դ��Ĳ�ͬ���û�������д�κ����ϡ�����Ҫ����ӿ�</li><li>����ӿڵ�ַ�� http://connect.qq.com</li><li>�°�QQ��¼����ӿ���Ҫ��ˡ�����ͷ���ύ���ϼ��ɡ�����һ�㲻����2�졣</li><li>����ӿ�������д��ʽ���������վ����abc.com,����վ��ַ��http://abc.com ��վ�Ļص���д http://abc.com/plugin.php </li><li><strong>�ر�ע�⣺�ص�����plugin.php��β���������ò��ǰ����رչٷ���qq������</strong></li><li>���QQȺ ��554197629 ��ӭ��Ⱥ��ѯ</li>]]>
+				<item id='qq_help'><![CDATA[<li>北岸QQ登录插件 地址 http://addon.discuz.com/?@htt_qqlogin.plugin</li><li>此插件与官方自带的不同：用户无需填写任何资料。但需要申请接口</li><li>申请接口地址： http://connect.qq.com</li><li>新版QQ登录申请接口需要审核。请点击头像提交资料即可。周期一般不超过2天。</li><li>申请接口资料填写格式：例如你的站点是abc.com,则网站地址是http://abc.com 网站的回调域写 http://abc.com/plugin.php </li><li><strong>特别注意：回调域是plugin.php结尾。另外启用插件前，请关闭官方的qq互联。</strong></li><li>插件QQ群 ：554197629 欢迎加群咨询</li>]]>
 					
 				</item>
 				<item id="uid"><![CDATA[UID]]></item>
-				<item id="nickname"><![CDATA[�ǳ�]]></item>
-				<item id="photo"><![CDATA[ͷ��]]></item>
-				<item id="username"><![CDATA[ע����û���]]></item>
-				<item id="dateline"><![CDATA[ע��ʱ��]]></item>
+				<item id="nickname"><![CDATA[昵称]]></item>
+				<item id="photo"><![CDATA[头像]]></item>
+				<item id="username"><![CDATA[注册的用户名]]></item>
+				<item id="dateline"><![CDATA[注册时间]]></item>
 				<item id="openid"><![CDATA[OPENID]]></item>
 				<item id="accesstoken"><![CDATA[ACCESSTOKEN]]></item>
-				<item id="password"><![CDATA[����]]></item>
-				<item id="default_password"><![CDATA[��ӭ��ͨ��QQ��¼ע���ʺ�,����Ĭ������]]></item>
+				<item id="password"><![CDATA[密码]]></item>
+				<item id="default_password"><![CDATA[欢迎您通过QQ登录注册帐号,您的默认密码]]></item>
 				
-				<item id="please_write_whole"><![CDATA[����д������Ϣ]]></item>
-				<item id="action_success"><![CDATA[�����ɹ�]]></item>
+				<item id="please_write_whole"><![CDATA[请填写完整信息]]></item>
+				<item id="action_success"><![CDATA[操作成功]]></item>
 				
-				<item id="bind_user_no_exist"><![CDATA[�󶨵��û�������]]></item>
-				<item id="bind_user_password_wrong"><![CDATA[�������]]></item>
+				<item id="bind_user_no_exist"><![CDATA[绑定的用户不存在]]></item>
+				<item id="bind_user_password_wrong"><![CDATA[密码错误]]></item>
 				
-				<item id="bind_user_success_login"><![CDATA[�󶨳ɹ�,���ڿ���ʹ��QQ��¼����]]></item>
+				<item id="bind_user_success_login"><![CDATA[绑定成功,现在可以使用QQ登录试试]]></item>
 				
-				<item id="show_export_title"><![CDATA[UID,OPENID,ACCESS_TOKEN,�ǳ�,�û���,ͷ��,ע��ʱ��]]></item>
+				<item id="show_export_title"><![CDATA[UID,OPENID,ACCESS_TOKEN,昵称,用户名,头像,注册时间]]></item>
 				
-				<item id="show_export_btn"><![CDATA[����QQ�û�]]></item>
+				<item id="show_export_btn"><![CDATA[导出QQ用户]]></item>
 				
-				<item id="bind_user_by_admin"><![CDATA[���������޸ġ��û������ֶ���QQע�ᡣ����λ���� ����-�û�����-QQ���á�Ĭ�������Ѿ�ϵͳ��Ϣ���͸��û�]]></item>
+				<item id="bind_user_by_admin"><![CDATA[请勿随意修改。用户可以手动绑定QQ注册。具体位置是 设置-用户资料-QQ设置。默认密码已经系统消息发送给用户]]></item>
 				
-				<item id="member_help"><![CDATA[<li>���ж�ص�ʱ��,��ɾ��������������ݣ�����ر��ݱ����ߵ�����¼</li><li>ɾ�������һ����¼�����ͬ�ڽ��QQ��¼���û��ٴε��������ע���˺Ż��߰�QQ</li>]]></item>
-				<item id="login_fail"><![CDATA[��¼ʧ��]]></item>
+				<item id="member_help"><![CDATA[<li>插件卸载的时候,会删除插件产生的数据，请务必备份表或者导出记录</li><li>删除下面的一条记录，则等同于解绑QQ登录。用户再次点击会重新注册账号或者绑定QQ</li>]]></item>
+				<item id="login_fail"><![CDATA[登录失败]]></item>
 				
-				<item id="no_bind_qq"><![CDATA[û�а�QQ]]></item>
-				<item id="have_bind_qq"><![CDATA[��QQ�Ѿ����������û�������ϵ����Ա]]></item>
+				<item id="no_bind_qq"><![CDATA[没有绑定QQ]]></item>
+				<item id="have_bind_qq"><![CDATA[该QQ已经绑定了其他用户。请联系管理员]]></item>
 
-				<item id="passwd_notice"><![CDATA[���Ĭ�������ǡ�passwd��,�����Ҫ��֮ǰ���˺ţ����Ե����� bindold]]></item>
+				<item id="passwd_notice"><![CDATA[你的默认密码是【passwd】,如果需要绑定之前的账号，可以点击这里： bindold]]></item>
 				
 			</item>
 		</item>
