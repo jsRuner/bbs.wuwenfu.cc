@@ -2,6 +2,8 @@
 if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
+
+exit();
 $refererhost = parse_url($_SERVER['HTTP_REFERER']);
 $refererhost['host'] .= !empty($refererhost['port']) ? (':'.$refererhost['port']) : '';
 if($refererhost['host'] != $_SERVER['HTTP_HOST'] || !extension_loaded('gd')){

@@ -11,33 +11,11 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 global $_G;
-// $refererhost = parse_url($_SERVER['HTTP_REFERER']);
-// $refererhost['host'] .= !empty($refererhost['port']) ? (':'.$refererhost['port']) : '';
-// if($refererhost['host'] != $_SERVER['HTTP_HOST'] || !extension_loaded('gd')){
-// 	exit('Access Denied');
-// }
-$idhash = $_GET['idhash'];
-
-//验证码的值。
-$seccode = '123456';
-
-$cvar['ltime'] = 30;
-
-//记录验证码到数据库
-$ssid = C::t('common_seccheck')->insert(array(
-		    'dateline' => TIMESTAMP,
-		    'code' => $seccode,
-		    'succeed' => 0,
-		    'verified' => 0,
-		), true);
-
-//插件本身校验验证码是否正确。
-dsetcookie('seccode'.$idhash, authcode(strtoupper($seccode)."\t".(TIMESTAMP + $cvar['ltime'])."\t".$idhash."\t".FORMHASH, 'ENCODE', $_G['config']['security']['authkey']), 0, 1, true);
-
-//后台验证次数。验证码的次数。
-dsetcookie('seccode', $ssid.'.'.substr(md5($ssid.$_G['uid'].$_G['authkey']), 8, 18));
-
-
+$refererhost = parse_url($_SERVER['HTTP_REFERER']);
+$refererhost['host'] .= !empty($refererhost['port']) ? (':'.$refererhost['port']) : '';
+if($refererhost['host'] != $_SERVER['HTTP_HOST'] || !extension_loaded('gd')){
+	exit('Access Denied');
+}
 
 if(!$_G['setting']['nocacheheaders']) {
 	@header("Expires: -1");
@@ -45,11 +23,66 @@ if(!$_G['setting']['nocacheheaders']) {
 	@header("Pragma: no-cache");
 }
 
-dheader("Content-type: image/png");
-// echo $data;
-$PSize = filesize('/Applications/MAMP/htdocs/bbs.wuwenfu.cn/source/plugin/htt_captcha/misc.png');
-$picturedata = fread(fopen('/Applications/MAMP/htdocs/bbs.wuwenfu.cn/source/plugin/htt_captcha/misc.png', "r"), $PSize);
-echo $picturedata;
-// exit();
+$cvar['font'] = '方正书宋简体.ttf';
+
+require_once libfile('htt_captcha','plugin/htt_captcha');
+header("Content-type:image/png");
+$captcha5 = new Captcha();
+
+//@设置验证码宽度
+$captcha5->setWidth(100);
+ 
+//@设置验证码高度
+//$captcha5->setHeight(50);
+ 
+//@设置字符个数
+$captcha5->setTextNumber(2);
+
+$fontcolor = '0x'.(sprintf('%02s', dechex (mt_rand(0, 255)))).(sprintf('%02s', dechex (mt_rand(0, 128)))).(sprintf('%02s', dechex (mt_rand(0, 255))));
+
+
+//@设置字符颜色
+// $captcha5->setFontColor('#ff0000');
+$captcha5->setFontColor($fontcolor);
+ 
+//@设置字号大小
+//$captcha5->setFontSize(25);
+ 
+//@设置字体
+$captcha5->setFontFamily(DISCUZ_ROOT.'./source/plugin/htt_captcha/fonts/'.$cvar['font']);
+ 
+//@设置语言
+$captcha5->setTextLang('cn');
+ 
+//@设置背景颜色
+$fontcolor = '0x'.(sprintf('%02s', dechex (mt_rand(0, 255)))).(sprintf('%02s', dechex (mt_rand(0, 128)))).(sprintf('%02s', dechex (mt_rand(0, 255))));
+// $captcha5->setBgColor($fontcolor);
+ 
+//@设置干扰点数量
+$captcha5->setNoisePoint(100);
+ 
+//@设置干扰线数量
+$captcha5->setNoiseLine(5);
+ 
+//@设置是否扭曲
+$captcha5->setDistortion(true);
+ 
+//@设置是否显示边框
+$captcha5->setShowBorder(true);
+ 
+//输出验证码
+$captcha5->initImage(); //创建基本图片
+
+$code = $captcha5->createText();
+
+$idhash = $_GET['idhash'];
+
+//验证码的值。
+$seccode = $code;
+
+$cvar['ltime'] = 30; //30秒内有效果
+//插件本身校验验证码是否正确。
+dsetcookie('seccode'.$idhash, authcode(strtoupper($seccode)."\t".(TIMESTAMP + $cvar['ltime'])."\t".$idhash."\t".FORMHASH, 'ENCODE', $_G['config']['security']['authkey']), 0, 1, true);
+$captcha5->createImage();
 
 ?>

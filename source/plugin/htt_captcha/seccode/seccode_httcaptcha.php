@@ -18,7 +18,6 @@ class seccode_httcaptcha {
 	var $description = '';
 	var $copyright = '<a href="http://wuwenfu.cn" target="_blank">北岸的云 .</a>';
 
-	//这个只是代表额外的验证。可以不存在。
 	function check($value, $idhash, $seccheck, $fromjs, $modid) {
 		global $_G;
 		if(!isset($_G['cookie']['seccode'.$idhash])) {
@@ -28,6 +27,7 @@ class seccode_httcaptcha {
 		return $checkvalue == strtoupper($value) && TIMESTAMP < $checktime && $checkidhash == $idhash && FORMHASH == $checkformhash;
 	}
 
+	//需要返回验证码的值。
 	function make($idhash, $modid) {
 		global $_G;
 
@@ -35,12 +35,8 @@ class seccode_httcaptcha {
 		$rand = random(10);
 		$src = 'plugin.php?id=htt_captcha:get&rand='.$rand.'&modid='.$modid.'&idhash='.$idhash;
 		$tips = lang('core', 'seccode_image_tips');
-		echo '<span id="seccode_js'.$idhash.'"></span><script type="text/javascript" src="http://discuz.gtimg.cn/cloud/scripts/captcha.js?version='.CLOUDCAPTCHA_VER.'"></script>'.
-		    '<script type="text/javascript" reload="1">'.
-		    'var refresh = $(\'seccode_'.$idhash.'\').innerHTML ? 1 : 0;'.
-		    'var cloudCaptchaTimer = setInterval(function(){if(typeof cloudCaptcha != "undefined"){'.
-		    'clearInterval(cloudCaptchaTimer);'.
-		    'cloudCaptcha.run("'.$src.'&refresh=" + refresh, "'.$idhash.'", "'.$tips.'");}}, 50);</script>';
+		echo '<img onclick="updateseccode(\''.$idhash.'\')"  src="plugin.php?id=htt_captcha:get&idhash='.$idhash.'&rand='.rand(0,10000).'" class="vm" alt="" />';
+		return '123456';
 	}
 
 	function image($idhash, $modid) {
